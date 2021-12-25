@@ -1,0 +1,224 @@
+﻿@model NkVendorLocationSearchModel
+
+@using Nop.Core.Domain.Common
+@{
+    //page title
+    ViewBag.PageTitle = T("Admin.NkVendorLocations").Text;
+    //active menu item (system name)
+    Html.SetActiveMenuItemSystemName("Vendor Location");
+}
+
+@{
+    const string hideSearchBlockAttributeName = "VendorsPage.HideSearchBlock";
+    var hideSearchBlock = await genericAttributeService.GetAttributeAsync<bool>(await workContext.GetCurrentCustomerAsync(), hideSearchBlockAttributeName);
+}
+
+<div class="content-header clearfix">
+    <h1 class="float-left">
+        @T("Admin.NkVendorLocations")
+    </h1>
+    <div class="float-right">
+        @*<a asp-action="Create" class="btn btn-primary">
+            <i class="fas fa-plus-square"></i>
+            @T("Admin.Common.AddNew")
+        </a>*@
+        <button type="submit" name="importcsv" class="btn bg-olive" data-toggle="modal" data-target="#importcsv-window">
+            <i class="fas fa-upload"></i>
+            @T("Admin.NkVendorLocations.ImportFromCsv")
+        </button>
+        @await Component.InvokeAsync("AdminWidget", new { widgetZone = AdminWidgetZones.VendorListButtons })
+    </div>
+</div>
+
+<section class="content">
+    <div class="container-fluid">
+    <div class="form-horizontal">
+        <div class="cards-group">
+            <div class="card card-default card-search">
+                <div class="card-body">
+                    <div class="row search-row @(!hideSearchBlock ? "opened" : "")" data-hideAttribute="@hideSearchBlockAttributeName">
+                        <div class="search-text">@T("Admin.Common.Search")</div>
+                        <div class="icon-search"><i class="fas fa-search" aria-hidden="true"></i></div>
+                        <div class="icon-collapse"><i class="far fa-angle-@(!hideSearchBlock ? "up" : "down")" aria-hidden="true"></i></div>
+                    </div>
+
+                    <div class="search-body @(hideSearchBlock ? "closed" : "")">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group row">
+                                    <div class="col-md-4">
+                                        <nop-label asp-for="ManufacturerId" />
+                                    </div>
+                                    <div class="col-md-8">
+                                        <nop-select asp-for="ManufacturerId" asp-items="Model.Manufacture" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group row">
+                                    <div class="col-md-4">
+                                        <nop-label asp-for="StateId" />
+                                    </div>
+                                    <div class="col-md-8">
+                                        <nop-select asp-for="StateId" asp-items="Model.State" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group row">
+                                    <div class="col-md-4">
+                                        <nop-label asp-for="DistrictId" />
+                                    </div>
+                                    <div class="col-md-8">
+                                        <nop-select asp-for="DistrictId" asp-items="Model.District" />
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="text-center col-12">
+                                <button type="button" id="search-vendors" class="btn btn-primary btn-search">
+                                    <i class="fas fa-search"></i>
+                                    @T("Admin.Common.Search")
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card card-default">
+                <div class="card-body">
+                    <nop-doc-reference asp-string-resource="@T("Admin.Documentation.Reference.VendorManagement", Docs.VendorManagement + Utm.OnAdmin)" />
+
+                    @await Html.PartialAsync("Table", new DataTablesModel
+               {
+                   Name = "vendors-grid",
+                   UrlRead = new DataUrl("VendorLocationList", "NkVendorLocation", null),
+                   SearchButtonId = "search-vendors",
+                   Length = Model.PageSize,
+                   LengthMenu = Model.AvailablePageSizes,
+                   Filters = new List<FilterParameter>
+                        {
+                            new FilterParameter(nameof(Model.ManufacturerId)),
+                            new FilterParameter(nameof(Model.DistrictId)),
+                            new FilterParameter(nameof(Model.StateId)),
+
+                        },
+                   ColumnCollection = new List<ColumnProperty>
+                        {
+                            new ColumnProperty(nameof(NkVendorLocationModel.ManufacturerName))
+                            {
+                                Title = T("Admin.NkVendorLocations.Fields.Name").Text,
+                                Width = "100"
+                            },
+                            new ColumnProperty(nameof(NkVendorLocationModel.DistrictName))
+                            {
+                                Title = T("Admin.NkVendorLocations.Fields.District").Text,
+                                Width = "100"
+                            },
+                            new ColumnProperty(nameof(NkVendorLocationModel.Genre))
+                            {
+                                Title = T("Admin.NkVendorLocations.Fields.Genre").Text,
+                                Width = "100"
+
+                            },
+                             new ColumnProperty(nameof(NkVendorLocationModel.MapLocation))
+                            {
+                                Title = T("Admin.NkVendorLocations.Fields.MapLocation").Text,
+                                Width = "100"
+
+                            },
+                            new ColumnProperty(nameof(NkVendorLocationModel.Id))
+                            {
+                                Title = T("Admin.Common.Edit").Text,
+                                Width = "50",
+                                ClassName =  NopColumnClassDefaults.Button,
+                                Render = new RenderButtonEdit(new DataUrl("Edit"))
+                            }
+                        }
+               })
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+<div id="importcsv-window" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="importcsv-window-title">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="importcsv-window-title">@T("Admin.Common.ImportFromCsv")</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <form asp-controller="Country" asp-action="ImportCsv" method="post" enctype="multipart/form-data">
+                <div class="form-horizontal">
+                    <div class="modal-body">
+                        <ul class="common-list">
+                            <li>
+                                <em>@T("Admin.NkVendorLocations.ImportTip")</em>
+                            </li>
+                            <li>
+                                <em><a href="@(OfficialSite.StatesPackage + Utm.OnAdminCountries)" target="_blank">https://www.nopcommerce.com/all-states-provinces-package-nopcommerce-team</a></em>
+                            </li>
+                        </ul>
+                        <div class="form-group row">
+                            <div class="col-md-2">
+                                <div class="label-wrapper">
+                                    <label class="col-form-label">
+                                        @T("Admin.Common.CsvFile")
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-10">
+                                <input type="file" id="importcsvfile" name="importcsvfile" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">
+                            @T("Admin.Common.ImportFromCsv")
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script asp-location="Footer">
+            $(document).ready(function () {
+                        //load district when changing a country dropdownlist
+                    $("#@Html.IdFor(model =>model.StateId)").change(function () {
+                            var selectedItem = $(this).val();
+                            var ddlDistricts = $("#@Html.IdFor(model => model.DistrictId)");
+                            $.ajax({
+                                cache: false,
+                                type: "GET",
+                                url: "@(Url.Action("GetDistrictByStateId", "VendorLocation"))",
+                                data: {
+                                    "stateId": selectedItem,
+                                    "addAsterisk": "false"
+                                },
+                                success: function (data, textStatus, jqXHR) {
+                                    ddlDistricts.html('');
+                                    $.each(data, function(id, option) {
+                                        ddlDistricts.append($('<option></option>').val(option.id).html(option.name));
+                                    });
+                                },
+                                error: function (jqXHR, textStatus, errorThrown) {
+                                  /*  $("#statesAlert").click();*/
+                                }
+                            });
+                        });
+                $("#search-location").on("click", function () {
+                    var ddlDistrict = $("#@Html.IdFor(model => model.DistrictId)");
+                    var ddlManufacturerId = $("#@Html.IdFor(model => model.ManufacturerId)");
+                    var ddlStateId = $("#@Html.IdFor(model => model.StateId)");
+                    var url = "@Url.Content("~/NkVendorLocation/List")";
+                    window.location.href = url + "?districtId=" + ddlDistrict.val() + "&manufacturerId=" + ddlManufacturerId.val() + "&stateId=" + ddlStateId.val();
+                })
+                 $("#@Html.IdFor(model =>model.StateId)").trigger("change");
+            });
+
+</script>

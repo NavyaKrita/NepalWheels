@@ -1,0 +1,63 @@
+﻿@model EMIModel
+
+<div class="page registration-page">
+
+    <div class="page-title">
+        <strong>@T("Plugin.Calculator.EMI.CalculateEMI")</strong>
+    </div>
+    <div class="emi page-body">
+        <div class="inputs">
+            <label asp-for="@Model.Amount" asp-postfix=":"></label>
+            <input asp-for="@Model.Amount" class="amount" min="@Model.Amount" />
+            <nop-required />
+        </div>
+        <div class="inputs">
+            <label asp-for="@Model.Month" asp-postfix=":"></label>
+            @Html.DropDownListFor(m => m.Month, Model.AvailableMonth, new { })
+            <nop-required />
+        </div>
+        <div class="buttons">
+            <button type="button" name="calculate-button" id="calculate-emi" class="button-1">@T("Plugin.Calculator.EMI.Fields.Calculate")</button>
+        </div>
+        <script asp-location="Footer">
+            $(document).ready(function () {
+                $("#calculate-emi").trigger('click');
+                $("#calculate-emi").click(function () {
+
+                    var repayemt = $("#@Html.IdFor(model => model.MonthlyRepayment)")
+                    var emiModel = {
+                        Month: $("#@Html.IdFor(model => model.Month) option:selected").val(),
+                        Rate: @Model.Rate,
+                        Amount: $("#@Html.IdFor(model => model.Amount)").val()
+
+                    }
+                    addAntiForgeryToken(emiModel);
+
+                    $.ajax({
+                        cache: false,
+                        type: "POST",
+                        url: "@(Url.Action("Calculate", "Product"))",
+                        data: emiModel,
+                        dataType: "json",
+                        success: function (data, textStatus, jqXHR) {
+
+                            repayemt.val(data.Total);
+                        },
+                        failure: function (response) {
+                            alert(response.responseText);
+                        },
+                        error: function (response) {
+                            alert(response.responseText);
+                        }
+
+                    });
+                });
+            });
+        </script>
+        <div class="inputs">
+            <label asp-for="@Model.MonthlyRepayment" asp-postfix=":"></label>
+            <input asp-for="@Model.MonthlyRepayment" readonly />
+        </div>
+    </div>
+
+</div>

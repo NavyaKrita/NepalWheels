@@ -1,0 +1,6 @@
+Admin.Catalog.Products.Fields.HasEMIAvailable
+Admin.Catalog.Products.Fields.InterestRate
+Admin.Catalog.Products.Fields.DownPaymentPercent
+Admin.Catalog.Products.Fields.DownPayment
+admin.catalog.products.fields.downpaymentpercent.shouldbegreaterthanzeroandlessthanhundred
+Admin.Catalog.Products.Fields.DownPaymentPercent.ShouldBeGreaterThanZeroAndLessThanTwentyFive

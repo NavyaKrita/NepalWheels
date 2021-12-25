@@ -1,0 +1,142 @@
+﻿@model SearchBoxModel
+<form asp-route="ProductSearch" method="get" id="small-search-box-form-compare-1" class="open">
+
+
+    <input type="search" class="search-box-text" id="small-searchterms-compare-1" autocomplete="off" name="q" placeholder="@T("Search.CompareSearchBox.Tooltip")" aria-label="@T("Search.SearchBox.Text.Label")" />
+  @*  @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.SearchBoxBeforeSearchButton })*@
+    @*<button type="submit" class="button-1 search-box-button">@T("Search.Button")</button>*@
+
+    <script asp-location="Footer">
+        $(document).ready(function () {
+
+            var n,
+                t,
+                l = $(".instantSearchResourceElement");
+            $("#filter-from-compare").val("Compare-filter");
+            $("#small-searchterms-compare-1").kendoAutoComplete({
+                highlightFirst: "true" === l.attr("data-highlightFirstFoundElement"),
+                minLength: parseInt(l.attr("data-minKeywordLength")) || 0,
+                enforceMinLength: !0,
+                dataTextField: "ProductName",
+                filter: "contains",
+                noDataTemplate: t,
+                popup: { appendTo: $("#small-search-box-form-compare-1") },
+                template: kendo.template($("#instantSearchItemTemplate-compare").html()),
+                height: "auto",
+                dataSource: new kendo.data.DataSource({
+                    serverFiltering: !0,
+                    schema: { data: "Products" },
+                    requestStart: function () {
+                        $("#small-searchterms-compare-1").addClass("instant-search-busy");
+                    },
+                    change: function (t) {
+                        console.log("t", t);
+                        $("#small-searchterms-compare-1").removeClass("instant-search-busy");
+                    },
+                    transport: {
+                        read: {
+                            url: l.attr("data-instantSearchUrl"),
+                            complete: function (t) {
+                                t.success(function (t) {
+
+                                    var a = $("#instantSearchShowAll");
+                                    0 < a.length && a.remove(),
+                                        $("#small-searchterms-compare-1-list").append(t.ShowAllButtonHtml),
+                                        $("#instantSearchShowAll").on("click", function (t) {
+                                            t.preventDefault(), $(".search-box-button").click();
+                                        });
+                                });
+                            },
+                        },
+                        parameterMap: function () {
+                            return { q: $("#small-searchterms-compare-1").val(), categoryId: $("#instant-search-categories").val(), manufacturerId: $("#instant-search-manufacturers").val(), vendorId: $("#instant-search-vendors").val() };
+                        },
+                    },
+                }),
+                change: function () {
+
+                    var t = $(".k-list").find(".k-state-selected").find(".instant-search-item").attr("data-url");
+                    void 0 === t || setLocation(t);
+                },
+                dataBound: function (t) {
+
+                    $("#small-searchterms-compare-1").data("kendoAutoComplete").list.parent(".k-animation-container").addClass("instantSearch"),
+                        (0 < $("#instant-search-categories").length || 0 < $("#instant-search-manufacturers").length || 0 < $("#instant-search-vendors").length) && $(".k-animation-container").addClass("resize"),
+                        (function () {
+                            var t = $("#small-searchterms_listbox").children().slice(0, n),
+                                a = 0;
+                            if (t.length === n) for (var e = 0; e < t.length; e++) a += $(t[e]).outerHeight();
+                            0 < a && $("#small-searchterms-compare-1-list").css("height", a);
+                        })();
+                },
+            }),
+                "false" === l.attr("data-highlightFirstFoundElement") &&
+                $("#small-search-box-form-compare-1").on("keydown", function (t) {
+                    13 === t.keyCode && $(this).submit();
+                }),
+                $("#small-search-box-form-compare-1").submit(function (t) {
+                    var a,
+                        e,
+                        n,
+                        r,
+                        s = $("#instant-search-categories").val() || 0,
+                        c = $("#instant-search-manufacturers").val() || 0,
+                        o = $("#instant-search-vendors").val() || 0,
+                        i = $("#small-searchterms-compare-1").val();
+                    i &&
+                        ((a = l.attr("data-searchInProductDescriptions")),
+                            (e = 0 < s || 0 < c || 0 < o || a),
+                            (n = l.attr("data-searchPageUrl")),
+                            (r = encodeURIComponent(i)),
+                            (i = l.attr("data-defaultProductSortOption")),
+                            (window.location.href = n + "?advs=" + e + "&cid=" + s + "&mid=" + c + "&vid=" + o + "&q=" + r + "&sid=" + a + "&isc=true&orderBy=" + i)),
+                        t.preventDefault();
+                });
+        });
+                $("#small-search-box-form-compare-1").on("submit", function(event) {
+                    if ($("#small-searchterms-compare-1").val() == "") {
+                        alert('@Html.Raw(JavaScriptEncoder.Default.Encode(T("Search.EnterSearchTerms").Text))');
+                        $("#small-searchterms-compare-1").focus();
+                        event.preventDefault();
+                    }
+                });
+
+                @*$(document).ready(function() {
+                    var showLinkToResultSearch1;
+                    var searchText1;
+                    $('#small-searchterms-compare-1').autocomplete({
+                            delay: 500,
+                            minLength: @(Model.SearchTermMinimumLength.ToString()),
+                            source: '@(Url.RouteUrl("ProductSearchAutoComplete"))',
+                        appendTo: '.search-box-compare-1',
+                        select: function (event, ui) {
+                            ui.item.producturl='@Url.Content("~/Product/CompareProducts/")';
+                                $("#small-searchterms-compare-1").val(ui.item.label);
+                                setLocation('@Url.Content("~/Product/CompareProducts/")');
+                                return false;
+                        },
+                        //append link to the end of list
+                        open: function(event, ui) {
+                            //display link to search page
+                            if (showLinkToResultSearch1) {
+                                searchText1 = document.getElementById("small-searchterms-compare-1").value;
+                                $(".ui-autocomplete").append("<li class=\"ui-menu-item\" role=\"presentation\"><a href=\"/search?q=" + searchText1 + "\">@T("Search.SearchBox.SearchPageLink")</a></li>");
+                            }
+                        }
+                    })
+                        .data("ui-autocomplete")._renderItem = function (ul, item) {
+                            console.log(item);
+                        var t = item.label;
+                        showLinkToResultSearch1 = item.showlinktoresultsearch;
+                        //html encode
+                            t = htmlEncode(t);
+                            console.log(ul);
+                        return $("<li></li>")
+                            .data("item.autocomplete", item)
+                            .append("<a>@(Model.ShowProductImagesInSearchAutoComplete ? Html.Raw("<img src='\" + item.productpictureurl + \"'>") : null)<span>" + t + "</span></a>")
+                            .appendTo(ul);
+                    };
+                });*@
+    </script>
+   
+</form>

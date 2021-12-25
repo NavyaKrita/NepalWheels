@@ -1,0 +1,70 @@
+﻿@model HomepageNewsItemsModel
+@if (Model.NewsItems.Count > 0)
+{
+    <div class="news-list-homepage">
+        <div class="title">
+            <strong>@T("News")</strong>
+        </div>
+        <div class="news-items">
+            @foreach (var item in Model.NewsItems)
+            {
+                //This section is customize to fit Header at top and date at bottom
+                <div class="news-item">
+                    <div class="news-head">
+                        @*Custom Nepali Wheels *@
+                        <span class="news-date">
+                            <a class="news-title" href="@Url.RouteUrl("NewsItem", new { SeName = item.SeName })">@item.Title</a>
+                        </span>
+
+                        @*Default css *@
+                        @*<span class="news-date">
+                                <a class="news-title" href="@Url.RouteUrl("NewsItem", new { SeName = item.SeName })">@item.Title</a>
+                            </span>*@
+                        <div class="buttons">
+                            <a href="@Url.RouteUrl("NewsItem", new { SeName = item.SeName })" class="read-more">@T("News.MoreInfo")</a>
+                        </div>
+                    </div>
+                    <div class="news-body">
+                        <div class="news-text text-space">
+                            @Html.Raw(item.Full)
+                        </div>
+                        <br />
+                        <div class="text-right">
+                            <span class="day">@item.CreatedOn.Day.ToString("00")</span>
+                            <span class="month">@item.CreatedOn.ToString("MMM")</span>
+                            <span class="year">@item.CreatedOn.Year</span>
+                        </div>
+                    </div>
+                </div>
+                //Below is the default view of nopcommerce news section
+                @*<div class="news-item">
+                        <div class="news-head">
+                            <span class="news-date">
+                                <span class="day">@item.CreatedOn.Day.ToString("00")</span>
+                                <span class="month">@item.CreatedOn.ToString("MMM")</span>
+                                <span class="year">@item.CreatedOn.Year</span>
+                            </span>
+                            <div class="buttons">
+                                <a href="@Url.RouteUrl("NewsItem", new { SeName = item.SeName })" class="read-more">@T("News.MoreInfo")</a>
+                            </div>
+                        </div>
+                        <div class="news-body">
+                            <a class="news-title" href="@Url.RouteUrl("NewsItem", new { SeName = item.SeName })">@item.Title</a>
+                            <div class="news-text">
+                                @Html.Raw(item.Short)
+                            </div>
+                        </div>
+
+                    </div>*@
+            }
+        </div>
+        <div class="view-all">
+            <a href="@Url.RouteUrl("NewsArchive")">@T("News.ViewAll")</a>
+        </div>
+    </div>
+}
+<style>
+    .text-right {
+        float: right;
+    }
+</style>
