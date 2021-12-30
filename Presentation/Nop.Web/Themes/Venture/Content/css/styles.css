@@ -8432,7 +8432,7 @@ td.ui-datepicker-week-end {
 
     .news-list-homepage {
         max-width: 95%;
-        margin: 0 auto 80px;
+        margin: 0 auto 20px;
     }
 
         .news-list-homepage .title {
@@ -8487,6 +8487,14 @@ td.ui-datepicker-week-end {
         padding: 0 0 0 40px;
         position: relative;
     }
+.news-item .news-head-home,
+.blog-posts .post-head {
+    /*background: #2c2c2c; new changes*/
+    overflow: hidden;
+    padding: 0 0 0 40px;
+    position: relative;
+}
+
 
     .news-item .news-date,
     .blog-posts .post-date {
@@ -8534,7 +8542,7 @@ td.ui-datepicker-week-end {
         .blog-posts .post .buttons a {
             display: inline-block;
             color: #909090;
-            background: #1f1f1f;
+            /*background: #1f1f1f; new changes*/
             font-size: 13px;
             padding: 21px 38px 21px 22px;
             position: relative;
@@ -8544,7 +8552,8 @@ td.ui-datepicker-week-end {
 
             .news-item .buttons a:hover,
             .blog-posts .post .buttons a:hover {
-                background: #111;
+                /*background: #111;*/
+                color: #F3CC2E;
             }
 
             .blog-posts .post .buttons a + a {
@@ -8574,15 +8583,15 @@ td.ui-datepicker-week-end {
         margin: auto;
     }
 
-    .news-item .news-body,
-    .blog-posts .post-body {
-        /* For Nepali Wheels */
-        padding: 25px 25px;
-        /*Default CSS*/
-        /* padding: 35px 40px;*/
-        text-transform: none;
-        text-align: left;
-    }
+.news-item .news-body,
+.blog-posts .post-body {
+    /* For Nepali Wheels */
+    padding: 10px 15px 26px 15px;
+    /*Default CSS*/
+    /* padding: 35px 40px;*/
+    text-transform: none;
+    text-align: left;
+}
 
     .news-item .news-title,
     .blog-posts .post-title {
@@ -8613,8 +8622,8 @@ td.ui-datepicker-week-end {
         overflow: hidden;
         text-overflow: ellipsis;
         display: -webkit-box;
-        line-height: 30px; /* fallback */
-        max-height: 500px; /* fallback */
+        line-height: 20px; /* fallback */
+        max-height: 300px; /* fallback */
         -webkit-line-clamp: 5; /* number of lines to show */
         -webkit-box-orient: vertical;
     }

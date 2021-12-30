@@ -98,6 +98,20 @@
                 @await Component.InvokeAsync("Logo")
             </div>
         </div>
+        @{
+            var flyoutShoppingCart = await Component.InvokeAsync("FlyoutShoppingCart");
+            var headerRightAdditinalClass = string.IsNullOrEmpty(await flyoutShoppingCart.RenderHtmlContentAsync()) ? "shopping-cart-disabled" : "";
+        }
+        <div class="header-right @headerRightAdditinalClass">
+            <div class="search-box store-search-box">
+                @await Component.InvokeAsync("SearchBox")
+                <div class="search-opener">@T("search")</div>
+            </div>
+            @await Component.InvokeAsync("HeaderLinks")
+            @flyoutShoppingCart
+        </div>
+    </div>
+    <div class="header-lowermenu @isHomePageSliderEnabled">
         <div class="header-center">
             <div class="header-menu @menuDropdownLayout">
                 <div class="close-menu">
@@ -121,18 +135,6 @@
                     @await Component.InvokeAsync("HeaderLinks")
                 </div>
             </div>
-        </div>
-        @{
-            var flyoutShoppingCart = await Component.InvokeAsync("FlyoutShoppingCart");
-            var headerRightAdditinalClass = string.IsNullOrEmpty(await flyoutShoppingCart.RenderHtmlContentAsync()) ? "shopping-cart-disabled" : "";
-        }
-        <div class="header-right @headerRightAdditinalClass">
-            <div class="search-box store-search-box">
-                @await Component.InvokeAsync("SearchBox")
-                <div class="search-opener">@T("search")</div>
-            </div>
-            @await Component.InvokeAsync("HeaderLinks")
-            @flyoutShoppingCart
         </div>
     </div>
 </div>
