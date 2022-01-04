@@ -86,10 +86,6 @@
     {
       "SystemName": "ExternalAuth",
       "Version": "1.1"
-    },
-    {
-      "SystemName": "Widgets.NivoSlider",
-      "Version": "1.41"
     }
   ],
   "PluginNamesToUninstall": [
