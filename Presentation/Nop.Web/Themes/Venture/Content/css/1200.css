@@ -47,6 +47,17 @@
         width: 23%;
         margin-top: 30px;
     }
+    .center-2left {
+        float: left;
+        width: 75%;
+    }
+
+    .side-2right {
+        float: left;
+        width: 20%;
+        margin-top: 6.5%;
+        margin-left: 4.5%;
+    }
 
     .inputs {
         text-align: left;

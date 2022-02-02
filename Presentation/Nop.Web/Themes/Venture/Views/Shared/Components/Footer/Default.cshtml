@@ -118,35 +118,39 @@
             </div>
         </div>
     </div>
-    <div class="footer-middle">
+    @*<div class="footer-middle">
         @await Component.InvokeAsync("SocialButtons")
+    </div>*@
+<div class="footer-lower">
+    <div class="footer-powered-by">
+        Powered by <a href="https://navyakrita.com.np/" target="_blank">Navyakrita Solutions</a>
     </div>
-    <div class="footer-lower">
-        <div class="footer-disclaimer">
-            @T("Content.CopyrightNotice", DateTime.Now.Year, Model.StoreName)
+    <div class="footer-disclaimer">
+        @T("Content.CopyrightNotice", DateTime.Now.Year, Model.StoreName)
+    </div>
+    @if (!removeCopyright)
+    {
+        <div class="footer-powered-by">
+            @*Powered by <a href="@(OfficialSite.Main)">nopCommerce</a>*@
+            Powered by <a href="https://navyakrita.com.np/" target="_blank">Navyakrita Solutions</a>
+            @*Would you like to remove the "Powered by nopCommerce" link in the bottom of the footer?
+                Please find more info at https://www.nopcommerce.com/nopcommerce-copyright-removal-key*@
         </div>
-        @if(!removeCopyright)
-        { 
-            <div class="footer-powered-by">
-                Powered by <a href="@(OfficialSite.Main)">nopCommerce</a>
-                @*Would you like to remove the "Powered by nopCommerce" link in the bottom of the footer?
-                    Please find more info at https://www.nopcommerce.com/nopcommerce-copyright-removal-key*@
-            </div>
-        }
-        @if (!removeDesignedBy)
-        {
-            <div class="footer-designed-by"> 
-                Designed by <a href="https://www.nop-templates.com/" target="_blank">Nop-Templates.com</a>
-            </div>
-        }
-        @if (Model.DisplayTaxShippingInfoFooter)
-        {
-            var inclTax = await workContext.GetTaxDisplayTypeAsync() == TaxDisplayType.IncludingTax;
-            <div class="footer-tax-shipping">
-                @T(inclTax ? "Footer.TaxShipping.InclTax" : "Footer.TaxShipping.ExclTax", Url.RouteUrl("Topic", new { SeName = await Html.GetTopicSeNameAsync("shippinginfo") }))
-            </div>
-        }
-        @await Component.InvokeAsync("StoreThemeSelector")
-    </div>
+    }
+    @if (!removeDesignedBy)
+    {
+        <div class="footer-designed-by">
+            Designed by <a href="https://www.nop-templates.com/" target="_blank">Nop-Templates.com</a>
+        </div>
+    }
+    @if (Model.DisplayTaxShippingInfoFooter)
+    {
+        var inclTax = await workContext.GetTaxDisplayTypeAsync() == TaxDisplayType.IncludingTax;
+        <div class="footer-tax-shipping">
+            @T(inclTax ? "Footer.TaxShipping.InclTax" : "Footer.TaxShipping.ExclTax", Url.RouteUrl("Topic", new { SeName = await Html.GetTopicSeNameAsync("shippinginfo") }))
+        </div>
+    }
+    @await Component.InvokeAsync("StoreThemeSelector")
+</div>
     @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.Footer })
 </div>

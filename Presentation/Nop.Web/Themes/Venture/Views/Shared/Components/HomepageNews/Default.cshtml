@@ -1,6 +1,15 @@
 ﻿@model HomepageNewsItemsModel
+@{
+    Layout = "_ColumnsTwoNoRoot";
+
+}
+@section left {
+    @await Component.InvokeAsync("Widget", new { widgetZone = "Left_Side_Column_Before" })
+    @await Component.InvokeAsync("Widget", new { widgetZone = "Left_Side_Column_After" })
+}
 @if (Model.NewsItems.Count > 0)
 {
+
     <div class="news-list-homepage">
         <div class="title">
             <strong>LATEST @T("News")</strong>

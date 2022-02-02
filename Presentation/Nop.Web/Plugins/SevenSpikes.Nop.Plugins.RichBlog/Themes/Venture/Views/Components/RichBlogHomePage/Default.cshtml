@@ -1,6 +1,13 @@
 ﻿@model IList<BlogPostModel7Spikes>
 @inject IViewComponentSelector viewComponentSelector
+@{
+    Layout = "_ColumnsOneNoRoot";
 
+}
+@*@section left {
+    @await Component.InvokeAsync("Widget", new { widgetZone = "mega_menu_categories_before_dropdown_end_7" })
+    @await Component.InvokeAsync("Widget", new { widgetZone = "mega_menu_categories_before_dropdown_end_8" })
+}*@
 <div class="rich-blog-homepage">
     <div class="title">
         <strong>@T("SevenSpikes.RichBlog.Public.LatestFromBlog")</strong>
@@ -25,14 +32,15 @@
                             else
                             {
                                 <img src="@post.HomePagePictureUrl" alt="@post.Title" title="@post.Title" />
-                            }                        </a>
+                            }
+                        </a>
                     }
-                <span class="post-date">
-                    <a class="post-title" href="@Url.RouteUrl("BlogPost", new { SeName = post.SeName })">@post.Title</a>
-                    @*<span class="day">@post.CreatedOn.Day.ToString("00")</span>
-                      <span class="month">@post.CreatedOn.ToString("MMM")</span>
-                      <span class="year">@post.CreatedOn.Year</span>*@
-                </span>
+                    <span class="post-date">
+                        <a class="post-title" href="@Url.RouteUrl("BlogPost", new { SeName = post.SeName })">@post.Title</a>
+                        @*<span class="day">@post.CreatedOn.Day.ToString("00")</span>
+                            <span class="month">@post.CreatedOn.ToString("MMM")</span>
+                            <span class="year">@post.CreatedOn.Year</span>*@
+                    </span>
                     <a class="read-more" href="@Url.RouteUrl("BlogPost", new { SeName = post.SeName })">@T("SevenSpikes.RichBlog.Public.ReadMore")</a>
                 </div>
                 <div class="post-details">
