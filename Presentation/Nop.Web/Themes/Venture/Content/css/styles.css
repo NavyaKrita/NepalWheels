@@ -223,14 +223,15 @@ input[type="password"],
 input[type="email"],
 input[type="tel"],
 textarea, select {
-	height: 50px;
-	border: none;
-	padding: 0 20px;
-	vertical-align: middle;
-	font-size: 15px;
-    color: #909090;
+    height: 50px;
+    border: none;
+    padding: 0 20px;
+    vertical-align: middle;
+    font-size: 15px;
+    color: #2C2C2C;
     font-family: 'Lato', sans-serif;
     background: #f0f0f0;
+    font-weight: 500;
 }
 textarea {
     min-height: 150px;
