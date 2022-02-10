@@ -53,11 +53,11 @@ namespace Nop.Services.Vendors
             return await query.ToPagedListAsync(pageIndex, pageSize);
         }
 
-        public virtual async Task<IPagedList<NkVendorLocation>> GetAllVendorLocationAsync(int? manufacturerId, int? districtId, int? stateId,int ?genreId, int pageIndex = 0, int pageSize = int.MaxValue, bool showHidden = false)
-        
+        public virtual async Task<IPagedList<NkVendorLocation>> GetAllVendorLocationAsync(int? manufacturerId, int? districtId, int? stateId, int? genreId, int pageIndex = 0, int pageSize = int.MaxValue, bool showHidden = false)
+
         {
-            
-            
+
+
             var query = _NkVendorLocationRepository.Table;
             if (districtId.HasValue && districtId != 0)
                 query = query.Where(v => v.DistrictId.Equals(districtId));
@@ -66,10 +66,10 @@ namespace Nop.Services.Vendors
             if (stateId.HasValue && stateId != 0)
                 query = (from q in query join d in _districtRepository.Table on q.DistrictId equals d.Id where d.ProvinceId.Equals(stateId) select q);
             if (genreId.HasValue && genreId != 0)
-                query= query.Where(s => s.Genre.Equals(genreId));
+                query = query.Where(s => s.Genre.Equals(genreId));
             query = query.Where(v => !v.Deleted && v.Published);
             return await query.ToPagedListAsync(pageIndex, pageSize);
-         
+
         }
 
         public virtual async Task<NkVendorLocation> GetNkVendorLocationByIdAsync(int vendorLocationId)
@@ -91,11 +91,16 @@ namespace Nop.Services.Vendors
 
         public virtual async Task InsertNkVendorLocationAsync(NkVendorLocation vendor)
         {
+            vendor.CreatedOnUtc = DateTime.Now;
+            vendor.UpdatedOnUtc = DateTime.Now;
+
             await _NkVendorLocationRepository.InsertAsync(vendor);
         }
 
         public virtual async Task UpdateNkVendorLocationAsync(NkVendorLocation vendor)
         {
+
+            vendor.UpdatedOnUtc = DateTime.Now;
             await _NkVendorLocationRepository.UpdateAsync(vendor);
         }
         public virtual async Task<IPagedList<NkVendorLocation>> GetValidVendorLocationAsync(int? manufacturerId, int? districtId, int? stateId, int pageIndex = 0, int pageSize = int.MaxValue)
@@ -113,7 +118,7 @@ namespace Nop.Services.Vendors
                 if (stateId.HasValue)
                     query = (from q in query join d in _districtRepository.Table on q.DistrictId equals d.Id where d.ProvinceId.Equals(stateId) select q);
 
-               // query = query.Where(v => !v.Deleted && v.Published);
+                // query = query.Where(v => !v.Deleted && v.Published);
                 query = query.OrderBy(v => v.Id).ThenBy(v => v.DistrictId);
 
                 return query;
@@ -141,15 +146,35 @@ namespace Nop.Services.Vendors
             return await _districtRepository.Table.Where(d => d.Id.Equals(districtId)).FirstOrDefaultAsync();
         }
 
-        public async Task<IPagedList<NkVendorLocation>> GetAllLocationAsync(int? vendorId, int? districtId, int? stateId, int pageIndex = 0, int pageSize = int.MaxValue, bool showHidden = false)
+        public async Task<IPagedList<NkVendorLocation>> GetAllLocationAsync(int? vendorId,
+            int? districtId, int? stateId, string address, string dealerName,
+            int pageIndex = 0, int pageSize = int.MaxValue, bool showHidden = false)
         {
             var vendors = await _NkVendorLocationRepository.GetAllPagedAsync(query =>
-            { 
+            {
+                if (districtId.HasValue && districtId!=0)
+                    query = query.Where(v => v.DistrictId.Equals(districtId));
+
+                if (vendorId.HasValue && vendorId != 0)
+                    query = query.Where(v => v.ManufacturerId.Equals(vendorId));
+
+                if (stateId.HasValue && stateId!=0)
+                    query = (from q in query join d in _districtRepository.Table on q.DistrictId equals d.Id where d.ProvinceId.Equals(stateId) select q);
+                if (!string.IsNullOrEmpty(address))
+                    query = query.Where(a => a.Address.Contains(address));
+                if (!string.IsNullOrEmpty(dealerName))
+                    query = query.Where(a => a.DealerName.Contains(dealerName));
+
+                query = query.OrderBy(v => v.Id).ThenBy(v => v.DistrictId);
                 query = query.Where(v => !v.Deleted);
                 return query;
             }, pageIndex, pageSize);
 
             return vendors;
+        }
+        public virtual async Task<IList<NkDistrict>> GetAllDistrictAsync()
+        {
+            return await _districtRepository.GetAllAsync(query => { return query; });
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿using Nop.Web.Framework.Models;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using Nop.Core.Domain.Vendors;
+using Nop.Web.Framework.Models;
 using Nop.Web.Framework.Mvc.ModelBinding;
 using System.Collections.Generic;
 
@@ -6,43 +8,48 @@ namespace Nop.Web.Areas.Admin.Models.Vendors
 {
     public record NkVendorLocationModel : BaseNopEntityModel
     {
-        public NkVendorLocationModel()
-        {
-            Locales = new List<NkVendorLocationLocalizedModel>();
-        }
+        /// </summary>
         [NopResourceDisplayName("Admin.NkVendorLocation.Fields.Manufacturer")]
         public int ManufacturerId { get; set; }
+        [NopResourceDisplayName("Admin.NkVendorLocation.Fields.DistrictName")]
         public int DistrictId { get; set; }
+        /// <summary>
+        /// Gets or sets the name
+        /// </summary>
+        /// 
         [NopResourceDisplayName("Admin.NkVendorLocation.Fields.Address")]
         public string Address { get; set; }
+        [NopResourceDisplayName("Admin.NkVendorLocation.Fields.Email")]
+        public string Email { get; set; }
+        [NopResourceDisplayName("Admin.NkVendorLocation.Fields.Phone")]
+        public string PhoneNo { get; set; }
         [NopResourceDisplayName("Admin.NkVendorLocation.Fields.Genre")]
         public int Genre { get; set; }
         [NopResourceDisplayName("Admin.NkVendorLocation.Fields.MapLocation")]
-        public string MapLocation { get; set; }
+        public string Maplocation { get; set; }
         [NopResourceDisplayName("Admin.NkVendorLocation.Fields.Published")]
         public bool Published { get; set; }
-        [NopResourceDisplayName("Admin.NkVendorLocation.Fields.Deleted")]
         public bool Deleted { get; set; }
+        [NopResourceDisplayName("Admin.NkVendorLocation.Fields.DealerName")]
+
+        public int CategoryId { get; set; }
+        [NopResourceDisplayName("Admin.NkVendorLocation.Fields.DealerName")]
+        public string DealerName { get; set; }
+        [NopResourceDisplayName("Admin.NkVendorLocation.Fields.ContactPerson")]
+        public string ContactPerson { get; set; }
+        [NopResourceDisplayName("Admin.NkVendorLocation.Fields.MobileNo")]
+        public string MobileNo { get; set; }
+
         [NopResourceDisplayName("Admin.NkVendorLocation.Fields.DistrictName")]
         public string DistrictName { get; set; }
         [NopResourceDisplayName("Admin.NkVendorLocation.Fields.ManufacturerName")]
         public string ManufacturerName { get; set; }
-        [NopResourceDisplayName("Admin.NkVendorLocation.Fields.SeName")]
-        public string SeName { get;  set; }
 
-      
-        public IList<NkVendorLocationLocalizedModel> Locales { get; set; }
+        public string GenreName { get; set; }
+
+
+
     }
-    public partial record NkVendorLocationLocalizedModel : ILocalizedLocaleModel
-    {
-        public int LanguageId { get; set; }
 
-        [NopResourceDisplayName("Admin.NkVendorLocation.Fields.MapLocation")]
-        public string MapLocation { get; set; }
-        [NopResourceDisplayName("Admin.NkVendorLocation.Fields.Address")]
-        public string Address { get; set; }
 
-        [NopResourceDisplayName("Admin.NkVendorLocation.Fields.SeName")]
-        public string SeName { get; set; }
-    }
 }

@@ -30,5 +30,10 @@ namespace Nop.Core.Domain.Vendors
         public string ContactPerson { get; set; }
         public string MobileNo { get; set; }
 
+        public DateTime CreatedOnUtc { get; set; }
+
+        public DateTime UpdatedOnUtc { get; set; }
+
+
     }
 }

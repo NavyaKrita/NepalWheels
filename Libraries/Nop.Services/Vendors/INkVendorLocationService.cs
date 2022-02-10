@@ -14,7 +14,7 @@ namespace Nop.Services.Vendors
     {
         Task<IPagedList<NkVendorLocation>> GetNkVendorLocationByVendorAsync(int vendorId, int pageIndex = 0, int pageSize = int.MaxValue);
         Task<IPagedList<NkVendorLocation>> GetAllVendorLocationAsync(int? vendorId, int? districtId, int? stateId,int? GenreId, int pageIndex = 0, int pageSize = int.MaxValue, bool showHidden = false);
-        Task<IPagedList<NkVendorLocation>> GetAllLocationAsync(int? vendorId, int? districtId, int? stateId, int pageIndex = 0, int pageSize = int.MaxValue, bool showHidden = false);
+       
 
         Task<NkVendorLocation> GetNkVendorLocationByIdAsync(int NkVendorLocationId);
 
@@ -26,5 +26,10 @@ namespace Nop.Services.Vendors
         Task<IList<StateProvince>> GetStateAsync();
         Task<IList<NkDistrict>> GetDistrictByStateAsync(int stateId);
         Task<NkDistrict> GetDistrictByIdAsync(int districtId);
+        Task<IList<NkDistrict>> GetAllDistrictAsync();
+
+        Task<IPagedList<NkVendorLocation>> GetAllLocationAsync(int? vendorId,
+           int? districtId, int? stateId, string address, string dealerName,
+           int pageIndex = 0, int pageSize = int.MaxValue, bool showHidden = false);
     }
 }

@@ -12,8 +12,8 @@ namespace Nop.Web.Areas.Admin.Factories
         #region NkVendorLocations
         Task<NkVendorLocationSearchModel> PrepareNkVendorLocationSearchModelAsync(NkVendorLocationSearchModel searchModel);
         Task<NkVendorLocationListModel> PrepareNkVendorLocationListModelAsync(NkVendorLocationSearchModel searchModel);
-        Task<NkVendorLocationModel> PrepareNkVendorLocationModelAsync(NkVendorLocationModel model, NkVendorLocation vendor, bool excludeProperties = false);
-         
+        Task<CreateVendorLocationModel> PrepareNkVendorLocationModelAsync(CreateVendorLocationModel model, NkVendorLocation vendor, bool excludeProperties = false);
+        Task<NkVendorLocationSearchModel> PrepareNkVendorLocationAdminSearchModelAsync(NkVendorLocationSearchModel searchModel);
         #endregion
     }
 }

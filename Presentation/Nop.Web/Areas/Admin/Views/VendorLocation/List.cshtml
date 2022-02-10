@@ -5,7 +5,7 @@
     //page title
     ViewBag.PageTitle = T("Admin.NkVendorLocations").Text;
     //active menu item (system name)
-    Html.SetActiveMenuItemSystemName("Vendor Location");
+    Html.SetActiveMenuItemSystemName("Vendor Details");
 }
 
 @{
@@ -18,10 +18,10 @@
         @T("Admin.NkVendorLocations")
     </h1>
     <div class="float-right">
-        @*<a asp-action="Create" class="btn btn-primary">
+        <a asp-action="Create" class="btn btn-primary">
             <i class="fas fa-plus-square"></i>
             @T("Admin.Common.AddNew")
-        </a>*@
+        </a>
         <button type="submit" name="importcsv" class="btn bg-olive" data-toggle="modal" data-target="#importcsv-window">
             <i class="fas fa-upload"></i>
             @T("Admin.NkVendorLocations.ImportFromCsv")
@@ -44,37 +44,48 @@
 
                     <div class="search-body @(hideSearchBlock ? "closed" : "")">
                         <div class="row">
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                                 <div class="form-group row">
                                     <div class="col-md-4">
-                                        <nop-label asp-for="ManufacturerId" />
+                                        <label>Manufacturer</label>
+                                       
                                     </div>
                                     <div class="col-md-8">
                                         <nop-select asp-for="ManufacturerId" asp-items="Model.Manufacture" />
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                                 <div class="form-group row">
                                     <div class="col-md-4">
-                                        <nop-label asp-for="StateId" />
-                                    </div>
-                                    <div class="col-md-8">
-                                        <nop-select asp-for="StateId" asp-items="Model.State" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group row">
-                                    <div class="col-md-4">
-                                        <nop-label asp-for="DistrictId" />
+                                        <label>District</label>
+                                       
                                     </div>
                                     <div class="col-md-8">
                                         <nop-select asp-for="DistrictId" asp-items="Model.District" />
                                     </div>
                                 </div>
                             </div>
-
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <div class="col-md-4">
+                                        <nop-label asp-for="DealerName" />
+                                    </div>
+                                    <div class="col-md-8">
+                                        <nop-editor asp-for="DealerName" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <div class="col-md-4">
+                                        <nop-label asp-for="Address" />
+                                    </div>
+                                    <div class="col-md-8">
+                                        <nop-editor asp-for="Address" />
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div class="row">
                             <div class="text-center col-12">
@@ -95,7 +106,7 @@
                     @await Html.PartialAsync("Table", new DataTablesModel
                {
                    Name = "vendors-grid",
-                   UrlRead = new DataUrl("VendorLocationList", "NkVendorLocation", null),
+                   UrlRead = new DataUrl("List", "VendorLocation", null),
                    SearchButtonId = "search-vendors",
                    Length = Model.PageSize,
                    LengthMenu = Model.AvailablePageSizes,
@@ -103,30 +114,61 @@
                         {
                             new FilterParameter(nameof(Model.ManufacturerId)),
                             new FilterParameter(nameof(Model.DistrictId)),
-                            new FilterParameter(nameof(Model.StateId)),
-
+                            new FilterParameter(nameof(Model.DealerName)),
+                            new FilterParameter(nameof(Model.Address))
                         },
                    ColumnCollection = new List<ColumnProperty>
                         {
                             new ColumnProperty(nameof(NkVendorLocationModel.ManufacturerName))
                             {
-                                Title = T("Admin.NkVendorLocations.Fields.Name").Text,
+                                Title = T("Admin.NkVendorLocations.Fields.ManufacturerName").Text,
                                 Width = "100"
                             },
                             new ColumnProperty(nameof(NkVendorLocationModel.DistrictName))
                             {
-                                Title = T("Admin.NkVendorLocations.Fields.District").Text,
+                                Title = T("Admin.NkVendorLocation.Fields.DistrictName").Text,
                                 Width = "100"
                             },
-                            new ColumnProperty(nameof(NkVendorLocationModel.Genre))
+                             new ColumnProperty(nameof(NkVendorLocationModel.Address))
                             {
-                                Title = T("Admin.NkVendorLocations.Fields.Genre").Text,
+                                Title = T("Admin.Vendors.Fields.Address").Text,
                                 Width = "100"
 
                             },
-                             new ColumnProperty(nameof(NkVendorLocationModel.MapLocation))
+                                new ColumnProperty(nameof(NkVendorLocationModel.Email))
                             {
-                                Title = T("Admin.NkVendorLocations.Fields.MapLocation").Text,
+                                Title = T("Admin.Vendors.Fields.Email").Text,
+                                Width = "100"
+
+                            },
+                            new ColumnProperty(nameof(NkVendorLocationModel.Genre))
+                            {
+                                Title = T("Admin.Vendors.Fields.Genre").Text,
+                                Width = "100"
+
+                            },
+                             new ColumnProperty(nameof(NkVendorLocationModel.PhoneNo))
+                            {
+                                Title = T("Admin.Vendors.Fields.PhoneNo").Text,
+                                Width = "100"
+
+                            },
+                              new ColumnProperty(nameof(NkVendorLocationModel.DealerName))
+                            {
+                                Title = T("Admin.Vendors.Fields.DealerName").Text,
+                                Width = "100"
+
+                            },
+
+                                  new ColumnProperty(nameof(NkVendorLocationModel.ContactPerson))
+                            {
+                                Title = T("Admin.Vendors.Fields.ContactPerson").Text,
+                                Width = "100"
+
+                            },
+                                     new ColumnProperty(nameof(NkVendorLocationModel.MobileNo))
+                            {
+                                Title = T("Admin.Vendors.Fields.MobileNo").Text,
                                 Width = "100"
 
                             },
@@ -186,39 +228,3 @@
         </div>
     </div>
 </div>
-<script asp-location="Footer">
-            $(document).ready(function () {
-                        //load district when changing a country dropdownlist
-                    $("#@Html.IdFor(model =>model.StateId)").change(function () {
-                            var selectedItem = $(this).val();
-                            var ddlDistricts = $("#@Html.IdFor(model => model.DistrictId)");
-                            $.ajax({
-                                cache: false,
-                                type: "GET",
-                                url: "@(Url.Action("GetDistrictByStateId", "VendorLocation"))",
-                                data: {
-                                    "stateId": selectedItem,
-                                    "addAsterisk": "false"
-                                },
-                                success: function (data, textStatus, jqXHR) {
-                                    ddlDistricts.html('');
-                                    $.each(data, function(id, option) {
-                                        ddlDistricts.append($('<option></option>').val(option.id).html(option.name));
-                                    });
-                                },
-                                error: function (jqXHR, textStatus, errorThrown) {
-                                  /*  $("#statesAlert").click();*/
-                                }
-                            });
-                        });
-                $("#search-location").on("click", function () {
-                    var ddlDistrict = $("#@Html.IdFor(model => model.DistrictId)");
-                    var ddlManufacturerId = $("#@Html.IdFor(model => model.ManufacturerId)");
-                    var ddlStateId = $("#@Html.IdFor(model => model.StateId)");
-                    var url = "@Url.Content("~/NkVendorLocation/List")";
-                    window.location.href = url + "?districtId=" + ddlDistrict.val() + "&manufacturerId=" + ddlManufacturerId.val() + "&stateId=" + ddlStateId.val();
-                })
-                 $("#@Html.IdFor(model =>model.StateId)").trigger("change");
-            });
-
-</script>

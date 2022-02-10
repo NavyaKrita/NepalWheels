@@ -1410,6 +1410,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="Areas\Admin\Views\VendorLocation\Create.cshtml" />
+    <None Include="Areas\Admin\Views\VendorLocation\Edit.cshtml" />
+    <None Include="Areas\Admin\Views\VendorLocation\List.cshtml" />
+    <None Include="Areas\Admin\Views\VendorLocation\_CreateOrUpdate.cshtml" />
     <None Include="Plugins\Payments.PayPalCommerce\Nop.Plugin.Payments.PayPalCommerce.pdb" />
     <None Include="Plugins\Payments.PayPalCommerce\runtimes\linux-arm64\native\libSkiaSharp.so" />
     <None Include="Plugins\Payments.PayPalCommerce\runtimes\linux-arm\native\libSkiaSharp.so" />

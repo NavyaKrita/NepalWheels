@@ -16,7 +16,6 @@ namespace Nop.Web.Areas.Admin.Models.Vendors
         [NopResourceDisplayName("Admin.Vendors.List.SearchEmail")]
         public string SearchEmail { get; set; }
 
-
         #endregion
     }
 }

@@ -1,21 +1,21 @@
-@model NkVendorLocationModel
+@model CreateVendorLocationModel
 
 @{
     //page title
-    ViewBag.PageTitle = T("Admin.Vendors.EditNkVendorLocations").Text;
+    ViewBag.PageTitle = T("Admin.Vendors.AddNew").Text;
     //active menu item (system name)
     Html.SetActiveMenuItemSystemName("Vendors");
 }
 
-<form asp-controller="Vendor" asp-action="Edit" method="post">
+<form asp-controller="VendorLocation" asp-action="Create" method="post">
     <div class="content-header clearfix">
-        @*<h1 class="float-left">
-            @T("Admin.Vendors.EditNkVendorLocations") - @Model.Name
+        <h1 class="float-left">
+            @T("Admin.Vendor.AddNew")
             <small>
                 <i class="fas fa-arrow-circle-left"></i>
                 <a asp-action="List">@T("Admin.Vendors.BackToList")</a>
             </small>
-        </h1>*@
+        </h1>
         <div class="float-right">
             <button type="submit" name="save" class="btn btn-primary">
                 <i class="far fa-save"></i>
@@ -25,13 +25,8 @@
                 <i class="far fa-save"></i>
                 @T("Admin.Common.SaveContinue")
             </button>
-            <span id="vendor-delete" class="btn btn-danger">
-                <i class="far fa-trash-alt"></i>
-                @T("Admin.Common.Delete")
-            </span>
-            @await Component.InvokeAsync("AdminWidget", new { widgetZone = AdminWidgetZones.NkVendorLocationsButtons, additionalData = Model })
+           
         </div>
     </div>
     @await Html.PartialAsync("_CreateOrUpdate", Model)
 </form>
-<nop-delete-confirmation asp-model-id="@Model.Id" asp-button-id="vendor-delete" />

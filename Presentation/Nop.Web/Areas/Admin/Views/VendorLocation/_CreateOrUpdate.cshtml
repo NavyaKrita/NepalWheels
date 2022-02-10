@@ -1,0 +1,130 @@
+﻿@model CreateVendorLocationModel
+
+<div asp-validation-summary="All"></div>
+<input asp-for="Id" type="hidden" />
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="form-horizontal">
+            <div class="row">
+                <div class="col-md-12 clearfix">
+                    <div class="float-left">
+                        @await Component.InvokeAsync("SettingMode", new { modeName = "vendor-location-mode" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="cards-group">
+
+                <div class="card card-default">
+                    <div class="card-body">
+
+                        <div class="form-group row vendor-location-setting">
+                            <div class="col-md-3">
+                                <nop-label asp-for="ManufacturerId" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-select asp-for="ManufacturerId" asp-items="Model.Manufacture" asp-required="true" />
+                                <span asp-validation-for="ManufacturerId"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row vendor-location-setting">
+                            <div class="col-md-3">
+                                <nop-label asp-for="DistrictId" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-select asp-for="DistrictId" asp-items="Model.District" asp-required="true" />
+                                <span asp-validation-for="DistrictId"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-label asp-for="Address" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="Address" />
+                                <span asp-validation-for="Address"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row vendor-location-setting">
+                            <div class="col-md-3">
+                                <nop-label asp-for="Categories" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-select asp-for="Categories" asp-items="Model.Categories" asp-required="true" />
+                                <span asp-validation-for="Categories"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row vendor-location-setting">
+                            <div class="col-md-3">
+                                <nop-label asp-for="Genre" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-select asp-for="Genre" asp-items="Model.GenreList" asp-required="true" />
+                                <span asp-validation-for="Genre"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-label asp-for="Email" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="Email" asp-required="true" />
+                                <span asp-validation-for="Email"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-label asp-for="PhoneNo" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="PhoneNo" asp-required="true" />
+                                <span asp-validation-for="PhoneNo"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-label asp-for="Maplocation" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="Maplocation" />
+
+                                <span asp-validation-for="Maplocation"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-label asp-for="DealerName" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="DealerName" />
+                                <span asp-validation-for="DealerName"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-label asp-for="ContactPerson" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="ContactPerson" />
+                                <span asp-validation-for="ContactPerson"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row ">
+                            <div class="col-md-3">
+                                <nop-label asp-for="MobileNo" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="MobileNo" />
+                                <span asp-validation-for="MobileNo"></span>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
