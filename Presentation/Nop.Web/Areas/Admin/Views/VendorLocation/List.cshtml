@@ -47,8 +47,9 @@
                             <div class="col-md-6">
                                 <div class="form-group row">
                                     <div class="col-md-4">
-                                        <label>Manufacturer</label>
-                                       
+                                        <nop-label asp-for="Manufacture" />
+
+
                                     </div>
                                     <div class="col-md-8">
                                         <nop-select asp-for="ManufacturerId" asp-items="Model.Manufacture" />
@@ -58,8 +59,8 @@
                             <div class="col-md-6">
                                 <div class="form-group row">
                                     <div class="col-md-4">
-                                        <label>District</label>
-                                       
+                                        <nop-label asp-for="District" />
+
                                     </div>
                                     <div class="col-md-8">
                                         <nop-select asp-for="DistrictId" asp-items="Model.District" />
