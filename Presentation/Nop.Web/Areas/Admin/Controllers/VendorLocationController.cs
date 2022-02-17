@@ -6,6 +6,7 @@ using Nop.Core.Domain.Common;
 using Nop.Core.Domain.Vendors;
 using Nop.Services.Common;
 using Nop.Services.Customers;
+using Nop.Services.ExportImport;
 using Nop.Services.Localization;
 using Nop.Services.Logging;
 using Nop.Services.Media;
@@ -42,6 +43,7 @@ namespace Nop.Web.Areas.Admin.Controllers
         private readonly INkVendorLocationModelFactory _vendorModelFactory;
         private readonly INkVendorLocationService _vendorService;
         private readonly INkVendorLocationService _NkVendorLocationService;
+        private readonly IImportManager _importManager;
         #endregion
 
         #region Ctor
@@ -60,7 +62,8 @@ namespace Nop.Web.Areas.Admin.Controllers
             IVendorAttributeService vendorAttributeService,
             INkVendorLocationModelFactory vendorModelFactory,
             INkVendorLocationService vendorService,
-            INkVendorLocationService NkVendorLocationService)
+            INkVendorLocationService NkVendorLocationService,
+            ImportManager importManager)
         {
             _addressService = addressService;
             _customerActivityService = customerActivityService;
@@ -77,6 +80,7 @@ namespace Nop.Web.Areas.Admin.Controllers
             _vendorModelFactory = vendorModelFactory;
             _vendorService = vendorService;
             _NkVendorLocationService = NkVendorLocationService;
+            _importManager = importManager;
         }
 
         #endregion
@@ -300,6 +304,38 @@ namespace Nop.Web.Areas.Admin.Controllers
         }
 
         #endregion
+        [HttpPost]
+        /// <returns>A task that represents the asynchronous operation</returns>
+        public virtual async Task<IActionResult> ImportFromXlsx(IFormFile importexcelfile)
+        {
+            if (!await _permissionService.AuthorizeAsync(StandardPermissionProvider.ManageVendors))
+                return AccessDeniedView();
+
+            //a vendor cannot import categories
+          
+
+            try
+            {
+                if (importexcelfile != null && importexcelfile.Length > 0)
+                {
+                    //await _importManager.ImportVendorLocationFromXlsxAsync(importexcelfile.OpenReadStream());
+                }
+                else
+                {
+                    _notificationService.ErrorNotification(await _localizationService.GetResourceAsync("Admin.Common.UploadFile"));
+                    return RedirectToAction("List");
+                }
+
+                _notificationService.SuccessNotification(await _localizationService.GetResourceAsync("Admin.Catalog.VendorLocation.Imported"));
+
+                return RedirectToAction("List");
+            }
+            catch (Exception exc)
+            {
+                await _notificationService.ErrorNotificationAsync(exc);
+                return RedirectToAction("List");
+            }
+        }
 
 
     }
