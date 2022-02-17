@@ -268,10 +268,10 @@ namespace Nop.Web.Areas.Admin.Controllers
             }
 
             //prepare model
-            model = await _vendorModelFactory.PrepareNkVendorLocationModelAsync(model, vendor, true);
+            vendorLocation = await _vendorModelFactory.PrepareNkVendorLocationModelAsync(vendorLocation, vendor, true);
 
             //if we got this far, something failed, redisplay form
-            return View(model);
+            return View(vendorLocation);
         }
         [HttpPost]
         /// <returns>A task that represents the asynchronous operation</returns>
