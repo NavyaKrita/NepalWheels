@@ -31,5 +31,6 @@ namespace Nop.Services.Vendors
         Task<IPagedList<NkVendorLocation>> GetAllLocationAsync(int? vendorId,
            int? districtId, int? stateId, string address, string dealerName,
            int pageIndex = 0, int pageSize = int.MaxValue, bool showHidden = false);
+        Task DeleteVendorLocationAsync(NkVendorLocation vendor);
     }
 }

@@ -176,5 +176,11 @@ namespace Nop.Services.Vendors
         {
             return await _districtRepository.GetAllAsync(query => { return query; });
         }
+
+        public virtual async Task DeleteVendorLocationAsync(NkVendorLocation vendor)
+        {
+            await _NkVendorLocationRepository.DeleteAsync(vendor);
+        }
+
     }
 }

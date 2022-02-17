@@ -161,8 +161,8 @@ namespace Nop.Web.Areas.Admin.Controllers
                     DistrictId = vendorLocation.DistrictId,
                     ManufacturerId = vendorLocation.ManufacturerId,
                     Published = true,
-                    Deleted=false
-                    
+                    Deleted = false
+
                 };
 
                 await _vendorService.InsertNkVendorLocationAsync(vendor);
@@ -215,20 +215,38 @@ namespace Nop.Web.Areas.Admin.Controllers
 
         [HttpPost, ParameterBasedOnFormName("save-continue", "continueEditing")]
         /// <returns>A task that represents the asynchronous operation</returns>
-        public virtual async Task<IActionResult> Edit(CreateVendorLocationModel model, bool continueEditing, IFormCollection form)
+        public virtual async Task<IActionResult> Edit(CreateVendorLocationModel vendorLocation, bool continueEditing, IFormCollection form)
         {
             if (!await _permissionService.AuthorizeAsync(StandardPermissionProvider.ManageVendors))
                 return AccessDeniedView();
 
             //try to get a vendor with the specified id
-            var vendor = await _vendorService.GetNkVendorLocationByIdAsync(model.Id);
+            var vendor = await _vendorService.GetNkVendorLocationByIdAsync(vendorLocation.Id);
             if (vendor == null || vendor.Deleted)
                 return RedirectToAction("List");
 
             if (ModelState.IsValid)
             {
 
-                vendor = model.ToEntity(vendor);
+                vendor = new NkVendorLocation
+                {
+                    Id = vendorLocation.Id,
+                    Address = vendorLocation.Address,
+                    Maplocation = vendorLocation.Maplocation,
+                    Genre = vendorLocation.Genre,
+                    ContactPerson = vendorLocation.ContactPerson,
+                    MobileNo = vendorLocation.MobileNo,
+                    DealerName = vendorLocation.DealerName,
+                    PhoneNo = vendorLocation.PhoneNo,
+                    Email = vendorLocation.Email,
+                    CategoryId = vendorLocation.CategoryId,
+                    DistrictId = vendorLocation.DistrictId,
+                    ManufacturerId = vendorLocation.ManufacturerId,
+                    Published = true,
+                    Deleted = false,
+                    UpdatedOnUtc=DateTime.Now
+
+                };
                 await _vendorService.UpdateNkVendorLocationAsync(vendor);
 
 
@@ -255,7 +273,31 @@ namespace Nop.Web.Areas.Admin.Controllers
             //if we got this far, something failed, redisplay form
             return View(model);
         }
+        [HttpPost]
+        /// <returns>A task that represents the asynchronous operation</returns>
+        public virtual async Task<IActionResult> Delete(int id)
+        {
+            if (!await _permissionService.AuthorizeAsync(StandardPermissionProvider.ManageVendors))
+                return AccessDeniedView();
 
+            //try to get a vendor with the specified id
+            var vendor = await _vendorService.GetNkVendorLocationByIdAsync(id);
+            if (vendor == null)
+                return RedirectToAction("List");
+
+
+
+            //delete a vendor
+            await _vendorService.DeleteVendorLocationAsync(vendor);
+
+            //activity log
+            await _customerActivityService.InsertActivityAsync("DeleteVendor",
+                string.Format(await _localizationService.GetResourceAsync("ActivityLog.DeleteVendor"), vendor.Id), vendor);
+
+            _notificationService.SuccessNotification(await _localizationService.GetResourceAsync("Admin.Vendors.Deleted"));
+
+            return RedirectToAction("List");
+        }
 
         #endregion
 

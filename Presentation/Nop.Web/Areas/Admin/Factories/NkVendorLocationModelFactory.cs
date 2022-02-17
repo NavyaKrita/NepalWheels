@@ -207,20 +207,20 @@ namespace Nop.Web.Areas.Admin.Factories
                 //fill in model values from the entity
                 if (model == null)
                 {
-                    var vendorModel = new NkVendorLocationModel();
-                   
-                    vendorModel.Id = vendorLocation.Id;
-                    vendorModel.Address = vendorLocation.Address;
-                    vendorModel.Maplocation = vendorLocation.Maplocation;
-                    vendorModel.Genre = vendorLocation.Genre;
-                    vendorModel.ContactPerson = vendorLocation.ContactPerson;
-                    vendorModel.MobileNo = vendorLocation.MobileNo;
-                    vendorModel.DealerName = vendorLocation.DealerName;
-                    vendorModel.PhoneNo = vendorLocation.PhoneNo;
-                    vendorModel.Email = vendorLocation.Email;                  
-                    vendorModel.CategoryId = vendorLocation.CategoryId;
-                    vendorModel.DistrictId = vendorLocation.DistrictId;
-                    vendorModel.ManufacturerId = vendorLocation.ManufacturerId;
+                    model = new CreateVendorLocationModel();
+
+                    model.Id = vendorLocation.Id;
+                    model.Address = vendorLocation.Address;
+                    model.Maplocation = vendorLocation.Maplocation;
+                    model.Genre = vendorLocation.Genre;
+                    model.ContactPerson = vendorLocation.ContactPerson;
+                    model.MobileNo = vendorLocation.MobileNo;
+                    model.DealerName = vendorLocation.DealerName;
+                    model.PhoneNo = vendorLocation.PhoneNo;
+                    model.Email = vendorLocation.Email;
+                    model.CategoryId = vendorLocation.CategoryId;
+                    model.DistrictId = vendorLocation.DistrictId;
+                    model.ManufacturerId = vendorLocation.ManufacturerId;
 
                     model.Locales = new List<NkVendorLocationLocalizedModel>();
                     model.Manufacture = new List<SelectListItem>();
