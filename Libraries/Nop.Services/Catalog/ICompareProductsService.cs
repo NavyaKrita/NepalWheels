@@ -36,6 +36,6 @@ namespace Nop.Services.Catalog
         /// </summary>
         /// <param name="productId">Product identifier</param>
         /// <returns>A task that represents the asynchronous operation</returns>
-        Task AddProductToCompareListAsync(int productId);
+        Task AddProductToCompareListAsync(int productId, ref bool metLimt);
     }
 }

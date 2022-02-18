@@ -12,7 +12,7 @@
             var n,
                 t,
                 l = $(".instantSearchResourceElement");
-            $("#filter-from-compare").val("Compare-filter");
+            var searchVal1= $("#small-search-box-form-compare-1").val();
             $("#small-searchterms-compare-1").kendoAutoComplete({
                 highlightFirst: "true" === l.attr("data-highlightFirstFoundElement"),
                 minLength: parseInt(l.attr("data-minKeywordLength")) || 0,

@@ -20,6 +20,9 @@
         if (!uniqueGroupes.Any(g => g.Id == group.Id))
             uniqueGroupes.Add(group);
     }
+    string small_searchterms_compare = string.Empty;
+    string small_searchterms_compare_1 = string.Empty;
+    string small_searchterms_compare_2 = string.Empty;
 }
 
 <div class="page compare-products-page">
@@ -32,16 +35,17 @@
                 <div class="item-text">Add Item 1</div>
                 <div class="search-box-compare header-center compare-search-box ">
                     @await Component.InvokeAsync("CompareSearchBox")
+
                 </div>
             </div>
             <div class="column1">
-                <div  class="item-text">Add Item 2</div>
+                <div class="item-text">Add Item 2</div>
                 <div class="search-box-compare-1 header-center compare-search-box ">
                     @await Component.InvokeAsync("CompareSearchBox1")
                 </div>
             </div>
             <div class="column2">
-                <div  class="item-text">Add Item 3</div>
+                <div class="item-text">Add Item 3</div>
                 <div class="search-box-compare-2 header-center compare-search-box ">
                     @await Component.InvokeAsync("CompareSearchBox2")
                 </div>
@@ -59,6 +63,7 @@
                             <td class="empty">&nbsp;</td>
                             @foreach (var product in Model.Products)
                             {
+
                                 <td style="width: @columnWidth;">
                                     <button type="button" class="button-2 remove-button" onclick="setLocation('@Url.RouteUrl("RemoveProductFromCompareList", new { productId = product.Id })')">@T("Common.Remove")</button>
                                 </td>
@@ -66,11 +71,33 @@
                         </tr>
                         <tr class="product-picture">
                             <td class="empty">&nbsp;</td>
+                            @{int iCount = 0;
+                                
+                            }
                             @foreach (var product in Model.Products)
                             {
                                 <td style="width: @columnWidth;">
                                     <a class="picture" href="@Url.RouteUrl("Product", new { SeName = product.SeName })"><img alt="@product.DefaultPictureModel.AlternateText" src="@product.DefaultPictureModel.ImageUrl" title="@product.DefaultPictureModel.Title" /></a>
+
+
+
+
+
                                 </td>
+
+                                if (iCount == 0)
+                                {
+
+                                    small_searchterms_compare = product.Name;
+                                }
+                                else if (iCount == 1)
+                                {
+                                    small_searchterms_compare_1 = product.Name;
+                                }
+                                else {
+                                    small_searchterms_compare_2= product.Name;
+                                }
+                                iCount++;
                             }
                         </tr>
                         <tr class="product-name">
@@ -301,6 +328,14 @@
         }
     </div>
 </div>
+<script asp-location="Footer">
+    $(document).ready(function () {
+        $("#small-searchterms-compare").val('@small_searchterms_compare')
+        $("#small-searchterms-compare-1").val('@small_searchterms_compare_1')
+        $("#small-searchterms-compare-2").val('@small_searchterms_compare_2')
+
+    })
+</script>
 <style>
     * {
         box-sizing: border-box;
@@ -311,10 +346,12 @@
         float: left;
         width: 33.33%;
     }
+
     .column1 {
         float: left;
         width: 33.33%;
     }
+
     .column2 {
         float: left;
         width: 33.33%;
@@ -325,66 +362,68 @@
         display: table;
         clear: both;
     }
+
     .page {
         clear: both;
         text-align: center;
     }
+
     .item-text {
         padding: 10px;
         letter-spacing: 2px;
     }
-/* WITH CATEGORY */
-.compare-search-box .search-box-select {
-	height: 40px;
-    position: absolute;
-    top: 0;
-    right: 5px;
-    bottom: 0;
-    margin: auto;
-    width: 0;
-    opacity: 0;
-    -webkit-transition: all 0.3s ease-in-out;
-    transition: all 0.3s ease-in-out;
-    max-width: 50%;
-}
-.compare-search-box form.open .search-box-select {
-    width: 200px;
-    opacity: 1;
-}
-.compare-search-box input.search-box-text {
-    background: #fff;
-}
-/*.compare-search-box input.search-box-text:focus {
-	border-color: #ccc;
-}*/ /*use this to "eliminate" global focus if necessary*/
+    /* WITH CATEGORY */
+    .compare-search-box .search-box-select {
+        height: 40px;
+        position: absolute;
+        top: 0;
+        right: 5px;
+        bottom: 0;
+        margin: auto;
+        width: 0;
+        opacity: 0;
+        -webkit-transition: all 0.3s ease-in-out;
+        transition: all 0.3s ease-in-out;
+        max-width: 50%;
+    }
 
-/* AUTOCOMPLETE */
+    .compare-search-box form.open .search-box-select {
+        width: 200px;
+        opacity: 1;
+    }
 
-.compare-search-box input.search-box-text.narrow
-{
-    width: calc(100% - 205px) !important;
-}
+    .compare-search-box input.search-box-text {
+        background: #fff;
+    }
+        /*.compare-search-box input.search-box-text:focus {
+        border-color: #ccc;
+    }*/ /*use this to "eliminate" global focus if necessary*/
 
-.compare-search-box form.open .search-box-button
-{
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-}
-.compare-search-box form.open input.search-box-text
-{
-    /*position: absolute;*/
-    top: 0;
-    /*left: 51px;*/
-    bottom: 0;
-}
-.compare-search-box .search-box-select
-{
-    height: 50px;
-}
-/*.compare-search-box input.search-box-text.narrow
-{
-    width: 241px;
-}*/
+        /* AUTOCOMPLETE */
+
+        .compare-search-box input.search-box-text.narrow {
+            width: calc(100% - 205px) !important;
+        }
+
+    .compare-search-box form.open .search-box-button {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+    }
+
+    .compare-search-box form.open input.search-box-text {
+        /*position: absolute;*/
+        top: 0;
+        /*left: 51px;*/
+        bottom: 0;
+    }
+
+    .compare-search-box .search-box-select {
+        height: 50px;
+    }
+    /*.compare-search-box input.search-box-text.narrow
+    {
+        width: 241px;
+    }*/
 </style>

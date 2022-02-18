@@ -62,8 +62,7 @@ namespace Nop.Web.Areas.Admin.Controllers
             IVendorAttributeService vendorAttributeService,
             INkVendorLocationModelFactory vendorModelFactory,
             INkVendorLocationService vendorService,
-            INkVendorLocationService NkVendorLocationService,
-            ImportManager importManager)
+            INkVendorLocationService NkVendorLocationService )
         {
             _addressService = addressService;
             _customerActivityService = customerActivityService;
@@ -80,7 +79,7 @@ namespace Nop.Web.Areas.Admin.Controllers
             _vendorModelFactory = vendorModelFactory;
             _vendorService = vendorService;
             _NkVendorLocationService = NkVendorLocationService;
-            _importManager = importManager;
+            //_importManager = importManager;
         }
 
         #endregion
@@ -304,38 +303,38 @@ namespace Nop.Web.Areas.Admin.Controllers
         }
 
         #endregion
-        [HttpPost]
-        /// <returns>A task that represents the asynchronous operation</returns>
-        public virtual async Task<IActionResult> ImportFromXlsx(IFormFile importexcelfile)
-        {
-            if (!await _permissionService.AuthorizeAsync(StandardPermissionProvider.ManageVendors))
-                return AccessDeniedView();
+        //[HttpPost]
+        ///// <returns>A task that represents the asynchronous operation</returns>
+        //public virtual async Task<IActionResult> ImportFromXlsx(IFormFile importexcelfile)
+        //{
+        //    if (!await _permissionService.AuthorizeAsync(StandardPermissionProvider.ManageVendors))
+        //        return AccessDeniedView();
 
-            //a vendor cannot import categories
+        //    //a vendor cannot import categories
           
 
-            try
-            {
-                if (importexcelfile != null && importexcelfile.Length > 0)
-                {
-                    //await _importManager.ImportVendorLocationFromXlsxAsync(importexcelfile.OpenReadStream());
-                }
-                else
-                {
-                    _notificationService.ErrorNotification(await _localizationService.GetResourceAsync("Admin.Common.UploadFile"));
-                    return RedirectToAction("List");
-                }
+        //    try
+        //    {
+        //        if (importexcelfile != null && importexcelfile.Length > 0)
+        //        {
+        //            //await _importManager.ImportVendorLocationFromXlsxAsync(importexcelfile.OpenReadStream());
+        //        }
+        //        else
+        //        {
+        //            _notificationService.ErrorNotification(await _localizationService.GetResourceAsync("Admin.Common.UploadFile"));
+        //            return RedirectToAction("List");
+        //        }
 
-                _notificationService.SuccessNotification(await _localizationService.GetResourceAsync("Admin.Catalog.VendorLocation.Imported"));
+        //        _notificationService.SuccessNotification(await _localizationService.GetResourceAsync("Admin.Catalog.VendorLocation.Imported"));
 
-                return RedirectToAction("List");
-            }
-            catch (Exception exc)
-            {
-                await _notificationService.ErrorNotificationAsync(exc);
-                return RedirectToAction("List");
-            }
-        }
+        //        return RedirectToAction("List");
+        //    }
+        //    catch (Exception exc)
+        //    {
+        //        await _notificationService.ErrorNotificationAsync(exc);
+        //        return RedirectToAction("List");
+        //    }
+        //}
 
 
     }

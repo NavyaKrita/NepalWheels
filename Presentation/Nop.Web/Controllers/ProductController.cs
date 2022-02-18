@@ -647,9 +647,15 @@ namespace Nop.Web.Controllers
                     success = false,
                     message = "Product comparison is disabled"
                 });
+            bool metLimt = false;
+            await _compareProductsService.AddProductToCompareListAsync(productId,  ref metLimt);
 
-            await _compareProductsService.AddProductToCompareListAsync(productId);
-
+            if (metLimt)
+                return Json(new
+                {
+                    success = false,
+                    message = string.Format("Product comparison limit reached", Url.RouteUrl("CompareProducts"))
+                });
             //activity log
             await _customerActivityService.InsertActivityAsync("PublicStore.AddToCompareList",
                 string.Format(await _localizationService.GetResourceAsync("ActivityLog.PublicStore.AddToCompareList"), product.Name), product);

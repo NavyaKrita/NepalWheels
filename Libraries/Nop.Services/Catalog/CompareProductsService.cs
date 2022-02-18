@@ -85,7 +85,7 @@ namespace Nop.Services.Catalog
             {
                 Expires = DateTime.Now.AddHours(cookieExpires),
                 HttpOnly = true,
-                Secure =  _webHelper.IsCurrentConnectionSecured()
+                Secure = _webHelper.IsCurrentConnectionSecured()
             };
 
             //add cookie
@@ -157,23 +157,31 @@ namespace Nop.Services.Catalog
         /// </summary>
         /// <param name="productId">Product identifier</param>
         /// <returns>A task that represents the asynchronous operation</returns>
-        public virtual Task AddProductToCompareListAsync(int productId)
+        public virtual Task AddProductToCompareListAsync(int productId, ref bool metLimt)
         {
             if (_httpContextAccessor.HttpContext?.Response == null)
                 return Task.CompletedTask;
 
             //get list of compared product identifiers
             var comparedProductIds = GetComparedProductIds();
+            if (comparedProductIds.Count() < 3)
+            {
+                //whether product identifier to add already exist
+                if (!comparedProductIds.Contains(productId))
+                    comparedProductIds.Insert(0, productId);
 
-            //whether product identifier to add already exist
-            if (!comparedProductIds.Contains(productId))
-                comparedProductIds.Insert(0, productId);
 
-            //limit list based on the allowed number of products to be compared
-            comparedProductIds = comparedProductIds.Take(_catalogSettings.CompareProductsNumber).ToList();
+                //limit list based on the allowed number of products to be compared
+                comparedProductIds = comparedProductIds.Take(_catalogSettings.CompareProductsNumber).ToList();
 
-            //set cookie
-            AddCompareProductsCookie(comparedProductIds);
+                //set cookie
+                AddCompareProductsCookie(comparedProductIds);
+            }
+            else
+            {
+                metLimt = true;
+            }
+
 
             return Task.CompletedTask;
         }
