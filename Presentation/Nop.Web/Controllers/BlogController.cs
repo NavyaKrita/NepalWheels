@@ -148,8 +148,8 @@ namespace Nop.Web.Controllers
         /// <returns>A task that represents the asynchronous operation</returns>
         public virtual async Task<IActionResult> BlogPost(int blogPostId)
         {
-            if (await _customerService.IsGuestAsync(await _workContext.GetCurrentCustomerAsync()) && !_blogSettings.AllowNotRegisteredUsersToLeaveComments)
-                return RedirectToRoute("Login", null);
+            //if (await _customerService.IsGuestAsync(await _workContext.GetCurrentCustomerAsync()) && !_blogSettings.AllowNotRegisteredUsersToLeaveComments)
+            //    return RedirectToRoute("Login", null);
             if (!_blogSettings.Enabled)
                 return RedirectToRoute("Homepage");
 
