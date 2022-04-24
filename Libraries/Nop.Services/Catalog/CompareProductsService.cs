@@ -164,11 +164,12 @@ namespace Nop.Services.Catalog
 
             //get list of compared product identifiers
             var comparedProductIds = GetComparedProductIds();
+
             if (comparedProductIds.Count() < 3)
             {
                 //whether product identifier to add already exist
                 if (!comparedProductIds.Contains(productId))
-                    comparedProductIds.Insert(0, productId);
+                    comparedProductIds.Add(productId);
 
 
                 //limit list based on the allowed number of products to be compared
