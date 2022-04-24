@@ -14,4 +14,4 @@ bld/
 [Bb]in/
 [Oo]bj/
 [Ll]og/
-*/**/Presentation/Nop.Web/Plugins
+Plugins/*
