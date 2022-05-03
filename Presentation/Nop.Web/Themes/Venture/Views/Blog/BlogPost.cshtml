@@ -64,6 +64,30 @@
             </div>
         }
         @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.BlogPostPageBeforeComments, additionalData = Model })
+        @if (Model.AllowLikes)
+        {
+
+
+            <div class="comment-list">
+
+                <div class="title">
+
+                    <form asp-route="BlogPost" asp-route-sename="@Model.SeName" method="post">
+                        <div class="buttons">
+                            @if (Model.LikeByCustomer)
+                            {
+                                <button type="submit" name="add-like" class="button-2 add-to-wishlist-button">@T("Like") @Model.LikesNumber</button>
+                            }
+                            else
+                            {
+                                <button type="submit" name="add-like" class="button-2 add-to-wishlist-button">@T("Unlike") @Model.LikesNumber</button>
+                            }
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        }
         @if (Model.AllowComments)
         {
             <div class="comment-list">
@@ -72,6 +96,7 @@
                 </div>
                 <div class="fieldset new-comment" id="comments">
                     <div class="title">
+
                         <strong class="write-comment">@T("SevenSpikes.Themes.Venture.Common.WriteComment")</strong>
                         <strong class="close-comment-form">@T("SevenSpikes.Themes.Venture.Common.HideCommentForm")</strong>
                     </div>
@@ -86,6 +111,7 @@
                             <div class="result">@result</div>
                         }
                     </div>
+
                     <form asp-route="BlogPost" asp-route-sename="@Model.SeName" method="post">
 
                         <div class="form-fields">
@@ -100,7 +126,7 @@
                             }
                         </div>
                         <div class="buttons">
-                        	<button type="submit" name="add-comment" class="button-1 blog-post-add-comment-button">@T("Blog.Comments.SubmitButton")</button>
+                            <button type="submit" name="add-comment" class="button-1 blog-post-add-comment-button">@T("Blog.Comments.SubmitButton")</button>
                         </div>
                     </form>
                 </div>
@@ -127,12 +153,12 @@
                                                 @if (comment.AllowViewingProfiles)
                                                 {
                                                     <a href="@Url.RouteUrl("CustomerProfile", new {id = comment.CustomerId})" class="avatar-img-link">
-                                                        <img src="@(comment.CustomerAvatarUrl)" class="avatar-img" alt="avatar"/>
+                                                        <img src="@(comment.CustomerAvatarUrl)" class="avatar-img" alt="avatar" />
                                                     </a>
                                                 }
                                                 else
                                                 {
-                                                    <img src="@(comment.CustomerAvatarUrl)" class="avatar-img" alt="avatar"/>
+                                                    <img src="@(comment.CustomerAvatarUrl)" class="avatar-img" alt="avatar" />
                                                 }
                                             </div>
                                         }

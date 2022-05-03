@@ -60,29 +60,33 @@
                         </div>
                     </div>
                     @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.BlogListPageAfterPostBody, additionalData = item })
-                    <div class="blog-details">
-                        @if (item.Tags.Count > 0)
-                        {
-                            <div class="tags">
-                                <label>@T("Blog.Tags"):</label>
-                                <ul>
-                                    @for (var i = 0; i < item.Tags.Count; i++)
+                <div class="blog-details">
+                    @if (item.Tags.Count > 0)
+                    {
+                        <div class="tags">
+                            <label>@T("Blog.Tags"):</label>
+                            <ul>
+                                @for (var i = 0; i < item.Tags.Count; i++)
+                                {
+                                    var tag = item.Tags[i];
+                                    <li><a href="@Url.RouteUrl("BlogByTag", new {tag = tag})">@tag</a></li>
+                                    if (i != item.Tags.Count - 1)
                                     {
-                                        var tag = item.Tags[i];
-                                        <li><a href="@Url.RouteUrl("BlogByTag", new {tag = tag})">@tag</a></li>
-                                        if (i != item.Tags.Count - 1)
-                                        {
-                                            <li class="separator">,</li>
-                                        }
+                                        <li class="separator">,</li>
                                     }
-                                </ul>
-                            </div>
-                        }
-                        @if (item.AllowComments)
-                        {
-                            <a href="@Url.RouteUrl("BlogPost", new {SeName = item.SeName})#comments" class="read-comments">@string.Format(T("Blog.CommentsLink").Text, item.NumberOfComments)</a>
-                        }
-                    </div>
+                                }
+                            </ul>
+                        </div>
+                    }
+                    @if (item.AllowLikes)
+                    {
+                <a href="@Url.RouteUrl("BlogPost", new {SeName = item.SeName})#likes" class="read-comments thumbView">@string.Format(T("Blog.Likes").Text) (@item.LikesNumber)</a>
+                    }
+                    @if (item.AllowComments)
+                    {
+                        <a href="@Url.RouteUrl("BlogPost", new {SeName = item.SeName})#comments" class="read-comments">@string.Format(T("Blog.CommentsLink").Text, item.NumberOfComments)</a>
+                    }
+                </div>
                     @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.BlogListPageInsidePost, additionalData = item })
                 </div>
                 @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.BlogListPageAfterPost, additionalData = item })

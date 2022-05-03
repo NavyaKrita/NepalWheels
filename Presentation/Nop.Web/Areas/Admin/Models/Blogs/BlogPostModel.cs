@@ -85,6 +85,9 @@ namespace Nop.Web.Areas.Admin.Models.Blogs
         public IList<int> SelectedStoreIds { get; set; }
         public IList<SelectListItem> AvailableStores { get; set; }
 
+        [NopResourceDisplayName("Admin.ContentManagement.Blog.BlogPosts.Fields.AllowLikes")]
+        public bool AllowLikes { get; set; }
+
         #endregion
     }
 }

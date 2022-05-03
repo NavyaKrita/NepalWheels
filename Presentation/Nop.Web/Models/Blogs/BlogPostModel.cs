@@ -27,7 +27,12 @@ namespace Nop.Web.Models.Blogs
 
         public IList<string> Tags { get; set; }
 
-        public IList<BlogCommentModel> Comments { get; set; }
+        public IList<BlogCommentModel> Comments { get; set; }       
         public AddBlogCommentModel AddNewComment { get; set; }
+        public bool AllowLikes { get; set; }
+        public IList<BlogLikeModel> Likes { get; set; }
+        public BlogLikeModel AddLikes { get; set; }
+        public int LikesNumber { get; set; }
+        public bool LikeByCustomer { get; set; }
     }
 }

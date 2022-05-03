@@ -31,6 +31,7 @@
     <Content Remove="App_Data\*.json" />
     <Content Remove="Plugins\bin\**" />
     <Content Remove="Plugins\ExchangeRate.EcbExchange\**" />
+    <Content Remove="Plugins\ExternalAuth.Facebook\**" />
     <Content Remove="Plugins\Payments.CheckMoneyOrder\**" />
     <Content Remove="Plugins\Payments.Manual\**" />
     <Content Remove="Plugins\Shipping.FixedByWeightByTotal\**" />
@@ -47,6 +48,8 @@
     <Compile Remove="Plugins\bin\**" />
 
     <Compile Remove="Plugins\ExchangeRate.EcbExchange\**" />
+
+    <Compile Remove="Plugins\ExternalAuth.Facebook\**" />
 
     <Compile Remove="Plugins\Payments.CheckMoneyOrder\**" />
 
@@ -69,6 +72,7 @@
     <EmbeddedResource Remove="Plugins\**;Themes\**" />
     <EmbeddedResource Remove="Plugins\bin\**" />
     <EmbeddedResource Remove="Plugins\ExchangeRate.EcbExchange\**" />
+    <EmbeddedResource Remove="Plugins\ExternalAuth.Facebook\**" />
     <EmbeddedResource Remove="Plugins\Payments.CheckMoneyOrder\**" />
     <EmbeddedResource Remove="Plugins\Payments.Manual\**" />
     <EmbeddedResource Remove="Plugins\Shipping.FixedByWeightByTotal\**" />
@@ -81,6 +85,7 @@
     <None Remove="Plugins\**;Themes\**" />
     <None Remove="Plugins\bin\**" />
     <None Remove="Plugins\ExchangeRate.EcbExchange\**" />
+    <None Remove="Plugins\ExternalAuth.Facebook\**" />
     <None Remove="Plugins\Payments.CheckMoneyOrder\**" />
     <None Remove="Plugins\Payments.Manual\**" />
     <None Remove="Plugins\Shipping.FixedByWeightByTotal\**" />
@@ -1009,6 +1014,16 @@
     <None Remove="Plugins\ExchangeRate.EcbExchange\Nop.Plugin.ExchangeRate.EcbExchange.deps.json" />
     <None Remove="Plugins\ExchangeRate.EcbExchange\Nop.Plugin.ExchangeRate.EcbExchange.dll" />
     <None Remove="Plugins\ExchangeRate.EcbExchange\plugin.json" />
+    <None Remove="Plugins\ExternalAuth.Facebook\Content\facebookstyles.css" />
+    <None Remove="Plugins\ExternalAuth.Facebook\Content\Images\facebook_logo.png" />
+    <None Remove="Plugins\ExternalAuth.Facebook\logo.jpg" />
+    <None Remove="Plugins\ExternalAuth.Facebook\Microsoft.AspNetCore.Authentication.Facebook.dll" />
+    <None Remove="Plugins\ExternalAuth.Facebook\Nop.Plugin.ExternalAuth.Facebook.deps.json" />
+    <None Remove="Plugins\ExternalAuth.Facebook\Nop.Plugin.ExternalAuth.Facebook.dll" />
+    <None Remove="Plugins\ExternalAuth.Facebook\plugin.json" />
+    <None Remove="Plugins\ExternalAuth.Facebook\Views\Configure.cshtml" />
+    <None Remove="Plugins\ExternalAuth.Facebook\Views\PublicInfo.cshtml" />
+    <None Remove="Plugins\ExternalAuth.Facebook\Views\_ViewImports.cshtml" />
     <None Remove="Plugins\Payments.CheckMoneyOrder\logo.jpg" />
     <None Remove="Plugins\Payments.CheckMoneyOrder\Nop.Plugin.Payments.CheckMoneyOrder.deps.json" />
     <None Remove="Plugins\Payments.CheckMoneyOrder\Nop.Plugin.Payments.CheckMoneyOrder.dll" />

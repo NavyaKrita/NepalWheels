@@ -74,7 +74,7 @@ namespace Nop.Web.Factories
         }
 
         #endregion
-        
+
         #region Methods
 
         /// <summary>
@@ -104,7 +104,7 @@ namespace Nop.Web.Factories
             model.CreatedOn = await _dateTimeHelper.ConvertToUserTimeAsync(blogPost.StartDateUtc ?? blogPost.CreatedOnUtc, DateTimeKind.Utc);
             model.Tags = await _blogService.ParseTagsAsync(blogPost);
             model.AddNewComment.DisplayCaptcha = _captchaSettings.Enabled && _captchaSettings.ShowOnBlogCommentPage;
-
+            model.AllowLikes = blogPost.AllowLikes;
             //number of blog comments
             var storeId = _blogSettings.ShowBlogCommentsPerStore ? (await _storeContext.GetCurrentStoreAsync()).Id : 0;
 
@@ -123,6 +123,11 @@ namespace Nop.Web.Factories
                     model.Comments.Add(commentModel);
                 }
             }
+            int customerId = (await _workContext.GetCurrentCustomerAsync()).Id;
+
+
+            model.LikesNumber = await _blogService.GetTotalLikesByIdAsync(blogPost.Id);
+            model.LikeByCustomer = (await _blogService.GetTotalLikesByIdAsync(blogPost.Id, customerId,false)) > 0 ? true : false;
         }
 
         /// <summary>
@@ -262,7 +267,7 @@ namespace Nop.Web.Factories
 
             return cachedModel;
         }
-        
+
         /// <summary>
         /// Prepare blog comment model
         /// </summary>

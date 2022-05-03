@@ -21,6 +21,7 @@ namespace Nop.Services.Blogs
         private readonly IRepository<BlogPost> _blogPostRepository;
         private readonly IStaticCacheManager _staticCacheManager;
         private readonly IStoreMappingService _storeMappingService;
+        private readonly IRepository<BlogPostLike> _blogPostLikeRepository;
 
         #endregion
 
@@ -30,12 +31,14 @@ namespace Nop.Services.Blogs
             IRepository<BlogComment> blogCommentRepository,
             IRepository<BlogPost> blogPostRepository,
             IStaticCacheManager staticCacheManager,
-            IStoreMappingService storeMappingService)
+            IStoreMappingService storeMappingService,
+          IRepository<BlogPostLike> blogPostLikeRepository)
         {
             _blogCommentRepository = blogCommentRepository;
             _blogPostRepository = blogPostRepository;
             _staticCacheManager = staticCacheManager;
             _storeMappingService = storeMappingService;
+            _blogPostLikeRepository = blogPostLikeRepository;
         }
 
         #endregion
@@ -421,6 +424,49 @@ namespace Nop.Services.Blogs
         public virtual async Task UpdateBlogCommentAsync(BlogComment blogComment)
         {
             await _blogCommentRepository.UpdateAsync(blogComment);
+        }
+
+        public virtual async Task<int> GetTotalLikesByIdAsync(int blogPostId, int customerId = 0, bool like= true)
+        {
+
+
+            return (await _blogPostLikeRepository.GetAllAsync(query =>
+           {
+
+               query = query.Where(comment => comment.BlogPostId == blogPostId);
+
+               if (customerId > 0)
+                   query = query.Where(comment => comment.CustomerId == customerId);
+               if (like)
+                   query = query.Where(comment => comment.IsLike);
+               return query;
+           })).Count();
+
+
+        }
+
+        public virtual async Task InsertBlogPostLikeAsync(BlogPostLike blogComment)
+        {
+            if (blogComment.Id > 0)
+            {
+                await _blogPostLikeRepository.UpdateAsync(blogComment);
+            }
+            else
+            {
+                await _blogPostLikeRepository.InsertAsync(blogComment);
+
+            }
+        }
+
+        public virtual async Task<BlogPostLike> GetBlogPostLikeIdAsync(int blogPostId, int customerId = 0)
+        {
+
+            return (await _blogPostLikeRepository.GetAllAsync(query =>
+            {
+
+                query = query.Where(comment => comment.BlogPostId == blogPostId && comment.CustomerId == customerId);
+                return query;
+            })).FirstOrDefault();
         }
 
         #endregion

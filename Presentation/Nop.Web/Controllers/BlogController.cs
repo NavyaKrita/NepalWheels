@@ -95,7 +95,7 @@ namespace Nop.Web.Controllers
         {
             if (!_blogSettings.Enabled)
                 return RedirectToRoute("Homepage");
-             
+
             var model = await _blogModelFactory.PrepareBlogPostListModelAsync(command);
             return View("List", model);
         }
@@ -178,7 +178,7 @@ namespace Nop.Web.Controllers
             return View(model);
         }
 
-        [HttpPost, ActionName("BlogPost")]        
+        [HttpPost, ActionName("BlogPost")]
         [FormValueRequired("add-comment")]
         [ValidateCaptcha]
         /// <returns>A task that represents the asynchronous operation</returns>
@@ -238,10 +238,51 @@ namespace Nop.Web.Controllers
 
             //If we got this far, something failed, redisplay form
             await _blogModelFactory.PrepareBlogPostModelAsync(model, blogPost, true);
-            
+
             return View(model);
         }
+        [HttpPost, ActionName("BlogPost")]
+        [FormValueRequired("add-like")]
 
+        /// <returns>A task that represents the asynchronous operation</returns>
+        public virtual async Task<IActionResult> BlogLikeAdd(int blogPostId, BlogPostModel model)
+        {
+
+            var blogPost = await _blogService.GetBlogPostByIdAsync(blogPostId);
+            if (blogPost == null || !blogPost.AllowLikes)
+                return RedirectToRoute("Homepage");
+
+            if (await _customerService.IsGuestAsync(await _workContext.GetCurrentCustomerAsync()) && false)
+            {
+                ModelState.AddModelError("", await _localizationService.GetResourceAsync("Blog.Comments.OnlyRegisteredUsersLeaveComments"));
+            }
+
+            int customerId = (await _workContext.GetCurrentCustomerAsync()).Id;
+            var likePost = await _blogService.GetBlogPostLikeIdAsync(blogPost.Id, customerId);
+
+            var comment = new BlogPostLike
+            {
+                Id = likePost != null ? likePost.Id : 0,
+                IsLike = likePost == null ? true : !likePost.IsLike,
+                BlogPostId = blogPost.Id,
+                CustomerId = customerId,
+                CreatedOnUtc = DateTime.UtcNow,
+            };
+
+            await _blogService.InsertBlogPostLikeAsync(comment);
+
+
+
+            //activity log
+            await _customerActivityService.InsertActivityAsync("PublicStore.AddLike",
+                await _localizationService.GetResourceAsync("ActivityLog.PublicStore.AddLike"), comment);
+
+            //The text boxes should be cleared after a comment has been posted
+            //That' why we reload the page
+            await _localizationService.GetResourceAsync("Blog.Like.SuccessfullyAdded");
+
+            return RedirectToRoute("BlogPost", new { SeName = await _urlRecordService.GetSeNameAsync(blogPost, blogPost.LanguageId, ensureTwoPublishedLanguages: false) });
+        }
         #endregion
     }
 }

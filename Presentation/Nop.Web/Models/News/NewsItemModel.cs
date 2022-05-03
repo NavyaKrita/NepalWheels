@@ -26,5 +26,8 @@ namespace Nop.Web.Models.News
 
         public IList<NewsCommentModel> Comments { get; set; }
         public AddNewsCommentModel AddNewComment { get; set; }
+        public bool AllowLikes { get; set; }
+        public IList<NewsLikeModel> Likes { get; set; }
+        public NewsLikeModel AddLikes { get; set; }
     }
 }

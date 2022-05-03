@@ -41,7 +41,15 @@ namespace Nop.Services.Blogs
         /// Gets a key pattern to clear cache
         /// </summary>
         public static string BlogTagsPrefix => "Nop.blogpost.tags.";
-
+        /// <summary>
+        /// Key for number of blog comments
+        /// </summary>
+        /// <remarks>
+        /// {0} : blog post ID
+        /// {1} : store ID
+        /// {2} : are only approved comments?
+        /// </remarks>
+        public static CacheKey BlogLikesNumberCacheKey => new CacheKey("Nop.blogLike.number.{0}-{1}", BlogCommentsNumberPrefix);
         #endregion
     }
 }

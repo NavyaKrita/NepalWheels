@@ -170,6 +170,7 @@ namespace Nop.Web.Areas.Admin.Factories
             {
                 model.AllowComments = true;
                 model.IncludeInSitemap = true;
+                model.AllowLikes = true;
             }
 
             var blogTags = await _blogService.GetAllBlogPostTagsAsync(0, 0, true);

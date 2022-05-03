@@ -204,6 +204,30 @@ namespace Nop.Services.Blogs
         /// <returns>A task that represents the asynchronous operation</returns>
         Task UpdateBlogCommentAsync(BlogComment blogComment);
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="blogPostId"></param>
+        /// <param name="customerId"></param>
+        /// <returns></returns>
+
+        Task<int> GetTotalLikesByIdAsync(int blogPostId, int customerId = 0,bool like=true);
+
+        /// <summary>
+        /// Inserts a blog like
+        /// </summary>
+        /// <param name="blogComment">Blog comment</param>
+        /// <returns>A task that represents the asynchronous operation</returns>
+        Task InsertBlogPostLikeAsync(BlogPostLike blogComment);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="blogPostId"></param>
+        /// <param name="customerId"></param>
+        /// <returns></returns>
+        Task<BlogPostLike> GetBlogPostLikeIdAsync(int blogPostId, int customerId = 0);
+
         #endregion
     }
 }
