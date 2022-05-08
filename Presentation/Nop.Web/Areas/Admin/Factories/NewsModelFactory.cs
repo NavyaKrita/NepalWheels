@@ -133,7 +133,9 @@ namespace Nop.Web.Areas.Admin.Factories
                     newsItemModel.LanguageName = (await _languageService.GetLanguageByIdAsync(newsItem.LanguageId))?.Name;
                     newsItemModel.ApprovedComments = await _newsService.GetNewsCommentsCountAsync(newsItem, isApproved: true);
                     newsItemModel.NotApprovedComments = await _newsService.GetNewsCommentsCountAsync(newsItem, isApproved: false);
-
+                    newsItemModel.CategoryName = (await _newsService.NewsCategory())
+                    .Where(s => s.Id == newsItemModel.NewsCategoryId)
+                    .Select(a => a.Name).FirstOrDefault();
                     return newsItemModel;
                 });
             });

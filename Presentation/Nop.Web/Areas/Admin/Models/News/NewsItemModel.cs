@@ -86,6 +86,7 @@ namespace Nop.Web.Areas.Admin.Models.News
         public int NewsCategoryId { get; set; }
 
         public IList<SelectListItem> NewsCategory { get; set; }
+        public string CategoryName { get; set; }
         #endregion
     }
 }
