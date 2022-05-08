@@ -165,7 +165,7 @@ namespace Nop.Web.Areas.Admin.Controllers
                 await SaveStoreMappingsAsync(blogPost, model);
 
                 _notificationService.SuccessNotification(await _localizationService.GetResourceAsync("Admin.ContentManagement.Blog.BlogPosts.Added"));
-
+               
                 if (!continueEditing)
                     return RedirectToAction("BlogPosts");
 

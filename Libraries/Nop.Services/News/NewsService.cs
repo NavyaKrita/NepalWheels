@@ -21,6 +21,7 @@ namespace Nop.Services.News
         private readonly IRepository<NewsItem> _newsItemRepository;
         private readonly IStaticCacheManager _staticCacheManager;
         private readonly IStoreMappingService _storeMappingService;
+        private readonly IRepository<SS_RB_Category> _categoryRepository;
 
         #endregion
 
@@ -30,13 +31,14 @@ namespace Nop.Services.News
             IRepository<NewsComment> newsCommentRepository,
             IRepository<NewsItem> newsItemRepository,
             IStaticCacheManager staticCacheManager,
-            IStoreMappingService storeMappingService)
+            IStoreMappingService storeMappingService,
+             IRepository<SS_RB_Category> categoryRepository)
         {
             _newsCommentRepository = newsCommentRepository;
             _newsItemRepository = newsItemRepository;
             _staticCacheManager = staticCacheManager;
             _storeMappingService = storeMappingService;
-
+            _categoryRepository = categoryRepository;
         }
 
         #endregion
@@ -147,6 +149,11 @@ namespace Nop.Services.News
                 return false;
 
             return true;
+        }
+
+        public async Task<List<SS_RB_Category>> NewsCategory()
+        {
+          return  await _categoryRepository.Table.Where(s=>s.Name.Contains("national")).ToListAsync();
         }
         #endregion
 

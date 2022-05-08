@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Nop.Core;
 using Nop.Core.Caching;
 using Nop.Core.Domain.Blogs;
+using Nop.Core.Domain.News;
 using Nop.Data;
 using Nop.Services.Stores;
 
@@ -23,6 +24,7 @@ namespace Nop.Services.Blogs
         private readonly IStoreMappingService _storeMappingService;
         private readonly IRepository<BlogPostLike> _blogPostLikeRepository;
 
+       
         #endregion
 
         #region Ctor
@@ -32,13 +34,15 @@ namespace Nop.Services.Blogs
             IRepository<BlogPost> blogPostRepository,
             IStaticCacheManager staticCacheManager,
             IStoreMappingService storeMappingService,
-          IRepository<BlogPostLike> blogPostLikeRepository)
+          IRepository<BlogPostLike> blogPostLikeRepository
+         )
         {
             _blogCommentRepository = blogCommentRepository;
             _blogPostRepository = blogPostRepository;
             _staticCacheManager = staticCacheManager;
             _storeMappingService = storeMappingService;
             _blogPostLikeRepository = blogPostLikeRepository;
+           
         }
 
         #endregion
@@ -426,10 +430,8 @@ namespace Nop.Services.Blogs
             await _blogCommentRepository.UpdateAsync(blogComment);
         }
 
-        public virtual async Task<int> GetTotalLikesByIdAsync(int blogPostId, int customerId = 0, bool like= true)
+        public virtual async Task<int> GetTotalLikesByIdAsync(int blogPostId, int customerId = 0, bool like = true)
         {
-
-
             return (await _blogPostLikeRepository.GetAllAsync(query =>
            {
 
@@ -442,8 +444,8 @@ namespace Nop.Services.Blogs
                return query;
            })).Count();
 
-
         }
+
 
         public virtual async Task InsertBlogPostLikeAsync(BlogPostLike blogComment)
         {
