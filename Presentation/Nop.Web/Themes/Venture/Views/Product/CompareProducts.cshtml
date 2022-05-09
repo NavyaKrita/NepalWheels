@@ -72,7 +72,7 @@
                         <tr class="product-picture">
                             <td class="empty">&nbsp;</td>
                             @{int iCount = 0;
-                                
+
                             }
                             @foreach (var product in Model.Products)
                             {
@@ -89,8 +89,9 @@
                                 {
                                     small_searchterms_compare_1 = product.Name;
                                 }
-                                else {
-                                    small_searchterms_compare_2= product.Name;
+                                else
+                                {
+                                    small_searchterms_compare_2 = product.Name;
                                 }
                                 iCount++;
                             }
@@ -135,6 +136,14 @@
                         {
                             if (group.Attributes.Count > 0)
                             {
+                                @if (group.Id > 0)
+                                {
+                                    <tr class="specification-group text-black-50">
+                                        <td>
+                                            <label>@group.Name</label>
+                                        </td>
+                                    </tr>
+                                }
                                 var uniqueGroupAttributes = new List<ProductSpecificationAttributeModel>();
                                 foreach (var attribute in Model.Products.SelectMany(p => p.ProductSpecificationModel.Groups.Where(g => g.Id == group.Id).SelectMany(g => g.Attributes)))
                                 {
@@ -257,16 +266,20 @@
                 </div>
                 @foreach (var group in uniqueGroupes)
                 {
+
                     if (group.Attributes.Count > 0)
                     {
+                       
                         var uniqueGroupAttributes = new List<ProductSpecificationAttributeModel>();
                         foreach (var attribute in Model.Products.SelectMany(p => p.ProductSpecificationModel.Groups.Where(g => g.Id == group.Id).SelectMany(g => g.Attributes)))
                         {
                             if (!uniqueGroupAttributes.Any(sa => sa.Id == attribute.Id))
                                 uniqueGroupAttributes.Add(attribute);
                         }
+
                         @foreach (var specificationAttribute in uniqueGroupAttributes)
                         {
+
                             <div class="compare-section specification">
                                 <div class="title">@specificationAttribute.Name</div>
                                 <ul>
