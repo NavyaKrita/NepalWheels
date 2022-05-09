@@ -69,6 +69,12 @@ namespace Nop.Services.News
         /// <returns>Result</returns>
         bool IsNewsAvailable(NewsItem newsItem, DateTime? dateTime = null);
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        Task<List<SS_RB_Category>> NewsCategory();
+
         #endregion
 
         #region News comments

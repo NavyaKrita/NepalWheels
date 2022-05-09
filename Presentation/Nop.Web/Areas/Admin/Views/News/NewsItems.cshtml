@@ -117,6 +117,12 @@
                                 Width = "200",
                                 Render = new RenderDate()
                             },
+                             new ColumnProperty(nameof(NewsItemModel.CategoryName))
+                            {
+                                Title = T("Admin.ContentManagement.News.NewsItems.Fields.CategoryName").Text,
+                                Width = "250"
+                               
+                            },
                             new ColumnProperty(nameof(NewsItemModel.Published))
                             {
                                 Title = T("Admin.ContentManagement.News.NewsItems.Fields.Published").Text,

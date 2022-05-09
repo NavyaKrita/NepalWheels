@@ -74,5 +74,7 @@ namespace Nop.Core.Domain.News
         /// </summary>
         public DateTime CreatedOnUtc { get; set; }
 
+        public int NewsCategoryId { get; set; }
+
     }
 }

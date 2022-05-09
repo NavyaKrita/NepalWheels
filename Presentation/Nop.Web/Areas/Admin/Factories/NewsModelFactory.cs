@@ -66,7 +66,7 @@ namespace Nop.Web.Areas.Admin.Factories
         }
 
         #endregion
-        
+
         #region Methods
 
         /// <summary>
@@ -90,7 +90,7 @@ namespace Nop.Web.Areas.Admin.Factories
 
             return newsContentModel;
         }
-        
+
         /// <summary>
         /// Prepare paged news item list model
         /// </summary>
@@ -133,7 +133,9 @@ namespace Nop.Web.Areas.Admin.Factories
                     newsItemModel.LanguageName = (await _languageService.GetLanguageByIdAsync(newsItem.LanguageId))?.Name;
                     newsItemModel.ApprovedComments = await _newsService.GetNewsCommentsCountAsync(newsItem, isApproved: true);
                     newsItemModel.NotApprovedComments = await _newsService.GetNewsCommentsCountAsync(newsItem, isApproved: false);
-
+                    newsItemModel.CategoryName = (await _newsService.NewsCategory())
+                    .Where(s => s.Id == newsItemModel.NewsCategoryId)
+                    .Select(a => a.Name).FirstOrDefault();
                     return newsItemModel;
                 });
             });
@@ -160,6 +162,7 @@ namespace Nop.Web.Areas.Admin.Factories
                 {
                     model = newsItem.ToModel<NewsItemModel>();
                     model.SeName = await _urlRecordService.GetSeNameAsync(newsItem, newsItem.LanguageId, true, false);
+
                 }
 
                 model.StartDateUtc = newsItem.StartDateUtc;
@@ -178,6 +181,12 @@ namespace Nop.Web.Areas.Admin.Factories
 
             //prepare available stores
             await _storeMappingSupportedModelFactory.PrepareModelStoresAsync(model, newsItem, excludeProperties);
+
+            model.NewsCategory = (await _newsService.NewsCategory()).Select(item => new SelectListItem
+            {
+                Text = item.Name,
+                Value = item.Id.ToString()
+            }).ToList();
 
             return model;
         }
@@ -283,7 +292,7 @@ namespace Nop.Web.Areas.Admin.Factories
 
             return model;
         }
-        
+
         /// <summary>
         /// Prepare news item search model
         /// </summary>
