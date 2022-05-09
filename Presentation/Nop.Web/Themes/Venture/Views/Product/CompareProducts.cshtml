@@ -59,6 +59,17 @@
             <div class="table-wrapper">
                 <table class="compare-products-table">
                     <tbody>
+                        <tr class="product-name">
+                            <td>
+                                <label class="specification-group">@T("Products.Compare.Name")</label>
+                            </td>
+                            @foreach (var product in Model.Products)
+                            {
+                                <td style="width: @columnWidth;">
+                                    <a href="@Url.RouteUrl("Product", new { SeName = product.SeName })">@product.Name</a>
+                                </td>
+                            }
+                        </tr>
                         <tr class="remove-product">
                             <td class="empty">&nbsp;</td>
                             @foreach (var product in Model.Products)
@@ -96,17 +107,7 @@
                                 iCount++;
                             }
                         </tr>
-                        <tr class="product-name">
-                            <td>
-                                <label>@T("Products.Compare.Name")</label>
-                            </td>
-                            @foreach (var product in Model.Products)
-                            {
-                                <td style="width: @columnWidth;">
-                                    <a href="@Url.RouteUrl("Product", new { SeName = product.SeName })">@product.Name</a>
-                                </td>
-                            }
-                        </tr>
+
                         <tr class="product-price">
                             <td>
                                 <label>@T("Products.Compare.Price")</label>
@@ -138,9 +139,9 @@
                             {
                                 @if (group.Id > 0)
                                 {
-                                    <tr class="specification-group">
+                                    <tr>
                                         <td>
-                                            <label>@group.Name</label>
+                                            <label class="specification-group">@group.Name</label>
                                         </td>
                                     </tr>
                                 }
@@ -154,7 +155,7 @@
                                 {
                                     <tr class="specification">
                                         <td>
-                                            <label>@specificationAttribute.Name</label>
+                                            <label class="specification">@specificationAttribute.Name</label>
                                         </td>
                                         @foreach (var product in Model.Products)
                                         {
@@ -348,7 +349,15 @@
     * {
         box-sizing: border-box;
     }
-
+    .specification-group {
+        color: #F1CA2E;
+        font-size: 18px;
+        font weight:800;
+    }
+    .specification {
+        color: #909090;
+        text-transform: capitalize !important;
+    }
     /* Create three equal columns that floats next to each other */
     .column {
         float: left;

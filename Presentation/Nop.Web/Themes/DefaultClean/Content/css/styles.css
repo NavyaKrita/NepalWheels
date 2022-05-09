@@ -3235,14 +3235,14 @@ label, label + * {
   color: #777;
 }
 
-.compare-products-table .specification-group td {
+.compare-products-table .specification-group tr td {
   border: 0;
   padding: 20px 10px 10px 10px;
 }
 
-.compare-products-table .specification-group td label {
-  font-size: 16px;
-  color: rgba(0,0,0,0);
+.compare-products-table .specification-group tr td label {
+  font-size: 18px;
+  color: #000;
 }
 
 .compare-products-table .remove-button {
