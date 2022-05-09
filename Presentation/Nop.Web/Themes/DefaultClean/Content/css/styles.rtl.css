@@ -3270,10 +3270,10 @@ label, label + * {
   padding: 20px 10px 10px 10px;
 }
 
-.compare-products-table .specification-group td label {
-  font-size: 16px;
-  color: #444;
-}
+    .compare-products-table .specification-group td label {
+        font-size: 16px;
+        color: rgba(0,0,0,0);
+    }
 
 .compare-products-table .remove-button {
   display: inline-block;

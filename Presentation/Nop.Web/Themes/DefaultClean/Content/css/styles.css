@@ -3242,7 +3242,7 @@ label, label + * {
 
 .compare-products-table .specification-group td label {
   font-size: 16px;
-  color: #444;
+  color: rgba(0,0,0,0);
 }
 
 .compare-products-table .remove-button {
