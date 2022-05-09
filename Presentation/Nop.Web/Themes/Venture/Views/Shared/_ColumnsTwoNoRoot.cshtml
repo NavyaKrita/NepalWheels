@@ -89,7 +89,7 @@
 
 @if (!isAccountPage)
 {
-    <div class="center-2left @gridNuberOfItemsViewMode">
+    <div class="center-1 @gridNuberOfItemsViewMode">
         @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.MainColumnBefore })
         @RenderBody()
         @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.MainColumnAfter })

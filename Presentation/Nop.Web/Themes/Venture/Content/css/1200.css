@@ -47,16 +47,17 @@
         width: 23%;
         margin-top: 30px;
     }
+
     .center-2left {
         float: left;
-        width: 75%;
+        width: 60%;
     }
 
     .side-2right {
         float: left;
         width: 20%;
         margin-top: 6.5%;
-        margin-left: 4.5%;
+        /*margin-left: 4.5%;*/
     }
 
     .inputs {
@@ -1447,6 +1448,12 @@
             max-width: 33%;
         }
 
+            /*.news-list-homepage .news-item:nth-child(3n+1) {
+                margin-left: 0;
+                clear: both;
+                border-radius: 5px; //new
+                max-width: 33%;
+            }*/
             .news-list-homepage .news-item:nth-child(3n+1) {
                 margin-left: 0;
                 clear: both;

@@ -7,6 +7,7 @@
     @await Component.InvokeAsync("Widget", new { widgetZone = "Left_Side_Column_Before" })
     @await Component.InvokeAsync("Widget", new { widgetZone = "Left_Side_Column_After" })
 }
+
 @if (Model.NewsItems.Count > 0)
 {
 
@@ -14,7 +15,7 @@
         <div class="title">
             <strong>LATEST @T("News")</strong>
         </div>
-        <div class="news-items">
+        <div class="news-items" style="width:100%">
             @foreach (var item in Model.NewsItems)
             {
                 //This section is customize to fit Header at top and date at bottom
