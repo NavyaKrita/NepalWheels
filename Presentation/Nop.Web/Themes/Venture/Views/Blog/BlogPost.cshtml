@@ -74,11 +74,13 @@
                         <div class="buttons">
                             @if (Model.LikeByCustomer)
                             {
-                                <button type="submit" name="add-like" class="button-2 add-to-wishlist-button">@T("Like") @Model.LikesNumber</button>
+                                <span>@Model.LikesNumber Likes</span>
+                                <button type="submit" name="add-like" style="background-color: white !important; padding: 5px 5px 5px 5px"><span class="ico-wishlist"></span></button>
                             }
                             else
                             {
-                                <button type="submit" name="add-like" class="button-2 add-to-wishlist-button">@T("Unlike") @Model.LikesNumber</button>
+                                <span>@Model.LikesNumber Likes</span>
+                                <button type="submit" name="add-like" style="background-color: white !important; padding: 5px 5px 5px 5px"><span class="ico-wishlist-dislike"></span></button>
                             }
                         </div>
                     </form>
@@ -182,3 +184,18 @@
     </div>
     @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.BlogPostPageBottom, additionalData = Model })
 </div>
+<style>
+    .ico-wishlist:before {
+        font-size: 26px !important;
+        color: crimson;
+    }
+    ico-wishlist-dislike:before {
+        font-size: 26px !important;
+        color: crimson;
+        font-family: "venture-font";
+        text-transform: none;
+        content: "f";
+        width: 25px;
+        display: inline-block;
+    }
+</style>

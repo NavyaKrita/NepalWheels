@@ -13,7 +13,7 @@
     <RepositoryType>Git</RepositoryType>
     <!--Set this parameter to true to get the dlls copied from the NuGet cache to the output of your project-->
     <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
-    <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
+    <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModelclass="page blogpost-page"
     <!--When true, compiles and emits the Razor assembly as part of publishing the project-->
     <RazorCompileOnPublish>false</RazorCompileOnPublish>
   </PropertyGroup>
@@ -95,7 +95,6 @@
     <None Remove="Themes\WristwearTheme\**" />
     <None Remove="Views\NkVendorLocation\**" />
     <None Remove="wwwroot\images\**" />
-    <Content Include="App_Data\dataSettings.json" />
     <Content Include="Areas\Admin\Components\AclDisabledWarning.cs" />
     <Content Include="Areas\Admin\Components\AdminLanguageSelector.cs" />
     <Content Include="Areas\Admin\Components\AdminWidget.cs" />
