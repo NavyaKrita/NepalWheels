@@ -24,7 +24,7 @@ namespace Nop.Services.Blogs
         private readonly IStoreMappingService _storeMappingService;
         private readonly IRepository<BlogPostLike> _blogPostLikeRepository;
 
-       
+
         #endregion
 
         #region Ctor
@@ -42,7 +42,7 @@ namespace Nop.Services.Blogs
             _staticCacheManager = staticCacheManager;
             _storeMappingService = storeMappingService;
             _blogPostLikeRepository = blogPostLikeRepository;
-           
+
         }
 
         #endregion
@@ -446,6 +446,19 @@ namespace Nop.Services.Blogs
 
         }
 
+        public virtual async Task<bool> GetLikesByIdAsync(int blogPostId, int customerId = 0)
+        {
+            return (await _blogPostLikeRepository.GetAllAsync(query =>
+            {
+
+                query = query.Where(comment => comment.BlogPostId == blogPostId);
+
+                if (customerId > 0)
+                    query = query.Where(comment => comment.CustomerId == customerId);
+                return query;
+            })).Select(s => s.IsLike).FirstOrDefault();
+
+        }
 
         public virtual async Task InsertBlogPostLikeAsync(BlogPostLike blogComment)
         {

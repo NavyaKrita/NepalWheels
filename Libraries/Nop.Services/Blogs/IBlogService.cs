@@ -227,7 +227,7 @@ namespace Nop.Services.Blogs
         /// <param name="customerId"></param>
         /// <returns></returns>
         Task<BlogPostLike> GetBlogPostLikeIdAsync(int blogPostId, int customerId = 0);
-
+        Task<bool> GetLikesByIdAsync(int blogPostId, int customerId = 0);
         #endregion
     }
 }
