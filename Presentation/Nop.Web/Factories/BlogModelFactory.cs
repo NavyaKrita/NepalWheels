@@ -127,7 +127,7 @@ namespace Nop.Web.Factories
 
 
             model.LikesNumber = await _blogService.GetTotalLikesByIdAsync(blogPost.Id);
-            model.LikeByCustomer = (await _blogService.GetTotalLikesByIdAsync(blogPost.Id, customerId,false)) > 0 ? true : false;
+            model.LikeByCustomer = (await _blogService.GetLikesByIdAsync(blogPost.Id, customerId));
         }
 
         /// <summary>
