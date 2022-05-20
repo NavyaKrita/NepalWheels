@@ -128,8 +128,7 @@ namespace Nop.Web.Controllers
         /// <returns>A task that represents the asynchronous operation</returns>
         public virtual async Task<IActionResult> NewsItem(int newsItemId)
         {
-            if (await _customerService.IsGuestAsync(await _workContext.GetCurrentCustomerAsync()) && !_newsSettings.AllowNotRegisteredUsersToLeaveComments)
-                return RedirectToRoute("Login", null);
+            
             if (!_newsSettings.Enabled)
                 return RedirectToRoute("Homepage");
 
