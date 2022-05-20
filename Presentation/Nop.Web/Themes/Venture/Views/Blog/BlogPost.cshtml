@@ -46,6 +46,25 @@
         <div class="post-body">
             @Html.Raw(Model.Body)
         </div>
+        @if (Model.AllowLikes)
+        {
+                <div class="title">
+                    <form asp-route="BlogPost" asp-route-sename="@Model.SeName" method="post">
+                        <div class="buttons">
+                            @if (Model.LikeByCustomer)
+                            {
+                                <p>@Model.LikesNumber Likes</p>
+                                <button type="submit" name="add-like" style="background-color: white !important; padding: 5px 5px 5px 5px"><span class="ico-wishlist" style=" color: crimson;"></span></button>
+                            }
+                            else
+                            {
+                                <p>@Model.LikesNumber Likes</p>
+                                <button type="submit" name="add-like" style="background-color: white !important; padding: 5px 5px 5px 5px"><span class="ico-wishlist" style="color: grey !important"></span></button>
+                            }
+                        </div>
+                    </form>
+            </div>
+        }
         @if (Model.Tags.Count > 0)
         {
             <div class="tags">
@@ -64,30 +83,7 @@
             </div>
         }
         @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.BlogPostPageBeforeComments, additionalData = Model })
-        @if (Model.AllowLikes)
-        {
-            <div class="comment-list">
 
-                <div class="title">
-
-                    <form asp-route="BlogPost" asp-route-sename="@Model.SeName" method="post">
-                        <div class="buttons">
-                            @if (Model.LikeByCustomer)
-                            {
-                                <span>@Model.LikesNumber Likes</span>
-                                <button type="submit" name="add-like" style="background-color: white !important; padding: 5px 5px 5px 5px"><span class="ico-wishlist"></span></button>
-                            }
-                            else
-                            {
-                                <span>@Model.LikesNumber Likes</span>
-                                <button type="submit" name="add-like" style="background-color: white !important; padding: 5px 5px 5px 5px"><span class="ico-wishlist-dislike"></span></button>
-                            }
-                        </div>
-                    </form>
-                </div>
-            </div>
-
-        }
         @if (Model.AllowComments)
         {
             <div class="comment-list">
@@ -186,16 +182,7 @@
 </div>
 <style>
     .ico-wishlist:before {
-        font-size: 26px !important;
-        color: crimson;
-    }
-    ico-wishlist-dislike:before {
-        font-size: 26px !important;
-        color: crimson;
-        font-family: "venture-font";
-        text-transform: none;
-        content: "f";
-        width: 25px;
-        display: inline-block;
+        font-size: 46px !important;
+        width: 90%;
     }
 </style>
