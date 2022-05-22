@@ -17,17 +17,19 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @{ int count = 0;}
                     @foreach (var group in Model.Groups)
                     {
                         @if (group.Attributes.Count > 0)
                         {
                             @if (group.Id > 0)
                             {
-                                <tr>
-                                    <td class="spec-group-name">
+                                <tr @(count % 2 == 0 ? Html.Raw(" class=\"odd\"") : Html.Raw(" class=\"even\""))>
+                                    <td class="spec-name">
                                         @group.Name
                                     </td>
                                 </tr>
+                                count++;
                             }
 
                             @for (int i = 0; i < group.Attributes.Count; i++)

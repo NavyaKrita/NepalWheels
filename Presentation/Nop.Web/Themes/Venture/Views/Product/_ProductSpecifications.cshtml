@@ -19,6 +19,14 @@
                     {
                         @if (group.Attributes.Count > 0)
                         {
+                            @if (group.Id > 0)
+                            {
+                                <tr>
+                                    <td class="spec-group-name">
+                                        @group.Name
+                                    </td>
+                                </tr>
+                            }
                             @for (int i = 0; i < group.Attributes.Count; i++)
                             {
                                 var attr = group.Attributes[i];
