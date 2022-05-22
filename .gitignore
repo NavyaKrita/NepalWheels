@@ -18,6 +18,13 @@ bld/
 [Pp]lugin/
 .vs16/*
 .vs/NopCommerce/v16/.suo
-.vs/NopCommerce/v16/.suo
 *.dll
-.vs/NopCommerce/v16/.suo
+Presentation/Nop.Web/App_Data/dataSettings.json
+
+*.dll
+*.pdb
+Presentation/Nop.Web/Plugins/Tax.Avalara/Nop.Plugin.Tax.Avalara.dll
+Presentation/Nop.Web/Plugins/Payments.PayPalCommerce/Nop.Plugin.Payments.PayPalCommerce.dll
+Presentation/Nop.Web/Plugins/Shipping.ShipStation/Nop.Plugin.Shipping.ShipStation.dll
+Presentation/Nop.Web/Plugins/Tax.Avalara/Nop.Plugin.Tax.Avalara.pdb
+Presentation/Nop.Web/Plugins/Widgets.FacebookPixel/Nop.Plugin.Widgets.FacebookPixel.pdb
