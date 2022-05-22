@@ -61,7 +61,7 @@
                     <tbody>
                         <tr class="product-name">
                             <td>
-                                <label class="specification-group" style="position: sticky;">@T("Products.Compare.Name")</label>
+                                <label class="specification-group">@T("Products.Compare.Name")</label>
                             </td>
                             @foreach (var product in Model.Products)
                             {
@@ -70,6 +70,10 @@
                                 </td>
                             }
                         </tr>
+                    </tbody>
+                </table>
+                <table class="compare-products-table">
+                    <tbody class="scroll">
                         <tr class="remove-product">
                             <td class="empty">&nbsp;</td>
                             @foreach (var product in Model.Products)
@@ -270,7 +274,7 @@
 
                     if (group.Attributes.Count > 0)
                     {
-                       
+
                         var uniqueGroupAttributes = new List<ProductSpecificationAttributeModel>();
                         foreach (var attribute in Model.Products.SelectMany(p => p.ProductSpecificationModel.Groups.Where(g => g.Id == group.Id).SelectMany(g => g.Attributes)))
                         {
@@ -349,11 +353,13 @@
     * {
         box-sizing: border-box;
     }
+
     .specification-group {
         color: #F1CA2E;
         font-size: 18px;
         font weight:800;
     }
+
     .specification {
         color: #909090;
         text-transform: capitalize !important;
@@ -443,4 +449,10 @@
     {
         width: 241px;
     }*/
+    .compare-products-table .scroll {
+        display: block;
+        overflow: auto;
+        height: 500px;
+        width: 100%;
+    }
 </style>
