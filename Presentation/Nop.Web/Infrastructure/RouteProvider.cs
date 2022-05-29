@@ -292,6 +292,10 @@ namespace Nop.Web.Infrastructure
                 pattern: $"{lang}/blog/tag/{{tag}}",
                 defaults: new { controller = "Blog", action = "BlogByTag" });
 
+            endpointRouteBuilder.MapControllerRoute(name: "NewsByCategory",
+               pattern: $"news/category/{{SeName}}",
+               defaults: new { controller = "News", action = "NewsByCategory" });
+
             endpointRouteBuilder.MapControllerRoute(name: "BlogByMonth",
                 pattern: $"{lang}/blog/month/{{month}}",
                 defaults: new { controller = "Blog", action = "BlogByMonth" });

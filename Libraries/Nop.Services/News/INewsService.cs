@@ -44,7 +44,7 @@ namespace Nop.Services.News
         /// The task result contains the news items
         /// </returns>
         Task<IPagedList<NewsItem>> GetAllNewsAsync(int languageId = 0, int storeId = 0,
-            int pageIndex = 0, int pageSize = int.MaxValue, bool showHidden = false, string title = null);
+            int pageIndex = 0, int pageSize = int.MaxValue, bool showHidden = false, string title = null,string category="");
 
         /// <summary>
         /// Inserts a news item

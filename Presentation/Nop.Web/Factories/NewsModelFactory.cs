@@ -73,7 +73,7 @@ namespace Nop.Web.Factories
         }
 
         #endregion
-        
+
         #region Methods
 
         /// <summary>
@@ -183,8 +183,15 @@ namespace Nop.Web.Factories
 
             var language = await _workContext.GetWorkingLanguageAsync();
             var store = await _storeContext.GetCurrentStoreAsync();
-            var newsItems = await _newsService.GetAllNewsAsync(language.Id, store.Id, command.PageNumber - 1, command.PageSize);
+            var newsItems = await _newsService.GetAllNewsAsync(language.Id, store.Id, command.PageNumber - 1, command.PageSize, category: command.SeName);
+            var newscategory = (await _newsService.NewsCategory())
+                .Select(s => new NewsCategoryModel()
+                {
+                    Id = s.Id,
+                    Name = s.Name,
+                    SeName = s.SEName,
 
+                }).ToList();
             var model = new NewsItemListModel
             {
                 WorkingLanguageId = language.Id,
@@ -193,7 +200,8 @@ namespace Nop.Web.Factories
                     var newsModel = new NewsItemModel();
                     await PrepareNewsItemModelAsync(newsModel, newsItem, false);
                     return newsModel;
-                }).ToListAsync()
+                }).ToListAsync(),
+                NewsCategories = newscategory
             };
             model.PagingFilteringContext.LoadPagedList(newsItems);
 

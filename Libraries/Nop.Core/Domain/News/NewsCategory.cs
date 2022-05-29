@@ -18,6 +18,8 @@ namespace Nop.Core.Domain.News
         public int DisplayOrder { get; set; }
 
         public bool Published { get; set; }
+        public string SEName { get; set; }
         public bool LimitedToStores { get; set; }
+
     }
 }
