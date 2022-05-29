@@ -70,10 +70,6 @@
                                 </td>
                             }
                         </tr>
-                    </tbody>
-                </table>
-                <table class="compare-products-table">
-                    <tbody class="scroll">
                         <tr class="remove-product">
                             <td class="empty">&nbsp;</td>
                             @foreach (var product in Model.Products)
@@ -111,7 +107,6 @@
                                 iCount++;
                             }
                         </tr>
-
                         <tr class="product-price">
                             <td>
                                 <label>@T("Products.Compare.Price")</label>
@@ -123,6 +118,10 @@
                                 </td>
                             }
                         </tr>
+                    </tbody>
+                </table>
+                <table class="compare-products-table">
+                    <tbody class="scroll">
                         @if (Model.IncludeShortDescriptionInCompareProducts)
                         {
                             <tr class="short-description">
