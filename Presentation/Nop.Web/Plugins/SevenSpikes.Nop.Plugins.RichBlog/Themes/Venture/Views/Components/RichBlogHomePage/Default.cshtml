@@ -17,6 +17,15 @@
         {
             <div class="blog-post">
                 <div class="post-primary">
+                    <div class="post-date">
+                        <a class="post-title" href="@Url.RouteUrl("BlogPost", new { SeName = post.SeName })">@post.Title</a>
+                        @*<span class="day">@post.CreatedOn.Day.ToString("00")</span>
+                            <span class="month">@post.CreatedOn.ToString("MMM")</span>
+                            <span class="year">@post.CreatedOn.Year</span>*@
+                    </div>
+                    <div>
+                    <a class="read-more" href="@Url.RouteUrl("BlogPost", new { SeName = post.SeName })">@T("SevenSpikes.RichBlog.Public.ReadMore")</a>
+                    </div>
                     @if (!string.IsNullOrWhiteSpace(post.HomePagePictureUrl))
                     {
                         <a class="post-picture" href="@Url.RouteUrl("BlogPost", new { SeName = post.SeName })">
@@ -35,13 +44,6 @@
                             }
                         </a>
                     }
-                    <span class="post-date">
-                        <a class="post-title" href="@Url.RouteUrl("BlogPost", new { SeName = post.SeName })">@post.Title</a>
-                        @*<span class="day">@post.CreatedOn.Day.ToString("00")</span>
-                            <span class="month">@post.CreatedOn.ToString("MMM")</span>
-                            <span class="year">@post.CreatedOn.Year</span>*@
-                    </span>
-                    <a class="read-more" href="@Url.RouteUrl("BlogPost", new { SeName = post.SeName })">@T("SevenSpikes.RichBlog.Public.ReadMore")</a>
                 </div>
                 <div class="post-details">
                     @*<a class="post-title" href="@Url.RouteUrl("BlogPost", new { SeName = post.SeName })">@post.Title</a>*@
