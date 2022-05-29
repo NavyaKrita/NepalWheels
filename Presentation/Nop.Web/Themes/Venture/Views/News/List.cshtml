@@ -8,8 +8,23 @@
     Html.AppendPageCssClassParts("html-news-list-page");
 }
 @section left {
-    @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.LeftSideColumnBlogAfter })
+    <div class="block blog-category-navigation">
+        <div class="title">
+            <strong>@T("SevenSpikes.RichBlog.Public.Category.Tab.Title")</strong>
+        </div>
+        <div class="listbox">
+            <ul class="list">
+                @foreach (var category in Model.NewsCategories)
+                {
+                    <li class="category">
+                        <a href="@Url.RouteUrl("NewsByCategory", new { SeName = category.SeName })">@category.Name </a>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
 }
+
 <div class="page news-list-page">
     <div class="page-title">
         @*<a href="@Url.RouteUrl("NewsRSS", new { languageId = Model.WorkingLanguageId })" class="link-rss" title="@T("News.RSS.Hint")">@T("News.RSS")</a>*@

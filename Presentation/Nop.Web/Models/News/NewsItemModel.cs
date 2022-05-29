@@ -29,5 +29,20 @@ namespace Nop.Web.Models.News
         public bool AllowLikes { get; set; }
         public IList<NewsLikeModel> Likes { get; set; }
         public NewsLikeModel AddLikes { get; set; }
+        public IList<NewsCategoryModel> NewsCategories { get; set; }
+    }
+    public partial record NewsCategoryModel : BaseNopEntityModel
+    {
+        public int LanguageId { get; set; }
+
+        public string Name { get; set; }
+
+        public int DisplayOrder { get; set; }
+
+        public bool Published { get; set; }
+        public bool LimitedToStores { get; set; }
+        
+        public string SeName { get; set; }
+
     }
 }

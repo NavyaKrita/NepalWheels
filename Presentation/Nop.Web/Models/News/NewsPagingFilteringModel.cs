@@ -4,5 +4,6 @@ namespace Nop.Web.Models.News
 {
     public partial record NewsPagingFilteringModel : BasePageableModel
     {
+        public string SeName { get; set; }
     }
 }

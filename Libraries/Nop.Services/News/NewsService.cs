@@ -84,7 +84,7 @@ namespace Nop.Services.News
         /// The task result contains the news items
         /// </returns>
         public virtual async Task<IPagedList<NewsItem>> GetAllNewsAsync(int languageId = 0, int storeId = 0,
-            int pageIndex = 0, int pageSize = int.MaxValue, bool showHidden = false, string title = null)
+            int pageIndex = 0, int pageSize = int.MaxValue, bool showHidden = false, string title = null,string category="")
         {
             var news = await _newsItemRepository.GetAllPagedAsync(async query =>
             {
@@ -93,7 +93,11 @@ namespace Nop.Services.News
 
                 if (!string.IsNullOrEmpty(title))
                     query = query.Where(n => n.Title.Contains(title));
-
+                if (!string.IsNullOrEmpty(category))
+                {
+                    query= (from n in query join c in _categoryRepository.Table on n.NewsCategoryId equals c.Id where c.SEName.Equals(category) select n);
+                }
+                    query = query.Where(n => n.Title.Contains(title));
                 if (!showHidden)
                 {
                     var utcNow = DateTime.UtcNow;

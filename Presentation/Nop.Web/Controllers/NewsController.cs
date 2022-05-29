@@ -101,6 +101,16 @@ namespace Nop.Web.Controllers
             return View(model);
         }
 
+        /// <returns>A task that represents the asynchronous operation</returns>
+        public virtual async Task<IActionResult> NewsByCategory(NewsPagingFilteringModel command)
+        {
+            if (!_newsSettings.Enabled)
+                return RedirectToRoute("Homepage");
+
+            var model = await _newsModelFactory.PrepareNewsItemListModelAsync(command);
+            return View("List", model);
+        }
+
         [CheckLanguageSeoCode(true)]
         /// <returns>A task that represents the asynchronous operation</returns>
         public virtual async Task<IActionResult> ListRss(int languageId)
