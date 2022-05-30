@@ -97,7 +97,7 @@ namespace Nop.Services.News
                 {
                     query= (from n in query join c in _categoryRepository.Table on n.NewsCategoryId equals c.Id where c.SEName.Equals(category) select n);
                 }
-                    query = query.Where(n => n.Title.Contains(title));
+                   
                 if (!showHidden)
                 {
                     var utcNow = DateTime.UtcNow;
