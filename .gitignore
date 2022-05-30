@@ -28,3 +28,7 @@ Presentation/Nop.Web/Plugins/Payments.PayPalCommerce/Nop.Plugin.Payments.PayPalC
 Presentation/Nop.Web/Plugins/Shipping.ShipStation/Nop.Plugin.Shipping.ShipStation.dll
 Presentation/Nop.Web/Plugins/Tax.Avalara/Nop.Plugin.Tax.Avalara.pdb
 Presentation/Nop.Web/Plugins/Widgets.FacebookPixel/Nop.Plugin.Widgets.FacebookPixel.pdb
+Presentation/Nop.Web/App_Data/dataSettings.json
+.vs/NopCommerce/v16/.suo
+.vs/NopCommerce/DesignTimeBuild/.dtbcache.v2
+.vs/NopCommerce/config/applicationhost.config
