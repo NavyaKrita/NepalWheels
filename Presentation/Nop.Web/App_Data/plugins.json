@@ -86,11 +86,25 @@
     {
       "SystemName": "ExternalAuth",
       "Version": "1.1"
+    },
+    {
+      "SystemName": "Widgets.FacebookPixel",
+      "Version": "1.06"
+    },
+    {
+      "SystemName": "Widgets.GoogleAnalytics",
+      "Version": "1.67"
+    },
+    {
+      "SystemName": "Widgets.PopupMaker",
+      "Version": "1.00"
+    },
+    {
+      "SystemName": "FoxNetSoft.PopupManager",
+      "Version": "1.03"
     }
   ],
-  "PluginNamesToUninstall": [
-    "Tax.Avalara"
-  ],
+  "PluginNamesToUninstall": [],
   "PluginNamesToDelete": [],
   "PluginNamesToInstall": []
 }
