@@ -13,7 +13,15 @@
         <h1>@T("Account.Register")</h1>
     </div>
     <div class="page-body">
-        <div id="thank-you-page-load"></div>
+        <div id="thank-you-page-load">
+            @Html.Raw(Model.Notice)
+
+            <div class="form-fields">
+                <div class="buttons">
+                    <button type="button" name="show-register-button" id="show-register-button" class="button-1 register-next-step-button">@T("Account.Register.Button")</button>
+                </div>
+            </div>
+        </div>
         <div id="resgister-participants-form">
             <form asp-route="RegisterParticipants" method="post" autocomplete="off" id="register-participants">
                 <div asp-validation-summary="ModelOnly" class="message-error"></div>
@@ -64,8 +72,13 @@
                 </div>
 
                 <script asp-location="Footer">
-                $(document).ready(function () {
-
+                    $(document).ready(function () {
+                        $("#resgister-participants-form").css("display", "none");
+                        $("#show-register-button").on("click", function () {
+                            $(this).css("display", "none");
+                            $("#resgister-participants-form").removeAttr("style")
+                        })
+                   
                     $("#register-participants").submit(function (e) {
 
                         e.preventDefault(); // avoid to execute the actual submit of the form.
@@ -78,7 +91,7 @@
                             type: "POST",
                             url: actionUrl,
                             data: form.serialize(), // serializes the form's elements.
-                            success: function (data) {                            
+                            success: function (data) {
                                 if (data.success) {
                                     loadThankYou();
                                    /* $('#register-participants').css("display", "none");*/
@@ -98,9 +111,9 @@
                         type: "GET",
                        url: "@Url.Action("ThankYou", "Participants")",,
                         success: function (data) {
-                           
+
                             $('#resgister-participants-form').css("display", "none");
-                           
+                            $('#thank-you-page-load').html("");
                             $('#thank-you-page-load').html(data);
                         },
 
@@ -121,10 +134,10 @@
             $(function () {
                 $("#modal-register-participants").dialog();
 
-                 
+
             });
         </script>
     </div>
-</div >
+</div>
 
 

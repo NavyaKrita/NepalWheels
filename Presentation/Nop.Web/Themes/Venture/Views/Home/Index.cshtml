@@ -81,3 +81,36 @@
         </div>
     </div>
 </div>
+<div id="notice-pop-up-landing"></div>
+<script asp-location="Footer">
+        $(document).ready(function () {
+
+             $.ajax({
+                    type: "GET",
+                    url: "@Url.Action("Display", "Participants")",,
+                    success: function (data) {
+                        if (data.success) {
+                            loadPopup();
+                        }
+                    },
+
+                    error: function (error) {
+
+                    }
+                });
+            function loadPopup() {
+                $.ajax({
+                    type: "GET",
+                    url: "@Url.Action("RegisterParticipants", "Participants")",,
+                    success: function (data) {
+                        $('#notice-pop-up-landing').html("");
+                        $('#notice-pop-up-landing').html(data);
+                    },
+
+                    error: function (error) {
+
+                    }
+                });
+            }
+        });
+</script>

@@ -22,14 +22,15 @@ namespace Nop.Web.Controllers
             _noticeBoardService = noticeBoardService;
             _noticeBoardModelFactory = noticeBoardModelFactory;
         }
-        public IActionResult RegisterParticipants()
+        public virtual async Task<IActionResult> RegisterParticipants()
         {
+            var notice = await _noticeBoardModelFactory.PrepareNoticeModelAsync();
             ParticipantsModel model = new();
+            model.Notice = notice.Notice;
             return View(model);
         }
 
-        [HttpPost]
-        
+        [HttpPost]       
         /// <returns>A task that represents the asynchronous operation</returns>
         public virtual async Task<IActionResult> RegisterParticipants(ParticipantsModel model, IFormCollection form)
         {
@@ -60,6 +61,17 @@ namespace Nop.Web.Controllers
 
             var model = await _noticeBoardModelFactory.PrepareNoticeModelAsync();
             return View(model);
+        }
+
+        public virtual async Task<IActionResult> Display()
+        {
+
+            var model = await _noticeBoardModelFactory.PrepareNoticeModelAsync();
+            if (model != null)
+            {
+                return Json(new { success = true });
+            }
+            return Json(new { success = false });
         }
     }
 }
