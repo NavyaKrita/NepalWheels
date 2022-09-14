@@ -851,6 +851,9 @@
 
     <!-- We copy the \Logs directory -->
     <Content Include="Logs\**" CopyToPublishDirectory="PreserveNewest" />
+    <Content Remove="Areas\Admin\Views\NoticeBoard\Create.cshtml" />
+    <Content Remove="Areas\Admin\Views\NoticeBoard\Edit.cshtml" />
+    <Content Remove="Areas\Admin\Views\NoticeBoard\_CreateOrUpdate.cshtml" />
     <Content Remove="Themes\WristwearTheme\Content\css\bootstrap-theme.min.css" />
     <Content Remove="Themes\WristwearTheme\Content\css\bootstrap-theme.min.rtl.css" />
     <Content Remove="Themes\WristwearTheme\Content\css\bootstrap.min.css" />
@@ -1424,6 +1427,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="Areas\Admin\Views\NoticeBoard\Create.cshtml" />
+    <None Include="Areas\Admin\Views\NoticeBoard\Edit.cshtml" />
+    <None Include="Areas\Admin\Views\NoticeBoard\_CreateOrUpdate.cshtml" />
     <None Include="Areas\Admin\Views\VendorLocation\Create.cshtml" />
     <None Include="Areas\Admin\Views\VendorLocation\Edit.cshtml" />
     <None Include="Areas\Admin\Views\VendorLocation\List.cshtml" />

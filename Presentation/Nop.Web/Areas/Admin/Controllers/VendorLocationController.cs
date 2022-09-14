@@ -288,8 +288,6 @@ namespace Nop.Web.Areas.Admin.Controllers
             if (vendor == null)
                 return RedirectToAction("List");
 
-
-
             //delete a vendor
             await _vendorService.DeleteVendorLocationAsync(vendor);
 

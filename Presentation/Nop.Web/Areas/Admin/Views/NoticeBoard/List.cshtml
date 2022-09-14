@@ -1,0 +1,83 @@
+﻿@model NoticeBoardSearchModel
+
+@using Nop.Core.Domain.Common
+@{
+    //page title
+    ViewBag.PageTitle = T("Admin.NoticeBoard").Text;
+    //active menu item (system name)
+    Html.SetActiveMenuItemSystemName("NoticeBoard");
+}
+
+<div class="content-header clearfix">
+    <h1 class="float-left">
+        @T("Admin.NoticeBoard")
+    </h1>
+    <div class="float-right">
+        <a asp-action="Create" class="btn btn-primary">
+            <i class="fas fa-plus-square"></i>
+            @T("Admin.Common.AddNew")
+        </a>
+        @await Component.InvokeAsync("AdminWidget", new { widgetZone = AdminWidgetZones.WidgetListButtons })
+    </div>
+</div>
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="form-horizontal">
+            <div class="cards-group">
+
+                <div class="card card-default">
+                    <div class="card-body">
+
+
+                        @await Html.PartialAsync("Table", new DataTablesModel
+                   {
+                       Name = "notice-board-grid",
+                       UrlRead = new DataUrl("List", "NoticeBoard", null),
+                       SearchButtonId = "notice-board-vendors",
+                       Length = Model.PageSize,
+                       LengthMenu = Model.AvailablePageSizes,
+                       ColumnCollection = new List<ColumnProperty>
+                        {
+                       new ColumnProperty(nameof(NoticeBoardModel.Title))
+                       {
+                           Title = T("Admin.NoticeBoard.Fields.Name").Text,
+                           Width = "300"
+
+                       },
+                       new ColumnProperty(nameof(NoticeBoardModel.PublishedFrom))
+                       {
+                           Title = T("Admin.NoticeBoard.Fields.PublishedFrom").Text,
+                           Width = "50",
+                           ClassName = NopColumnClassDefaults.CenterAll,
+                           Render = new RenderDate()
+                       },
+                       new ColumnProperty(nameof(NoticeBoardModel.PublishedTo))
+                       {
+                           Title = T("Admin.NoticeBoard.Fields.PublishedTo").Text,
+                           Width = "50",
+                           ClassName = NopColumnClassDefaults.CenterAll,
+                           Render = new RenderDate()
+                       },
+                       new ColumnProperty(nameof(NoticeBoardModel.DisplayForm))
+                       {
+                           Title = T("Admin.NoticeBoard.Fields.PublishedTo").Text,
+                           Width = "50",
+                           ClassName = NopColumnClassDefaults.CenterAll,
+                           Render = new RenderBoolean()
+                       },
+                       new ColumnProperty(nameof(NoticeBoardModel.Id))
+                       {
+                           Title = T("Admin.Common.Edit").Text,
+                           Width = "50",
+                           ClassName = NopColumnClassDefaults.Button,
+                           Render = new RenderButtonEdit(new DataUrl("Edit"))
+                       }
+                   }
+                        })
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
