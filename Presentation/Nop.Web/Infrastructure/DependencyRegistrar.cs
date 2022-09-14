@@ -87,6 +87,7 @@ namespace Nop.Web.Infrastructure
             services.AddScoped<IWidgetModelFactory, WidgetModelFactory>();
 
             services.AddScoped<INkVendorLocationModelFactory, NkVendorLocationModelFactory>();
+            services.AddScoped<INoticeBoardModelFactory, NoticeBoardModelFactory>();
             //factories
             services.AddScoped<Factories.IAddressModelFactory, Factories.AddressModelFactory>();
             services.AddScoped<Factories.IBlogModelFactory, Factories.BlogModelFactory>();
@@ -110,6 +111,7 @@ namespace Nop.Web.Infrastructure
             services.AddScoped<Factories.IVendorModelFactory, Factories.VendorModelFactory>();
             services.AddScoped<Factories.IWidgetModelFactory, Factories.WidgetModelFactory>();
             services.AddScoped<Factories.INkVendorLocationModelFactory, Factories.NkVendorLocationModelFactory>();
+            services.AddScoped<Factories.INoticeBoardModelFactory, Factories.NoticeBoardModelFactory>();
         }
 
         /// <summary>

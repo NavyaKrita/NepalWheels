@@ -1,0 +1,130 @@
+﻿@model ParticipantsModel
+@{
+    Layout = "_ColumnsOne";
+
+    //title
+    Html.AddTitleParts(T("PageTitle.Register").Text);
+    //page class
+    Html.AppendPageCssClassParts("html-registration-page");
+}
+
+<div class="page registration-page" id="modal-register-participants">
+    <div class="page-title">
+        <h1>@T("Account.Register")</h1>
+    </div>
+    <div class="page-body">
+        <div id="thank-you-page-load"></div>
+        <div id="resgister-participants-form">
+            <form asp-route="RegisterParticipants" method="post" autocomplete="off" id="register-participants">
+                <div asp-validation-summary="ModelOnly" class="message-error"></div>
+                <div class="fieldset">
+                    <div class="title">
+                        <strong>@T("Account.YourPersonalDetails")</strong>
+                    </div>
+                    <div class="form-fields">
+
+
+                        <div class="inputs">
+                            <label asp-for="Name" asp-postfix=":"></label>
+                            <input asp-for="Name" />
+
+                            <nop-required />
+
+                            <span asp-validation-for="Name"></span>
+                        </div>
+                        <div class="inputs">
+                            <label asp-for="EmailAddress" asp-postfix=":"></label>
+                            <input asp-for="EmailAddress" />
+                            <nop-required />
+                            <span asp-validation-for="EmailAddress"></span>
+                        </div>
+
+
+                        <div class="inputs">
+                            <label asp-for="City" asp-postfix=":"></label>
+                            <input asp-for="City" />
+
+                            <nop-required />
+
+                            <span asp-validation-for="City"></span>
+                        </div>
+                        <div class="inputs">
+                            <label asp-for="PhoneNumber" asp-postfix=":"></label>
+                            <input asp-for="PhoneNumber" />
+
+                            <nop-required />
+
+                            <span asp-validation-for="PhoneNumber"></span>
+                        </div>
+
+                    </div>
+                    <div class="buttons">
+                        <button type="submit" name="register-button" id="register-button" class="button-1 register-next-step-button">@T("Account.Register.Button")</button>
+                    </div>
+                </div>
+
+                <script asp-location="Footer">
+                $(document).ready(function () {
+
+                    $("#register-participants").submit(function (e) {
+
+                        e.preventDefault(); // avoid to execute the actual submit of the form.
+
+                        var form = $(this);
+
+                        var actionUrl = form.attr('action');
+                        addAntiForgeryToken(form);
+                        $.ajax({
+                            type: "POST",
+                            url: actionUrl,
+                            data: form.serialize(), // serializes the form's elements.
+                            success: function (data) {                            
+                                if (data.success) {
+                                    loadThankYou();
+                                   /* $('#register-participants').css("display", "none");*/
+                                }
+
+                            },
+
+                            error: function (error) {
+
+                            }
+                        });
+
+                    });
+
+                    function loadThankYou() {
+                    $.ajax({
+                        type: "GET",
+                       url: "@Url.Action("ThankYou", "Participants")",,
+                        success: function (data) {
+                           
+                            $('#resgister-participants-form').css("display", "none");
+                           
+                            $('#thank-you-page-load').html(data);
+                        },
+
+                        error: function (error) {
+
+                        }
+                    });
+                }
+                });
+
+
+
+
+                </script>
+            </form>
+        </div>
+        <script asp-location="Footer">
+            $(function () {
+                $("#modal-register-participants").dialog();
+
+                 
+            });
+        </script>
+    </div>
+</div >
+
+

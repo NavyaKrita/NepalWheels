@@ -1,0 +1,22 @@
+@model CreateNoticeBoardModel
+
+@{
+    //page title
+    ViewBag.PageTitle = T("Admin.NoticeBoard.EditNoticeBoard").Text;
+    //active menu item (system name)
+    Html.SetActiveMenuItemSystemName("NoticeBoard");
+}
+
+<form asp-controller="NoticeBoard" asp-action="Edit" method="post">
+    <div class="content-header clearfix">
+       
+        <div class="float-right">
+            <button type="submit" name="save" class="btn btn-primary">
+                <i class="far fa-save"></i>
+                @T("Admin.Common.Save")
+            </button>
+          
+        </div>
+    </div>
+    @await Html.PartialAsync("_CreateOrUpdate", Model)
+</form>

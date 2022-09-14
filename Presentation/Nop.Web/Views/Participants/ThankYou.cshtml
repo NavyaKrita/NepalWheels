@@ -1,0 +1,20 @@
+﻿@model NoticeBoardModel
+@{
+    Layout = null;
+
+    //page class
+    Html.AppendPageCssClassParts("html-product-details-page");
+}
+
+<div class="page product-details-page" id="modal-thank-you">
+    
+    <div class="page-body">      
+        <div class="product-essential">
+            <div class="product-content">
+
+                @Html.Raw(Model.ThankYou)
+
+            </div>
+        </div>
+    </div>
+</div>

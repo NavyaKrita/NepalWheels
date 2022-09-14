@@ -34,6 +34,7 @@ using Nop.Services.Media;
 using Nop.Services.Media.RoxyFileman;
 using Nop.Services.Messages;
 using Nop.Services.News;
+using Nop.Services.Notice;
 using Nop.Services.Orders;
 using Nop.Services.Payments;
 using Nop.Services.Plugins;
@@ -214,6 +215,7 @@ namespace Nop.Web.Framework.Infrastructure
             services.AddScoped<IReviewTypeService, ReviewTypeService>();
             services.AddSingleton<IEventPublisher, EventPublisher>();
             services.AddScoped<ISettingService, SettingService>();
+			services.AddScoped<INoticeBoardService, NoticeBoardService>();
 
             //plugin managers
             services.AddScoped(typeof(IPluginManager<>), typeof(PluginManager<>));
