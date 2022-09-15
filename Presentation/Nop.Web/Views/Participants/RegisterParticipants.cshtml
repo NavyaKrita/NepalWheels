@@ -10,11 +10,12 @@
 
 <div class="page registration-page" id="modal-register-participants">
     @*<div class="page-title">
-        <h1>@T("Account.Register")</h1>
-    </div>*@
+            <h1>@T("Account.Register")</h1>
+        </div>*@
     <div class="page-body">
         <div id="thank-you-page-load">
             @Html.Raw(Model.Notice)
+
             <div class="form-fields">
                 <div class="buttons">
                     <button type="button" name="show-register-button" id="show-register-button" class="button-1 register-next-step-button">@T("Account.Register.Button")</button>
@@ -29,10 +30,14 @@
                         <strong>@T("Account.YourPersonalDetails")</strong>
                     </div>
                     <div class="form-fields">
-                           <div class="inputs">
+
+
+                        <div class="inputs">
                             <label asp-for="Name" asp-postfix=":"></label>
                             <input asp-for="Name" />
+
                             <nop-required />
+
                             <span asp-validation-for="Name"></span>
                         </div>
                         <div class="inputs">
@@ -76,10 +81,10 @@
 
                         $("#register-participants-form-submit").submit(function (e) {
 
-                                
+
                                 e.preventDefault(); // avoid to execute the actual submit of the form.
-                                var form = $(this);                                                          
-                               addAntiForgeryToken(form);                       
+                                var form = $(this);
+                               addAntiForgeryToken(form);
                                 $.ajax({
                                     type: "POST",
                                     url: "@Url.Action("RegisterParticipants", "Participants")",
@@ -100,6 +105,8 @@
 
                             });
 
+
+
                     function loadThankYou() {
                     $.ajax({
                         type: "GET",
@@ -118,12 +125,17 @@
                 }
                 });
 
+
+
+
                 </script>
             </form>
         </div>
         <script asp-location="Footer">
             $(function () {
-            $("#modal-register-participants").dialog();
+                $("#modal-register-participants").dialog();
+
+
             });
         </script>
     </div>
