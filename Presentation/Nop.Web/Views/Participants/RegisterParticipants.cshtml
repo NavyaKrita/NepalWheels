@@ -9,13 +9,12 @@
 }
 
 <div class="page registration-page" id="modal-register-participants">
-    <div class="page-title">
+    @*<div class="page-title">
         <h1>@T("Account.Register")</h1>
-    </div>
+    </div>*@
     <div class="page-body">
         <div id="thank-you-page-load">
             @Html.Raw(Model.Notice)
-
             <div class="form-fields">
                 <div class="buttons">
                     <button type="button" name="show-register-button" id="show-register-button" class="button-1 register-next-step-button">@T("Account.Register.Button")</button>
@@ -23,21 +22,17 @@
             </div>
         </div>
         <div id="resgister-participants-form">
-            <form asp-route="RegisterParticipants" method="post" autocomplete="off" id="register-participants">
+            <form asp-route="RegisterParticipants" method="post" autocomplete="off" id="register-participants-form-submit">
                 <div asp-validation-summary="ModelOnly" class="message-error"></div>
                 <div class="fieldset">
                     <div class="title">
                         <strong>@T("Account.YourPersonalDetails")</strong>
                     </div>
                     <div class="form-fields">
-
-
-                        <div class="inputs">
+                           <div class="inputs">
                             <label asp-for="Name" asp-postfix=":"></label>
                             <input asp-for="Name" />
-
                             <nop-required />
-
                             <span asp-validation-for="Name"></span>
                         </div>
                         <div class="inputs">
@@ -78,33 +73,32 @@
                             $(this).css("display", "none");
                             $("#resgister-participants-form").removeAttr("style")
                         })
-                   
-                    $("#register-participants").submit(function (e) {
 
-                        e.preventDefault(); // avoid to execute the actual submit of the form.
+                        $("#register-participants-form-submit").submit(function (e) {
 
-                        var form = $(this);
+                                
+                                e.preventDefault(); // avoid to execute the actual submit of the form.
+                                var form = $(this);                                                          
+                               addAntiForgeryToken(form);                       
+                                $.ajax({
+                                    type: "POST",
+                                    url: "@Url.Action("RegisterParticipants", "Participants")",
+                                    data: form.serialize(), // serializes the form's elements.
+                                    success: function (data) {
+                                        console.log(data)
+                                        if (data.success) {
+                                            loadThankYou();
+                                            /* $('#register-participants').css("display", "none");*/
+                                        }
 
-                        var actionUrl = form.attr('action');
-                        addAntiForgeryToken(form);
-                        $.ajax({
-                            type: "POST",
-                            url: actionUrl,
-                            data: form.serialize(), // serializes the form's elements.
-                            success: function (data) {
-                                if (data.success) {
-                                    loadThankYou();
-                                   /* $('#register-participants').css("display", "none");*/
-                                }
+                                    },
 
-                            },
+                                    error: function (error) {
 
-                            error: function (error) {
+                                    }
+                                });
 
-                            }
-                        });
-
-                    });
+                            });
 
                     function loadThankYou() {
                     $.ajax({
@@ -124,17 +118,12 @@
                 }
                 });
 
-
-
-
                 </script>
             </form>
         </div>
         <script asp-location="Footer">
             $(function () {
-                $("#modal-register-participants").dialog();
-
-
+            $("#modal-register-participants").dialog();
             });
         </script>
     </div>
