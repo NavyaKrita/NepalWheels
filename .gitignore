@@ -16,12 +16,10 @@ bld/
 [Ll]og/
 [Pp]lugins/
 [Pp]lugin/
-.vs16/*
-.vs/NopCommerce/v16/.suo
-*.dll
-Presentation/Nop.Web/App_Data/dataSettings.json
+**/.vs16/*
 
 *.dll
+Presentation/Nop.Web/App_Data/dataSettings.json
 *.pdb
 Presentation/Nop.Web/Plugins/Tax.Avalara/Nop.Plugin.Tax.Avalara.dll
 Presentation/Nop.Web/Plugins/Payments.PayPalCommerce/Nop.Plugin.Payments.PayPalCommerce.dll
@@ -32,3 +30,4 @@ Presentation/Nop.Web/App_Data/dataSettings.json
 .vs/NopCommerce/v16/.suo
 .vs/NopCommerce/DesignTimeBuild/.dtbcache.v2
 .vs/NopCommerce/config/applicationhost.config
+**/Plugins/*
