@@ -27,8 +27,6 @@
 
   <ItemGroup>
     <!-- We copy the entire \App_Data directory. But we ignore JSON files and data protection keys  -->
-    <Content Include="App_Data\**" CopyToPublishDirectory="PreserveNewest" Exclude="App_Data\*.json" />
-    <Content Remove="App_Data\*.json" />
     <Content Remove="Plugins\bin\**" />
     <Content Remove="Plugins\ExchangeRate.EcbExchange\**" />
     <Content Remove="Plugins\ExternalAuth.Facebook\**" />
@@ -41,7 +39,6 @@
     <Content Remove="Themes\WristwearTheme\**" />
     <Content Remove="Views\NkVendorLocation\**" />
     <Content Remove="wwwroot\images\**" />
-    <Content Update="App_Data\DataProtectionKeys\*.xml" CopyToPublishDirectory="Never" />
 
     <Compile Remove="Plugins\**;Themes\**" />
 
@@ -95,7 +92,6 @@
     <None Remove="Themes\WristwearTheme\**" />
     <None Remove="Views\NkVendorLocation\**" />
     <None Remove="wwwroot\images\**" />
-    <Content Include="App_Data\dataSettings.json" />
     <Content Include="Areas\Admin\Components\AclDisabledWarning.cs" />
     <Content Include="Areas\Admin\Components\AdminLanguageSelector.cs" />
     <Content Include="Areas\Admin\Components\AdminWidget.cs" />
@@ -975,7 +971,6 @@
     <Content Remove="Themes\WristwearTheme\License.txt" />
     <Content Remove="Themes\WristwearTheme\Release note.txt" />
     <Content Remove="Themes\WristwearTheme\Wristwear-Theme.png" />
-    <None Remove="App_Data\Localization\Installation\XMLFile.xml" />
     <None Remove="Plugins\bin\dotless.Core.dll" />
     <None Remove="Plugins\bin\J2N.dll" />
     <None Remove="Plugins\bin\Lucene.Net.Analysis.Common.dll" />

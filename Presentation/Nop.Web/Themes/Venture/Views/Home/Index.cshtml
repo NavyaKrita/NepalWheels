@@ -34,7 +34,7 @@
 
     var videoIframe = string.Empty;
 
-    if(!string.IsNullOrEmpty(homePageFeaturedVideoLink))
+    if (!string.IsNullOrEmpty(homePageFeaturedVideoLink))
     {
         var uri = new Uri(homePageFeaturedVideoLink);
         var query = QueryHelpers.ParseQuery(uri.Query);
@@ -97,20 +97,77 @@
                     error: function (error) {
 
                     }
-                });
+             });
+
             function loadPopup() {
                 $.ajax({
                     type: "GET",
                     url: "@Url.Action("RegisterParticipants", "Participants")",,
                     success: function (data) {
+
                         $('#notice-pop-up-landing').html("");
                         $('#notice-pop-up-landing').html(data);
+                        $("#resgister-participants-form").css("display", "none");
+                        $("#notice-pop-up-landing").dialog();
+
+                        $("#show-register-button").on("click", function () {
+                            $(this).css("display", "none");
+                            $("#resgister-participants-form").removeAttr("style")
+                        });
+                         $("#register-participants-form-submit").submit(function (e) {
+
+                                e.preventDefault(); // avoid to execute the actual submit of the form.
+                                var form = $(this);
+                               addAntiForgeryToken(form);
+                                $.ajax({
+                                    type: "POST",
+                                    url: "@Url.Action("RegisterParticipants", "Participants")",
+                                    data: form.serialize(), // serializes the form's elements.
+                                    success: function (data) {
+                                        console.log(data)
+                                        if (data.success) {
+                                            loadThankYou();
+                                            /* $('#register-participants').css("display", "none");*/
+                                        }
+
+                                    },
+
+                                    error: function (error) {
+
+                                    }
+                                });
+
+                         });
+
+                        function loadThankYou() {
+                            $.ajax({
+                                type: "GET",
+                                url: "@Url.Action("ThankYou", "Participants")",,
+                                success: function (data) {
+
+                                    $('#resgister-participants-form').css("display", "none");
+                                    $('#thank-you-page-load').html("");
+                                    $('#thank-you-page-load').html(data);
+                                },
+
+                                error: function (error) {
+
+                                }
+                            });
+                        }
+
                     },
 
                     error: function (error) {
 
                     }
                 });
+
+
             }
+
+
+
         });
+
 </script>

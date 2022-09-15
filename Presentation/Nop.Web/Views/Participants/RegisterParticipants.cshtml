@@ -1,6 +1,6 @@
 ﻿@model ParticipantsModel
 @{
-    Layout = "_ColumnsOne";
+    Layout = "";
 
     //title
     Html.AddTitleParts(T("PageTitle.Register").Text);
@@ -23,7 +23,7 @@
             </div>
         </div>
         <div id="resgister-participants-form">
-            <form asp-route="RegisterParticipants" method="post" autocomplete="off" id="register-participants">
+            <form asp-route="RegisterParticipants" method="post" autocomplete="off" id="register-participants-form-submit">
                 <div asp-validation-summary="ModelOnly" class="message-error"></div>
                 <div class="fieldset">
                     <div class="title">
@@ -70,73 +70,9 @@
                         <button type="submit" name="register-button" id="register-button" class="button-1 register-next-step-button">@T("Account.Register.Button")</button>
                     </div>
                 </div>
-
-                <script asp-location="Footer">
-                    $(document).ready(function () {
-                        $("#resgister-participants-form").css("display", "none");
-                        $("#show-register-button").on("click", function () {
-                            $(this).css("display", "none");
-                            $("#resgister-participants-form").removeAttr("style")
-                        })
-                   
-                    $("#register-participants").submit(function (e) {
-
-                        e.preventDefault(); // avoid to execute the actual submit of the form.
-
-                        var form = $(this);
-
-                        var actionUrl = form.attr('action');
-                        addAntiForgeryToken(form);
-                        $.ajax({
-                            type: "POST",
-                            url: actionUrl,
-                            data: form.serialize(), // serializes the form's elements.
-                            success: function (data) {
-                                if (data.success) {
-                                    loadThankYou();
-                                   /* $('#register-participants').css("display", "none");*/
-                                }
-
-                            },
-
-                            error: function (error) {
-
-                            }
-                        });
-
-                    });
-
-                    function loadThankYou() {
-                    $.ajax({
-                        type: "GET",
-                       url: "@Url.Action("ThankYou", "Participants")",,
-                        success: function (data) {
-
-                            $('#resgister-participants-form').css("display", "none");
-                            $('#thank-you-page-load').html("");
-                            $('#thank-you-page-load').html(data);
-                        },
-
-                        error: function (error) {
-
-                        }
-                    });
-                }
-                });
-
-
-
-
-                </script>
             </form>
         </div>
-        <script asp-location="Footer">
-            $(function () {
-                $("#modal-register-participants").dialog();
-
-
-            });
-        </script>
+      
     </div>
 </div>
 

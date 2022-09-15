@@ -1,13 +1,6 @@
 ﻿{
-  "DataConnectionString": "Data Source=LEGION\\SQLEXPRESS;Initial Catalog=NepaliWheels;Integrated Security=True;Persist Security Info=False",
+  "DataConnectionString": "Data Source=DESKTOP-O7DJ5CB\\SQLEXPRESS;Initial Catalog=NepaliWheels;Integrated Security=True;Persist Security Info=False",
   "DataProvider": "sqlserver",
   "SQLCommandTimeout": null,
   "RawDataSettings": {}
 }
-
-/*{
-  "DataConnectionString": "Data Source=182.93.93.94;Initial Catalog=NWLIVE;Persist Security Info=True;User ID=sa;Password=P@ssw0rD",
-  "DataProvider": "sqlserver",
-  "SQLCommandTimeout": null,
-  "RawDataSettings": {}
-}*/
