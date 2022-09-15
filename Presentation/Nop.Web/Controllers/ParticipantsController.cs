@@ -17,7 +17,7 @@ namespace Nop.Web.Controllers
         private readonly INoticeBoardService _noticeBoardService;
         private readonly INoticeBoardModelFactory _noticeBoardModelFactory;
         public ParticipantsController(INoticeBoardService noticeBoardService,
-           INoticeBoardModelFactory noticeBoardModelFactory )
+           INoticeBoardModelFactory noticeBoardModelFactory)
         {
             _noticeBoardService = noticeBoardService;
             _noticeBoardModelFactory = noticeBoardModelFactory;
@@ -30,7 +30,7 @@ namespace Nop.Web.Controllers
             return View(model);
         }
 
-        [HttpPost]       
+        [HttpPost]
         /// <returns>A task that represents the asynchronous operation</returns>
         public virtual async Task<IActionResult> RegisterParticipants(ParticipantsModel model, IFormCollection form)
         {
@@ -54,7 +54,7 @@ namespace Nop.Web.Controllers
             //If we got this far, something failed, redisplay form
 
 
-            return Json(new { success=false });
+            return Json(new { success = false });
         }
         public virtual async Task<IActionResult> ThankYou()
         {
@@ -67,7 +67,7 @@ namespace Nop.Web.Controllers
         {
 
             var model = await _noticeBoardModelFactory.PrepareNoticeModelAsync();
-            if (model != null)
+            if (!string.IsNullOrEmpty(model.Notice))
             {
                 return Json(new { success = true });
             }
