@@ -1,0 +1,6 @@
+﻿{
+  "DataConnectionString": "Data Source=LEGION\\SQLEXPRESS;Initial Catalog=NepaliWheels;Integrated Security=True;Persist Security Info=False",
+  "DataProvider": "sqlserver",
+  "SQLCommandTimeout": null,
+  "RawDataSettings": {}
+}
