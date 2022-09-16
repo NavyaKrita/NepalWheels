@@ -8,8 +8,8 @@ namespace Nop.Web.Areas.Admin.Models.Notice
 {
     public partial record NoticeBoardDetailSearchModel : BaseSearchModel
     {
-        public DateTime? StartDate { get; set; }
-        public DateTime? EndDate { get; set; }
+        public DateTime? StartDate { get; set; } = DateTime.Now.Date.AddMonths(-1);
+        public DateTime? EndDate { get; set; } = DateTime.Now.Date;
 
         public string Notice { get; set; }
     }
