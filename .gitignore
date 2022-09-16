@@ -16,7 +16,7 @@ bld/
 [Ll]og/
 [Pp]lugins/
 [Pp]lugin/
-**/.vs16/*
+
 
 *.dll
 Presentation/Nop.Web/App_Data/dataSettings.json
@@ -27,7 +27,6 @@ Presentation/Nop.Web/Plugins/Shipping.ShipStation/Nop.Plugin.Shipping.ShipStatio
 Presentation/Nop.Web/Plugins/Tax.Avalara/Nop.Plugin.Tax.Avalara.pdb
 Presentation/Nop.Web/Plugins/Widgets.FacebookPixel/Nop.Plugin.Widgets.FacebookPixel.pdb
 Presentation/Nop.Web/App_Data/dataSettings.json
-.vs/NopCommerce/v16/.suo
-.vs/NopCommerce/DesignTimeBuild/.dtbcache.v2
-.vs/NopCommerce/config/applicationhost.config
-**/Plugins/*
+
+/Presentation/Nop.Web/Plugins
+/.vs

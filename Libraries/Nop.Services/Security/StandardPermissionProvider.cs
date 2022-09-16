@@ -58,6 +58,7 @@ namespace Nop.Services.Security
         /// <returns>A task that represents the asynchronous operation</returns>
         public static readonly PermissionRecord ManageScheduleTasks = new PermissionRecord { Name = "Admin area. Manage Schedule Tasks", SystemName = "ManageScheduleTasks", Category = "Configuration" };
 
+        public static readonly PermissionRecord NoticeBoard = new PermissionRecord { Name = "Admin area. Manage Notice Board", SystemName = "ManageNoticeBoard", Category = "Configuration" };
         //public store permissions
         public static readonly PermissionRecord DisplayPrices = new PermissionRecord { Name = "Public store. Display Prices", SystemName = "DisplayPrices", Category = "PublicStore" };
         public static readonly PermissionRecord EnableShoppingCart = new PermissionRecord { Name = "Public store. Enable shopping cart", SystemName = "EnableShoppingCart", Category = "PublicStore" };
