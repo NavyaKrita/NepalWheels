@@ -684,6 +684,33 @@
   <LocaleResource Name="Account.VendorInfo.Picture.Remove">
     <Value>Remove picture</Value>
   </LocaleResource>
+	<LocaleResource Name="Account.VendorInfo">
+    <Value>Vendor info</Value>
+  </LocaleResource>
+  <LocaleResource Name="Account.VendorInfo.Description">
+    <Value>Description</Value>
+  </LocaleResource>
+  <LocaleResource Name="Account.VendorInfo.Email">
+    <Value>Email</Value>
+  </LocaleResource>
+  <LocaleResource Name="Account.VendorInfo.Email.Required">
+    <Value>Email is required.</Value>
+  </LocaleResource>
+  <LocaleResource Name="Account.VendorInfo.Name">
+    <Value>Name</Value>
+  </LocaleResource>
+  <LocaleResource Name="Account.VendorInfo.Name.Required">
+    <Value>Vendor name is required.</Value>
+  </LocaleResource>
+  <LocaleResource Name="Account.VendorInfo.Picture">
+    <Value>Picture</Value>
+  </LocaleResource>
+  <LocaleResource Name="Account.VendorInfo.Picture.ErrorMessage">
+    <Value>You can add only picture file</Value>
+  </LocaleResource>
+  <LocaleResource Name="Account.VendorInfo.Picture.Remove">
+    <Value>Remove picture</Value>
+  </LocaleResource>
   <LocaleResource Name="Account.YourAddress">
     <Value>Your Address</Value>
   </LocaleResource>
@@ -17772,7 +17799,7 @@
   <LocaleResource Name="PageTitle.Vendors.Apply">
     <Value>Apply for vendor account</Value>
   </LocaleResource>
-  <LocaleResource Name="PageTitle.Seller.Apply">
+  <LocaleResource Name="PageTitle.Sellers.Apply">
 		<Value>Apply for seller account</Value>
 	</LocaleResource>
   <LocaleResource Name="PageTitle.ViewPM">
@@ -19314,6 +19341,12 @@
   <LocaleResource Name="Vendors.ApplyAccount.Email.Hint">
     <Value>Enter your email address.</Value>
   </LocaleResource>
+	<LocaleResource Name="Sellers.ApplyAccount.Email.Hint">
+		<Value>Enter your email address.</Value>
+	</LocaleResource>
+	<LocaleResource Name="Sellers.ApplyAccount.Email.Required">
+		<Value>Email is required.</Value>
+	</LocaleResource>
   <LocaleResource Name="Vendors.ApplyAccount.Email.Required">
     <Value>Email is required.</Value>
   </LocaleResource>
@@ -19326,6 +19359,9 @@
   <LocaleResource Name="Vendors.ApplyAccount.Name.Hint">
     <Value>Enter vendor name.</Value>
   </LocaleResource>
+	<LocaleResource Name="Sellers.ApplyAccount.Name.Hint">
+		<Value>Enter seller name.</Value>
+	</LocaleResource>
   <LocaleResource Name="Vendors.ApplyAccount.Name.Required">
     <Value>Vendor name is required.</Value>
   </LocaleResource>

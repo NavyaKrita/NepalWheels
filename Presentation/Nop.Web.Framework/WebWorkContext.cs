@@ -7,6 +7,7 @@ using Nop.Core;
 using Nop.Core.Domain.Customers;
 using Nop.Core.Domain.Directory;
 using Nop.Core.Domain.Localization;
+using Nop.Core.Domain.Sellers;
 using Nop.Core.Domain.Tax;
 using Nop.Core.Domain.Vendors;
 using Nop.Core.Http;
@@ -551,6 +552,11 @@ namespace Nop.Web.Framework
 
             //then reset the cached value
             _cachedTaxDisplayType = null;
+        }
+
+        public Task<Seller> GetCurrentSellerAsync()
+        {
+            throw new NotImplementedException();
         }
 
         /// <summary>

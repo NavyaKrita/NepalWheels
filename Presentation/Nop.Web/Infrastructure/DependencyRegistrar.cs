@@ -109,6 +109,7 @@ namespace Nop.Web.Infrastructure
             services.AddScoped<Factories.IShoppingCartModelFactory, Factories.ShoppingCartModelFactory>();
             services.AddScoped<Factories.ITopicModelFactory, Factories.TopicModelFactory>();
             services.AddScoped<Factories.IVendorModelFactory, Factories.VendorModelFactory>();
+            services.AddScoped<Factories.ISellerModelFactory, Factories.SellerModelFactory>();
             services.AddScoped<Factories.IWidgetModelFactory, Factories.WidgetModelFactory>();
             services.AddScoped<Factories.INkVendorLocationModelFactory, Factories.NkVendorLocationModelFactory>();
             services.AddScoped<Factories.INoticeBoardModelFactory, Factories.NoticeBoardModelFactory>();

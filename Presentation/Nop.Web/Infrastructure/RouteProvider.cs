@@ -430,6 +430,10 @@ namespace Nop.Web.Infrastructure
                 pattern: $"{lang}/vendor/apply",
                 defaults: new { controller = "Vendor", action = "ApplyVendor" });
 
+            //apply for seller account
+            endpointRouteBuilder.MapControllerRoute(name: "ApplySellerAccount",
+                pattern: $"{lang}/seller/apply",
+                defaults: new { controller = "Seller", action = "ApplySeller" });
             //vendor info
             endpointRouteBuilder.MapControllerRoute(name: "CustomerVendorInfo",
                 pattern: $"{lang}/customer/vendorinfo",
