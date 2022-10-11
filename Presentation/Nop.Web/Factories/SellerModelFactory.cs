@@ -216,7 +216,7 @@ namespace Nop.Web.Factories
             if (model == null)
                 throw new ArgumentNullException(nameof(model));
 
-            var seller = await _workContext.GetCurrentVendorAsync();
+            var seller = await _workContext.GetCurrentSellerAsync();
             if (!excludeProperties)
             {
                 model.Description = seller.Description;

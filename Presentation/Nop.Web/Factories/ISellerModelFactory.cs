@@ -4,32 +4,32 @@ using Nop.Web.Models.Sellers;
 namespace Nop.Web.Factories
 {
     /// <summary>
-    /// Represents the interface of the vendor model factory
+    /// Represents the interface of the seller model factory
     /// </summary>
     public partial interface ISellerModelFactory
     {
         /// <summary>
-        /// Prepare the apply vendor model
+        /// Prepare the apply seller model
         /// </summary>
-        /// <param name="model">The apply vendor model</param>
-        /// <param name="validateSeller">Whether to validate that the customer is already a vendor</param>
+        /// <param name="model">The apply seller model</param>
+        /// <param name="validateSeller">Whether to validate that the customer is already a seller</param>
         /// <param name="excludeProperties">Whether to exclude populating of model properties from the entity</param>
-        /// <param name="vendorAttributesXml">Seller attributes in XML format</param>
+        /// <param name="sellerAttributesXml">Seller attributes in XML format</param>
         /// <returns>
         /// A task that represents the asynchronous operation
-        /// The task result contains the apply vendor model
+        /// The task result contains the apply seller model
         /// </returns>
-        Task<ApplySellerModel> PrepareApplySellerModelAsync(ApplySellerModel model, bool validateSeller, bool excludeProperties, string vendorAttributesXml);
+        Task<ApplySellerModel> PrepareApplySellerModelAsync(ApplySellerModel model, bool validateSeller, bool excludeProperties, string sellerAttributesXml);
 
         /// <summary>
-        /// Prepare the vendor info model
+        /// Prepare the seller info model
         /// </summary>
         /// <param name="model">Seller info model</param>
         /// <param name="excludeProperties">Whether to exclude populating of model properties from the entity</param>
-        /// <param name="overriddenSellerAttributesXml">Overridden vendor attributes in XML format; pass null to use SellerAttributes of vendor</param>
+        /// <param name="overriddenSellerAttributesXml">Overridden seller attributes in XML format; pass null to use SellerAttributes of seller</param>
         /// <returns>
         /// A task that represents the asynchronous operation
-        /// The task result contains the vendor info model
+        /// The task result contains the seller info model
         /// </returns>
         Task<SellerInfoModel> PrepareSellerInfoModelAsync(SellerInfoModel model, bool excludeProperties, string overriddenSellerAttributesXml = "");
     }

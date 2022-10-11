@@ -20,6 +20,7 @@ namespace Nop.Web.Infrastructure
         /// <param name="typeFinder">Type finder</param>
         /// <param name="appSettings">App settings</param>
         public virtual void Register(IServiceCollection services, ITypeFinder typeFinder, AppSettings appSettings)
+        
         {
             //installation localization service
             services.AddScoped<IInstallationLocalizationService, InstallationLocalizationService>();

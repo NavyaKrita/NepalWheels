@@ -41,6 +41,7 @@ using Nop.Services.Plugins;
 using Nop.Services.Plugins.Marketplace;
 using Nop.Services.Polls;
 using Nop.Services.Security;
+using Nop.Services.Sellers;
 using Nop.Services.Seo;
 using Nop.Services.Shipping;
 using Nop.Services.Shipping.Date;
@@ -136,6 +137,10 @@ namespace Nop.Web.Framework.Infrastructure
             services.AddScoped<IVendorAttributeFormatter, VendorAttributeFormatter>();
             services.AddScoped<IVendorAttributeParser, VendorAttributeParser>();
             services.AddScoped<IVendorAttributeService, VendorAttributeService>();
+            services.AddScoped<ISellerService, SellerService>();
+            services.AddScoped<ISellerAttributeFormatter, SellerAttributeFormatter>();
+            services.AddScoped<ISellerAttributeParser, SellerAttributeParser>();
+            services.AddScoped<ISellerAttributeService, SellerAttributeService>();
             services.AddScoped<ISearchTermService, SearchTermService>();
             services.AddScoped<IGenericAttributeService, GenericAttributeService>();
             services.AddScoped<IMaintenanceService, MaintenanceService>();

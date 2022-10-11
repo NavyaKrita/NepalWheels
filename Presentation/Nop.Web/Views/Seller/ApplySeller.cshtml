@@ -1,4 +1,4 @@
-﻿@model ApplyVendorModel
+﻿@model ApplySellerModel
 @{
     Layout = "_ColumnsOne";
 
@@ -7,13 +7,13 @@
     //page class
     Html.AppendPageCssClassParts("html-apply-vendor-page");
 }
-<div class="page apply-vendor-page">
+<div class="page apply-seller-page">
     <div class="page-title">
         <h1>@T("PageTitle.Sellers.Apply")</h1>
     </div>
     <div class="page-body">
         @await Component.InvokeAsync("TopicBlock", new { systemName = "ApplySeller" })
-        @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.ApplyVendorTop })
+        @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.ApplySellerTop })
         @if (Model.DisableFormInput)
         {
             <div class="result">
@@ -22,7 +22,7 @@
         }
         else
         {
-            <form asp-route="ApplyVendorAccount" method="post" enctype="multipart/form-data">
+            <form asp-route="ApplySellerAccount" method="post" enctype="multipart/form-data">
                 <div asp-validation-summary="ModelOnly" class="message-error"></div>
                 <div class="fieldset">
                     <div class="form-fields">
@@ -46,7 +46,7 @@
                             <label>@T("Sellers.ApplyAccount.Picture"):</label>
                             <input name="uploadedFile" type="file"/>
                         </div>
-                        @await Html.PartialAsync("_VendorAttributes", Model.VendorAttributes)
+                        @await Html.PartialAsync("_SellerAttributes", Model.SellerAttributes)
                         @if (Model.DisplayCaptcha)
                         {
                             <nop-captcha />
@@ -55,13 +55,13 @@
                         {
                             <script asp-location="Footer">
                                 $(document).ready(function() {
-                                    $('#apply-vendor').on('click', function() {
+                                    $('#apply-seller').on('click', function() {
                                         if ($('#termsofservice').is(':checked')) {
                                             //do some stuff
                                             return true;
                                         } else {
                                             //just show validation errors, dont post
-                                            alert('@Html.Raw(JavaScriptEncoder.Default.Encode(T("Vendors.ApplyAccount.AcceptTermsOfService.Required").Text))');
+                                            alert('@Html.Raw(JavaScriptEncoder.Default.Encode(T("Sellers.ApplyAccount.AcceptTermsOfService.Required").Text))');
                                             return false;
                                         }
                                     });
@@ -93,10 +93,10 @@
                     </div>
                 </div>
                 <div class="buttons">
-                    <button type="submit" id="apply-vendor" name="apply-vendor" class="button-1 apply-vendor-button">@T("Sellers.ApplyAccount.Button")</button>
+                    <button type="submit" id="apply-seller" name="apply-vendor" class="button-1 apply-vendor-button">@T("Sellers.ApplyAccount.Button")</button>
                 </div>
             </form>
         }
-        @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.ApplyVendorBottom })
+        @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.ApplySellerBottom })
     </div>
 </div>

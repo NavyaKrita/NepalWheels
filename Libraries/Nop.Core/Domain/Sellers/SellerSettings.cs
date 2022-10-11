@@ -3,59 +3,59 @@
 namespace Nop.Core.Domain.Sellers
 {
     /// <summary>
-    /// Vendor settings
+    /// Seller settings
     /// </summary>
     public class SellerSettings : ISettings
     {
         /// <summary>
-        /// Gets or sets the default value to use for Vendor page size options (for new vendors)
+        /// Gets or sets the default value to use for Seller page size options (for new sellers)
         /// </summary>
-        public string DefaultVendorPageSizeOptions { get; set; }
+        public string DefaultSellerPageSizeOptions { get; set; }
 
         /// <summary>
-        /// Gets or sets the value indicating how many vendors to display in vendors block
+        /// Gets or sets the value indicating how many sellers to display in sellers block
         /// </summary>
-        public int VendorsBlockItemsToDisplay { get; set; }
+        public int SellersBlockItemsToDisplay { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether to display vendor name on the product details page
         /// </summary>
-        public bool ShowVendorOnProductDetailsPage { get; set; }
+        public bool ShowSellerOnProductDetailsPage { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether to display vendor name on the order details page
         /// </summary>
-        public bool ShowVendorOnOrderDetailsPage { get; set; }
+        public bool ShowSellerOnOrderDetailsPage { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether customers can contact vendors
+        /// Gets or sets a value indicating whether customers can contact sellers
         /// </summary>
-        public bool AllowCustomersToContactVendors { get; set; }
+        public bool AllowCustomersToContactSellers { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether users can fill a form to become a new vendor
         /// </summary>
-        public bool AllowCustomersToApplyForVendorAccount { get; set; }
+        public bool AllowCustomersToApplyForSellerAccount { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether vendors have to accept terms of service during registration
+        /// Gets or sets a value indicating whether sellers have to accept terms of service during registration
         /// </summary>
         public bool TermsOfServiceEnabled { get; set; }
 
         /// <summary>
         /// Gets or sets a value that indicates whether it is possible to carry out advanced search in the store by vendor
         /// </summary>
-        public bool AllowSearchByVendor { get; set; }
+        public bool AllowSearchBySeller { get; set; }
 
         /// <summary>
         /// Get or sets a value indicating whether vendor can edit information about itself (public store)
         /// </summary>
-        public bool AllowVendorsToEditInfo { get; set; }
+        public bool AllowSellersToEditInfo { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether the store owner is notified that the vendor information has been changed
         /// </summary>
-        public bool NotifyStoreOwnerAboutVendorInformationChange { get; set; }
+        public bool NotifyStoreOwnerAboutSellerInformationChange { get; set; }
 
         /// <summary>
         /// Gets or sets a maximum number of products per vendor
@@ -63,8 +63,8 @@ namespace Nop.Core.Domain.Sellers
         public int MaximumProductNumber { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether vendors are allowed to import products
+        /// Gets or sets a value indicating whether sellers are allowed to import products
         /// </summary>
-        public bool AllowVendorsToImportProducts { get; set; }
+        public bool AllowSellersToImportProducts { get; set; }
     }
 }

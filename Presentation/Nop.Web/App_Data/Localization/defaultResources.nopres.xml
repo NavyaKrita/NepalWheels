@@ -17793,6 +17793,9 @@
   <LocaleResource Name="PageTitle.VendorInfo">
     <Value>Vendor info</Value>
   </LocaleResource>
+	<LocaleResource Name="PageTitle.SellerInfo">
+		<Value>Seller info</Value>
+	</LocaleResource>
   <LocaleResource Name="PageTitle.Vendors">
     <Value>Vendors</Value>
   </LocaleResource>

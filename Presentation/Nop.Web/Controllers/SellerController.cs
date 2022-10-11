@@ -9,18 +9,18 @@ using Nop.Core.Domain.Catalog;
 using Nop.Core.Domain.Localization;
 using Nop.Core.Domain.Media;
 using Nop.Core.Domain.Security;
-using Nop.Core.Domain.Vendors;
+using Nop.Core.Domain.Sellers;
 using Nop.Services.Common;
 using Nop.Services.Customers;
 using Nop.Services.Localization;
 using Nop.Services.Media;
 using Nop.Services.Messages;
+using Nop.Services.Sellers;
 using Nop.Services.Seo;
-using Nop.Services.Vendors;
 using Nop.Web.Factories;
 using Nop.Web.Framework.Controllers;
 using Nop.Web.Framework.Mvc.Filters;
-using Nop.Web.Models.Vendors;
+using Nop.Web.Models.Sellers;
 
 namespace Nop.Web.Controllers
 {
@@ -35,14 +35,14 @@ namespace Nop.Web.Controllers
         private readonly ILocalizationService _localizationService;
         private readonly IPictureService _pictureService;
         private readonly IUrlRecordService _urlRecordService;
-        private readonly IVendorAttributeParser _vendorAttributeParser;
-        private readonly IVendorAttributeService _vendorAttributeService;
-        private readonly IVendorModelFactory _vendorModelFactory;
-        private readonly IVendorService _vendorService;
+        private readonly ISellerAttributeParser _sellerAttributeParser;
+        private readonly ISellerAttributeService _sellerAttributeService;
+        private readonly ISellerModelFactory _sellerModelFactory;
+        private readonly ISellerService _sellerService;
         private readonly IWorkContext _workContext;
         private readonly IWorkflowMessageService _workflowMessageService;
         private readonly LocalizationSettings _localizationSettings;
-        private readonly VendorSettings _vendorSettings;
+        private readonly SellerSettings _sellerSettings;
 
         #endregion
 
@@ -55,14 +55,14 @@ namespace Nop.Web.Controllers
             ILocalizationService localizationService,
             IPictureService pictureService,
             IUrlRecordService urlRecordService,
-            IVendorAttributeParser vendorAttributeParser,
-            IVendorAttributeService vendorAttributeService,
-            IVendorModelFactory vendorModelFactory,
-            IVendorService vendorService,
+            ISellerAttributeParser sellerAttributeParser,
+            ISellerAttributeService sellerAttributeService,
+            ISellerModelFactory sellerModelFactory,
+            ISellerService sellerService,
             IWorkContext workContext,
             IWorkflowMessageService workflowMessageService,
             LocalizationSettings localizationSettings,
-            VendorSettings vendorSettings)
+            SellerSettings sellerSettings)
         {
             _captchaSettings = captchaSettings;
             _customerService = customerService;
@@ -71,14 +71,14 @@ namespace Nop.Web.Controllers
             _localizationService = localizationService;
             _pictureService = pictureService;
             _urlRecordService = urlRecordService;
-            _vendorAttributeParser = vendorAttributeParser;
-            _vendorAttributeService = vendorAttributeService;
-            _vendorModelFactory = vendorModelFactory;
-            _vendorService = vendorService;
+            _sellerAttributeParser = sellerAttributeParser;
+            _sellerAttributeService = sellerAttributeService;
+            _sellerModelFactory = sellerModelFactory;
+            _sellerService = sellerService;
             _workContext = workContext;
             _workflowMessageService = workflowMessageService;
             _localizationSettings = localizationSettings;
-            _vendorSettings = vendorSettings;
+            _sellerSettings = sellerSettings;
         }
 
         #endregion
@@ -86,24 +86,24 @@ namespace Nop.Web.Controllers
         #region Utilities
 
         /// <returns>A task that represents the asynchronous operation</returns>
-        protected virtual async Task UpdatePictureSeoNamesAsync(Vendor vendor)
+        protected virtual async Task UpdatePictureSeoNamesAsync(Seller seller)
         {
-            var picture = await _pictureService.GetPictureByIdAsync(vendor.PictureId);
+            var picture = await _pictureService.GetPictureByIdAsync(seller.PictureId);
             if (picture != null)
-                await _pictureService.SetSeoFilenameAsync(picture.Id, await _pictureService.GetPictureSeNameAsync(vendor.Name));
+                await _pictureService.SetSeoFilenameAsync(picture.Id, await _pictureService.GetPictureSeNameAsync(seller.Name));
         }
 
         /// <returns>A task that represents the asynchronous operation</returns>
-        protected virtual async Task<string> ParseVendorAttributesAsync(IFormCollection form)
+        protected virtual async Task<string> ParseSellerAttributesAsync(IFormCollection form)
         {
             if (form == null)
                 throw new ArgumentNullException(nameof(form));
 
             var attributesXml = "";
-            var attributes = await _vendorAttributeService.GetAllVendorAttributesAsync();
+            var attributes = await _sellerAttributeService.GetAllSellerAttributesAsync();
             foreach (var attribute in attributes)
             {
-                var controlId = $"{NopVendorDefaults.VendorAttributePrefix}{attribute.Id}";
+                var controlId = $"{NopSellerDefaults.SellerAttributePrefix}{attribute.Id}";
                 switch (attribute.AttributeControlType)
                 {
                     case AttributeControlType.DropdownList:
@@ -113,9 +113,9 @@ namespace Nop.Web.Controllers
                             if (!StringValues.IsNullOrEmpty(ctrlAttributes))
                             {
                                 var selectedAttributeId = int.Parse(ctrlAttributes);
-                                if (selectedAttributeId > 0)
-                                    attributesXml = _vendorAttributeParser.AddVendorAttribute(attributesXml,
-                                        attribute, selectedAttributeId.ToString());
+                                if (selectedAttributeId > 0) ;
+                                attributesXml = _sellerAttributeParser.AddSellerAttribute(attributesXml,
+                                    attribute, selectedAttributeId.ToString());
                             }
                         }
                         break;
@@ -128,9 +128,9 @@ namespace Nop.Web.Controllers
                                 )
                                 {
                                     var selectedAttributeId = int.Parse(item);
-                                    if (selectedAttributeId > 0)
-                                        attributesXml = _vendorAttributeParser.AddVendorAttribute(attributesXml,
-                                            attribute, selectedAttributeId.ToString());
+                                    if (selectedAttributeId > 0) ;
+                                    attributesXml = _sellerAttributeParser.AddSellerAttribute(attributesXml,
+                                        attribute, selectedAttributeId.ToString());
                                 }
                             }
                         }
@@ -138,13 +138,13 @@ namespace Nop.Web.Controllers
                     case AttributeControlType.ReadonlyCheckboxes:
                         {
                             //load read-only (already server-side selected) values
-                            var attributeValues = await _vendorAttributeService.GetVendorAttributeValuesAsync(attribute.Id);
+                            var attributeValues = await _sellerAttributeService.GetSellerAttributeValuesAsync(attribute.Id);
                             foreach (var selectedAttributeId in attributeValues
                                 .Where(v => v.IsPreSelected)
                                 .Select(v => v.Id)
                                 .ToList())
                             {
-                                attributesXml = _vendorAttributeParser.AddVendorAttribute(attributesXml,
+                                attributesXml = _sellerAttributeParser.AddSellerAttribute(attributesXml,
                                     attribute, selectedAttributeId.ToString());
                             }
                         }
@@ -156,7 +156,7 @@ namespace Nop.Web.Controllers
                             if (!StringValues.IsNullOrEmpty(ctrlAttributes))
                             {
                                 var enteredText = ctrlAttributes.ToString().Trim();
-                                attributesXml = _vendorAttributeParser.AddVendorAttribute(attributesXml,
+                                attributesXml = _sellerAttributeParser.AddSellerAttribute(attributesXml,
                                     attribute, enteredText);
                             }
                         }
@@ -165,7 +165,7 @@ namespace Nop.Web.Controllers
                     case AttributeControlType.ColorSquares:
                     case AttributeControlType.ImageSquares:
                     case AttributeControlType.FileUpload:
-                    //not supported vendor attributes
+                    //not supported seller attributes
                     default:
                         break;
                 }
@@ -181,14 +181,14 @@ namespace Nop.Web.Controllers
         /// <returns>A task that represents the asynchronous operation</returns>
         public virtual async Task<IActionResult> ApplySeller()
         {
-            if (!_vendorSettings.AllowCustomersToApplyForVendorAccount)
-                return RedirectToRoute("Homepage");
+            //if (!_sellerSettings.AllowCustomersToApplyForSellerAccount)
+            //    return RedirectToRoute("Homepage");
 
             if (!await _customerService.IsRegisteredAsync(await _workContext.GetCurrentCustomerAsync()))
                 return Challenge();
 
-            var model = new ApplyVendorModel();
-            model = await _vendorModelFactory.PrepareApplyVendorModelAsync(model, true, false, null);
+            var model = new ApplySellerModel();
+            model = await _sellerModelFactory.PrepareApplySellerModelAsync(model, true, false, null);
             return View(model);
         }
 
@@ -196,19 +196,19 @@ namespace Nop.Web.Controllers
         [AutoValidateAntiforgeryToken]
         [ValidateCaptcha]
         /// <returns>A task that represents the asynchronous operation</returns>
-        public virtual async Task<IActionResult> ApplySellerSubmit(ApplyVendorModel model, bool captchaValid, IFormFile uploadedFile, IFormCollection form)
+        public virtual async Task<IActionResult> ApplySellerSubmit(ApplySellerModel model, bool captchaValid, IFormFile uploadedFile, IFormCollection form)
         {
-            if (!_vendorSettings.AllowCustomersToApplyForVendorAccount)
+            if (!_sellerSettings.AllowCustomersToApplyForSellerAccount)
                 return RedirectToRoute("Homepage");
 
             if (!await _customerService.IsRegisteredAsync(await _workContext.GetCurrentCustomerAsync()))
                 return Challenge();
 
             if (await _customerService.IsAdminAsync(await _workContext.GetCurrentCustomerAsync()))
-                ModelState.AddModelError("", await _localizationService.GetResourceAsync("Vendors.ApplyAccount.IsAdmin"));
+                ModelState.AddModelError("", await _localizationService.GetResourceAsync("Sellers.ApplyAccount.IsAdmin"));
 
             //validate CAPTCHA
-            if (_captchaSettings.Enabled && _captchaSettings.ShowOnApplyVendorPage && !captchaValid)
+            if (_captchaSettings.Enabled && _captchaSettings.ShowOnApplySellerPage && !captchaValid)
             {
                 ModelState.AddModelError("", await _localizationService.GetResourceAsync("Common.WrongCaptchaMessage"));
             }
@@ -220,66 +220,66 @@ namespace Nop.Web.Controllers
                 try
                 {
                     var contentType = uploadedFile.ContentType;
-                    var vendorPictureBinary = await _downloadService.GetDownloadBitsAsync(uploadedFile);
-                    var picture = await _pictureService.InsertPictureAsync(vendorPictureBinary, contentType, null);
+                    var sellerPictureBinary = await _downloadService.GetDownloadBitsAsync(uploadedFile);
+                    var picture = await _pictureService.InsertPictureAsync(sellerPictureBinary, contentType, null);
 
                     if (picture != null)
                         pictureId = picture.Id;
                 }
                 catch (Exception)
                 {
-                    ModelState.AddModelError("", await _localizationService.GetResourceAsync("Vendors.ApplyAccount.Picture.ErrorMessage"));
+                    ModelState.AddModelError("", await _localizationService.GetResourceAsync("Sellers.ApplyAccount.Picture.ErrorMessage"));
                 }
             }
 
-            //vendor attributes
-            var vendorAttributesXml = await ParseVendorAttributesAsync(form);
-            (await _vendorAttributeParser.GetAttributeWarningsAsync(vendorAttributesXml)).ToList()
+            //seller attributes
+            var sellerAttributesXml = await ParseSellerAttributesAsync(form);
+            (await _sellerAttributeParser.GetAttributeWarningsAsync(sellerAttributesXml)).ToList()
                 .ForEach(warning => ModelState.AddModelError(string.Empty, warning));
 
             if (ModelState.IsValid)
             {
                 var description = Core.Html.HtmlHelper.FormatText(model.Description, false, false, true, false, false, false);
                 //disabled by default
-                var vendor = new Vendor
+                var seller = new Seller
                 {
                     Name = model.Name,
                     Email = model.Email,
                     //some default settings
                     PageSize = 6,
                     AllowCustomersToSelectPageSize = true,
-                    PageSizeOptions = _vendorSettings.DefaultVendorPageSizeOptions,
+                    PageSizeOptions = _sellerSettings.DefaultSellerPageSizeOptions,
                     PictureId = pictureId,
                     Description = description
                 };
-                await _vendorService.InsertVendorAsync(vendor);
-                //search engine name (the same as vendor name)
-                var seName = await _urlRecordService.ValidateSeNameAsync(vendor, vendor.Name, vendor.Name, true);
-                await _urlRecordService.SaveSlugAsync(vendor, seName, 0);
+                await _sellerService.InsertSellerAsync(seller);
+                //search engine name (the same as seller name)
+                var seName = await _urlRecordService.ValidateSeNameAsync(seller, seller.Name, seller.Name, true);
+                await _urlRecordService.SaveSlugAsync(seller, seName, 0);
 
                 //associate to the current customer
-                //but a store owner will have to manually add this customer role to "Vendors" role
+                //but a store owner will have to manually add this customer role to "Sellers" role
                 //if he wants to grant access to admin area
-                (await _workContext.GetCurrentCustomerAsync()).VendorId = vendor.Id;
+                (await _workContext.GetCurrentCustomerAsync()).SellerId = seller.Id;
                 await _customerService.UpdateCustomerAsync(await _workContext.GetCurrentCustomerAsync());
 
                 //update picture seo file name
-                await UpdatePictureSeoNamesAsync(vendor);
+                await UpdatePictureSeoNamesAsync(seller);
 
-                //save vendor attributes
-                await _genericAttributeService.SaveAttributeAsync(vendor, NopVendorDefaults.VendorAttributes, vendorAttributesXml);
+                //save seller attributes
+                await _genericAttributeService.SaveAttributeAsync(seller, NopSellerDefaults.SellerAttributes, sellerAttributesXml);
 
                 //notify store owner here (email)
-                await _workflowMessageService.SendNewVendorAccountApplyStoreOwnerNotificationAsync(await _workContext.GetCurrentCustomerAsync(),
-                    vendor, _localizationSettings.DefaultAdminLanguageId);
+                await _workflowMessageService.SendNewSellerAccountApplyStoreOwnerNotificationAsync(await _workContext.GetCurrentCustomerAsync(),
+                    seller, _localizationSettings.DefaultAdminLanguageId);
 
                 model.DisableFormInput = true;
-                model.Result = await _localizationService.GetResourceAsync("Vendors.ApplyAccount.Submitted");
+                model.Result = await _localizationService.GetResourceAsync("Sellers.ApplyAccount.Submitted");
                 return View(model);
             }
 
             //If we got this far, something failed, redisplay form
-            model = await _vendorModelFactory.PrepareApplyVendorModelAsync(model, false, true, vendorAttributesXml);
+            model = await _sellerModelFactory.PrepareApplySellerModelAsync(model, false, true, sellerAttributesXml);
             return View(model);
         }
 
@@ -289,11 +289,11 @@ namespace Nop.Web.Controllers
             if (!await _customerService.IsRegisteredAsync(await _workContext.GetCurrentCustomerAsync()))
                 return Challenge();
 
-            if (await _workContext.GetCurrentVendorAsync() == null || !_vendorSettings.AllowVendorsToEditInfo)
+            if (await _workContext.GetCurrentSellerAsync() == null || !_sellerSettings.AllowSellersToEditInfo)
                 return RedirectToRoute("CustomerInfo");
 
-            var model = new VendorInfoModel();
-            model = await _vendorModelFactory.PrepareVendorInfoModelAsync(model, false);
+            var model = new SellerInfoModel();
+            model = await _sellerModelFactory.PrepareSellerInfoModelAsync(model, false);
             return View(model);
         }
 
@@ -301,12 +301,12 @@ namespace Nop.Web.Controllers
         [AutoValidateAntiforgeryToken]
         [FormValueRequired("save-info-button")]
         /// <returns>A task that represents the asynchronous operation</returns>
-        public virtual async Task<IActionResult> Info(VendorInfoModel model, IFormFile uploadedFile, IFormCollection form)
+        public virtual async Task<IActionResult> Info(SellerInfoModel model, IFormFile uploadedFile, IFormCollection form)
         {
             if (!await _customerService.IsRegisteredAsync(await _workContext.GetCurrentCustomerAsync()))
                 return Challenge();
 
-            if (await _workContext.GetCurrentVendorAsync() == null || !_vendorSettings.AllowVendorsToEditInfo)
+            if (await _workContext.GetCurrentSellerAsync() == null || !_sellerSettings.AllowSellersToEditInfo)
                 return RedirectToRoute("CustomerInfo");
 
             Picture picture = null;
@@ -316,56 +316,56 @@ namespace Nop.Web.Controllers
                 try
                 {
                     var contentType = uploadedFile.ContentType;
-                    var vendorPictureBinary = await _downloadService.GetDownloadBitsAsync(uploadedFile);
-                    picture = await _pictureService.InsertPictureAsync(vendorPictureBinary, contentType, null);
+                    var sellerPictureBinary = await _downloadService.GetDownloadBitsAsync(uploadedFile);
+                    picture = await _pictureService.InsertPictureAsync(sellerPictureBinary, contentType, null);
                 }
                 catch (Exception)
                 {
-                    ModelState.AddModelError("", await _localizationService.GetResourceAsync("Account.VendorInfo.Picture.ErrorMessage"));
+                    ModelState.AddModelError("", await _localizationService.GetResourceAsync("Account.SellerInfo.Picture.ErrorMessage"));
                 }
             }
 
-            var vendor = await _workContext.GetCurrentVendorAsync();
-            var prevPicture = await _pictureService.GetPictureByIdAsync(vendor.PictureId);
+            var seller = await _workContext.GetCurrentSellerAsync();
+            var prevPicture = await _pictureService.GetPictureByIdAsync(seller.PictureId);
 
-            //vendor attributes
-            var vendorAttributesXml = await ParseVendorAttributesAsync(form);
-            (await _vendorAttributeParser.GetAttributeWarningsAsync(vendorAttributesXml)).ToList()
+            //seller attributes
+            var sellerAttributesXml = await ParseSellerAttributesAsync(form);
+            (await _sellerAttributeParser.GetAttributeWarningsAsync(sellerAttributesXml)).ToList()
                 .ForEach(warning => ModelState.AddModelError(string.Empty, warning));
 
             if (ModelState.IsValid)
             {
                 var description = Core.Html.HtmlHelper.FormatText(model.Description, false, false, true, false, false, false);
 
-                vendor.Name = model.Name;
-                vendor.Email = model.Email;
-                vendor.Description = description;
+                seller.Name = model.Name;
+                seller.Email = model.Email;
+                seller.Description = description;
 
                 if (picture != null)
                 {
-                    vendor.PictureId = picture.Id;
+                    seller.PictureId = picture.Id;
 
                     if (prevPicture != null)
                         await _pictureService.DeletePictureAsync(prevPicture);
                 }
 
                 //update picture seo file name
-                await UpdatePictureSeoNamesAsync(vendor);
+                await UpdatePictureSeoNamesAsync(seller);
 
-                await _vendorService.UpdateVendorAsync(vendor);
+                await _sellerService.UpdateSellerAsync(seller);
 
-                //save vendor attributes
-                await _genericAttributeService.SaveAttributeAsync(vendor, NopVendorDefaults.VendorAttributes, vendorAttributesXml);
+                //save seller attributes
+                await _genericAttributeService.SaveAttributeAsync(seller, NopSellerDefaults.SellerAttributes, sellerAttributesXml);
 
                 //notifications
-                if (_vendorSettings.NotifyStoreOwnerAboutVendorInformationChange)
-                    await _workflowMessageService.SendVendorInformationChangeNotificationAsync(vendor, _localizationSettings.DefaultAdminLanguageId);
+                if (_sellerSettings.NotifyStoreOwnerAboutSellerInformationChange)
+                    await _workflowMessageService.SendSellerInformationChangeNotificationAsync(seller, _localizationSettings.DefaultAdminLanguageId);
 
                 return RedirectToAction("Info");
             }
 
             //If we got this far, something failed, redisplay form
-            model = await _vendorModelFactory.PrepareVendorInfoModelAsync(model, true, vendorAttributesXml);
+            model = await _sellerModelFactory.PrepareSellerInfoModelAsync(model, true, sellerAttributesXml);
             return View(model);
         }
 
@@ -378,21 +378,21 @@ namespace Nop.Web.Controllers
             if (!await _customerService.IsRegisteredAsync(await _workContext.GetCurrentCustomerAsync()))
                 return Challenge();
 
-            if (await _workContext.GetCurrentVendorAsync() == null || !_vendorSettings.AllowVendorsToEditInfo)
+            if (await _workContext.GetCurrentSellerAsync() == null || !_sellerSettings.AllowSellersToEditInfo)
                 return RedirectToRoute("CustomerInfo");
 
-            var vendor = await _workContext.GetCurrentVendorAsync();
-            var picture = await _pictureService.GetPictureByIdAsync(vendor.PictureId);
+            var seller = await _workContext.GetCurrentSellerAsync();
+            var picture = await _pictureService.GetPictureByIdAsync(seller.PictureId);
 
             if (picture != null)
                 await _pictureService.DeletePictureAsync(picture);
 
-            vendor.PictureId = 0;
-            await _vendorService.UpdateVendorAsync(vendor);
+            seller.PictureId = 0;
+            await _sellerService.UpdateSellerAsync(seller);
 
             //notifications
-            if (_vendorSettings.NotifyStoreOwnerAboutVendorInformationChange)
-                await _workflowMessageService.SendVendorInformationChangeNotificationAsync(vendor, _localizationSettings.DefaultAdminLanguageId);
+            if (_sellerSettings.NotifyStoreOwnerAboutSellerInformationChange)
+                await _workflowMessageService.SendSellerInformationChangeNotificationAsync(seller, _localizationSettings.DefaultAdminLanguageId);
 
             return RedirectToAction("Info");
         }

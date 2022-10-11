@@ -18,6 +18,7 @@ using Nop.Services.Customers;
 using Nop.Services.Directory;
 using Nop.Services.Helpers;
 using Nop.Services.Localization;
+using Nop.Services.Sellers;
 using Nop.Services.Stores;
 using Nop.Services.Vendors;
 
@@ -42,6 +43,7 @@ namespace Nop.Web.Framework
         private readonly IStoreMappingService _storeMappingService;
         private readonly IUserAgentHelper _userAgentHelper;
         private readonly IVendorService _vendorService;
+        private readonly ISellerService _sellerService;
         private readonly IWebHelper _webHelper;
         private readonly LocalizationSettings _localizationSettings;
         private readonly TaxSettings _taxSettings;
@@ -69,6 +71,7 @@ namespace Nop.Web.Framework
             IStoreMappingService storeMappingService,
             IUserAgentHelper userAgentHelper,
             IVendorService vendorService,
+            ISellerService sellerService,
             IWebHelper webHelper,
             LocalizationSettings localizationSettings,
             TaxSettings taxSettings)

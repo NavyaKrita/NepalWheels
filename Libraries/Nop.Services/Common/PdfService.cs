@@ -28,6 +28,7 @@ using Nop.Services.Localization;
 using Nop.Services.Media;
 using Nop.Services.Orders;
 using Nop.Services.Payments;
+using Nop.Services.Sellers;
 using Nop.Services.Shipping;
 using Nop.Services.Stores;
 using Nop.Services.Vendors;
@@ -67,6 +68,7 @@ namespace Nop.Services.Common
         private readonly IStoreContext _storeContext;
         private readonly IStoreService _storeService;
         private readonly IVendorService _vendorService;
+        private readonly ISellerService _sellerService;
         private readonly IWorkContext _workContext;
         private readonly MeasureSettings _measureSettings;
         private readonly PdfSettings _pdfSettings;

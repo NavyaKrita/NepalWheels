@@ -1,4 +1,4 @@
-﻿@model VendorInfoModel
+﻿@model SellerInfoModel
 @{
     Layout = "_ColumnsTwo";
 
@@ -10,12 +10,12 @@
 }
 @section left
 {
-    @await Component.InvokeAsync("CustomerNavigation", new { selectedTabId = CustomerNavigationEnum.VendorInfo })
+    @await Component.InvokeAsync("CustomerNavigation", new { selectedTabId = CustomerNavigationEnum.SellerInfo })
 }
 
 <div class="page account-page vendorinfo-page">
     <div class="page-title">
-        <h1>@T("Account.MyAccount") - @T("Account.VendorInfo")</h1>
+        <h1>@T("Account.MyAccount") - @T("Account.SellerInfo")</h1>
     </div>
     <div class="page-body">
         <form asp-route="CustomerVendorInfo" method="post" enctype="multipart/form-data">
@@ -46,17 +46,17 @@
                         {
                             <div class="vendor-picture">
                                 <img src="@(Model.PictureUrl)" alt="picture" />
-                                <button type="submit" name="remove-picture" class="button-2 remove-picture-button">@T("Account.VendorInfo.Picture.Remove")</button>
+                                <button type="submit" name="remove-picture" class="button-2 remove-picture-button">@T("Account.SellerInfo.Picture.Remove")</button>
                             </div>
                         }
                     </div>
                 </div>
             </div>
-        @if (Model.VendorAttributes.Count > 0)
+        @if (Model.SellerAttributes.Count > 0)
         {
             <div class="fieldset">
                 <div class="form-fields">
-                    @await Html.PartialAsync("_VendorAttributes", Model.VendorAttributes)
+                    @await Html.PartialAsync("_VendorAttributes", Model.SellerAttributes)
                 </div>
             </div>
         }

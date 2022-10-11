@@ -28,6 +28,7 @@ using Nop.Core.Domain.Orders;
 using Nop.Core.Domain.Payments;
 using Nop.Core.Domain.Polls;
 using Nop.Core.Domain.Security;
+using Nop.Core.Domain.Sellers;
 using Nop.Core.Domain.Seo;
 using Nop.Core.Domain.Shipping;
 using Nop.Core.Domain.Stores;
@@ -3489,6 +3490,19 @@ namespace Nop.Services.Installation
                 NotifyStoreOwnerAboutVendorInformationChange = true,
                 MaximumProductNumber = 3000,
                 AllowVendorsToImportProducts = true
+            });
+            await settingService.SaveSettingAsync(new SellerSettings
+            {
+                DefaultSellerPageSizeOptions = "6, 3, 9",
+                SellersBlockItemsToDisplay = 0,
+                ShowSellerOnProductDetailsPage = true,
+                AllowCustomersToContactSellers = true,
+                AllowCustomersToApplyForSellerAccount = true,
+                TermsOfServiceEnabled = false,
+                AllowSellersToEditInfo = false,
+                NotifyStoreOwnerAboutSellerInformationChange = true,
+                MaximumProductNumber = 3000,
+                AllowSellersToImportProducts = true
             });
 
             var eaGeneral = _emailAccountRepository.Table.FirstOrDefault();

@@ -12,6 +12,7 @@ using Nop.Core.Domain.Forums;
 using Nop.Core.Domain.Messages;
 using Nop.Core.Domain.News;
 using Nop.Core.Domain.Orders;
+using Nop.Core.Domain.Sellers;
 using Nop.Core.Domain.Shipping;
 using Nop.Core.Domain.Vendors;
 using Nop.Core.Events;
@@ -2537,6 +2538,16 @@ namespace Nop.Services.Messages
 
             await _queuedEmailService.InsertQueuedEmailAsync(email);
             return email.Id;
+        }
+
+        public Task<IList<int>> SendNewSellerAccountApplyStoreOwnerNotificationAsync(Customer customer, Seller seller, int languageId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<IList<int>> SendSellerInformationChangeNotificationAsync(Seller seller, int languageId)
+        {
+            throw new NotImplementedException();
         }
 
         #endregion
