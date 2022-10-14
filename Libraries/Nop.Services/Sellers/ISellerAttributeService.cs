@@ -19,7 +19,7 @@ namespace Nop.Services.Sellers
         /// A task that represents the asynchronous operation
         /// The task result contains the seller attributes
         /// </returns>
-        Task<IList<SellerAttribute>> GetAllSellerAttributesAsync();
+        Task<IList<VendorAttribute>> GetAllSellerAttributesAsync();
 
         /// <summary>
         /// Gets a seller attribute 
@@ -29,28 +29,28 @@ namespace Nop.Services.Sellers
         /// A task that represents the asynchronous operation
         /// The task result contains the seller attribute
         /// </returns>
-        Task<SellerAttribute> GetSellerAttributeByIdAsync(int sellerAttributeId);
+        Task<VendorAttribute> GetSellerAttributeByIdAsync(int sellerAttributeId);
 
         /// <summary>
         /// Inserts a seller attribute
         /// </summary>
         /// <param name="sellerAttribute">Seller attribute</param>
         /// <returns>A task that represents the asynchronous operation</returns>
-        Task InsertSellerAttributeAsync(SellerAttribute sellerAttribute);
+        Task InsertSellerAttributeAsync(VendorAttribute sellerAttribute);
 
         /// <summary>
         /// Updates a seller attribute
         /// </summary>
         /// <param name="sellerAttribute">Seller attribute</param>
         /// <returns>A task that represents the asynchronous operation</returns>
-        Task UpdateSellerAttributeAsync(SellerAttribute sellerAttribute);
+        Task UpdateSellerAttributeAsync(VendorAttribute sellerAttribute);
 
         /// <summary>
         /// Deletes a seller attribute
         /// </summary>
         /// <param name="sellerAttribute">Seller attribute</param>
         /// <returns>A task that represents the asynchronous operation</returns>
-        Task DeleteSellerAttributeAsync(SellerAttribute sellerAttribute);
+        Task DeleteSellerAttributeAsync(VendorAttribute sellerAttribute);
 
         #endregion
 
@@ -64,7 +64,7 @@ namespace Nop.Services.Sellers
         /// A task that represents the asynchronous operation
         /// The task result contains the seller attribute values
         /// </returns>
-        Task<IList<SellerAttributeValue>> GetSellerAttributeValuesAsync(int sellerAttributeId);
+        Task<IList<VendorAttributeValue>> GetSellerAttributeValuesAsync(int sellerAttributeId);
 
         /// <summary>
         /// Gets a seller attribute value
@@ -74,28 +74,28 @@ namespace Nop.Services.Sellers
         /// A task that represents the asynchronous operation
         /// The task result contains the seller attribute value
         /// </returns>
-        Task<SellerAttributeValue> GetSellerAttributeValueByIdAsync(int sellerAttributeValueId);
+        Task<VendorAttributeValue> GetSellerAttributeValueByIdAsync(int sellerAttributeValueId);
 
         /// <summary>
         /// Inserts a seller attribute value
         /// </summary>
         /// <param name="sellerAttributeValue">Vendor attribute value</param>
         /// <returns>A task that represents the asynchronous operation</returns>
-        Task InsertSellerAttributeValueAsync(SellerAttributeValue sellerAttributeValue);
+        Task InsertSellerAttributeValueAsync(VendorAttributeValue sellerAttributeValue);
 
         /// <summary>
         /// Updates a seller attribute value
         /// </summary>
         /// <param name="sellerAttributeValue">Vendor attribute value</param>
         /// <returns>A task that represents the asynchronous operation</returns>
-        Task UpdateSellerAttributeValueAsync(SellerAttributeValue sellerAttributeValue);
+        Task UpdateSellerAttributeValueAsync(VendorAttributeValue sellerAttributeValue);
 
         /// <summary>
         /// Deletes a seller attribute value
         /// </summary>
         /// <param name="sellerAttributeValue">Vendor attribute value</param>
         /// <returns>A task that represents the asynchronous operation</returns>
-        Task DeleteSellerAttributeValueAsync(SellerAttributeValue sellerAttributeValue);
+        Task DeleteSellerAttributeValueAsync(VendorAttributeValue sellerAttributeValue);
 
         #endregion
     }

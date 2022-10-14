@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Nop.Core.Domain.Sellers;
+using Nop.Core.Domain.Vendors;
 
 namespace Nop.Services.Sellers
 {
@@ -17,7 +18,7 @@ namespace Nop.Services.Sellers
         /// A task that represents the asynchronous operation
         /// The task result contains the list of vendor attributes
         /// </returns>
-        Task<IList<SellerAttribute>> ParseSellerAttributesAsync(string attributesXml);
+        Task<IList<VendorAttribute>> ParseSellerAttributesAsync(string attributesXml);
 
         /// <summary>
         /// Get seller attribute values from XML
@@ -27,7 +28,7 @@ namespace Nop.Services.Sellers
         /// A task that represents the asynchronous operation
         /// The task result contains the list of vendor attribute values
         /// </returns>
-        Task<IList<SellerAttributeValue>> ParseSellerAttributeValuesAsync(string attributesXml);
+        Task<IList<VendorAttributeValue>> ParseSellerAttributeValuesAsync(string attributesXml);
 
         /// <summary>
         /// Gets values of the selected seller attribute
@@ -44,7 +45,7 @@ namespace Nop.Services.Sellers
         /// <param name="sellerAttribute">Vendor attribute</param>
         /// <param name="value">Value</param>
         /// <returns>Attributes in XML format</returns>sellerAttribute
-        string AddSellerAttribute(string attributesXml, SellerAttribute sellerAttribute, string value);
+        string AddSellerAttribute(string attributesXml, VendorAttribute sellerAttribute, string value);
 
         /// <summary>
         /// Validates seller attributes

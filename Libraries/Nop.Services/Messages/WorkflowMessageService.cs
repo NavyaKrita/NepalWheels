@@ -2540,12 +2540,12 @@ namespace Nop.Services.Messages
             return email.Id;
         }
 
-        public Task<IList<int>> SendNewSellerAccountApplyStoreOwnerNotificationAsync(Customer customer, Seller seller, int languageId)
+        public Task<IList<int>> SendNewSellerAccountApplyStoreOwnerNotificationAsync(Customer customer, Vendor seller, int languageId)
         {
             throw new NotImplementedException();
         }
 
-        public Task<IList<int>> SendSellerInformationChangeNotificationAsync(Seller seller, int languageId)
+        public Task<IList<int>> SendSellerInformationChangeNotificationAsync(Vendor seller, int languageId)
         {
             throw new NotImplementedException();
         }

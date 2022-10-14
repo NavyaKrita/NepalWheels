@@ -2,6 +2,7 @@
 using Nop.Core.Domain.Catalog;
 using Nop.Core.Domain.Customers;
 using Nop.Core.Domain.Sellers;
+using Nop.Core.Domain.Vendors;
 using Nop.Core.Html;
 using Nop.Data;
 using Nop.Services.Sellers;
@@ -21,8 +22,8 @@ namespace Nop.Services.Vendors
 
         private readonly IRepository<Customer> _customerRepository;
         private readonly IRepository<Product> _productRepository;
-        private readonly IRepository<Seller> _sellerRepository;
-        private readonly IRepository<SellerNote> _sellerNoteRepository;
+        private readonly IRepository<Vendor> _sellerRepository;
+        private readonly IRepository<VendorNote> _sellerNoteRepository;
        
         #endregion
 
@@ -30,8 +31,8 @@ namespace Nop.Services.Vendors
 
         public SellerService(IRepository<Customer> customerRepository,
             IRepository<Product> productRepository,
-            IRepository<Seller> sellerRepository,
-            IRepository<SellerNote> sellerNoteRepository)
+            IRepository<Vendor> sellerRepository,
+            IRepository<VendorNote> sellerNoteRepository)
         {
             _customerRepository = customerRepository;
             _productRepository = productRepository;
@@ -51,7 +52,7 @@ namespace Nop.Services.Vendors
         /// A task that represents the asynchronous operation
         /// The task result contains the vendor
         /// </returns>
-        public virtual async Task<Seller> GetSellerByIdAsync(int vendorId)
+        public virtual async Task<Vendor> GetSellerByIdAsync(int vendorId)
         {
             return await _sellerRepository.GetByIdAsync(vendorId, cache => default);
         }
@@ -64,7 +65,7 @@ namespace Nop.Services.Vendors
         /// A task that represents the asynchronous operation
         /// The task result contains the vendor
         /// </returns>
-        public virtual async Task<Seller> GetSellerByProductIdAsync(int productId)
+        public virtual async Task<Vendor> GetSellerByProductIdAsync(int productId)
         {
             if (productId == 0)
                 return null;
@@ -83,7 +84,7 @@ namespace Nop.Services.Vendors
         /// A task that represents the asynchronous operation
         /// The task result contains the sellers
         /// </returns>
-        public virtual async Task<IList<Seller>> GetSellersByProductIdsAsync(int[] productIds)
+        public virtual async Task<IList<Vendor>> GetSellersByProductIdsAsync(int[] productIds)
         {
             if (productIds is null)
                 throw new ArgumentNullException(nameof(productIds));
@@ -102,7 +103,7 @@ namespace Nop.Services.Vendors
         /// A task that represents the asynchronous operation
         /// The task result contains the sellers
         /// </returns>
-        public virtual async Task<IList<Seller>> GetSellersByCustomerIdsAsync(int[] customerIds)
+        public virtual async Task<IList<Vendor>> GetSellersByCustomerIdsAsync(int[] customerIds)
         {
             if (customerIds is null)
                 throw new ArgumentNullException(nameof(customerIds));
@@ -118,7 +119,7 @@ namespace Nop.Services.Vendors
         /// </summary>
         /// <param name="vendor">Vendor</param>
         /// <returns>A task that represents the asynchronous operation</returns>
-        public virtual async Task DeleteSellerAsync(Seller seller)
+        public virtual async Task DeleteSellerAsync(Vendor seller)
         {
             await _sellerRepository.DeleteAsync(seller);
         }
@@ -135,7 +136,7 @@ namespace Nop.Services.Vendors
         /// A task that represents the asynchronous operation
         /// The task result contains the sellers
         /// </returns>
-        public virtual async Task<IPagedList<Seller>> GetAllSellersAsync(string name = "", string email = "", int pageIndex = 0, int pageSize = int.MaxValue, bool showHidden = false)
+        public virtual async Task<IPagedList<Vendor>> GetAllSellersAsync(string name = "", string email = "", int pageIndex = 0, int pageSize = int.MaxValue, bool showHidden = false)
         {
             var sellers = await _sellerRepository.GetAllPagedAsync(query =>
             {
@@ -162,7 +163,7 @@ namespace Nop.Services.Vendors
         /// </summary>
         /// <param name="vendor">Vendor</param>
         /// <returns>A task that represents the asynchronous operation</returns>
-        public virtual async Task InsertSellerAsync(Seller seller)
+        public virtual async Task InsertSellerAsync(Vendor seller)
         {
             await _sellerRepository.InsertAsync(seller);
         }
@@ -172,7 +173,7 @@ namespace Nop.Services.Vendors
         /// </summary>
         /// <param name="vendor">Vendor</param>
         /// <returns>A task that represents the asynchronous operation</returns>
-        public virtual async Task UpdateSellerAsync(Seller seller)
+        public virtual async Task UpdateSellerAsync(Vendor seller)
         {
             await _sellerRepository.UpdateAsync(seller);
         }
@@ -185,7 +186,7 @@ namespace Nop.Services.Vendors
         /// A task that represents the asynchronous operation
         /// The task result contains the vendor note
         /// </returns>
-        public virtual async Task<SellerNote> GetSellerNoteByIdAsync(int vendorNoteId)
+        public virtual async Task<VendorNote> GetSellerNoteByIdAsync(int vendorNoteId)
         {
             return await _sellerNoteRepository.GetByIdAsync(vendorNoteId, cache => default);
         }
@@ -200,7 +201,7 @@ namespace Nop.Services.Vendors
         /// A task that represents the asynchronous operation
         /// The task result contains the vendor notes
         /// </returns>
-        public virtual async Task<IPagedList<SellerNote>> GetSellerNotesBySellerAsync(int vendorId, int pageIndex = 0, int pageSize = int.MaxValue)
+        public virtual async Task<IPagedList<VendorNote>> GetSellerNotesBySellerAsync(int vendorId, int pageIndex = 0, int pageSize = int.MaxValue)
         {
             var query = _sellerNoteRepository.Table.Where(vn => vn.VendorId == vendorId);
 
@@ -214,7 +215,7 @@ namespace Nop.Services.Vendors
         /// </summary>
         /// <param name="vendorNote">The vendor note</param>
         /// <returns>A task that represents the asynchronous operation</returns>
-        public virtual async Task DeleteSellerNoteAsync(SellerNote vendorNote)
+        public virtual async Task DeleteSellerNoteAsync(VendorNote vendorNote)
         {
             await _sellerNoteRepository.DeleteAsync(vendorNote);
         }
@@ -224,7 +225,7 @@ namespace Nop.Services.Vendors
         /// </summary>
         /// <param name="vendorNote">Vendor note</param>
         /// <returns>A task that represents the asynchronous operation</returns>
-        public virtual async Task InsertSellerNoteAsync(SellerNote vendorNote)
+        public virtual async Task InsertSellerNoteAsync(VendorNote vendorNote)
         {
             await _sellerNoteRepository.InsertAsync(vendorNote);
         }
@@ -234,7 +235,7 @@ namespace Nop.Services.Vendors
         /// </summary>
         /// <param name="vendorNote">Vendor note</param>
         /// <returns>Formatted text</returns>
-        public virtual string FormatSellerNoteText(SellerNote vendorNote)
+        public virtual string FormatSellerNoteText(VendorNote vendorNote)
         {
             if (vendorNote == null)
                 throw new ArgumentNullException(nameof(vendorNote));

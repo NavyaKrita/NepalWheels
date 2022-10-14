@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Xml;
 using Nop.Core.Domain.Sellers;
+using Nop.Core.Domain.Vendors;
 using Nop.Services.Localization;
 using Nop.Services.Sellers;
 
@@ -82,9 +83,9 @@ namespace Nop.Services.Sellers
         /// A task that represents the asynchronous operation
         /// The task result contains the list of seller attributes
         /// </returns>
-        public virtual async Task<IList<SellerAttribute>> ParseSellerAttributesAsync(string attributesXml)
+        public virtual async Task<IList<VendorAttribute>> ParseSellerAttributesAsync(string attributesXml)
         {
-            var result = new List<SellerAttribute>();
+            var result = new List<VendorAttribute>();
             if (string.IsNullOrEmpty(attributesXml))
                 return result;
 
@@ -109,9 +110,9 @@ namespace Nop.Services.Sellers
         /// A task that represents the asynchronous operation
         /// The task result contains the list of seller attribute values
         /// </returns>
-        public virtual async Task<IList<SellerAttributeValue>> ParseSellerAttributeValuesAsync(string attributesXml)
+        public virtual async Task<IList<VendorAttributeValue>> ParseSellerAttributeValuesAsync(string attributesXml)
         {
-            var values = new List<SellerAttributeValue>();
+            var values = new List<VendorAttributeValue>();
             if (string.IsNullOrEmpty(attributesXml))
                 return values;
 
@@ -192,7 +193,7 @@ namespace Nop.Services.Sellers
         /// <param name="sellerAttribute">Seller attribute</param>
         /// <param name="value">Value</param>
         /// <returns>Attributes in XML format</returns>
-        public virtual string AddSellerAttribute(string attributesXml, SellerAttribute sellerAttribute, string value)
+        public virtual string AddSellerAttribute(string attributesXml, VendorAttribute sellerAttribute, string value)
         {
             var result = string.Empty;
             try

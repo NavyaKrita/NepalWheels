@@ -19,7 +19,7 @@ namespace Nop.Services.Sellers
         /// A task that represents the asynchronous operation
         /// The task result contains the vendor
         /// </returns>
-        Task<Seller> GetSellerByIdAsync(int vendorId);
+        Task<Vendor> GetSellerByIdAsync(int vendorId);
 
         /// <summary>
         /// Gets a vendors by product identifiers
@@ -29,7 +29,7 @@ namespace Nop.Services.Sellers
         /// A task that represents the asynchronous operation
         /// The task result contains the vendors
         /// </returns>
-        Task<IList<Seller>> GetSellersByProductIdsAsync(int[] productIds);
+        Task<IList<Vendor>> GetSellersByProductIdsAsync(int[] productIds);
 
         /// <summary>
         /// Gets a vendors by customers identifiers
@@ -39,7 +39,7 @@ namespace Nop.Services.Sellers
         /// A task that represents the asynchronous operation
         /// The task result contains the vendors
         /// </returns>
-        Task<IList<Seller>> GetSellersByCustomerIdsAsync(int[] customerIds);
+        Task<IList<Vendor>> GetSellersByCustomerIdsAsync(int[] customerIds);
 
         /// <summary>
         /// Gets a vendor by product identifier
@@ -49,14 +49,14 @@ namespace Nop.Services.Sellers
         /// A task that represents the asynchronous operation
         /// The task result contains the vendor
         /// </returns>
-        Task<Seller> GetSellerByProductIdAsync(int productId);
+        Task<Vendor> GetSellerByProductIdAsync(int productId);
 
         /// <summary>
         /// Delete a seller
         /// </summary>
         /// <param name="seller">Vendor</param>
         /// <returns>A task that represents the asynchronous operation</returns>
-        Task DeleteSellerAsync(Seller seller);
+        Task DeleteSellerAsync(Vendor seller);
 
         /// <summary>
         /// Gets all vendors
@@ -70,21 +70,21 @@ namespace Nop.Services.Sellers
         /// A task that represents the asynchronous operation
         /// The task result contains the vendors
         /// </returns>
-        Task<IPagedList<Seller>> GetAllSellersAsync(string name = "", string email = "", int pageIndex = 0, int pageSize = int.MaxValue, bool showHidden = false);
+        Task<IPagedList<Vendor>> GetAllSellersAsync(string name = "", string email = "", int pageIndex = 0, int pageSize = int.MaxValue, bool showHidden = false);
 
         /// <summary>
         /// Inserts a vendor
         /// </summary>
         /// <param name="vendor">Vendor</param>
         /// <returns>A task that represents the asynchronous operation</returns>
-        Task InsertSellerAsync(Seller seller);
+        Task InsertSellerAsync(Vendor seller);
 
         /// <summary>
         /// Updates the vendor
         /// </summary>
         /// <param name="vendor">Vendor</param>
         /// <returns>A task that represents the asynchronous operation</returns>
-        Task UpdateSellerAsync(Seller seller);
+        Task UpdateSellerAsync(Vendor seller);
 
         /// <summary>
         /// Gets a vendor note
@@ -94,7 +94,7 @@ namespace Nop.Services.Sellers
         /// A task that represents the asynchronous operation
         /// The task result contains the vendor note
         /// </returns>
-        Task<SellerNote> GetSellerNoteByIdAsync(int sellerNoteId);
+        Task<VendorNote> GetSellerNoteByIdAsync(int sellerNoteId);
 
         /// <summary>
         /// Gets all vendor notes
@@ -106,28 +106,28 @@ namespace Nop.Services.Sellers
         /// A task that represents the asynchronous operation
         /// The task result contains the vendor notes
         /// </returns>
-        Task<IPagedList<SellerNote>> GetSellerNotesBySellerAsync(int sellerId, int pageIndex = 0, int pageSize = int.MaxValue);
+        Task<IPagedList<VendorNote>> GetSellerNotesBySellerAsync(int sellerId, int pageIndex = 0, int pageSize = int.MaxValue);
 
         /// <summary>
         /// Deletes a seller note
         /// </summary>
         /// <param name="sellerNote">The seller note</param>
         /// <returns>A task that represents the asynchronous operation</returns>
-        Task DeleteSellerNoteAsync(SellerNote sellerNote);
+        Task DeleteSellerNoteAsync(VendorNote sellerNote);
 
         /// <summary>
         /// Inserts a seller note
         /// </summary>
         /// <param name="sellerNote">Vendor note</param>
         /// <returns>A task that represents the asynchronous operation</returns>
-        Task InsertSellerNoteAsync(SellerNote sellerNote);
+        Task InsertSellerNoteAsync(VendorNote sellerNote);
 
         /// <summary>
         /// Formats the seller note text
         /// </summary>
         /// <param name="sellerNote">Vendor note</param>
         /// <returns>Formatted text</returns>
-        string FormatSellerNoteText(SellerNote sellerNote);
+        string FormatSellerNoteText(VendorNote sellerNote);
        
     }
 }

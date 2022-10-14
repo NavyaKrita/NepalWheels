@@ -103,5 +103,6 @@ namespace Nop.Core.Domain.Vendors
         /// Gets or sets a value indicating whether the price range should be entered manually
         /// </summary>
         public bool ManuallyPriceRange { get; set; }
+        public bool IsSeller { get; set; }
     }
 }

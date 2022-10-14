@@ -1,5 +1,6 @@
 using Nop.Core.Domain.Catalog;
 using Nop.Core.Domain.Sellers;
+using Nop.Core.Domain.Vendors;
 
 namespace Nop.Services.Sellers
 {
@@ -13,7 +14,7 @@ namespace Nop.Services.Sellers
         /// </summary>
         /// <param name="sellerAttribute">Seller attribute</param>
         /// <returns>True if the attribute should have values; otherwise false</returns>
-        public static bool ShouldHaveValues(this SellerAttribute sellerAttribute)
+        public static bool ShouldHaveValues(this VendorAttribute sellerAttribute)
         {
             if (sellerAttribute == null)
                 return false;

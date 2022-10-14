@@ -723,7 +723,8 @@ namespace Nop.Web.Areas.Admin.Factories
                 DisplayCustomerAddressesFooterItem = displayDefaultFooterItemSettings.DisplayCustomerAddressesFooterItem,
                 DisplayShoppingCartFooterItem = displayDefaultFooterItemSettings.DisplayShoppingCartFooterItem,
                 DisplayWishlistFooterItem = displayDefaultFooterItemSettings.DisplayWishlistFooterItem,
-                DisplayApplyVendorAccountFooterItem = displayDefaultFooterItemSettings.DisplayApplyVendorAccountFooterItem
+                DisplayApplyVendorAccountFooterItem = displayDefaultFooterItemSettings.DisplayApplyVendorAccountFooterItem,
+                DisplayApplySellerAccountFooterItem = displayDefaultFooterItemSettings.DisplayApplySellerAccountFooterItem
             };
 
             if (storeId <= 0)
@@ -745,6 +746,7 @@ namespace Nop.Web.Areas.Admin.Factories
             model.DisplayShoppingCartFooterItem_OverrideForStore = await _settingService.SettingExistsAsync(displayDefaultFooterItemSettings, x => x.DisplayShoppingCartFooterItem, storeId);
             model.DisplayWishlistFooterItem_OverrideForStore = await _settingService.SettingExistsAsync(displayDefaultFooterItemSettings, x => x.DisplayWishlistFooterItem, storeId);
             model.DisplayApplyVendorAccountFooterItem_OverrideForStore = await _settingService.SettingExistsAsync(displayDefaultFooterItemSettings, x => x.DisplayApplyVendorAccountFooterItem, storeId);
+            model.DisplayApplySellerAccountFooterItem_OverrideForStore = await _settingService.SettingExistsAsync(displayDefaultFooterItemSettings, x => x.DisplayApplySellerAccountFooterItem, storeId);
 
             return model;
         }

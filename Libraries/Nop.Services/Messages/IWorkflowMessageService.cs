@@ -462,7 +462,7 @@ namespace Nop.Services.Messages
         /// A task that represents the asynchronous operation
         /// The task result contains the queued email identifier
         /// </returns>
-        Task<IList<int>> SendNewSellerAccountApplyStoreOwnerNotificationAsync(Customer customer, Seller seller, int languageId);
+        Task<IList<int>> SendNewSellerAccountApplyStoreOwnerNotificationAsync(Customer customer, Vendor seller, int languageId);
 
         /// <summary>
         /// Sends 'Vendor information change' message to a store owner
@@ -484,7 +484,7 @@ namespace Nop.Services.Messages
         /// A task that represents the asynchronous operation
         /// The task result contains the queued email identifier
         /// </returns>
-        Task<IList<int>> SendSellerInformationChangeNotificationAsync(Seller seller, int languageId);
+        Task<IList<int>> SendSellerInformationChangeNotificationAsync(Vendor seller, int languageId);
 
         /// <summary>
         /// Sends a product review notification message to a store owner

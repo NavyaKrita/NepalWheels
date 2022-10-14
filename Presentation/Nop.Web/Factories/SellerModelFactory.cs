@@ -178,7 +178,7 @@ namespace Nop.Web.Factories
             if (model == null)
                 throw new ArgumentNullException(nameof(model));
 
-            if (validateSeller && (await _workContext.GetCurrentCustomerAsync()).SellerId > 0)
+            if (validateSeller && (await _workContext.GetCurrentCustomerAsync()).VendorId > 0)
             {
                 //already applied for seller account
                 model.DisableFormInput = true;

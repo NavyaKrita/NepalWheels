@@ -40,7 +40,7 @@ namespace Nop.Core
         /// Gets the current vendor (logged-in manager)
         /// </summary>
         /// <returns>A task that represents the asynchronous operation</returns>
-        Task<Seller> GetCurrentSellerAsync();
+        Task<Vendor> GetCurrentSellerAsync();
 
         /// <summary>
         /// Gets current user working language

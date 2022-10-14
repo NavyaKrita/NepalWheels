@@ -3545,7 +3545,8 @@ namespace Nop.Services.Installation
                 DisplayCustomerAddressesFooterItem = true,
                 DisplayShoppingCartFooterItem = true,
                 DisplayWishlistFooterItem = true,
-                DisplayApplyVendorAccountFooterItem = true
+                DisplayApplyVendorAccountFooterItem = true,
+                DisplayApplySellerAccountFooterItem=true
             });
 
             await settingService.SaveSettingAsync(new CaptchaSettings

@@ -10,6 +10,7 @@ using Nop.Core.Domain.Localization;
 using Nop.Core.Domain.Media;
 using Nop.Core.Domain.Security;
 using Nop.Core.Domain.Sellers;
+using Nop.Core.Domain.Vendors;
 using Nop.Services.Common;
 using Nop.Services.Customers;
 using Nop.Services.Localization;
@@ -86,7 +87,7 @@ namespace Nop.Web.Controllers
         #region Utilities
 
         /// <returns>A task that represents the asynchronous operation</returns>
-        protected virtual async Task UpdatePictureSeoNamesAsync(Seller seller)
+        protected virtual async Task UpdatePictureSeoNamesAsync(Vendor seller)
         {
             var picture = await _pictureService.GetPictureByIdAsync(seller.PictureId);
             if (picture != null)
@@ -198,8 +199,8 @@ namespace Nop.Web.Controllers
         /// <returns>A task that represents the asynchronous operation</returns>
         public virtual async Task<IActionResult> ApplySellerSubmit(ApplySellerModel model, bool captchaValid, IFormFile uploadedFile, IFormCollection form)
         {
-            if (!_sellerSettings.AllowCustomersToApplyForSellerAccount)
-                return RedirectToRoute("Homepage");
+            //if (!_sellerSettings.AllowCustomersToApplyForSellerAccount)
+            //    return RedirectToRoute("Homepage");
 
             if (!await _customerService.IsRegisteredAsync(await _workContext.GetCurrentCustomerAsync()))
                 return Challenge();
@@ -241,10 +242,11 @@ namespace Nop.Web.Controllers
             {
                 var description = Core.Html.HtmlHelper.FormatText(model.Description, false, false, true, false, false, false);
                 //disabled by default
-                var seller = new Seller
+                var seller = new Vendor
                 {
                     Name = model.Name,
                     Email = model.Email,
+                    IsSeller = true,
                     //some default settings
                     PageSize = 6,
                     AllowCustomersToSelectPageSize = true,

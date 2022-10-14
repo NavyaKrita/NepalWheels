@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Nop.Core.Caching;
 using Nop.Core.Domain.Sellers;
+using Nop.Core.Domain.Vendors;
 using Nop.Data;
 
 namespace Nop.Services.Sellers
@@ -14,16 +15,16 @@ namespace Nop.Services.Sellers
     {
         #region Fields
 
-        private readonly IRepository<SellerAttribute> _sellerAttributeRepository;
-        private readonly IRepository<SellerAttributeValue> _sellerAttributeValueRepository;
+        private readonly IRepository<VendorAttribute> _sellerAttributeRepository;
+        private readonly IRepository<VendorAttributeValue> _sellerAttributeValueRepository;
         private readonly IStaticCacheManager _staticCacheManager;
 
         #endregion
 
         #region Ctor
 
-        public SellerAttributeService(IRepository<SellerAttribute> sellerAttributeRepository,
-            IRepository<SellerAttributeValue> sellerAttributeValueRepository,
+        public SellerAttributeService(IRepository<VendorAttribute> sellerAttributeRepository,
+            IRepository<VendorAttributeValue> sellerAttributeValueRepository,
             IStaticCacheManager staticCacheManager)
         {
             _sellerAttributeRepository = sellerAttributeRepository;
@@ -44,7 +45,7 @@ namespace Nop.Services.Sellers
         /// A task that represents the asynchronous operation
         /// The task result contains the seller attributes
         /// </returns>
-        public virtual async Task<IList<SellerAttribute>> GetAllSellerAttributesAsync()
+        public virtual async Task<IList<VendorAttribute>> GetAllSellerAttributesAsync()
         {
             return await _sellerAttributeRepository.GetAllAsync(
                 query => query.OrderBy(sellerAttribute => sellerAttribute.DisplayOrder).ThenBy(sellerAttribute => sellerAttribute.Id),
@@ -59,7 +60,7 @@ namespace Nop.Services.Sellers
         /// A task that represents the asynchronous operation
         /// The task result contains the seller attribute
         /// </returns>
-        public virtual async Task<SellerAttribute> GetSellerAttributeByIdAsync(int sellerAttributeId)
+        public virtual async Task<VendorAttribute> GetSellerAttributeByIdAsync(int sellerAttributeId)
         {
             return await _sellerAttributeRepository.GetByIdAsync(sellerAttributeId, cache => default);
         }
@@ -69,7 +70,7 @@ namespace Nop.Services.Sellers
         /// </summary>
         /// <param name="sellerAttribute">Seller attribute</param>
         /// <returns>A task that represents the asynchronous operation</returns>
-        public virtual async Task InsertSellerAttributeAsync(SellerAttribute sellerAttribute)
+        public virtual async Task InsertSellerAttributeAsync(VendorAttribute sellerAttribute)
         {
             await _sellerAttributeRepository.InsertAsync(sellerAttribute);
         }
@@ -79,7 +80,7 @@ namespace Nop.Services.Sellers
         /// </summary>
         /// <param name="sellerAttribute">Seller attribute</param>
         /// <returns>A task that represents the asynchronous operation</returns>
-        public virtual async Task UpdateSellerAttributeAsync(SellerAttribute sellerAttribute)
+        public virtual async Task UpdateSellerAttributeAsync(VendorAttribute sellerAttribute)
         {
             await _sellerAttributeRepository.UpdateAsync(sellerAttribute);
         }
@@ -89,7 +90,7 @@ namespace Nop.Services.Sellers
         /// </summary>
         /// <param name="sellerAttribute">Seller attribute</param>
         /// <returns>A task that represents the asynchronous operation</returns>
-        public virtual async Task DeleteSellerAttributeAsync(SellerAttribute sellerAttribute)
+        public virtual async Task DeleteSellerAttributeAsync(VendorAttribute sellerAttribute)
         {
             await _sellerAttributeRepository.DeleteAsync(sellerAttribute);
         }
@@ -106,12 +107,12 @@ namespace Nop.Services.Sellers
         /// A task that represents the asynchronous operation
         /// The task result contains the seller attribute values
         /// </returns>
-        public virtual async Task<IList<SellerAttributeValue>> GetSellerAttributeValuesAsync(int sellerAttributeId)
+        public virtual async Task<IList<VendorAttributeValue>> GetSellerAttributeValuesAsync(int sellerAttributeId)
         {
             var key = _staticCacheManager.PrepareKeyForDefaultCache(NopSellerDefaults.SellerAttributeValuesByAttributeCacheKey, sellerAttributeId);
 
             var query = _sellerAttributeValueRepository.Table
-                .Where(sellerAttributeValue => sellerAttributeValue.SellerAttributeId == sellerAttributeId)
+                .Where(sellerAttributeValue => sellerAttributeValue.VendorAttributeId == sellerAttributeId)
                 .OrderBy(sellerAttributeValue => sellerAttributeValue.DisplayOrder)
                 .ThenBy(sellerAttributeValue => sellerAttributeValue.Id);
 
@@ -126,7 +127,7 @@ namespace Nop.Services.Sellers
         /// A task that represents the asynchronous operation
         /// The task result contains the seller attribute value
         /// </returns>
-        public virtual async Task<SellerAttributeValue> GetSellerAttributeValueByIdAsync(int sellerAttributeValueId)
+        public virtual async Task<VendorAttributeValue> GetSellerAttributeValueByIdAsync(int sellerAttributeValueId)
         {
             return await _sellerAttributeValueRepository.GetByIdAsync(sellerAttributeValueId, cache => default);
         }
@@ -136,7 +137,7 @@ namespace Nop.Services.Sellers
         /// </summary>
         /// <param name="sellerAttributeValue">Seller attribute value</param>
         /// <returns>A task that represents the asynchronous operation</returns>
-        public virtual async Task InsertSellerAttributeValueAsync(SellerAttributeValue sellerAttributeValue)
+        public virtual async Task InsertSellerAttributeValueAsync(VendorAttributeValue sellerAttributeValue)
         {
             await _sellerAttributeValueRepository.InsertAsync(sellerAttributeValue);
         }
@@ -146,7 +147,7 @@ namespace Nop.Services.Sellers
         /// </summary>
         /// <param name="sellerAttributeValue">Seller attribute value</param>
         /// <returns>A task that represents the asynchronous operation</returns>
-        public virtual async Task UpdateSellerAttributeValueAsync(SellerAttributeValue sellerAttributeValue)
+        public virtual async Task UpdateSellerAttributeValueAsync(VendorAttributeValue sellerAttributeValue)
         {
             await _sellerAttributeValueRepository.UpdateAsync(sellerAttributeValue);
         }
@@ -156,7 +157,7 @@ namespace Nop.Services.Sellers
         /// </summary>
         /// <param name="sellerAttributeValue">Seller attribute value</param>
         /// <returns>A task that represents the asynchronous operation</returns>
-        public virtual async Task DeleteSellerAttributeValueAsync(SellerAttributeValue sellerAttributeValue)
+        public virtual async Task DeleteSellerAttributeValueAsync(VendorAttributeValue sellerAttributeValue)
         {
             await _sellerAttributeValueRepository.DeleteAsync(sellerAttributeValue);
         }
