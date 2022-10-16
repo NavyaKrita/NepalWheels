@@ -291,5 +291,6 @@
         public static string WarningsButtons => "admin_warnings_buttons";
         public static string WarningsTop => "admin_warnings_top";
         public static string WidgetListButtons => "admin_widget_list_buttons";
+
     }
 }
