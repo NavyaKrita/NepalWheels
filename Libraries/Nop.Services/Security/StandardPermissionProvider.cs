@@ -69,7 +69,6 @@ namespace Nop.Services.Security
 
         public static readonly PermissionRecord ManageEMICalculater = new PermissionRecord { Name = "Admin area. Manage EMI Calculater", SystemName = "ManageEMICalculater", Category = "Configuration" };
       
-        public static readonly PermissionRecord NoticeBoard = new PermissionRecord { Name = "Admin area. Manage notice board", SystemName = "ManageNoticeBoard", Category = "Configuration" };
 
         /// <summary>
         /// Get permissions
