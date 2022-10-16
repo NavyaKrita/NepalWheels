@@ -2540,14 +2540,76 @@ namespace Nop.Services.Messages
             return email.Id;
         }
 
-        public Task<IList<int>> SendNewSellerAccountApplyStoreOwnerNotificationAsync(Customer customer, Vendor seller, int languageId)
+        public async Task<IList<int>> SendNewSellerAccountApplyStoreOwnerNotificationAsync(Customer customer, Vendor seller, int languageId)
         {
-            throw new NotImplementedException();
+            if (customer == null)
+                throw new ArgumentNullException(nameof(customer));
+
+            if (seller == null)
+                throw new ArgumentNullException(nameof(seller));
+
+            var store = await _storeContext.GetCurrentStoreAsync();
+            languageId = await EnsureLanguageIsActiveAsync(languageId, store.Id);
+
+            var messageTemplates = await GetActiveMessageTemplatesAsync(MessageTemplateSystemNames.NewVendorAccountApplyStoreOwnerNotification, store.Id);
+            if (!messageTemplates.Any())
+                return new List<int>();
+
+            //tokens
+            var commonTokens = new List<Token>();
+            await _messageTokenProvider.AddCustomerTokensAsync(commonTokens, customer);
+            await _messageTokenProvider.AddVendorTokensAsync(commonTokens, seller);
+
+            return await messageTemplates.SelectAwait(async messageTemplate =>
+            {
+                //email account
+                var emailAccount = await GetEmailAccountOfMessageTemplateAsync(messageTemplate, languageId);
+
+                var tokens = new List<Token>(commonTokens);
+                await _messageTokenProvider.AddStoreTokensAsync(tokens, store, emailAccount);
+
+                //event notification
+                await _eventPublisher.MessageTokensAddedAsync(messageTemplate, tokens);
+
+                var toEmail = emailAccount.Email;
+                var toName = emailAccount.DisplayName;
+
+                return await SendNotificationAsync(messageTemplate, emailAccount, languageId, tokens, toEmail, toName);
+            }).ToListAsync();
         }
 
-        public Task<IList<int>> SendSellerInformationChangeNotificationAsync(Vendor seller, int languageId)
+        public async Task<IList<int>> SendSellerInformationChangeNotificationAsync(Vendor seller, int languageId)
         {
-            throw new NotImplementedException();
+            if (seller == null)
+                throw new ArgumentNullException(nameof(seller));
+
+            var store = await _storeContext.GetCurrentStoreAsync();
+            languageId = await EnsureLanguageIsActiveAsync(languageId, store.Id);
+
+            var messageTemplates = await GetActiveMessageTemplatesAsync(MessageTemplateSystemNames.VendorInformationChangeNotification, store.Id);
+            if (!messageTemplates.Any())
+                return new List<int>();
+
+            //tokens
+            var commonTokens = new List<Token>();
+            await _messageTokenProvider.AddVendorTokensAsync(commonTokens, seller);
+
+            return await messageTemplates.SelectAwait(async messageTemplate =>
+            {
+                //email account
+                var emailAccount = await GetEmailAccountOfMessageTemplateAsync(messageTemplate, languageId);
+
+                var tokens = new List<Token>(commonTokens);
+                await _messageTokenProvider.AddStoreTokensAsync(tokens, store, emailAccount);
+
+                //event notification
+                await _eventPublisher.MessageTokensAddedAsync(messageTemplate, tokens);
+
+                var toEmail = emailAccount.Email;
+                var toName = emailAccount.DisplayName;
+
+                return await SendNotificationAsync(messageTemplate, emailAccount, languageId, tokens, toEmail, toName);
+            }).ToListAsync();
         }
 
         #endregion

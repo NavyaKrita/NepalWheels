@@ -53,10 +53,6 @@ namespace Nop.Core.Domain.Customers
         /// </summary>
         public int VendorId { get; set; }
 
-        /// <summary>
-        /// Gets or sets the vendor identifier with which this customer is associated (maganer)
-        /// </summary>
-        public int SellerId { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether this customer has some products in the shopping cart

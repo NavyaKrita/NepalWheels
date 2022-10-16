@@ -262,7 +262,7 @@ namespace Nop.Web.Controllers
                 //associate to the current customer
                 //but a store owner will have to manually add this customer role to "Sellers" role
                 //if he wants to grant access to admin area
-                (await _workContext.GetCurrentCustomerAsync()).SellerId = seller.Id;
+                (await _workContext.GetCurrentCustomerAsync()).VendorId = seller.Id;
                 await _customerService.UpdateCustomerAsync(await _workContext.GetCurrentCustomerAsync());
 
                 //update picture seo file name

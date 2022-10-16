@@ -7185,18 +7185,6 @@
   <LocaleResource Name="Admin.Configuration.Settings.GeneralCommon.DisplayDefaultFooterItemSettingsModel.DisplayApplyVendorAccountFooterItem">
     <Value>Display "Apply for vendor account"</Value>
   </LocaleResource>
-	<LocaleResource Name="Admin.Configuration.Settings.GeneralCommon.DisplayDefaultFooterItemSettingsModel.DisplayApplySellerAccountFooterItem">
-		<Value>Display "Apply for seller account"</Value>
-	</LocaleResource>
-	<LocaleResource Name="Admin.Configuration.Settings.GeneralCommon.DisplayDefaultFooterItemSettingsModel.DisplayApplySellerAccountFooterItem">
-		<Value>Display "Apply for seller account"</Value>
-	</LocaleResource>	
-  <LocaleResource Name="Admin.Configuration.Settings.GeneralCommon.DisplayDefaultFooterItemSettingsModel.DisplayApplyVendorAccountFooterItem.Hint">
-    <Value>Check if "Apply for vendor account" menu item should be displayed in the footer. Vendor functionality should be also enabled in this case.</Value>
-  </LocaleResource>
-	<LocaleResource Name="Admin.Configuration.Settings.GeneralCommon.DisplayDefaultFooterItemSettingsModel.DisplayApplySellerAccountFooterItem.Hint">
-		<Value>Check if "Apply for seller account" menu item should be displayed in the footer. Vendor functionality should be also enabled in this case.</Value>
-	</LocaleResource>
   <LocaleResource Name="Admin.Configuration.Settings.GeneralCommon.DisplayDefaultFooterItemSettingsModel.DisplayBlogFooterItem">
     <Value>Display "Blog"</Value>
   </LocaleResource>
@@ -8886,9 +8874,6 @@
   <LocaleResource Name="Admin.Configuration.Settings.Vendor.AllowCustomersToApplyForVendorAccount">
     <Value>Allow customers to apply for vendor account</Value>
   </LocaleResource>
-	<LocaleResource Name="Admin.Configuration.Settings.Vendor.AllowCustomersToApplyForSellerAccount">
-		<Value>Allow customers to apply for seller account</Value>
-	</LocaleResource>
   <LocaleResource Name="Admin.Configuration.Settings.Vendor.AllowCustomersToApplyForVendorAccount.Hint">
     <Value>Check to allow customers users to fill a form to become a new vendor. Then a store owner will have to manually approve it.</Value>
   </LocaleResource>
@@ -17796,18 +17781,12 @@
   <LocaleResource Name="PageTitle.VendorInfo">
     <Value>Vendor info</Value>
   </LocaleResource>
-	<LocaleResource Name="PageTitle.SellerInfo">
-		<Value>Seller info</Value>
-	</LocaleResource>
   <LocaleResource Name="PageTitle.Vendors">
     <Value>Vendors</Value>
   </LocaleResource>
   <LocaleResource Name="PageTitle.Vendors.Apply">
     <Value>Apply for vendor account</Value>
   </LocaleResource>
-  <LocaleResource Name="PageTitle.Sellers.Apply">
-		<Value>Apply for seller account</Value>
-	</LocaleResource>
   <LocaleResource Name="PageTitle.ViewPM">
     <Value>View the private message</Value>
   </LocaleResource>
@@ -18405,9 +18384,6 @@
   <LocaleResource Name="Products.EstimateShipping.ViaProvider">
     <Value>via</Value>
   </LocaleResource>
-	<LocaleResource Name="Sellers.ApplyAccount">
-		<Value>Apply Sellers Account</Value>
-	</LocaleResource>
   <LocaleResource Name="Products.ExclTaxSuffix">
     <Value>{0} excl tax</Value>
   </LocaleResource>
@@ -19320,15 +19296,9 @@
   <LocaleResource Name="Vendors">
     <Value>Vendors</Value>
   </LocaleResource>
-	<LocaleResource Name="Sellers">
-		<Value>Sellers</Value>
-	</LocaleResource>
   <LocaleResource Name="Vendors.ApplyAccount">
     <Value>Apply for vendor account</Value>
   </LocaleResource>
-	<LocaleResource Name="Sellers.ApplyAccount">
-		<Value>Apply for seller account</Value>
-	</LocaleResource>
   <LocaleResource Name="Vendors.ApplyAccount.AcceptTermsOfService">
     <Value>I accept terms of service</Value>
   </LocaleResource>
@@ -19353,12 +19323,6 @@
   <LocaleResource Name="Vendors.ApplyAccount.Email.Hint">
     <Value>Enter your email address.</Value>
   </LocaleResource>
-	<LocaleResource Name="Sellers.ApplyAccount.Email.Hint">
-		<Value>Enter your email address.</Value>
-	</LocaleResource>
-	<LocaleResource Name="Sellers.ApplyAccount.Email.Required">
-		<Value>Email is required.</Value>
-	</LocaleResource>
   <LocaleResource Name="Vendors.ApplyAccount.Email.Required">
     <Value>Email is required.</Value>
   </LocaleResource>
@@ -19371,9 +19335,6 @@
   <LocaleResource Name="Vendors.ApplyAccount.Name.Hint">
     <Value>Enter vendor name.</Value>
   </LocaleResource>
-	<LocaleResource Name="Sellers.ApplyAccount.Name.Hint">
-		<Value>Enter seller name.</Value>
-	</LocaleResource>
   <LocaleResource Name="Vendors.ApplyAccount.Name.Required">
     <Value>Vendor name is required.</Value>
   </LocaleResource>

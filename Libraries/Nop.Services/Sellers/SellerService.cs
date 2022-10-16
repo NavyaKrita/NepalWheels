@@ -109,7 +109,7 @@ namespace Nop.Services.Vendors
                 throw new ArgumentNullException(nameof(customerIds));
 
             return await (from v in _sellerRepository.Table
-                join c in _customerRepository.Table on v.Id equals c.SellerId
+                join c in _customerRepository.Table on v.Id equals c.VendorId
                 where customerIds.Contains(c.Id) && !v.Deleted && v.Active
                 select v).Distinct().ToListAsync();
         }
