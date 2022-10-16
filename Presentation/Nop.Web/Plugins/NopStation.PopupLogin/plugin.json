@@ -1,0 +1,12 @@
+﻿{
+  "Group": "Nop Station",
+  "FriendlyName": "Nop-Station Popup Login",
+  "SystemName": "NopStation.PopupLogin",
+  "Version": "4.4.1",
+  "SupportedVersions": [ "4.40" ],
+  "Author": "Nop-Station Team, Jaber Kibria",
+  "DisplayOrder": 1,
+  "FileName": "Nop.Plugin.NopStation.PopupLogin.dll",
+  "Description": "This plugin enables popup login.",
+  "DependsOnSystemNames": [ "NopStation.Core" ]
+}

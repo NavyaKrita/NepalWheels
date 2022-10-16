@@ -68,6 +68,8 @@ namespace Nop.Services.Security
         public static readonly PermissionRecord AccessProfiling = new PermissionRecord { Name = "Public store. Access MiniProfiler results", SystemName = "AccessProfiling", Category = "PublicStore" };
 
         public static readonly PermissionRecord ManageEMICalculater = new PermissionRecord { Name = "Admin area. Manage EMI Calculater", SystemName = "ManageEMICalculater", Category = "Configuration" };
+      
+
         /// <summary>
         /// Get permissions
         /// </summary>
