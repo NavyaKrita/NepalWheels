@@ -17,14 +17,16 @@ namespace Nop.Web.Controllers
         private readonly INoticeBoardService _noticeBoardService;
         private readonly INoticeBoardModelFactory _noticeBoardModelFactory;
         public ParticipantsController(INoticeBoardService noticeBoardService,
-           INoticeBoardModelFactory noticeBoardModelFactory )
+           INoticeBoardModelFactory noticeBoardModelFactory)
         {
             _noticeBoardService = noticeBoardService;
             _noticeBoardModelFactory = noticeBoardModelFactory;
         }
-        public IActionResult RegisterParticipants()
+        public virtual async Task<IActionResult> RegisterParticipants()
         {
+            var notice = await _noticeBoardModelFactory.PrepareNoticeModelAsync();
             ParticipantsModel model = new();
+            model.Notice = notice.Notice;
             return View(model);
         }
 
@@ -53,13 +55,24 @@ namespace Nop.Web.Controllers
             //If we got this far, something failed, redisplay form
 
 
-            return Json(new { success=false });
+            return Json(new { success = false });
         }
         public virtual async Task<IActionResult> ThankYou()
         {
 
             var model = await _noticeBoardModelFactory.PrepareNoticeModelAsync();
             return View(model);
+        }
+
+        public virtual async Task<IActionResult> Display()
+        {
+
+            var model = await _noticeBoardModelFactory.PrepareNoticeModelAsync();
+            if (!string.IsNullOrEmpty(model.Notice))
+            {
+                return Json(new { success = true });
+            }
+            return Json(new { success = false });
         }
     }
 }

@@ -27,6 +27,11 @@ namespace Nop.Web.Factories
             //get notices
             var notices = await _noticeBoardService.GetNoticeByPublishedDateAsync();
             //prepare list mode
+            if (notices == null)
+            {
+                return
+                 new NoticeBoardModel();
+            }
             return
                  new NoticeBoardModel()
                  {

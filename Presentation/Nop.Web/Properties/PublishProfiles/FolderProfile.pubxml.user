@@ -4,7 +4,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
 -->
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <_PublishTargetUrl>D:\Project\Publish</_PublishTargetUrl>
-    <History>True|2022-05-22T17:10:20.4542114Z;True|2022-05-14T08:09:35.2995714+05:45;True|2022-05-13T15:38:06.0814506+05:45;True|2022-05-12T22:52:17.0982127+05:45;True|2022-05-12T21:42:06.3283862+05:45;True|2022-05-12T21:33:42.1211939+05:45;</History>
+    <_PublishTargetUrl>D:\Publish</_PublishTargetUrl>
+    <History>True|2022-09-15T10:15:13.4146706Z;True|2022-09-12T21:26:03.6069788+05:45;True|2022-05-30T22:30:53.3242467+05:45;True|2022-05-29T23:37:49.4168994+05:45;True|2022-05-22T22:55:20.4542114+05:45;True|2022-05-14T08:09:35.2995714+05:45;True|2022-05-13T15:38:06.0814506+05:45;True|2022-05-12T22:52:17.0982127+05:45;True|2022-05-12T21:42:06.3283862+05:45;True|2022-05-12T21:33:42.1211939+05:45;</History>
   </PropertyGroup>
 </Project>
