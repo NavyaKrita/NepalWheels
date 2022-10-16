@@ -27,6 +27,7 @@ namespace Nop.Web.Controllers
             var notice = await _noticeBoardModelFactory.PrepareNoticeModelAsync();
             ParticipantsModel model = new();
             model.Notice = notice.Notice;
+            model.IsDisplayForm = notice.DisplayForm;
             return View(model);
         }
 

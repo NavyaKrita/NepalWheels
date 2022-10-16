@@ -16,63 +16,69 @@
         <div id="thank-you-page-load">
             @Html.Raw(Model.Notice)
 
-            <div class="form-fields">
-                <div class="buttons">
-                    <button type="button" name="show-register-button" id="show-register-button" class="button-1 register-next-step-button">@T("Account.Register.Button")</button>
-                </div>
-            </div>
-        </div>
-        <div id="resgister-participants-form">
-            <form asp-route="RegisterParticipants" method="post" autocomplete="off" id="register-participants-form-submit">
-                <div asp-validation-summary="ModelOnly" class="message-error"></div>
-                <div class="fieldset">
-                    <div class="title">
-                        <strong>@T("Account.YourPersonalDetails")</strong>
-                    </div>
-                    <div class="form-fields">
-
-
-                        <div class="inputs">
-                            <label asp-for="Name" asp-postfix=":"></label>
-                            <input asp-for="Name" />
-
-                            <nop-required />
-
-                            <span asp-validation-for="Name"></span>
-                        </div>
-                        <div class="inputs">
-                            <label asp-for="EmailAddress" asp-postfix=":"></label>
-                            <input asp-for="EmailAddress" />
-                            <nop-required />
-                            <span asp-validation-for="EmailAddress"></span>
-                        </div>
-
-
-                        <div class="inputs">
-                            <label asp-for="City" asp-postfix=":"></label>
-                            <input asp-for="City" />
-
-                            <nop-required />
-
-                            <span asp-validation-for="City"></span>
-                        </div>
-                        <div class="inputs">
-                            <label asp-for="PhoneNumber" asp-postfix=":"></label>
-                            <input asp-for="PhoneNumber" />
-
-                            <nop-required />
-
-                            <span asp-validation-for="PhoneNumber"></span>
-                        </div>
-
-                    </div>
+            @if (Model.IsDisplayForm)
+            {
+                <div class="form-fields">
                     <div class="buttons">
-                        <button type="submit" name="register-button" id="register-button" class="button-1 register-next-step-button">@T("Account.Register.Button")</button>
+                        <button type="button" name="show-register-button" id="show-register-button" class="button-1 register-next-step-button">@T("Account.Register.Button")</button>
                     </div>
                 </div>
-            </form>
+            }
+
         </div>
-      
+        @if (Model.IsDisplayForm)
+        {
+            <div id="resgister-participants-form">
+                <form asp-route="RegisterParticipants" method="post" autocomplete="off" id="register-participants-form-submit">
+                    <div asp-validation-summary="ModelOnly" class="message-error"></div>
+                    <div class="fieldset">
+                        <div class="title">
+                            <strong>@T("Account.YourPersonalDetails")</strong>
+                        </div>
+                        <div class="form-fields">
+
+
+                            <div class="inputs">
+                                <label asp-for="Name" asp-postfix=":"></label>
+                                <input asp-for="Name" />
+
+                                <nop-required />
+
+                                <span asp-validation-for="Name"></span>
+                            </div>
+                            <div class="inputs">
+                                <label asp-for="EmailAddress" asp-postfix=":"></label>
+                                <input asp-for="EmailAddress" />
+                                <nop-required />
+                                <span asp-validation-for="EmailAddress"></span>
+                            </div>
+
+
+                            <div class="inputs">
+                                <label asp-for="City" asp-postfix=":"></label>
+                                <input asp-for="City" />
+
+                                <nop-required />
+
+                                <span asp-validation-for="City"></span>
+                            </div>
+                            <div class="inputs">
+                                <label asp-for="PhoneNumber" asp-postfix=":"></label>
+                                <input asp-for="PhoneNumber" />
+
+                                <nop-required />
+
+                                <span asp-validation-for="PhoneNumber"></span>
+                            </div>
+
+                        </div>
+                        <div class="buttons">
+                            <button type="submit" name="register-button" id="register-button" class="button-1 register-next-step-button">@T("Account.Register.Button")</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        }
     </div>
 </div>
 

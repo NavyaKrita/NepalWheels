@@ -28,5 +28,6 @@ namespace Nop.Web.Models.Notice
         public string Notice { get; set; }
         public int NoticeBoardId { get; set; }
         public DateTime CreatedOnUtc { get; set; }
+        public bool IsDisplayForm { get; set; }
     }
 }
