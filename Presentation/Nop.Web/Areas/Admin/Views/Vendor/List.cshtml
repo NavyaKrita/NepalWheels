@@ -40,7 +40,7 @@
 
                     <div class="search-body @(hideSearchBlock ? "closed" : "")">
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <div class="form-group row">
                                     <div class="col-md-4">
                                         <nop-label asp-for="SearchName" />
@@ -50,7 +50,7 @@
                                     </div>
                                 </div>
                                 </div>
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <div class="form-group row">
                                     <div class="col-md-4">
                                         <nop-label asp-for="SearchEmail" />
@@ -60,6 +60,15 @@
                                     </div>
                                 </div>
                             </div>
+                              @* <div class="form-group row">
+                                    <div class="col-md-4">
+                                        <nop-label asp-for="SearchType" />
+
+                                    </div>
+                                    <div class="col-md-8">
+                                        <nop-select asp-for="Id" asp-items="Model.Type" />
+                                    </div>
+                                </div>*@
                         </div>
                         <div class="row">
                             <div class="text-center col-12">
@@ -91,6 +100,11 @@
                         },
                         ColumnCollection = new List<ColumnProperty>
                         {
+                             new ColumnProperty(nameof(VendorModel.Type))
+                            {
+                                Title = T("Admin.Vendors.Fields.Type").Text,
+                                Width = "300"
+                            },
                             new ColumnProperty(nameof(VendorModel.Name))
                             {
                                 Title = T("Admin.Vendors.Fields.Name").Text,

@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using MySqlX.XDevAPI.Common;
+using Nop.Core.Caching;
+using Nop.Core;
 using Nop.Core.Domain.Catalog;
 using Nop.Core.Domain.Directory;
 using Nop.Core.Domain.Vendors;
@@ -17,6 +21,7 @@ using Nop.Web.Areas.Admin.Infrastructure.Mapper.Extensions;
 using Nop.Web.Areas.Admin.Models.Vendors;
 using Nop.Web.Framework.Factories;
 using Nop.Web.Framework.Models.Extensions;
+using static LinqToDB.Common.Configuration;
 
 namespace Nop.Web.Areas.Admin.Factories
 {
@@ -242,8 +247,49 @@ namespace Nop.Web.Areas.Admin.Factories
 
             //prepare page parameters
             searchModel.SetGridPageSize();
+            List<SelectListItem> listItems = new List<SelectListItem>();
 
+            listItems.Add(new SelectListItem { Text = "Vendors", Value = "0" });
+
+            listItems.Add(new SelectListItem { Text = "Sellers", Value = "1" });
+
+
+            var result = new List<SelectListItem>();
+            //clone the list to ensure that "selected" property is not set
+            foreach (var item in listItems)
+            {
+                result.Add(new SelectListItem
+                {
+                    Text = item.Text,
+                    Value = item.Value
+                });
+            }
+            result.Add(new SelectListItem { Text = "*", Value = "0" });
+            result.Add(new SelectListItem { Text = "*", Value = "0" });
+
+            searchModel.Type= result;
             return Task.FromResult(searchModel);
+        }
+        protected virtual async Task<List<SelectListItem>> TestAsync(bool showHidden = true)
+        {
+            List<SelectListItem> listItems = new List<SelectListItem>();
+
+            listItems.Add(new SelectListItem { Text = "Vendors", Value = "0" });
+
+            listItems.Add(new SelectListItem { Text = "Sellers", Value = "1" });
+
+             
+            var result = new List<SelectListItem>();
+            //clone the list to ensure that "selected" property is not set
+            foreach (var item in listItems)
+            {
+                result.Add(new SelectListItem
+                {
+                    Text = item.Text,
+                    Value = item.Value
+                });
+            }
+            return result;
         }
 
         /// <summary>
@@ -258,6 +304,7 @@ namespace Nop.Web.Areas.Admin.Factories
         {
             if (searchModel == null)
                 throw new ArgumentNullException(nameof(searchModel));
+            await TestAsync();
 
             //get vendors
             var vendors = await _vendorService.GetAllVendorsAsync(showHidden: true,
@@ -274,10 +321,11 @@ namespace Nop.Web.Areas.Admin.Factories
                     var vendorModel = vendor.ToModel<VendorModel>();
 
                     vendorModel.SeName = await _urlRecordService.GetSeNameAsync(vendor, 0, true, false);
-
+                    vendorModel.Type = vendorModel.IsSeller == "True" ? "Seller" :"Vendor";
                     return vendorModel;
                 });
             });
+            
 
             return model;
         }
