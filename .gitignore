@@ -16,8 +16,9 @@ bld/
 [Ll]og/
 
 *.dll
-
-
+.vs16/*
+.vs/NopCommerce/v16/.suo
+*.v2
 
 
 
