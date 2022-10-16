@@ -1,0 +1,11 @@
+﻿{
+  "Group": "EMI providers",
+  "FriendlyName": "Monthly EMI Calculater",
+  "SystemName": "Calculator.EMI",
+  "Version": "1.0",
+  "SupportedVersions": [ "4.40" ],
+  "Author": "NavyaKrita team",
+  "DisplayOrder": 1,
+  "FileName": "Nop.Plugin.Calculator.EMI.dll",
+  "Description": "This plugin calculate the monthly EMI based on given time,rate,amount."
+}

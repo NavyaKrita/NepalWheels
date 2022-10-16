@@ -32,6 +32,7 @@ namespace Nop.Web.Controllers
         }
 
         [HttpPost]
+        
         /// <returns>A task that represents the asynchronous operation</returns>
         public virtual async Task<IActionResult> RegisterParticipants(ParticipantsModel model, IFormCollection form)
         {
