@@ -34,7 +34,7 @@ namespace Nop.Web.Areas.Admin.Models.Vendors
         public string Name { get; set; }
 
         [NopResourceDisplayName("Admin.Vendors.Fields.Type")]
-        public string IsSeller { get; set; }
+        public bool IsSeller { get; set; }
         [NopResourceDisplayName("Admin.Vendors.Fields.VendorType")]
         public string Type { get; set; }
 

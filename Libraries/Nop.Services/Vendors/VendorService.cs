@@ -135,8 +135,10 @@ namespace Nop.Services.Vendors
         /// A task that represents the asynchronous operation
         /// The task result contains the vendors
         /// </returns>
-        public virtual async Task<IPagedList<Vendor>> GetAllVendorsAsync(string name = "", string email = "", int pageIndex = 0, int pageSize = int.MaxValue, bool showHidden = false)
+        public virtual async Task<IPagedList<Vendor>> GetAllVendorsAsync(string name = "", string email = "",int pageIndex = 0, int pageSize = int.MaxValue, bool showHidden = false,int SearchGroupId=3)
         {
+            
+            
             var vendors = await _vendorRepository.GetAllPagedAsync(query =>
             {
                 if (!string.IsNullOrWhiteSpace(name))
@@ -144,10 +146,12 @@ namespace Nop.Services.Vendors
 
                 if (!string.IsNullOrWhiteSpace(email))
                     query = query.Where(v => v.Email.Contains(email));
-
+                if (SearchGroupId == 1)//Vendor
+                    query = query.Where(v => v.IsSeller==false);
+                if (SearchGroupId == 2)//Seller
+                    query = query.Where(v => v.IsSeller == true);
                 if (!showHidden)
                     query = query.Where(v => v.Active);
-
                 query = query.Where(v => !v.Deleted);
                 query = query.OrderBy(v => v.DisplayOrder).ThenBy(v => v.Name).ThenBy(v => v.Email);
 

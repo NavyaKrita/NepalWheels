@@ -7,13 +7,13 @@
     //page class
     Html.AppendPageCssClassParts("html-apply-vendor-page");
 }
-<div class="page apply-seller-page">
+<div class="page apply-vendor-page">
     <div class="page-title">
         <h1>@T("PageTitle.Sellers.Apply")</h1>
     </div>
     <div class="page-body">
-        @await Component.InvokeAsync("TopicBlock", new { systemName = "ApplySeller" })
-        @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.ApplySellerTop })
+        @await Component.InvokeAsync("TopicBlock", new { systemName = "ApplyVendor" })
+        @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.ApplyVendorTop })
         @if (Model.DisableFormInput)
         {
             <div class="result">
@@ -97,6 +97,6 @@
                 </div>
             </form>
         }
-        @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.ApplySellerBottom })
+        @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.ApplyVendorBottom})
     </div>
 </div>
