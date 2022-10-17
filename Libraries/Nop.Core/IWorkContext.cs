@@ -2,6 +2,7 @@
 using Nop.Core.Domain.Customers;
 using Nop.Core.Domain.Directory;
 using Nop.Core.Domain.Localization;
+using Nop.Core.Domain.Sellers;
 using Nop.Core.Domain.Tax;
 using Nop.Core.Domain.Vendors;
 
@@ -35,6 +36,11 @@ namespace Nop.Core
         /// </summary>
         /// <returns>A task that represents the asynchronous operation</returns>
         Task<Vendor> GetCurrentVendorAsync();
+        /// <summary>
+        /// Gets the current vendor (logged-in manager)
+        /// </summary>
+        /// <returns>A task that represents the asynchronous operation</returns>
+        Task<Vendor> GetCurrentSellerAsync();
 
         /// <summary>
         /// Gets current user working language

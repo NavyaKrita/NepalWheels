@@ -7,6 +7,7 @@ using Nop.Core.Domain.Forums;
 using Nop.Core.Domain.Messages;
 using Nop.Core.Domain.News;
 using Nop.Core.Domain.Orders;
+using Nop.Core.Domain.Sellers;
 using Nop.Core.Domain.Shipping;
 using Nop.Core.Domain.Vendors;
 
@@ -452,6 +453,18 @@ namespace Nop.Services.Messages
         Task<IList<int>> SendNewVendorAccountApplyStoreOwnerNotificationAsync(Customer customer, Vendor vendor, int languageId);
 
         /// <summary>
+        /// Sends 'New seller account submitted' message to a store owner
+        /// </summary>
+        /// <param name="customer">Customer</param>
+        /// <param name="seller">Vendor</param>
+        /// <param name="languageId">Message language identifier</param>
+        /// <returns>
+        /// A task that represents the asynchronous operation
+        /// The task result contains the queued email identifier
+        /// </returns>
+        Task<IList<int>> SendNewSellerAccountApplyStoreOwnerNotificationAsync(Customer customer, Vendor seller, int languageId);
+
+        /// <summary>
         /// Sends 'Vendor information change' message to a store owner
         /// </summary>
         /// <param name="vendor">Vendor</param>
@@ -461,6 +474,17 @@ namespace Nop.Services.Messages
         /// The task result contains the queued email identifier
         /// </returns>
         Task<IList<int>> SendVendorInformationChangeNotificationAsync(Vendor vendor, int languageId);
+
+        /// <summary>
+        /// Sends 'Seller information change' message to a store owner
+        /// </summary>
+        /// <param name="seller">Seller</param>
+        /// <param name="languageId">Message language identifier</param>
+        /// <returns>
+        /// A task that represents the asynchronous operation
+        /// The task result contains the queued email identifier
+        /// </returns>
+        Task<IList<int>> SendSellerInformationChangeNotificationAsync(Vendor seller, int languageId);
 
         /// <summary>
         /// Sends a product review notification message to a store owner

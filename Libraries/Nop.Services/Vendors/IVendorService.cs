@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Nop.Core;
+using Nop.Core.Domain.Sellers;
 using Nop.Core.Domain.Vendors;
 
 namespace Nop.Services.Vendors
@@ -69,7 +70,7 @@ namespace Nop.Services.Vendors
         /// A task that represents the asynchronous operation
         /// The task result contains the vendors
         /// </returns>
-        Task<IPagedList<Vendor>> GetAllVendorsAsync(string name = "", string email = "", int pageIndex = 0, int pageSize = int.MaxValue, bool showHidden = false);
+        Task<IPagedList<Vendor>> GetAllVendorsAsync(string name = "", string email = "",int pageIndex = 0, int pageSize = int.MaxValue, bool showHidden = false,int SearchGroupId=2);
 
         /// <summary>
         /// Inserts a vendor

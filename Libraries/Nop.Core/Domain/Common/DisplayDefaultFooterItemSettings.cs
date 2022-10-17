@@ -81,5 +81,6 @@ namespace Nop.Core.Domain.Common
         /// Gets or sets a value indicating whether to display "apply vendor account" footer item
         /// </summary>
         public bool DisplayApplyVendorAccountFooterItem { get; set; }
+        public bool DisplayApplySellerAccountFooterItem { get; set; }
     }
 }

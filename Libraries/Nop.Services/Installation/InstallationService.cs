@@ -28,6 +28,7 @@ using Nop.Core.Domain.Orders;
 using Nop.Core.Domain.Payments;
 using Nop.Core.Domain.Polls;
 using Nop.Core.Domain.Security;
+using Nop.Core.Domain.Sellers;
 using Nop.Core.Domain.Seo;
 using Nop.Core.Domain.Shipping;
 using Nop.Core.Domain.Stores;
@@ -2809,7 +2810,30 @@ namespace Nop.Services.Installation
                 },
                 new Topic
                 {
+                    SystemName = "ApplySeller",
+                    IncludeInSitemap = false,
+                    IsPasswordProtected = false,
+                    DisplayOrder = 1,
+                    Published = true,
+                    Title = string.Empty,
+                    Body = "<p>Put your apply vendor instructions here. You can edit this in the admin site.</p>",
+                    TopicTemplateId = defaultTopicTemplate.Id
+                },
+                new Topic
+                {
                     SystemName = "VendorTermsOfService",
+                    IncludeInSitemap = false,
+                    IsPasswordProtected = false,
+                    IncludeInFooterColumn1 = false,
+                    DisplayOrder = 1,
+                    Published = true,
+                    Title = "Terms of services for vendors",
+                    Body = "<p>Put your terms of service information here. You can edit this in the admin site.</p>",
+                    TopicTemplateId = defaultTopicTemplate.Id
+                },
+                new Topic
+                {
+                    SystemName = "SellerTermsOfService",
                     IncludeInSitemap = false,
                     IsPasswordProtected = false,
                     IncludeInFooterColumn1 = false,
@@ -3467,6 +3491,19 @@ namespace Nop.Services.Installation
                 MaximumProductNumber = 3000,
                 AllowVendorsToImportProducts = true
             });
+            await settingService.SaveSettingAsync(new SellerSettings
+            {
+                DefaultSellerPageSizeOptions = "6, 3, 9",
+                SellersBlockItemsToDisplay = 0,
+                ShowSellerOnProductDetailsPage = true,
+                AllowCustomersToContactSellers = true,
+                AllowCustomersToApplyForSellerAccount = true,
+                TermsOfServiceEnabled = false,
+                AllowSellersToEditInfo = false,
+                NotifyStoreOwnerAboutSellerInformationChange = true,
+                MaximumProductNumber = 3000,
+                AllowSellersToImportProducts = true
+            });
 
             var eaGeneral = _emailAccountRepository.Table.FirstOrDefault();
             if (eaGeneral == null)
@@ -3508,7 +3545,8 @@ namespace Nop.Services.Installation
                 DisplayCustomerAddressesFooterItem = true,
                 DisplayShoppingCartFooterItem = true,
                 DisplayWishlistFooterItem = true,
-                DisplayApplyVendorAccountFooterItem = true
+                DisplayApplyVendorAccountFooterItem = true,
+                DisplayApplySellerAccountFooterItem=true
             });
 
             await settingService.SaveSettingAsync(new CaptchaSettings

@@ -336,7 +336,6 @@ namespace Nop.Web.Areas.Admin.Controllers
         {
             if (!await _permissionService.AuthorizeAsync(StandardPermissionProvider.ManageVendors))
                 return AccessDeniedView();
-
             //try to get a vendor with the specified id
             var vendor = await _vendorService.GetVendorByIdAsync(model.Id);
             if (vendor == null || vendor.Deleted)

@@ -76,6 +76,8 @@ namespace Nop.Web.Areas.Admin.Models.Catalog
         public IList<SelectListItem> AvailableProductTypes { get; set; }
 
         public IList<SelectListItem> AvailablePublishedOptions { get; set; }
+        
+        public bool IsSeller { get; set; }
 
         #endregion
     }

@@ -70,7 +70,11 @@ namespace Nop.Web.Areas.Admin.Models.Settings
 
         [NopResourceDisplayName("Admin.Configuration.Settings.GeneralCommon.DisplayDefaultFooterItemSettingsModel.DisplayApplyVendorAccountFooterItem")]
         public bool DisplayApplyVendorAccountFooterItem { get; set; }
+
+        [NopResourceDisplayName("Admin.Configuration.Settings.GeneralCommon.DisplayDefaultFooterItemSettingsModel.DisplayApplySellerAccountFooterItem")]
+        public bool DisplayApplySellerAccountFooterItem { get; set; }
         public bool DisplayApplyVendorAccountFooterItem_OverrideForStore { get; set; }
+        public bool DisplayApplySellerAccountFooterItem_OverrideForStore { get; set; }
 
         #endregion
     }

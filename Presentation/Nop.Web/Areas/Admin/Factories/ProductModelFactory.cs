@@ -718,7 +718,10 @@ namespace Nop.Web.Areas.Admin.Factories
             //get parameters to filter comments
             var overridePublished = searchModel.SearchPublishedId == 0 ? null : (bool?)(searchModel.SearchPublishedId == 1);
             if (await _workContext.GetCurrentVendorAsync() != null)
+            {
                 searchModel.SearchVendorId = (await _workContext.GetCurrentVendorAsync()).Id;
+                searchModel.IsSeller = (await _workContext.GetCurrentVendorAsync()).IsSeller;
+            }
             var categoryIds = new List<int> { searchModel.SearchCategoryId };
             if (searchModel.SearchIncludeSubCategories && searchModel.SearchCategoryId > 0)
             {

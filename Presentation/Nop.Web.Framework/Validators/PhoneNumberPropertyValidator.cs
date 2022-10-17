@@ -43,12 +43,13 @@ namespace Nop.Web.Framework.Validators
             if (!customerSettings.PhoneNumberValidationEnabled || string.IsNullOrEmpty(customerSettings.PhoneNumberValidationRule))
                 return true;
 
-            if (string.IsNullOrEmpty(phoneNumber))
-                return false;
+            //if (string.IsNullOrEmpty(phoneNumber))
+            //    return false;
 
-            return customerSettings.PhoneNumberValidationUseRegex
-                ? Regex.IsMatch(phoneNumber, customerSettings.PhoneNumberValidationRule, RegexOptions.CultureInvariant | RegexOptions.IgnoreCase)
-                : phoneNumber.All(l => customerSettings.PhoneNumberValidationRule.Contains(l));
+            //return customerSettings.PhoneNumberValidationUseRegex
+            //    ? Regex.IsMatch(phoneNumber, customerSettings.PhoneNumberValidationRule, RegexOptions.CultureInvariant | RegexOptions.IgnoreCase)
+            //    : phoneNumber.All(l => customerSettings.PhoneNumberValidationRule.Contains(l));
+            return true;
         }
     }
 }

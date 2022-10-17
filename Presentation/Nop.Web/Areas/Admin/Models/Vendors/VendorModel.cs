@@ -33,6 +33,11 @@ namespace Nop.Web.Areas.Admin.Models.Vendors
         [NopResourceDisplayName("Admin.Vendors.Fields.Name")]
         public string Name { get; set; }
 
+        [NopResourceDisplayName("Admin.Vendors.Fields.Type")]
+        public bool IsSeller { get; set; }
+        [NopResourceDisplayName("Admin.Vendors.Fields.VendorType")]
+        public string Type { get; set; }
+
         [DataType(DataType.EmailAddress)]
         [NopResourceDisplayName("Admin.Vendors.Fields.Email")]
         public string Email { get; set; }

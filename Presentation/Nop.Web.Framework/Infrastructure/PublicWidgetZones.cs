@@ -6,7 +6,9 @@
         public static string AccountNavigationBefore => "account_navigation_before";
         public static string AdminHeaderLinksAfter => "admin_header_links_after";
         public static string ApplyVendorBottom => "applyvendor_bottom";
+        public static string ApplySellerBottom => "applyseller_bottom";
         public static string ApplyVendorTop => "applyvendor_top";
+        public static string ApplySellerTop => "applyseller_top";
         public static string BlogListPageAfterPost => "bloglist_page_after_post";
         public static string BlogListPageAfterPostBody => "bloglist_page_after_post_body";
         public static string BlogListPageAfterPosts => "bloglist_page_after_posts";

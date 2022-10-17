@@ -63,6 +63,11 @@ namespace Nop.Core.Domain.Security
         public bool ShowOnApplyVendorPage { get; set; }
 
         /// <summary>
+        /// A value indicating whether CAPTCHA should be displayed on the "Apply for vendor account" page
+        /// </summary>
+        public bool ShowOnApplySellerPage { get; set; }
+
+        /// <summary>
         /// A value indicating whether CAPTCHA should be displayed on the "forgot password" page
         /// </summary>
         public bool ShowOnForgotPasswordPage { get; set; }

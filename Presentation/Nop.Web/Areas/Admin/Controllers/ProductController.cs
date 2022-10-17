@@ -29,6 +29,7 @@ using Nop.Services.Orders;
 using Nop.Services.Security;
 using Nop.Services.Seo;
 using Nop.Services.Shipping;
+using Nop.Services.Vendors;
 using Nop.Web.Areas.Admin.Factories;
 using Nop.Web.Areas.Admin.Infrastructure.Mapper.Extensions;
 using Nop.Web.Areas.Admin.Models.Catalog;
@@ -76,6 +77,7 @@ namespace Nop.Web.Areas.Admin.Controllers
         private readonly IGenericAttributeService _genericAttributeService;
         private readonly IWorkContext _workContext;
         private readonly VendorSettings _vendorSettings;
+        private readonly IVendorService _vendorService;
 
         #endregion
 
@@ -247,7 +249,7 @@ namespace Nop.Web.Areas.Admin.Controllers
         {
             product.SubjectToAcl = model.SelectedCustomerRoleIds.Any();
             await _productService.UpdateProductAsync(product);
-
+            
             var existingAclRecords = await _aclService.GetAclRecordsAsync(product);
             var allCustomerRoles = await _customerService.GetAllCustomerRolesAsync(true);
             foreach (var customerRole in allCustomerRoles)
@@ -760,7 +762,7 @@ namespace Nop.Web.Areas.Admin.Controllers
 
             //prepare model
             var model = await _productModelFactory.PrepareProductSearchModelAsync(new ProductSearchModel());
-
+            model.IsSeller = (await _workContext.GetCurrentVendorAsync()).IsSeller;
             return View(model);
         }
 
@@ -773,7 +775,6 @@ namespace Nop.Web.Areas.Admin.Controllers
 
             //prepare model
             var model = await _productModelFactory.PrepareProductListModelAsync(searchModel);
-
             return Json(model);
         }
 
@@ -845,8 +846,11 @@ namespace Nop.Web.Areas.Admin.Controllers
             {
                 //a vendor should have access only to his products
                 if (await _workContext.GetCurrentVendorAsync() != null)
+                {
                     model.VendorId = (await _workContext.GetCurrentVendorAsync()).Id;
-
+                    model.IsSeller = (await _workContext.GetCurrentVendorAsync()).IsSeller;
+                }
+                
                 //vendors cannot edit "Show on home page" property
                 if (await _workContext.GetCurrentVendorAsync() != null && model.ShowOnHomepage)
                     model.ShowOnHomepage = false;
@@ -855,6 +859,8 @@ namespace Nop.Web.Areas.Admin.Controllers
                 var product = model.ToEntity<Product>();
                 product.CreatedOnUtc = DateTime.UtcNow;
                 product.UpdatedOnUtc = DateTime.UtcNow;
+                if (model.IsSeller)
+                    product.Published = true;
                 await _productService.InsertProductAsync(product);
 
                 //search engine name
@@ -922,10 +928,9 @@ namespace Nop.Web.Areas.Admin.Controllers
             //a vendor should have access only to his products
             if (await _workContext.GetCurrentVendorAsync() != null && product.VendorId != (await _workContext.GetCurrentVendorAsync()).Id)
                 return RedirectToAction("List");
-
             //prepare model
             var model = await _productModelFactory.PrepareProductModelAsync(null, product);
-
+            model.IsSeller = (await _workContext.GetCurrentVendorAsync()).IsSeller;
             return View(model);
         }
 
@@ -974,6 +979,7 @@ namespace Nop.Web.Areas.Admin.Controllers
                 var previousProductType = product.ProductType;
 
                 //product
+                product.IsVerified = model.IsVerified;
                 product = model.ToEntity(product);
 
                 product.UpdatedOnUtc = DateTime.UtcNow;
