@@ -59,6 +59,10 @@ namespace Nop.Core.Domain.Catalog
         /// Gets or sets a vendor identifier
         /// </summary>
         public int VendorId { get; set; }
+        /// <summary>
+        /// Gets or sets a IsVerified identifier
+        /// </summary>
+        public bool IsVerified { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether to show the product on home page

@@ -382,7 +382,9 @@ namespace Nop.Web.Areas.Admin.Models.Catalog
 
         [NopResourceDisplayName("Admin.Catalog.Products.Fields.Published")]
         public bool Published { get; set; }
-
+        [NopResourceDisplayName("Admin.Catalog.Products.Fields.IsVerified")]
+        public bool IsVerified { get; set; }
+        
         public string PrimaryStoreCurrencyCode { get; set; }
 
         public string BaseDimensionIn { get; set; }
@@ -479,6 +481,7 @@ namespace Nop.Web.Areas.Admin.Models.Catalog
 
         [NopResourceDisplayName("Admin.Catalog.Products.Fields.DownPayment")]
         public decimal DownPayment { get; set; }
+        public bool IsSeller { get; set; }
         #endregion
     }
 
@@ -506,5 +509,6 @@ namespace Nop.Web.Areas.Admin.Models.Catalog
 
         [NopResourceDisplayName("Admin.Catalog.Products.Fields.SeName")]
         public string SeName { get; set; }
+       
     }
 }
