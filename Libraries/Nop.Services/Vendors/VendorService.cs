@@ -23,7 +23,7 @@ namespace Nop.Services.Vendors
         private readonly IRepository<Product> _productRepository;
         private readonly IRepository<Vendor> _vendorRepository;
         private readonly IRepository<VendorNote> _vendorNoteRepository;
-       
+
         #endregion
 
         #region Ctor
@@ -70,9 +70,9 @@ namespace Nop.Services.Vendors
                 return null;
 
             return await (from v in _vendorRepository.Table
-                    join p in _productRepository.Table on v.Id equals p.VendorId
-                    where p.Id == productId
-                    select v).FirstOrDefaultAsync();
+                          join p in _productRepository.Table on v.Id equals p.VendorId
+                          where p.Id == productId
+                          select v).FirstOrDefaultAsync();
         }
 
         /// <summary>
@@ -89,9 +89,9 @@ namespace Nop.Services.Vendors
                 throw new ArgumentNullException(nameof(productIds));
 
             return await (from v in _vendorRepository.Table
-                    join p in _productRepository.Table on v.Id equals p.VendorId
-                    where productIds.Contains(p.Id) && !v.Deleted && v.Active
-                    select v).Distinct().ToListAsync();
+                          join p in _productRepository.Table on v.Id equals p.VendorId
+                          where productIds.Contains(p.Id) && !v.Deleted && v.Active
+                          select v).Distinct().ToListAsync();
         }
 
         /// <summary>
@@ -108,9 +108,9 @@ namespace Nop.Services.Vendors
                 throw new ArgumentNullException(nameof(customerIds));
 
             return await (from v in _vendorRepository.Table
-                join c in _customerRepository.Table on v.Id equals c.VendorId
-                where customerIds.Contains(c.Id) && !v.Deleted && v.Active
-                select v).Distinct().ToListAsync();
+                          join c in _customerRepository.Table on v.Id equals c.VendorId
+                          where customerIds.Contains(c.Id) && !v.Deleted && v.Active
+                          select v).Distinct().ToListAsync();
         }
 
         /// <summary>
@@ -135,10 +135,10 @@ namespace Nop.Services.Vendors
         /// A task that represents the asynchronous operation
         /// The task result contains the vendors
         /// </returns>
-        public virtual async Task<IPagedList<Vendor>> GetAllVendorsAsync(string name = "", string email = "",int pageIndex = 0, int pageSize = int.MaxValue, bool showHidden = false,int SearchGroupId=3)
+        public virtual async Task<IPagedList<Vendor>> GetAllVendorsAsync(string name = "", string email = "", int pageIndex = 0, int pageSize = int.MaxValue, bool showHidden = false, int SearchGroupId = 3)
         {
-            
-            
+
+
             var vendors = await _vendorRepository.GetAllPagedAsync(query =>
             {
                 if (!string.IsNullOrWhiteSpace(name))
@@ -147,7 +147,7 @@ namespace Nop.Services.Vendors
                 if (!string.IsNullOrWhiteSpace(email))
                     query = query.Where(v => v.Email.Contains(email));
                 if (SearchGroupId == 1)//Vendor
-                    query = query.Where(v => v.IsSeller==false);
+                    query = query.Where(v => v.IsSeller == false);
                 if (SearchGroupId == 2)//Seller
                     query = query.Where(v => v.IsSeller == true);
                 if (!showHidden)

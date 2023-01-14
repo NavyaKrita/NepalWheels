@@ -249,7 +249,7 @@ namespace Nop.Web.Areas.Admin.Controllers
         {
             product.SubjectToAcl = model.SelectedCustomerRoleIds.Any();
             await _productService.UpdateProductAsync(product);
-            
+
             var existingAclRecords = await _aclService.GetAclRecordsAsync(product);
             var allCustomerRoles = await _customerService.GetAllCustomerRolesAsync(true);
             foreach (var customerRole in allCustomerRoles)
@@ -759,10 +759,9 @@ namespace Nop.Web.Areas.Admin.Controllers
         {
             if (!await _permissionService.AuthorizeAsync(StandardPermissionProvider.ManageProducts))
                 return AccessDeniedView();
-
             //prepare model
             var model = await _productModelFactory.PrepareProductSearchModelAsync(new ProductSearchModel());
-            model.IsSeller = (await _workContext.GetCurrentVendorAsync()).IsSeller;
+                   
             return View(model);
         }
 
@@ -845,12 +844,13 @@ namespace Nop.Web.Areas.Admin.Controllers
             if (ModelState.IsValid)
             {
                 //a vendor should have access only to his products
-                if (await _workContext.GetCurrentVendorAsync() != null)
+                var vendor = await _workContext.GetCurrentVendorAsync();
+                if (vendor is not null)
                 {
                     model.VendorId = (await _workContext.GetCurrentVendorAsync()).Id;
                     model.IsSeller = (await _workContext.GetCurrentVendorAsync()).IsSeller;
                 }
-                
+
                 //vendors cannot edit "Show on home page" property
                 if (await _workContext.GetCurrentVendorAsync() != null && model.ShowOnHomepage)
                     model.ShowOnHomepage = false;
@@ -2429,18 +2429,18 @@ namespace Nop.Web.Areas.Admin.Controllers
                 else
                 {
                     _notificationService.ErrorNotification(await _localizationService.GetResourceAsync("Admin.Common.UploadFile"));
-                    
+
                     return RedirectToAction("List");
                 }
 
                 _notificationService.SuccessNotification(await _localizationService.GetResourceAsync("Admin.Catalog.Products.Imported"));
-                
+
                 return RedirectToAction("List");
             }
             catch (Exception exc)
             {
                 await _notificationService.ErrorNotificationAsync(exc);
-                
+
                 return RedirectToAction("List");
             }
         }
@@ -2851,7 +2851,7 @@ namespace Nop.Web.Areas.Admin.Controllers
                 {
                     var mappings = await _productAttributeParser
                         .ParseProductAttributeMappingsAsync(combination.AttributesXml);
-                    
+
                     if (mappings?.Any(m => m.Id == productAttributeMapping.Id) == true)
                     {
                         _notificationService.ErrorNotification(

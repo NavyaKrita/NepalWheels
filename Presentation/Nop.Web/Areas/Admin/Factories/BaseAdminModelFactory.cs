@@ -221,15 +221,16 @@ namespace Nop.Web.Areas.Admin.Factories
         /// A task that represents the asynchronous operation
         /// The task result contains the vendor list
         /// </returns>
-        protected virtual async Task<List<SelectListItem>> GetVendorListAsync(bool showHidden = true)
+        protected virtual async Task<List<SelectListItem>> GetVendorListAsync(bool showHidden = true, int defaultGroupId = 3)
         {
             var cacheKey = _staticCacheManager.PrepareKeyForDefaultCache(NopModelCacheDefaults.VendorsListKey, showHidden);
             var listItems = await _staticCacheManager.GetAsync(cacheKey, async () =>
             {
-                var vendors = await _vendorService.GetAllVendorsAsync(showHidden: showHidden);
+                var vendors = await _vendorService.GetAllVendorsAsync(showHidden: showHidden, SearchGroupId: defaultGroupId);
                 return vendors.Select(v => new SelectListItem
                 {
-                    Text = v.Name,
+
+                    Text = v.IsSeller ? $"{v.Name} (Seller)" : $"{v.Name} (Vendor)",
                     Value = v.Id.ToString()
                 });
             });

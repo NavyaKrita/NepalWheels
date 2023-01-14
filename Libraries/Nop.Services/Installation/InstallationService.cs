@@ -2816,7 +2816,7 @@ namespace Nop.Services.Installation
                     DisplayOrder = 1,
                     Published = true,
                     Title = string.Empty,
-                    Body = "<p>Put your apply vendor instructions here. You can edit this in the admin site.</p>",
+                    Body = "<p>Put your apply seller instructions here. You can edit this in the admin site.</p>",
                     TopicTemplateId = defaultTopicTemplate.Id
                 },
                 new Topic

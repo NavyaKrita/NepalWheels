@@ -658,7 +658,8 @@ namespace Nop.Web.Areas.Admin.Factories
             //a vendor should have access only to his products
             searchModel.IsLoggedInAsVendor = await _workContext.GetCurrentVendorAsync() != null;
             searchModel.AllowVendorsToImportProducts = _vendorSettings.AllowVendorsToImportProducts;
-
+            if (searchModel.IsLoggedInAsVendor)
+                searchModel.IsSeller = (await _workContext.GetCurrentVendorAsync()).IsSeller;
             //prepare available categories
             await _baseAdminModelFactory.PrepareCategoriesAsync(searchModel.AvailableCategories);
 
@@ -1599,7 +1600,7 @@ namespace Nop.Web.Areas.Admin.Factories
                 default:
                     throw new ArgumentOutOfRangeException(nameof(attribute.AttributeType));
             }
-            
+
             model.Locales = await _localizedModelFactory.PrepareLocalizedModelsAsync(
                 async (AddSpecificationAttributeLocalizedModel locale, int languageId) =>
                 {
