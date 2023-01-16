@@ -53,13 +53,13 @@ namespace Nop.Services.Notice
             return await _noticeBoardRepository.GetByIdAsync(noticeId);
         }
 
-        public virtual async Task<NoticeBoard> GetNoticeByPublishedDateAsync()
+        public virtual async Task<IEnumerable<NoticeBoard>> GetNoticeByPublishedDateAsync()
         {
             DateTime today = DateTime.Now.Date;
             var query = _noticeBoardRepository.Table;
 
             query = query.Where(c => c.PublishedFrom <= today && c.PublishedTo >= today).OrderByDescending(t => t.PublishedFrom);
-            return await query.FirstOrDefaultAsync();
+            return await query.ToListAsync();
         }
 
         public virtual async Task InsertNoticeAsync(NoticeBoard notice)
