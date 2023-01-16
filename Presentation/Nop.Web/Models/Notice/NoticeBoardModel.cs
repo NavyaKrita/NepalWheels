@@ -39,7 +39,9 @@ namespace Nop.Web.Models.Notice
 
         [NopResourceDisplayName("Admin.NoticeBoard.Fields.ThankYou")]
         public string ThankYou { get; set; }
-               
+
+        public int Id { get; set; }
+
         #endregion
     }
 }

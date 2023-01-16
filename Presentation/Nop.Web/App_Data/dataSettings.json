@@ -1,5 +1,5 @@
 ﻿{
-  "DataConnectionString": "Data Source=DESKTOP-O7DJ5CB\\SQLEXPRESS;Initial Catalog=NepaliWheels;Integrated Security=True;Persist Security Info=False",
+  "DataConnectionString": "Data Source=139.59.61.115;Initial Catalog=NWUAT;Persist Security Info=True;User ID=sa;Password=Apple1$#",
   "DataProvider": "sqlserver",
   "SQLCommandTimeout": null,
   "RawDataSettings": {}

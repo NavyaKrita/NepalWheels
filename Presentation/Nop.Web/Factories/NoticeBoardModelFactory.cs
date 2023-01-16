@@ -1,4 +1,5 @@
-﻿using Nop.Core.Domain.Notice;
+﻿using Google.Protobuf.WellKnownTypes;
+using Nop.Core.Domain.Notice;
 using Nop.Services.Notice;
 using Nop.Web.Areas.Admin.Infrastructure.Mapper.Extensions;
 using Nop.Web.Areas.Admin.Models;
@@ -20,29 +21,50 @@ namespace Nop.Web.Factories
             _noticeBoardService = noticeBoardService;
         }
 
-
-
-        public virtual async Task<NoticeBoardModel> PrepareNoticeModelAsync()
+        public virtual async Task<NoticeBoardModel> PrepareNoticeModelAsync(int id)
         {
             //get notices
-            var notices = await _noticeBoardService.GetNoticeByPublishedDateAsync();
+            var notices = await _noticeBoardService.GetNoticeByIdAsync(id);
             //prepare list mode
             if (notices == null)
             {
                 return
-                 new NoticeBoardModel();
+                new NoticeBoardModel();
             }
             return
-                 new NoticeBoardModel()
-                 {
-                    
-                     Notice = notices.Notice,
-                     DisplayForm = notices.DisplayForm,
-                     PublishedTo = notices.PublishedTo,
-                     PublishedFrom = notices.PublishedFrom,
-                     ThankYou = notices.ThankYou,
-                     Title = notices.Title
-                 };
+                new NoticeBoardModel()
+                {
+                    Id = notices.Id,
+                    Notice = notices.Notice,
+                    DisplayForm = notices.DisplayForm,
+                    PublishedTo = notices.PublishedTo,
+                    PublishedFrom = notices.PublishedFrom,
+                    ThankYou = notices.ThankYou,
+                    Title = notices.Title
+                };
+        }
+
+        public virtual async Task<IEnumerable<NoticeBoardModel>> PrepareNoticeModelAsync()
+        {
+            //get notices
+            var noticesResult = await _noticeBoardService.GetNoticeByPublishedDateAsync();
+            //prepare list mode
+            if (noticesResult == null)
+            {
+                return
+                 Enumerable.Empty<NoticeBoardModel>();
+            }
+            return
+               noticesResult.Select(notices => new NoticeBoardModel()
+               {
+                   Id = notices.Id,
+                   Notice = notices.Notice,
+                   DisplayForm = notices.DisplayForm,
+                   PublishedTo = notices.PublishedTo,
+                   PublishedFrom = notices.PublishedFrom,
+                   ThankYou = notices.ThankYou,
+                   Title = notices.Title
+               });
         }
     }
 }
