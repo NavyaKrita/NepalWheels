@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using MySqlX.XDevAPI.Common;
+using Nop.Core.Caching;
+using Nop.Core;
 using Nop.Core.Domain.Catalog;
 using Nop.Core.Domain.Directory;
 using Nop.Core.Domain.Vendors;
@@ -17,6 +21,9 @@ using Nop.Web.Areas.Admin.Infrastructure.Mapper.Extensions;
 using Nop.Web.Areas.Admin.Models.Vendors;
 using Nop.Web.Framework.Factories;
 using Nop.Web.Framework.Models.Extensions;
+using static LinqToDB.Common.Configuration;
+using Nop.Services.Orders;
+using Nop.Services;
 
 namespace Nop.Web.Areas.Admin.Factories
 {
@@ -235,15 +242,15 @@ namespace Nop.Web.Areas.Admin.Factories
         /// A task that represents the asynchronous operation
         /// The task result contains the vendor search model
         /// </returns>
-        public virtual Task<VendorSearchModel> PrepareVendorSearchModelAsync(VendorSearchModel searchModel)
+        public virtual async Task<VendorSearchModel> PrepareVendorSearchModelAsync(VendorSearchModel searchModel)
         {
             if (searchModel == null)
                 throw new ArgumentNullException(nameof(searchModel));
-
+            //prepare "group by" filter
+            searchModel.CustomerTypes = (await Services.Vendors.CustomerType.All.ToSelectListAsync()).ToList();
             //prepare page parameters
-            searchModel.SetGridPageSize();
-
-            return Task.FromResult(searchModel);
+            //return Task.FromResult(searchModel);
+            return searchModel;
         }
 
         /// <summary>
@@ -258,11 +265,13 @@ namespace Nop.Web.Areas.Admin.Factories
         {
             if (searchModel == null)
                 throw new ArgumentNullException(nameof(searchModel));
-
+            //prepare "group by" filter
+            searchModel.CustomerTypes = (await Services.Vendors.CustomerType.All.ToSelectListAsync()).ToList();
             //get vendors
             var vendors = await _vendorService.GetAllVendorsAsync(showHidden: true,
                 name: searchModel.SearchName,
                 email: searchModel.SearchEmail,
+                SearchGroupId: searchModel.SearchGroupId,
                 pageIndex: searchModel.Page - 1, pageSize: searchModel.PageSize);
 
             //prepare list model
@@ -274,10 +283,11 @@ namespace Nop.Web.Areas.Admin.Factories
                     var vendorModel = vendor.ToModel<VendorModel>();
 
                     vendorModel.SeName = await _urlRecordService.GetSeNameAsync(vendor, 0, true, false);
-
+                    vendorModel.Type = vendorModel.IsSeller == true ? "Seller" :"Vendor";
                     return vendorModel;
                 });
             });
+            
 
             return model;
         }

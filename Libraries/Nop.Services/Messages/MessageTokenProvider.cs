@@ -40,6 +40,7 @@ using Nop.Services.Localization;
 using Nop.Services.News;
 using Nop.Services.Orders;
 using Nop.Services.Payments;
+using Nop.Services.Sellers;
 using Nop.Services.Seo;
 using Nop.Services.Shipping;
 using Nop.Services.Stores;
@@ -84,6 +85,7 @@ namespace Nop.Services.Messages
         private readonly IUrlHelperFactory _urlHelperFactory;
         private readonly IUrlRecordService _urlRecordService;
         private readonly IVendorAttributeFormatter _vendorAttributeFormatter;
+        private readonly ISellerAttributeFormatter _sellerAttributeFormatter;
         private readonly IWorkContext _workContext;
         private readonly MessageTemplatesSettings _templatesSettings;
         private readonly PaymentSettings _paymentSettings;

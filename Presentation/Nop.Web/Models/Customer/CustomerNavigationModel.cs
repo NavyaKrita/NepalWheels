@@ -37,6 +37,7 @@ namespace Nop.Web.Models.Customer
         ForumSubscriptions = 90,
         ProductReviews = 100,
         VendorInfo = 110,
+        SellerInfo=110,
         GdprTools = 120,
         CheckGiftCardBalance = 130,
         MultiFactorAuthentication = 140

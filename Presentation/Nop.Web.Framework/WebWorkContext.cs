@@ -7,6 +7,7 @@ using Nop.Core;
 using Nop.Core.Domain.Customers;
 using Nop.Core.Domain.Directory;
 using Nop.Core.Domain.Localization;
+using Nop.Core.Domain.Sellers;
 using Nop.Core.Domain.Tax;
 using Nop.Core.Domain.Vendors;
 using Nop.Core.Http;
@@ -17,6 +18,7 @@ using Nop.Services.Customers;
 using Nop.Services.Directory;
 using Nop.Services.Helpers;
 using Nop.Services.Localization;
+using Nop.Services.Sellers;
 using Nop.Services.Stores;
 using Nop.Services.Vendors;
 
@@ -41,6 +43,7 @@ namespace Nop.Web.Framework
         private readonly IStoreMappingService _storeMappingService;
         private readonly IUserAgentHelper _userAgentHelper;
         private readonly IVendorService _vendorService;
+        private readonly ISellerService _sellerService;
         private readonly IWebHelper _webHelper;
         private readonly LocalizationSettings _localizationSettings;
         private readonly TaxSettings _taxSettings;
@@ -68,6 +71,7 @@ namespace Nop.Web.Framework
             IStoreMappingService storeMappingService,
             IUserAgentHelper userAgentHelper,
             IVendorService vendorService,
+            ISellerService sellerService,
             IWebHelper webHelper,
             LocalizationSettings localizationSettings,
             TaxSettings taxSettings)
@@ -553,6 +557,30 @@ namespace Nop.Web.Framework
             _cachedTaxDisplayType = null;
         }
 
+       
+        /// <summary>
+        /// Gets the current vendor (logged-in manager)
+        /// </summary>
+        /// <returns>A task that represents the asynchronous operation</returns>
+        public virtual async Task<Vendor> GetCurrentSellerAsync()
+        {
+            //whether there is a cached value
+            if (_cachedVendor != null)
+                return _cachedVendor;
+
+            var customer = await GetCurrentCustomerAsync();
+            if (customer == null)
+                return null;
+
+            //check vendor availability
+            var vendor = await _vendorService.GetVendorByIdAsync(customer.VendorId);
+            if (vendor == null || vendor.Deleted || !vendor.Active)
+                return null;
+
+            //cache the found vendor
+            _cachedVendor = vendor;
+            return _cachedVendor;
+        }
         /// <summary>
         /// Gets or sets value indicating whether we're in admin area
         /// </summary>

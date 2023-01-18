@@ -20,6 +20,7 @@ namespace Nop.Web.Infrastructure
         /// <param name="typeFinder">Type finder</param>
         /// <param name="appSettings">App settings</param>
         public virtual void Register(IServiceCollection services, ITypeFinder typeFinder, AppSettings appSettings)
+        
         {
             //installation localization service
             services.AddScoped<IInstallationLocalizationService, InstallationLocalizationService>();
@@ -109,6 +110,7 @@ namespace Nop.Web.Infrastructure
             services.AddScoped<Factories.IShoppingCartModelFactory, Factories.ShoppingCartModelFactory>();
             services.AddScoped<Factories.ITopicModelFactory, Factories.TopicModelFactory>();
             services.AddScoped<Factories.IVendorModelFactory, Factories.VendorModelFactory>();
+            services.AddScoped<Factories.ISellerModelFactory, Factories.SellerModelFactory>();
             services.AddScoped<Factories.IWidgetModelFactory, Factories.WidgetModelFactory>();
             services.AddScoped<Factories.INkVendorLocationModelFactory, Factories.NkVendorLocationModelFactory>();
             services.AddScoped<Factories.INoticeBoardModelFactory, Factories.NoticeBoardModelFactory>();
