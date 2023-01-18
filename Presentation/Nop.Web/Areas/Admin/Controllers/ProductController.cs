@@ -761,7 +761,7 @@ namespace Nop.Web.Areas.Admin.Controllers
                 return AccessDeniedView();
             //prepare model
             var model = await _productModelFactory.PrepareProductSearchModelAsync(new ProductSearchModel());
-                   
+
             return View(model);
         }
 
@@ -930,7 +930,13 @@ namespace Nop.Web.Areas.Admin.Controllers
                 return RedirectToAction("List");
             //prepare model
             var model = await _productModelFactory.PrepareProductModelAsync(null, product);
-            model.IsSeller = (await _workContext.GetCurrentVendorAsync()).IsSeller;
+            if ((await _workContext.GetCurrentVendorAsync()) is not null)
+            {
+                model.IsSeller = (await _workContext.GetCurrentVendorAsync()).IsSeller;
+                if (!model.IsSeller)
+                    model.IsVendor = true;
+            }
+
             return View(model);
         }
 
