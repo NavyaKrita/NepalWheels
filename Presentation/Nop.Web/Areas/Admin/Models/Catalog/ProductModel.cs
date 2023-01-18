@@ -482,6 +482,7 @@ namespace Nop.Web.Areas.Admin.Models.Catalog
         [NopResourceDisplayName("Admin.Catalog.Products.Fields.DownPayment")]
         public decimal DownPayment { get; set; }
         public bool IsSeller { get; set; }
+        public bool IsVendor { get; set; }
         #endregion
     }
 
