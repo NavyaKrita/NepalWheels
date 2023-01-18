@@ -48,8 +48,8 @@ namespace Nop.Web.Areas.Admin.Controllers
         /// <returns>A task that represents the asynchronous operation</returns>
         public virtual async Task<IActionResult> List()
         {
-            //if (!await _permissionService.AuthorizeAsync(StandardPermissionProvider.NoticeBoard))
-            //    return AccessDeniedView();
+            if (!await _permissionService.AuthorizeAsync(StandardPermissionProvider.AccessAdminPanel))
+                return AccessDeniedView();
 
             //prepare model
             var model = await _noticeBoardModelFactory.PrepareNoticeBoardSearchModelAsync(new NoticeBoardSearchModel());
@@ -61,8 +61,8 @@ namespace Nop.Web.Areas.Admin.Controllers
         /// <returns>A task that represents the asynchronous operation</returns>
         public virtual async Task<IActionResult> List(NoticeBoardSearchModel searchModel)
         {
-            //if (!await _permissionService.AuthorizeAsync(StandardPermissionProvider.NoticeBoard))
-            //    return await AccessDeniedDataTablesJson();
+            if (!await _permissionService.AuthorizeAsync(StandardPermissionProvider.AccessAdminPanel))
+                return await AccessDeniedDataTablesJson();
 
             //prepare model
             var model = await _noticeBoardModelFactory.PrepareNoticeBoardListModelAsync(searchModel);
@@ -70,10 +70,10 @@ namespace Nop.Web.Areas.Admin.Controllers
             return Json(model);
         }
 
-        public virtual IActionResult Create()
+        public virtual async Task<IActionResult> Create()
         {
-            //if (!await _permissionService.AuthorizeAsync(StandardPermissionProvider.ManageVendors))
-            //    return AccessDeniedView();
+            if (!await _permissionService.AuthorizeAsync(StandardPermissionProvider.AccessAdminPanel))
+                return AccessDeniedView();
 
             //prepare model
             var model = _noticeBoardModelFactory.PrepareNoticeBoardModelAsync(new CreateNoticeBoardModel(), null);
@@ -86,10 +86,10 @@ namespace Nop.Web.Areas.Admin.Controllers
         /// <returns>A task that represents the asynchronous operation</returns>
         public virtual async Task<IActionResult> Create(CreateNoticeBoardModel noticeBoard, bool continueEditing, IFormCollection form)
         {
-            //if (!await _permissionService.AuthorizeAsync(StandardPermissionProvider.NoticeBoard))
-            //    return AccessDeniedView();
+            if (!await _permissionService.AuthorizeAsync(StandardPermissionProvider.AccessAdminPanel))
+                return AccessDeniedView();
 
-            //parse vendor attributes
+            //parse  attributes
 
             NoticeBoard model = new();
             if (ModelState.IsValid)
@@ -132,8 +132,8 @@ namespace Nop.Web.Areas.Admin.Controllers
 
         public virtual async Task<IActionResult> Edit(int id)
         {
-            //if (!await _permissionService.AuthorizeAsync(StandardPermissionProvider.NoticeBoard))
-            //    return AccessDeniedView();
+            if (!await _permissionService.AuthorizeAsync(StandardPermissionProvider.AccessAdminPanel))
+                return AccessDeniedView();
 
             //try to get a vendor with the specified id
             var noticeBoard = await _noticeBoardService.GetNoticeByIdAsync(id);
@@ -150,8 +150,8 @@ namespace Nop.Web.Areas.Admin.Controllers
         /// <returns>A task that represents the asynchronous operation</returns>
         public virtual async Task<IActionResult> Edit(CreateNoticeBoardModel noticeBoard, bool continueEditing, IFormCollection form)
         {
-            //if (!await _permissionService.AuthorizeAsync(StandardPermissionProvider.NoticeBoard))
-            //    return AccessDeniedView();
+            if (!await _permissionService.AuthorizeAsync(StandardPermissionProvider.AccessAdminPanel))
+                return AccessDeniedView();
 
             //try to get a vendor with the specified id
             NoticeBoard model = await _noticeBoardService.GetNoticeByIdAsync(noticeBoard.Id);
@@ -172,15 +172,15 @@ namespace Nop.Web.Areas.Admin.Controllers
 
 
                 //activity log
-                await _customerActivityService.InsertActivityAsync("EditVendorLocation",
-                    string.Format(await _localizationService.GetResourceAsync("ActivityLog.EditLocationVendor"), model.Id), model);
+                await _customerActivityService.InsertActivityAsync("EditNotice",
+                    string.Format(await _localizationService.GetResourceAsync("ActivityLog.EditNotice"), model.Id), model);
 
                 //search engine name
 
 
                 //locales
 
-                _notificationService.SuccessNotification(await _localizationService.GetResourceAsync("Admin.VendorsLocation.Updated"));
+                _notificationService.SuccessNotification(await _localizationService.GetResourceAsync("Admin.Notice.Updated"));
 
                 if (!continueEditing)
                     return RedirectToAction("List");
@@ -197,8 +197,8 @@ namespace Nop.Web.Areas.Admin.Controllers
 
         public virtual async Task<IActionResult> Participants()
         {
-            //if (!await _permissionService.AuthorizeAsync(StandardPermissionProvider.NoticeBoard))
-            //    return AccessDeniedView();
+            if (!await _permissionService.AuthorizeAsync(StandardPermissionProvider.AccessAdminPanel))
+                return AccessDeniedView();
 
             //prepare model
             var model = await _noticeBoardModelFactory.PrepareParticipantsSearchModelAsync(new NoticeBoardDetailSearchModel());
@@ -210,8 +210,8 @@ namespace Nop.Web.Areas.Admin.Controllers
         /// <returns>A task that represents the asynchronous operation</returns>
         public virtual async Task<IActionResult> Participants(NoticeBoardDetailSearchModel searchModel)
         {
-            //if (!await _permissionService.AuthorizeAsync(StandardPermissionProvider.NoticeBoard))
-            //    return await AccessDeniedDataTablesJson();
+            if (!await _permissionService.AuthorizeAsync(StandardPermissionProvider.AccessAdminPanel))
+                return await AccessDeniedDataTablesJson();
 
             //prepare model
             var model = await _noticeBoardModelFactory.PrepareParticipantsListModelAsync(searchModel);

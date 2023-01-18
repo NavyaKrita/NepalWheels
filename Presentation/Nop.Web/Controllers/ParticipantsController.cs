@@ -22,17 +22,18 @@ namespace Nop.Web.Controllers
             _noticeBoardService = noticeBoardService;
             _noticeBoardModelFactory = noticeBoardModelFactory;
         }
-        public virtual async Task<IActionResult> RegisterParticipants()
+        public virtual async Task<IActionResult> RegisterParticipants(int id)
         {
-            var notice = await _noticeBoardModelFactory.PrepareNoticeModelAsync();
+            var notice = await _noticeBoardModelFactory.PrepareNoticeModelAsync(id);
             ParticipantsModel model = new();
+            model.NoticeBoardId = notice.Id;
             model.Notice = notice.Notice;
             model.IsDisplayForm = notice.DisplayForm;
             return View(model);
         }
 
         [HttpPost]
-        
+
         /// <returns>A task that represents the asynchronous operation</returns>
         public virtual async Task<IActionResult> RegisterParticipants(ParticipantsModel model, IFormCollection form)
         {
@@ -45,7 +46,7 @@ namespace Nop.Web.Controllers
                 detail.Name = model.Name;
                 detail.PhoneNumber = model.PhoneNumber;
                 detail.City = model.City;
-                var latestNotice = await _noticeBoardService.GetNoticeByPublishedDateAsync();
+                var latestNotice = await _noticeBoardService.GetNoticeByIdAsync(model.NoticeBoardId);
                 detail.Notice = latestNotice?.Title;
                 detail.NoticeBoardId = latestNotice?.Id;
                 await _noticeBoardService.InsertNoticeParticipatesAsync(detail);
@@ -58,20 +59,18 @@ namespace Nop.Web.Controllers
 
             return Json(new { success = false });
         }
-        public virtual async Task<IActionResult> ThankYou()
+        public virtual async Task<IActionResult> ThankYou(int id = 0)
         {
-
-            var model = await _noticeBoardModelFactory.PrepareNoticeModelAsync();
+            var model = await _noticeBoardModelFactory.PrepareNoticeModelAsync(id);
             return View(model);
         }
 
         public virtual async Task<IActionResult> Display()
         {
-
             var model = await _noticeBoardModelFactory.PrepareNoticeModelAsync();
-            if (!string.IsNullOrEmpty(model.Notice))
+            if (model.Count() > 0)
             {
-                return Json(new { success = true });
+                return Json(new { success = true, result = model });
             }
             return Json(new { success = false });
         }

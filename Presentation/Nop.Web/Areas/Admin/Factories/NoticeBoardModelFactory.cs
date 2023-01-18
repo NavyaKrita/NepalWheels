@@ -110,17 +110,17 @@ namespace Nop.Web.Areas.Admin.Factories
             var model = new NoticeBoardDetailListModel().PrepareToGrid(searchModel, notices, () =>
             {
                 //fill in model values from the entity
-                return notices.Select(vendor =>
+                return notices.Select(notice =>
                 {
                     var vendorModel = new NoticeBoardDetailModel()
                     {
-                        Id = vendor.Id,
-                        Notice = vendor.Notice,
-                        Name = vendor.Name,
-                        PhoneNumber = vendor.PhoneNumber,
-                        CreatedOnUtc = vendor.CreatedOnUtc,
-                        EmailAddress = vendor.EmailAddress,
-                        City = vendor.City
+                        Id = notice.Id,
+                        Notice = notice.Notice,
+                        Name = notice.Name,
+                        PhoneNumber = notice.PhoneNumber,
+                        CreatedOnUtc = notice.CreatedOnUtc,
+                        EmailAddress = notice.EmailAddress,
+                        City = notice.City
                     };
                     return vendorModel;
                 });

@@ -8,19 +8,19 @@
     Html.AppendPageCssClassParts("html-registration-page");
 }
 
-<div class="page registration-page" id="modal-register-participants">
+<div class="page registration-page" id="modal-register-participants-@Model.NoticeBoardId">
     <div class="page-title">
         <h1>@T("Account.Register")</h1>
     </div>
     <div class="page-body">
-        <div id="thank-you-page-load">
+        <div id="thank-you-page-load-@Model.NoticeBoardId">
             @Html.Raw(Model.Notice)
 
             @if (Model.IsDisplayForm)
             {
                 <div class="form-fields">
                     <div class="buttons">
-                        <button type="button" name="show-register-button" id="show-register-button" class="button-1 register-next-step-button">@T("Account.Register.Button")</button>
+                        <button type="button" name="show-register-button" id="show-register-button-@Model.NoticeBoardId" class="button-1 register-next-step-button">@T("Account.Register.Button")</button>
                     </div>
                 </div>
             }
@@ -28,8 +28,8 @@
         </div>
         @if (Model.IsDisplayForm)
         {
-            <div id="resgister-participants-form">
-                <form asp-route="RegisterParticipants" method="post" autocomplete="off" id="register-participants-form-submit">
+            <div id="resgister-participants-form-@Model.NoticeBoardId">
+                <form asp-route="RegisterParticipants" method="post" autocomplete="off" id="register-participants-form-submit-@Model.NoticeBoardId">
                     <div asp-validation-summary="ModelOnly" class="message-error"></div>
                     <div class="fieldset">
                         <div class="title">
@@ -37,7 +37,7 @@
                         </div>
                         <div class="form-fields">
 
-
+                            <input type="hidden" asp-for="NoticeBoardId" />
                             <div class="inputs">
                                 <label asp-for="Name" asp-postfix=":"></label>
                                 <input asp-for="Name" />
@@ -73,7 +73,7 @@
 
                         </div>
                         <div class="buttons">
-                            <button type="submit" name="register-button" id="register-button" class="button-1 register-next-step-button">@T("Account.Register.Button")</button>
+                            <button type="submit" name="register-button" id="register-button-@Model.NoticeBoardId" class="button-1 register-next-step-button">@T("Account.Register.Button")</button>
                         </div>
                     </div>
                 </form>
