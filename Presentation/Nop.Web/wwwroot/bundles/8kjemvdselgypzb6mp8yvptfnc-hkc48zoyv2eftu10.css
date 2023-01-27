@@ -931,7 +931,7 @@ body:after {
     -webkit-transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
-	width: 380px !important;
+	width: 580px !important;
 	max-width: 90%;
     box-shadow: 0 0 35px rgba(0,0,0,0.16);
 	background: #fff;
