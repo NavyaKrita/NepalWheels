@@ -122,6 +122,7 @@ namespace Nop.Web.Models.Catalog
         public bool HasEMIAvailable { get;  set; }
         public decimal DownPaymentPercent { get;  set; }
 
+        public bool IsVerified { get; set; }
 
         #region Nested Classes
 
