@@ -9,7 +9,9 @@
             <ul class="list">
                 @for (var i = 0; i < Model.Count; i++)
                 {
+
                     var product = Model[i];
+                    
                     <li @(i == Model.Count - 1 ? @Html.Raw(" class=\"last\"") : null)>
                         @if (!string.IsNullOrEmpty(product.DefaultPictureModel.ImageUrl))
                         {

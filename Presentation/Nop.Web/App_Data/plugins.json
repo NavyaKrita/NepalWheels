@@ -91,6 +91,8 @@
   "PluginNamesToUninstall": [
     "Tax.Avalara"
   ],
-  "PluginNamesToDelete": [],
+  "PluginNamesToDelete": [
+    "Tax.Avalara"
+  ],
   "PluginNamesToInstall": []
 }

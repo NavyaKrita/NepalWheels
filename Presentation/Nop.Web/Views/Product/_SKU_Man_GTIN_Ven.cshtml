@@ -2,7 +2,7 @@
 @using Nop.Core.Domain.Catalog
 <div class="additional-details">
     @*SKU*@
-    @if ((!string.IsNullOrWhiteSpace(Model.Sku) || Model.ManageInventoryMethod == ManageInventoryMethod.ManageStockByAttributes) && Model.ShowSku )
+    @if ((!string.IsNullOrWhiteSpace(Model.Sku) || Model.ManageInventoryMethod == ManageInventoryMethod.ManageStockByAttributes) && Model.ShowSku)
     {
         <div class="sku" @(string.IsNullOrWhiteSpace(Model.Sku) ? Html.Raw("style=\"display:none\"") : null)>
             <span class="label">@T("Products.Sku"):</span>
@@ -29,7 +29,7 @@
     @if (Model.ShowVendor)
     {
         <div class="product-vendor">
-            <span class="label">@T("Products.Vendor"):</span>
+            <span class="label">@(Model.VendorModel.IsSeller ? T("Products.Seller") : T("Products.Vendor")):</span>
             <span class="value"><a href="@Url.RouteUrl("Vendor", new { SeName = Model.VendorModel.SeName })">@Model.VendorModel.Name</a></span>
         </div>
     }

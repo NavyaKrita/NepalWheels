@@ -1224,7 +1224,8 @@ namespace Nop.Web.Factories
                     ProductType = product.ProductType,
                     MarkAsNew = product.MarkAsNew &&
                         (!product.MarkAsNewStartDateTimeUtc.HasValue || product.MarkAsNewStartDateTimeUtc.Value < DateTime.UtcNow) &&
-                        (!product.MarkAsNewEndDateTimeUtc.HasValue || product.MarkAsNewEndDateTimeUtc.Value > DateTime.UtcNow)
+                        (!product.MarkAsNewEndDateTimeUtc.HasValue || product.MarkAsNewEndDateTimeUtc.Value > DateTime.UtcNow),
+                    IsVerified = product.IsVerified
                 };
 
                 //price
@@ -1351,7 +1352,8 @@ namespace Nop.Web.Factories
                 DisplayDiscontinuedMessage = !product.Published && _catalogSettings.DisplayDiscontinuedMessageForUnpublishedProducts,
                 AvailableEndDate = product.AvailableEndDateTimeUtc,
                 VisibleIndividually = product.VisibleIndividually,
-                AllowAddingOnlyExistingAttributeCombinations = product.AllowAddingOnlyExistingAttributeCombinations
+                AllowAddingOnlyExistingAttributeCombinations = product.AllowAddingOnlyExistingAttributeCombinations,
+                IsVerified = product.IsVerified
             };
 
             //automatically generate product description?
@@ -1394,6 +1396,7 @@ namespace Nop.Web.Factories
                         Id = vendor.Id,
                         Name = await _localizationService.GetLocalizedAsync(vendor, x => x.Name),
                         SeName = await _urlRecordService.GetSeNameAsync(vendor),
+                        IsSeller = vendor.IsSeller
                     };
                 }
             }
@@ -1551,7 +1554,7 @@ namespace Nop.Web.Factories
             }
 
             model.HasEMIAvailable = product.HasEMIAvailable ?? false;
-          
+
             if (product.HasEMIAvailable ?? false)
             {
                 model.DownPaymentPercent = product.DownPaymentPercent ?? 0;
