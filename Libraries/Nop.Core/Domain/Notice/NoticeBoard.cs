@@ -22,6 +22,21 @@ namespace Nop.Core.Domain.Notice
 
         public string ThankYou { get; set; }
         public DateTime CreatedOnUtc { get; set; }
+        public bool Name { get; set; }
+       
+        public bool PhoneNumber { get; set; }
+        
+        public bool EmailAddress { get; set; }
+      
+        public bool Age { get; set; }
+      
+        public bool Address { get; set; }
+       
+        public bool City { get; set; }
+        
+        public bool BikeName { get; set; }
+       
+        public bool CC { get; set; }
 
     }
 }
