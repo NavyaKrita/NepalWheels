@@ -41,7 +41,27 @@ namespace Nop.Web.Models.Notice
         public string ThankYou { get; set; }
 
         public int Id { get; set; }
+        public NoticeFieldModel NoticeField { get; set; }
 
         #endregion
+    }
+    public partial record NoticeFieldModel
+    {
+        [NopResourceDisplayName("Admin.NoticeBoard.Fields.Name")]
+        public bool Name { get; set; }
+        [NopResourceDisplayName("Admin.NoticeBoard.Fields.Phone")]
+        public bool PhoneNumber { get; set; }
+        [NopResourceDisplayName("Admin.NoticeBoard.Fields.Email")]
+        public bool EmailAddress { get; set; }
+        [NopResourceDisplayName("Admin.NoticeBoard.Fields.Age")]
+        public bool Age { get; set; }
+        [NopResourceDisplayName("Admin.NoticeBoard.Fields.Address")]
+        public bool Address { get; set; }
+        [NopResourceDisplayName("Admin.NoticeBoard.Fields.City")]
+        public bool City { get; set; }
+        [NopResourceDisplayName("Admin.NoticeBoard.Fields.BikeName")]
+        public bool BikeName { get; set; }
+        [NopResourceDisplayName("Admin.NoticeBoard.Fields.CC")]
+        public bool CC { get; set; }
     }
 }

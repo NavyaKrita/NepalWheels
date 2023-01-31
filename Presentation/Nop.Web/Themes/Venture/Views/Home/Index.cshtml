@@ -91,9 +91,9 @@
             url: "@Url.Action("Display", "Participants")",,
             success: function (data) {
                 if (data.success) {
-                    $.each(data.result, function (index, value) {                      
-                       loadPopup(value.Id);
-                        
+                    $.each(data.result, function (index, value) {
+                        loadPopup(value.Id);
+
                     });
                 }
             },
@@ -101,7 +101,7 @@
 
             }
         });
-     
+
         function loadPopup(noticeId) {
             $.ajax({
                 type: "GET",
@@ -113,7 +113,7 @@
                     $('#notice-pop-up-landing').append(append);
                     $('#notice-pop-up-landing-' + noticeId).html(data);
                     $("#resgister-participants-form-" + noticeId).css("display", "none");
-                    $("#notice-pop-up-landing-" + noticeId).dialog();                  
+                    $("#notice-pop-up-landing-" + noticeId).dialog();
                     $("#show-register-button-" + noticeId).on("click", function () {
                         $(this).css("display", "none");
                         $("#resgister-participants-form-" + noticeId).removeAttr("style")
@@ -126,8 +126,8 @@
                             url: "@Url.Action("ThankYou", "Participants")",
                             success: function (data) {
                                 $('#resgister-participants-form-' + noticeId).css("display", "none");
-                                $('#thank-you-page-load-'+ noticeId).html("");
-                                $('#thank-you-page-load-'+ noticeId).html(data);
+                                $('#thank-you-page-load-' + noticeId).html("");
+                                $('#thank-you-page-load-' + noticeId).html(data);
                             },
 
                             error: function (error) {
@@ -147,7 +147,15 @@
                             data: form.serialize(), // serializes the form's elements.
                             success: function (data) {
                                 if (data.success) {
-                                    loadThankYou(noticeId);
+                                    if (data.displayThankYou) {
+                                        loadThankYou(noticeId);
+                                    }else{
+                                        alert("Thank you for registering!")
+                                        $("#show-register-button-" + noticeId).removeAttr("style");
+                                        $("#resgister-participants-form-" + noticeId).css("display", "none");
+                                        $("#register-participants-form-submit-" + noticeId).trigger("reset");
+                                    }
+
                                     /* $('#register-participants').css("display", "none");*/
                                 }
 

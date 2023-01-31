@@ -78,6 +78,14 @@ namespace Nop.Web.Areas.Admin.Factories
                     model.PublishedFrom = noticeBoard.PublishedFrom;
                     model.PublishedTo = noticeBoard.PublishedTo;
                     model.ThankYou = noticeBoard.ThankYou;
+                    model.Name = noticeBoard.Name;
+                    model.PhoneNumber = noticeBoard.PhoneNumber;
+                    model.EmailAddress = noticeBoard.EmailAddress;
+                    model.Age = noticeBoard.Age;
+                    model.Address = noticeBoard.Address;
+                    model.City = noticeBoard.City;
+                    model.BikeName = noticeBoard.BikeName;
+                    model.CC = noticeBoard.CC;
                 }
             }
            
