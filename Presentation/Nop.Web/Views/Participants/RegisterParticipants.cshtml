@@ -33,7 +33,7 @@
                 @Html.Raw(Model.TermAndConditions)
                 <div class="form-fields">
                     <div class="buttons">
-                        I Agree   <input asp-for="Agree" type="checkbox" required="true" id="term-and-conditions-id-@Model.NoticeBoardId" />
+                        I Agree   <input asp-for="Agree" type="checkbox" required="true" class="term-and-conditions-id-@Model.NoticeBoardId" />
                         <nop-required />
                         <span asp-validation-for="Agree"></span>
                     </div>
