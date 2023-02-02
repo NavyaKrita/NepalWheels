@@ -21,6 +21,7 @@ namespace Nop.Core.Domain.Notice
         public bool DisplayForm { get; set; }
 
         public string ThankYou { get; set; }
+        public string TermsAndCondition { get; set; }
         public DateTime CreatedOnUtc { get; set; }
         public bool Name { get; set; }
        

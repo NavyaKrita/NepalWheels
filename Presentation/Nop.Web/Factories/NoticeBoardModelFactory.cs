@@ -41,6 +41,7 @@ namespace Nop.Web.Factories
                     PublishedFrom = notices.PublishedFrom,
                     ThankYou = notices.ThankYou,
                     Title = notices.Title,
+                    TermAndConditions=notices.TermsAndCondition,                    
                     NoticeField = new()
                     {
                         Name = notices.Name,
@@ -75,6 +76,7 @@ namespace Nop.Web.Factories
                    PublishedFrom = notices.PublishedFrom,
                    ThankYou = notices.ThankYou,
                    Title = notices.Title,
+                   TermAndConditions=notices.TermsAndCondition,
                    NoticeField = new()
                    {
                        Name = notices.Name,

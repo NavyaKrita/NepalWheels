@@ -31,19 +31,20 @@ namespace Nop.Web.Areas.Admin.Factories
             var model = new NoticeBoardListModel().PrepareToGrid(searchModel, notices, () =>
              {
                  //fill in model values from the entity
-                 return notices.Select(vendor =>
+                 return notices.Select(notice =>
                 {
-                    var vendorModel = new NoticeBoardModel()
+                    var noticeModel = new NoticeBoardModel()
                     {
-                        Id = vendor.Id,
-                        Notice = vendor.Notice,
-                        DisplayForm = vendor.DisplayForm,
-                        PublishedTo = vendor.PublishedTo,
-                        PublishedFrom = vendor.PublishedFrom,
-                        ThankYou = vendor.ThankYou,
-                        Title = vendor.Title
+                        Id = notice.Id,
+                        Notice = notice.Notice,
+                        DisplayForm = notice.DisplayForm,
+                        PublishedTo = notice.PublishedTo,
+                        PublishedFrom = notice.PublishedFrom,
+                        ThankYou = notice.ThankYou,
+                        Title = notice.Title,
+                        TermsAndCondition= notice.TermsAndCondition,
                     };
-                    return vendorModel;
+                    return noticeModel;
                 });
              });
 
@@ -86,6 +87,7 @@ namespace Nop.Web.Areas.Admin.Factories
                     model.City = noticeBoard.City;
                     model.BikeName = noticeBoard.BikeName;
                     model.CC = noticeBoard.CC;
+                    model.TermsAndCondition= noticeBoard.TermsAndCondition;
                 }
             }
 
@@ -132,6 +134,7 @@ namespace Nop.Web.Areas.Admin.Factories
                         City = noticeBoard.City,
                         BikeName = noticeBoard.BikeName,
                         CC = noticeBoard.CC
+                       
                     };
                     return notice;
                 });
