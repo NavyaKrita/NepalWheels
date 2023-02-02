@@ -36,14 +36,14 @@
 
 
                                 @*<div class="col-md-12">
-                                    <div class="form-group row">
-                                        <div class="col-md-4">
-                                            <nop-label asp-for="Notice" />
-                                        </div>
-                                        <div class="col-md-8">
-                                            <nop-editor asp-for="Notice" />
-                                        </div>
-                                    </div>
+                                <div class="form-group row">
+                                <div class="col-md-4">
+                                <nop-label asp-for="Notice" />
+                                </div>
+                                <div class="col-md-8">
+                                <nop-editor asp-for="Notice" />
+                                </div>
+                                </div>
                                 </div>*@
                                 <div class="col-md-6">
                                     <div class="form-group row">
@@ -82,57 +82,79 @@
 
 
                         @await Html.PartialAsync("Table", new DataTablesModel
-                   {
-                       Name = "notice-board-detail-grid",
-                       UrlRead = new DataUrl("Participants", "NoticeBoard", null),
-                       SearchButtonId = "notice-board-detail",
-                       Length = Model.PageSize,
-                       LengthMenu = Model.AvailablePageSizes,
-                       Filters = new List<FilterParameter>
                         {
-                            new FilterParameter(nameof(Model.Notice)),
-                            new FilterParameter(nameof(Model.StartDate)),
-                            new FilterParameter(nameof(Model.EndDate)),
+                        Name = "notice-board-detail-grid",
+                        UrlRead = new DataUrl("Participants", "NoticeBoard", null),
+                        SearchButtonId = "notice-board-detail",
+                        Length = Model.PageSize,
+                        LengthMenu = Model.AvailablePageSizes,
+                        Filters = new List<FilterParameter>
+                        {
+                        new FilterParameter(nameof(Model.Notice)),
+                        new FilterParameter(nameof(Model.StartDate)),
+                        new FilterParameter(nameof(Model.EndDate)),
                         },
-                       ColumnCollection = new List<ColumnProperty>
+                        ColumnCollection = new List<ColumnProperty>
                         {
-                       new ColumnProperty(nameof(NoticeBoardDetailModel.Name))
-                       {
-                           Title = T("Admin.NoticeBoard.Fields.Name").Text,
-                           Width = "300"
+                        new ColumnProperty(nameof(NoticeBoardDetailModel.Name))
+                        {
+                        Title = T("Admin.NoticeBoard.Fields.Name").Text,
+                        Width = "300"
 
-                       },
-                       new ColumnProperty(nameof(NoticeBoardDetailModel.PhoneNumber))
-                       {
-                           Title = T("Admin.NoticeBoard.Fields.PhoneNumber").Text,
-                           Width = "30",
-                           ClassName = NopColumnClassDefaults.CenterAll,
+                        },
+                        new ColumnProperty(nameof(NoticeBoardDetailModel.PhoneNumber))
+                        {
+                        Title = T("Admin.NoticeBoard.Fields.PhoneNumber").Text,
+                        Width = "30",
+                        ClassName = NopColumnClassDefaults.CenterAll,
 
-                       },
-                       new ColumnProperty(nameof(NoticeBoardDetailModel.EmailAddress))
-                       {
-                           Title = T("Admin.NoticeBoard.Fields.EmailAddress").Text,
-                           Width = "300",
-                           ClassName = NopColumnClassDefaults.CenterAll
+                        },
+                        new ColumnProperty(nameof(NoticeBoardDetailModel.EmailAddress))
+                        {
+                        Title = T("Admin.NoticeBoard.Fields.EmailAddress").Text,
+                        Width = "300",
+                        ClassName = NopColumnClassDefaults.CenterAll
 
-                       },
-                       new ColumnProperty(nameof(NoticeBoardDetailModel.City))
-                       {
-                           Title = T("Admin.NoticeBoard.Fields.City").Text,
-                           Width = "50",
-                           ClassName = NopColumnClassDefaults.CenterAll
+                        },
+                        new ColumnProperty(nameof(NoticeBoardDetailModel.City))
+                        {
+                        Title = T("Admin.NoticeBoard.Fields.City").Text,
+                        Width = "50",
+                        ClassName = NopColumnClassDefaults.CenterAll
 
-                       },
-                        new ColumnProperty(nameof(NoticeBoardDetailModel.CreatedOnUtc))
-                       {
-                           Title = T("Admin.NoticeBoard.Fields.CreatedOn").Text,
-                           Width = "50",
-                           ClassName = NopColumnClassDefaults.CenterAll,
-                             Render = new RenderDate()
-                       }
-                      
-                   }
-                   })
+                        },
+                        new ColumnProperty(nameof(NoticeBoardDetailModel.Address))
+                        {
+                        Title = T("Admin.NoticeBoard.Fields.Address").Text,
+                        Width = "400",
+                        ClassName = NopColumnClassDefaults.CenterAll,
+
+                        },
+                        new ColumnProperty(nameof(NoticeBoardDetailModel.Age))
+                        {
+                        Title = T("Admin.NoticeBoard.Fields.Age").Text,
+                        Width = "20",
+                        ClassName = NopColumnClassDefaults.CenterAll,
+
+                        },
+
+
+                        new ColumnProperty(nameof(NoticeBoardDetailModel.BikeName))
+                        {
+                        Title = T("Admin.NoticeBoard.Fields.BikeName").Text,
+                        Width = "50",
+                        ClassName = NopColumnClassDefaults.CenterAll,
+
+                        },
+                        new ColumnProperty(nameof(NoticeBoardDetailModel.CC))
+                        {
+                        Title = T("Admin.NoticeBoard.Fields.CC").Text,
+                        Width = "20",
+                        ClassName = NopColumnClassDefaults.CenterAll,
+
+                        },
+                        }
+                        })
                     </div>
                 </div>
             </div>
