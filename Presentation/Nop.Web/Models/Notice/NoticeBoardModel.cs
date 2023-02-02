@@ -39,7 +39,7 @@ namespace Nop.Web.Models.Notice
 
         [NopResourceDisplayName("Admin.NoticeBoard.Fields.ThankYou")]
         public string ThankYou { get; set; }
-
+        public string TermAndConditions { get; set; }
         public int Id { get; set; }
         public NoticeFieldModel NoticeField { get; set; }
 

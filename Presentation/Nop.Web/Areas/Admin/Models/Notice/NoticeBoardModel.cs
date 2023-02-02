@@ -39,8 +39,8 @@ namespace Nop.Web.Areas.Admin.Models.Notice
 
         [NopResourceDisplayName("Admin.NoticeBoard.Fields.ThankYou")]
         public string ThankYou { get; set; }
-
-
+        [NopResourceDisplayName("Admin.NoticeBoard.Fields.TermsAndCondition")]
+        public string TermsAndCondition { get; set; }
         [NopResourceDisplayName("Admin.NoticeBoard.Fields.Name")]
         public bool Name { get; set; }
         [NopResourceDisplayName("Admin.NoticeBoard.Fields.Phone")]

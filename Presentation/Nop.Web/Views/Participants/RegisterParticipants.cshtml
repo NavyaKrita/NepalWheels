@@ -10,10 +10,10 @@
 
 <div class="page registration-page" id="modal-register-participants-@Model.NoticeBoardId">
     @*<div class="page-title">
-        <h1>@Html.Raw(Model.Title)</h1>
+    <h1>@Html.Raw(Model.Title)</h1>
     </div>*@
     <div class="page-body">
-        <div id="thank-you-page-load-@Model.NoticeBoardId">
+        <div id="notice-page-load-@Model.NoticeBoardId">
             @Html.Raw(Model.Notice)
 
             @if (Model.IsDisplayForm)
@@ -26,6 +26,27 @@
             }
 
         </div>
+        @if (!string.IsNullOrEmpty(Model.TermAndConditions))
+        {
+            <div id="term-and-conditions-page-load-@Model.NoticeBoardId" style="display:none" data-termAndConditions="true">
+
+                @Html.Raw(Model.TermAndConditions)
+                <div class="form-fields">
+                    <div class="buttons">
+                        I Agree   <input asp-for="Agree" type="checkbox" required="true" id="term-and-conditions-id-@Model.NoticeBoardId" />
+                        <nop-required />
+                        <span asp-validation-for="Agree"></span>
+                    </div>
+                </div>
+            </div>
+        }
+        @if (!string.IsNullOrEmpty(Model.ThankYou))
+        {
+            <div id="thank-you-page-load-@Model.NoticeBoardId" style="display:none" data-thankYou="true">
+                @Html.Raw(Model.ThankYou)
+            </div>
+        }
+
         @if (Model.IsDisplayForm)
         {
             <div id="resgister-participants-form-@Model.NoticeBoardId">

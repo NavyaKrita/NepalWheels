@@ -47,8 +47,10 @@ namespace Nop.Web.Models.Notice
         public DateTime CreatedOnUtc { get; set; }
         public bool IsDisplayForm { get; set; }
         public string Title { get; set; }
-
+        public string ThankYou { get; set; }
+        public string TermAndConditions { get; set; }
         public ParticipantFieldModel ParticipantField { get; set; }
+        public bool Agree { get; set; }
     }
     public partial record ParticipantFieldModel
     {
