@@ -848,9 +848,6 @@
 
     <!-- We copy the \Logs directory -->
     <Content Include="Logs\**" CopyToPublishDirectory="PreserveNewest" />
-    <Content Remove="Areas\Admin\Views\NoticeBoard\Create.cshtml" />
-    <Content Remove="Areas\Admin\Views\NoticeBoard\Edit.cshtml" />
-    <Content Remove="Areas\Admin\Views\NoticeBoard\_CreateOrUpdate.cshtml" />
     <Content Remove="Themes\WristwearTheme\Content\css\bootstrap-theme.min.css" />
     <Content Remove="Themes\WristwearTheme\Content\css\bootstrap-theme.min.rtl.css" />
     <Content Remove="Themes\WristwearTheme\Content\css\bootstrap.min.css" />
@@ -1466,6 +1463,8 @@
   <ItemGroup>
     <None Include="Areas\Admin\Views\NoticeBoard\Create.cshtml" />
     <None Include="Areas\Admin\Views\NoticeBoard\Edit.cshtml" />
+    <None Include="Areas\Admin\Views\NoticeBoard\List.cshtml" />
+    <None Include="Areas\Admin\Views\NoticeBoard\Participants.cshtml" />
     <None Include="Areas\Admin\Views\NoticeBoard\_CreateOrUpdate.cshtml" />
     <None Include="Areas\Admin\Views\VendorLocation\Create.cshtml" />
     <None Include="Areas\Admin\Views\VendorLocation\Edit.cshtml" />
@@ -1498,6 +1497,8 @@
     <None Include="Plugins\Widgets.FacebookPixel\Nop.Plugin.Widgets.FacebookPixel.pdb" />
     <None Include="Plugins\Widgets.FacebookPixel\ref\Nop.Plugin.Widgets.FacebookPixel.dll" />
     <None Include="Plugins\Widgets.NivoSlider\Nop.Plugin.Widgets.NivoSlider.pdb" />
+    <None Include="Views\Participants\RegisterParticipants.cshtml" />
+    <None Include="Views\Participants\ThankYou.cshtml" />
   </ItemGroup>
 
   <ItemGroup>

@@ -98,10 +98,34 @@
     <div class="page-loader">
         <div class="loader"></div>
     </div>
+
     @RenderBody()
     @Html.NopCssFiles(ResourceLocation.Footer)
     @Html.NopScripts(ResourceLocation.Footer)
     @Html.NopInlineScripts(ResourceLocation.Footer)
+    <a href="https://localhost:44369/" class="float">
+        <i class="blink">MISSED CAMPAIGN !!! Enroll yourself HERE</i>
+    </a>
     <div class="scroll-back-button" id="goToTop"></div>
 </body>
 </html>
+<style>
+    .float {
+        position: fixed;
+       /* width: 60%;
+        height: 60%;*/
+        bottom: 95%;
+        right: 70%;
+        background-color: #0C9;
+        color: #000;
+        border-radius: 0px;
+        text-align: center;
+        box-shadow: 2px 2px 3px #999;
+        z-index:2000;
+        padding: 10px 10px 10px 10px;
+    }
+
+    .my-float {
+        margin-top: 22px;
+    }
+</style>
