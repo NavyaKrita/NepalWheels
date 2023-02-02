@@ -32,6 +32,8 @@ namespace Nop.Web.Controllers
                 Notice = notice.Notice,
                 Title = notice.Title,
                 IsDisplayForm = notice.DisplayForm,
+                TermAndConditions = notice.TermAndConditions,
+                ThankYou = notice.ThankYou,
                 ParticipantField = new()
                 {
                     Name = notice.NoticeField.Name,

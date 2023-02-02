@@ -119,22 +119,21 @@
                         $("#resgister-participants-form-" + noticeId).removeAttr("style")
                     });
 
-                    function loadThankYou() {
-                        $.ajax({
-                            type: "GET",
-                            data: { id: noticeId },
-                            url: "@Url.Action("ThankYou", "Participants")",
-                            success: function (data) {
-                                $('#resgister-participants-form-' + noticeId).css("display", "none");
-                                $('#thank-you-page-load-' + noticeId).html("");
-                                $('#thank-you-page-load-' + noticeId).html(data);
-                            },
+                    $(".term-and-conditions-id-" + noticeId).on("click", function () {
 
-                            error: function (error) {
+                        if ($(this).prop("checked")) {
+                            $("#term-and-conditions-page-load-" + noticeId).css("display", "none");
+                            let displayThankYou = $("#thank-you-page-load-" + noticeId).attr("data-thankYou");
+                            if (displayThankYou != undefined && JSON.parse(displayThankYou.toLowerCase())) {
+                                $("#thank-you-page-load-" + noticeId).removeAttr("style");
 
                             }
-                        });
-                    }
+                            else {
+                                $("#notice-pop-up-landing-" + noticeId).dialog('close')
+                            }
+
+                        }
+                    });
 
                     $("#register-participants-form-submit-" + noticeId).submit(function (e) {
 
@@ -147,16 +146,26 @@
                             data: form.serialize(), // serializes the form's elements.
                             success: function (data) {
                                 if (data.success) {
-                                    if (data.displayThankYou) {
-                                        loadThankYou(noticeId);
-                                    }else{
+                                    $("#notice-page-load-" + noticeId).css("display", "none");
+                                    let displayTermAndCondition = $("#term-and-conditions-page-load-" + noticeId).attr("data-termAndConditions");
+                                    let displayThankYou = $("#thank-you-page-load-" + noticeId).attr("data-thankYou");
+                                    if (displayTermAndCondition != undefined && JSON.parse(displayTermAndCondition.toLowerCase())) {
+                                        $("#term-and-conditions-page-load-" + noticeId).removeAttr("style");
+                                        $("#resgister-participants-form-" + noticeId).css("display", "none");
+
+
+
+                                    } else if (displayThankYou != undefined && JSON.parse(displayThankYou.toLowerCase())) {
+                                        $("#term-and-conditions-page-load-" + noticeId).css("display", "none");
+                                        $("#resgister-participants-form-" + noticeId).css("display", "none");
+                                        $("#thank-you-page-load-" + noticeId).removeAttr("style");
+                                    }
+                                    else {
                                         alert("Thank you for registering!")
                                         $("#show-register-button-" + noticeId).removeAttr("style");
                                         $("#resgister-participants-form-" + noticeId).css("display", "none");
                                         $("#register-participants-form-submit-" + noticeId).trigger("reset");
                                     }
-
-                                    /* $('#register-participants').css("display", "none");*/
                                 }
 
                             },
