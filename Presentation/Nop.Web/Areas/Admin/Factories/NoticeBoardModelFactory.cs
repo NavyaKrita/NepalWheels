@@ -30,22 +30,22 @@ namespace Nop.Web.Areas.Admin.Factories
             //prepare list model
             var model = new NoticeBoardListModel().PrepareToGrid(searchModel, notices, () =>
              {
-               //fill in model values from the entity
-               return notices.Select(vendor =>
-              {
-                  var vendorModel = new NoticeBoardModel()
-                  {
-                      Id = vendor.Id,
-                      Notice = vendor.Notice,
-                      DisplayForm = vendor.DisplayForm,
-                      PublishedTo = vendor.PublishedTo,
-                      PublishedFrom = vendor.PublishedFrom,
-                      ThankYou = vendor.ThankYou,
-                      Title = vendor.Title
-                  };
-                  return vendorModel;
-              });
-           });
+                 //fill in model values from the entity
+                 return notices.Select(vendor =>
+                {
+                    var vendorModel = new NoticeBoardModel()
+                    {
+                        Id = vendor.Id,
+                        Notice = vendor.Notice,
+                        DisplayForm = vendor.DisplayForm,
+                        PublishedTo = vendor.PublishedTo,
+                        PublishedFrom = vendor.PublishedFrom,
+                        ThankYou = vendor.ThankYou,
+                        Title = vendor.Title
+                    };
+                    return vendorModel;
+                });
+             });
 
             return model;
         }
@@ -61,7 +61,7 @@ namespace Nop.Web.Areas.Admin.Factories
             return Task.FromResult(searchModel);
         }
 
-        public virtual  CreateNoticeBoardModel PrepareNoticeBoardModelAsync(CreateNoticeBoardModel model, NoticeBoard noticeBoard, bool excludeProperties = false)
+        public virtual CreateNoticeBoardModel PrepareNoticeBoardModelAsync(CreateNoticeBoardModel model, NoticeBoard noticeBoard, bool excludeProperties = false)
         {
 
             if (noticeBoard != null)
@@ -88,7 +88,7 @@ namespace Nop.Web.Areas.Admin.Factories
                     model.CC = noticeBoard.CC;
                 }
             }
-           
+
             return model;
         }
 
@@ -109,8 +109,8 @@ namespace Nop.Web.Areas.Admin.Factories
                 throw new ArgumentNullException(nameof(searchModel));
 
             //get notices
-            var notices = await _noticeBoardService.GetAllParticipatesAsync(searchModel.Notice, 
-                searchModel.StartDate, 
+            var notices = await _noticeBoardService.GetAllParticipatesAsync(searchModel.Notice,
+                searchModel.StartDate,
                 searchModel.EndDate,
                 pageIndex: searchModel.Page - 1, pageSize: searchModel.PageSize);
 
@@ -118,19 +118,22 @@ namespace Nop.Web.Areas.Admin.Factories
             var model = new NoticeBoardDetailListModel().PrepareToGrid(searchModel, notices, () =>
             {
                 //fill in model values from the entity
-                return notices.Select(notice =>
+                return notices.Select(noticeBoard =>
                 {
-                    var vendorModel = new NoticeBoardDetailModel()
+                    var notice = new NoticeBoardDetailModel()
                     {
-                        Id = notice.Id,
-                        Notice = notice.Notice,
-                        Name = notice.Name,
-                        PhoneNumber = notice.PhoneNumber,
-                        CreatedOnUtc = notice.CreatedOnUtc,
-                        EmailAddress = notice.EmailAddress,
-                        City = notice.City
+                        Id = noticeBoard.Id,
+                        Notice = noticeBoard.Notice,
+                        Name = noticeBoard.Name,
+                        PhoneNumber = noticeBoard.PhoneNumber,
+                        EmailAddress = noticeBoard.EmailAddress,
+                        Age = noticeBoard.Age,
+                        Address = noticeBoard.Address,
+                        City = noticeBoard.City,
+                        BikeName = noticeBoard.BikeName,
+                        CC = noticeBoard.CC
                     };
-                    return vendorModel;
+                    return notice;
                 });
             });
 

@@ -2,6 +2,7 @@
 using Nop.Web.Framework.Mvc.ModelBinding;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -21,6 +22,20 @@ namespace Nop.Web.Areas.Admin.Models.Notice
         [NopResourceDisplayName("Admin.NoticeBoard.Fields.NoticeBoard")]
         public string Notice { get; set; }
         public int NoticeBoardId { get; set; }
-        public DateTime CreatedOnUtc { get; set; }
+        [NopResourceDisplayName("Admin.NoticeBoard.Fields.Age")]
+       
+        public int Age { get; set; }
+
+        [NopResourceDisplayName("Admin.NoticeBoard.Fields.Address")]
+        public string Address { get; set; }
+
+        [NopResourceDisplayName("Admin.NoticeBoard.Fields.BikeName")]
+        public string BikeName { get; set; }
+
+        [NopResourceDisplayName("Admin.NoticeBoard.Fields.CC")]
+        public string CC { get; set; }
+       
     }
+
+
 }
