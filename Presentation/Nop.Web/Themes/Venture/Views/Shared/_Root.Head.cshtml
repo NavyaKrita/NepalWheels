@@ -98,18 +98,15 @@
     <div class="page-loader">
         <div class="loader"></div>
     </div>
-
     @RenderBody()
     @Html.NopCssFiles(ResourceLocation.Footer)
     @Html.NopScripts(ResourceLocation.Footer)
     @Html.NopInlineScripts(ResourceLocation.Footer)
-    <a href="https://localhost:44369/" class="float">
-        <i class="blink">MISSED CAMPAIGN !!! Enroll yourself HERE</i>
-    </a>
+    @*<a href="https://localhost:44369/" class="float"><i class="blink">MISSED CAMPAIGN !!! Enroll yourself HERE</i></a>*@
     <div class="scroll-back-button" id="goToTop"></div>
 </body>
 </html>
-<style>
+@*<style>
     .float {
         position: fixed;
        /* width: 60%;
@@ -128,4 +125,4 @@
     .my-float {
         margin-top: 22px;
     }
-</style>
+</style>*@
