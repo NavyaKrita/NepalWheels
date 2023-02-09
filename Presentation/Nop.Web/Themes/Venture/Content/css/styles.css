@@ -12,6 +12,22 @@
 *:before, *:after {
 	box-sizing: border-box;
 }
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+ /* Track */
+::-webkit-scrollbar-track {
+    border-radius: 10px;
+}
+ /* Handle */
+::-webkit-scrollbar-thumb {
+    background: #F3CC2E;
+}
+ /* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #1B7EB5;
+}
 html {
     margin: 0 !important;
     overflow-x: hidden; /*safari horizontal scroll fix*/
@@ -195,7 +211,7 @@ body {
 	font: normal 15px 'Fjalla One', sans-serif;
     color: #2c2c2c;
     letter-spacing: .2px;
-    /*text-transform: none;*/
+    text-transform: uppercase;
 
 }
 a {
@@ -209,7 +225,7 @@ a img {
 	opacity: 0.99; /*firefox scale bug fix*/
 }
 strong {
-    font-weight: bold;
+    font-weight: normal;
 }
 em {
     font-style: normal;
@@ -10109,21 +10125,3 @@ td.ui-datepicker-week-end {
             margin-bottom: 10px !important;
         }
     }
-.image-container {
-    position: relative;
-}
-
-.watermark {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    width: 96px;
-    height: 96px;
-}
-.watermark-products {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    width: 46px;
-    height: 46px;
-}

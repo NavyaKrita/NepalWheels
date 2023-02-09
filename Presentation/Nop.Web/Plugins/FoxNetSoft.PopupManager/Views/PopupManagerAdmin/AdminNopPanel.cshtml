@@ -1,0 +1,7 @@
+﻿@model FoxNetSoft.Plugin.Misc.PopupManager.Models.Admin.TabContentSearchModel
+@{
+    const string hidePopupManagerBlockName = "ProductPage.PopupManager";
+    var hidePopupManagerBlock = await genericAttributeService.GetAttributeAsync<bool>(await workContext.GetCurrentCustomerAsync(), hidePopupManagerBlockName);
+}
+<nop-card asp-name="popupmanager" asp-icon="fa fa-download" asp-title="@T("Admin.FoxNetSoft.PopupManager.Name")" asp-hide-block-attribute-name="@hidePopupManagerBlockName" asp-hide="@hidePopupManagerBlock" asp-advanced="true">@await Html.PartialAsync("~/Plugins/FoxNetSoft.PopupManager/Views/PopupManagerAdmin/AdminTabStripContent.cshtml", Model)</nop-card>
+

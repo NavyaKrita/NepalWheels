@@ -1,0 +1,11 @@
+﻿{
+  "Group": "Misc",
+  "FriendlyName": "Popup Manager",
+  "SystemName": "FoxNetSoft.PopupManager",
+  "Version": "1.03",
+  "SupportedVersions": [ "4.40" ],
+  "Author": "FoxNetSoft",
+  "DisplayOrder": 1,
+  "FileName": "FoxNetSoft.Plugin.Misc.PopupManager.dll",
+  "Description": "Add PopUp windows, etc."
+}

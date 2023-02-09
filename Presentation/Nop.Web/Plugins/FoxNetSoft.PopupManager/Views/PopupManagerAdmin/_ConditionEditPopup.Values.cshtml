@@ -1,0 +1,14 @@
+﻿@{
+    Layout = "";
+}
+@model FoxNetSoft.Plugin.Misc.PopupManager.Models.Admin.PopupWindowConditionPopUpModel
+<div id="conditionvalueblock">
+    @if (Model.ConditionValueComboBox)
+    {
+        <nop-select asp-for="ConditionValueId" asp-items="Model.AvailableConditionValues" />
+    }
+    else
+    {
+        <nop-editor asp-for="ConditionValueId" />
+    }
+</div>

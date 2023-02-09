@@ -1,0 +1,398 @@
+﻿<Language Name="English" IsRightToLeft="false">
+  <LocaleResource Name="Admin.FoxNetSoft.PopupManager.PopupManagerSettings.SerialNumber">
+    <Value>Serial Number</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.PopupManager.PopupManagerSettings.SerialNumber.Hint">
+    <Value>The Serial Number.</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.PopupManager.PopupManagerSettings.showDebugInfo">
+    <Value>Enable Debugging</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.PopupManager.PopupManagerSettings.showDebugInfo.Hint">
+    <Value>Write debugging information into file. In ~/App_Data/ folder.</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.PopupManager.PopupManagerSettings.StoreUrl">
+    <Value>Website address (for registration)</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.PopupManager.PopupManagerSettings.StoreUrl.Hint">
+    <Value>Website address (for registration).</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.PopupManager.PopupManagerSettings.IsRegisted">
+    <Value>Registered version.</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.PopupManager.PopupManagerSettings.IsNoRegisted">
+    <Value>Unregistered version, only 30 days trial period and 5 Popup Windows.</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.PopupManager.PopupManagerSettings.IsExpired">
+    <Value>Your license has expired, you should renew the license with a 50% discount.</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.PopupManager.PopupManagerSettings.ClearLogFile">
+    <Value>Clear the log-file</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.PopupManager.PopupManagerSettings.GetLogFile">
+    <Value>Download the log-file</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.PopupManager.PopupManagerSettings.Enabled">
+    <Value>Enabled</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.PopupManager.PopupManagerSettings.Enabled.Hint">
+    <Value>Enable Popup Windows.</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.PopupManager.Name">
+    <Value>Popup Manager</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.PopupManager.Menu.Name">
+    <Value>Popup Manager</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.PopupManager.Menu.List">
+    <Value>List</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.PopupManager.Menu.Configure">
+    <Value>Configure</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.PopupManager.PopupWindow.List.Stores">
+    <Value>Stores</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.PopupManager.PopupWindow.List.BrowserMode">
+    <Value>Browser mode</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.PopupManager.PopupWindow.Fields.Published">
+    <Value>Published</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.PopupManager.PopupWindow.Fields.Published.Hint">
+    <Value>Check to publish this popup window (visible in store). Uncheck to unpublish (popup window not available in store).</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.PopupManager.PopupWindow.Fields.OneTimePopupWindow">
+    <Value>Show popup window only one time</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.PopupManager.PopupWindow.Fields.OneTimePopupWindow.Hint">
+    <Value>Show popup window only one time and configure timeout.</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.PopupManager.PopupWindow.Fields.TimeExpiredForCookiePopUpPage">
+    <Value>Time expired for cookie (days)</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.PopupManager.PopupWindow.Fields.TimeExpiredForCookiePopUpPage.Hint">
+    <Value>Time expired for cookie (days) for PopUp window.</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.PopupManager.PopupWindow.Fields.DelaySeconds">
+    <Value>Delay (seconds)</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.PopupManager.PopupWindow.Fields.DelaySeconds.Hint">
+    <Value>Enter the number of seconds before the pop-up displays.</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.PopupManager.PopupWindow.Fields.PopupWindowMode">
+    <Value>Type</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.PopupManager.PopupWindow.Fields.PopupWindowMode.Hint">
+    <Value>Select Popup Window  mode from the list for this popup window.</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.PopupManager.PopupWindow.Fields.BrowserMode">
+    <Value>Browser mode</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.PopupManager.PopupWindow.Fields.BrowserMode.Hint">
+    <Value>Select the nrowser mode if you need to show this popup window only for mobile/desktop/both devices.</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.PopupManager.PopupWindow.Fields.ControllerName">
+    <Value>Controller name</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.PopupManager.PopupWindow.Fields.ControllerName.Hint">
+    <Value>The name of the Controller.</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.PopupManager.PopupWindow.Fields.ActionName">
+    <Value>Action name</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.PopupManager.PopupWindow.Fields.ActionName.Hint">
+    <Value>The name of the Action.</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.PopupManager.PopupWindow.Fields.Name">
+    <Value>Name</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.PopupManager.PopupWindow.Fields.Name.Hint">
+    <Value>The name of the popup window.</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.PopupManager.PopupWindow.Fields.Name.Required">
+    <Value>The name is required.</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.PopupManager.PopupWindow.Fields.Title">
+    <Value>Title</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.PopupManager.PopupWindow.Fields.Title.Hint">
+    <Value>Provide the title of the Popup Window.</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.PopupManager.PopupWindow.Fields.Body">
+    <Value>Body</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.PopupManager.PopupWindow.Fields.Body.Hint">
+    <Value>Provide the body of the Popup Window.</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.PopupManager.PopupWindow.Fields.StyleCSS">
+    <Value>Custom CSS style</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.PopupManager.PopupWindow.Fields.StyleCSS.Hint">
+    <Value>Provide the custom CSS style for HTML element of this popup window.</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.PopupManager.PopupWindow.Fields.AdminComment">
+    <Value>Admin comment</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.PopupManager.PopupWindow.Fields.AdminComment.Hint">
+    <Value>Admin comment. For internal use.</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.PopupManager.PopupWindow.Fields.DisplayOrder">
+    <Value>Display order</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.PopupManager.PopupWindow.Fields.DisplayOrder.Hint">
+    <Value>Set the popup window's display order.</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.PopupManager.PopupWindow.Fields.AutoCloseWindow">
+    <Value>Auto Close Window after XXX second(s)</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.PopupManager.PopupWindow.Fields.AutoCloseWindow.Hint">
+    <Value>Auto close popup window after XXX second(s).</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.PopupManager.PopupWindow.Fields.Width">
+    <Value>Width</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.PopupManager.PopupWindow.Fields.Width.Hint">
+    <Value>Set the Width for this popup window.</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.PopupManager.PopupWindow.Fields.Heigth">
+    <Value>Heigth</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.PopupManager.PopupWindow.Fields.Heigth.Hint">
+    <Value>Set the Heigth for this popup window.</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.PopupManager.PopupWindow.Fields.DatenStartUtc">
+    <Value>Start date</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.PopupManager.PopupWindow.Fields.DatenStartUtc.Hint">
+    <Value>The start of the popup window's availability in Coordinated Universal Time (UTC).</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.PopupManager.PopupWindow.Fields.DatenEndUtc">
+    <Value>End date</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.PopupManager.PopupWindow.Fields.DatenEndUtc.Hint">
+    <Value>The end of the popup window's availability in Coordinated Universal Time (UTC).</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.PopupManager.PopupWindow.Fields.AclCustomerRoles">
+    <Value>Customer roles</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.PopupManager.PopupWindow.Fields.AclCustomerRoles.Hint">
+    <Value>Select customer roles for which the popup window will be shown.</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.PopupManager.PopupWindow.Fields.LimitedToStores">
+    <Value>Limited to stores</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.PopupManager.PopupWindow.Fields.LimitedToStores.Hint">
+    <Value>Determines whether the popup window is available only at certain stores.</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.PopupManager.Products.Fields.Product">
+    <Value>Product</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.PopupManager.Products.Fields.Product.Hint">
+    <Value>Product</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.PopupManager.Products.Fields.Published">
+    <Value>Published</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.PopupManager.Products.Fields.Published.Hint">
+    <Value>Publish/unpublish Product (visible in store)</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.PopupManager.Condition.Fields.ConditionType">
+    <Value>Type</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.PopupManager.Condition.Fields.ConditionType.Hint">
+    <Value>Type</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.PopupManager.Condition.Fields.ConditionProperty">
+    <Value>Property</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.PopupManager.Condition.Fields.ConditionProperty.Hint">
+    <Value>Property</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.PopupManager.Condition.Fields.ConditionOperator">
+    <Value>Operator</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.PopupManager.Condition.Fields.ConditionOperator.Hint">
+    <Value>Operator</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.PopupManager.Condition.Fields.ConditionValueId">
+    <Value>Value</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.PopupManager.Condition.Fields.ConditionValueId.Hint">
+    <Value>Value</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.PopupManager.List.Manage">
+    <Value>Manage popup windows</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.PopupManager.AddNew">
+    <Value>Add a new popup window</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.PopupManager.ActivityLog.AddPopupWindow">
+    <Value>Added a new popup window ('{0}')</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.PopupManager.ActivityLog.EditPopupWindow">
+    <Value>Edited the popup window ('{0}')</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.PopupManager.ActivityLog.DeletePopupWindow">
+    <Value>Deleted the popup window ('{0}')</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.PopupManager.Added">
+    <Value>The new popup window has been added successfully.</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.PopupManager.Updated">
+    <Value>The new popup window has been updated successfully.</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.PopupManager.Deleted">
+    <Value>The new popup window has been deleted successfully.</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.PopupManager.BackToList">
+    <Value>back to popup window's list</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.PopupManager.EditDetails">
+    <Value>Edit popup window details</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.PopupManager.Tab.Main">
+    <Value>Main</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.PopupManager.Tab.Products">
+    <Value>Product mappings</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.PopupManager.Tab.Conditions">
+    <Value>Conditions</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.PopupManager.Tab.Categories">
+    <Value>Category mappings</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.PopupManager.Tab.Manufacturers">
+    <Value>Manufacturer mappings</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.PopupManager.Pictures.SaveBeforeEdit">
+    <Value>You need to save the popup window before you can add picture or video to this popup window.</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.PopupManager.Products.SaveBeforeEdit">
+    <Value>You need to save the popup window before you can add products to this popup window.</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.PopupManager.Categories.SaveBeforeEdit">
+    <Value>You need to save the popup window before you can add categories to this popup window.</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.PopupManager.Manufacturers.SaveBeforeEdit">
+    <Value>You need to save the popup window before you can add manufacturers to this popup window.</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.PopupManager.Conditions.SaveBeforeEdit">
+    <Value>You need to save the popup window before you can add conditions to this popup window.</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.PopupManager.Products.AddNew">
+    <Value>Add a new product</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.PopupManager.Condition.AddNew">
+    <Value>Add a new condition</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.PopupManager.Picture.AddNew">
+    <Value>Add a new picture/video</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.PopupManager.Picture.AddButton">
+    <Value>Add picture/video</Value>
+  </LocaleResource>
+  <LocaleResource Name="Admin.FoxNetSoft.PopupManager.Condition.EditValueDetails">
+    <Value>Edit condition</Value>
+  </LocaleResource>
+  <LocaleResource Name="Enums.FoxNetSoft.Plugin.Misc.PopupManager.Domain.ConditionTypeAdjustment.None">
+    <Value>None</Value>
+  </LocaleResource>
+  <LocaleResource Name="Enums.FoxNetSoft.Plugin.Misc.PopupManager.Domain.ConditionTypeAdjustment.Product">
+    <Value>Product</Value>
+  </LocaleResource>
+  <LocaleResource Name="Enums.FoxNetSoft.Plugin.Misc.PopupManager.Domain.ConditionTypeAdjustment.ProductSpecification">
+    <Value>ProductSpecification</Value>
+  </LocaleResource>
+  <LocaleResource Name="Enums.FoxNetSoft.Plugin.Misc.PopupManager.Domain.ConditionProductAdjustment.None">
+    <Value>None</Value>
+  </LocaleResource>
+  <LocaleResource Name="Enums.FoxNetSoft.Plugin.Misc.PopupManager.Domain.ConditionProductAdjustment.Category">
+    <Value>Category</Value>
+  </LocaleResource>
+  <LocaleResource Name="Enums.FoxNetSoft.Plugin.Misc.PopupManager.Domain.ConditionProductAdjustment.Manufacturer">
+    <Value>Manufacturer</Value>
+  </LocaleResource>
+  <LocaleResource Name="Enums.FoxNetSoft.Plugin.Misc.PopupManager.Domain.ConditionProductAdjustment.Price">
+    <Value>Price</Value>
+  </LocaleResource>
+  <LocaleResource Name="Enums.FoxNetSoft.Plugin.Misc.PopupManager.Domain.ConditionProductAdjustment.Quantity">
+    <Value>Quantity</Value>
+  </LocaleResource>
+  <LocaleResource Name="Enums.FoxNetSoft.Plugin.Misc.PopupManager.Domain.ConditionProductAdjustment.PreOrder">
+    <Value>Pre Order</Value>
+  </LocaleResource>
+  <LocaleResource Name="Enums.FoxNetSoft.Plugin.Misc.PopupManager.Domain.ConditionProductAdjustment.FreeShipping">
+    <Value>Free Shipping</Value>
+  </LocaleResource>
+  <LocaleResource Name="Enums.FoxNetSoft.Plugin.Misc.PopupManager.Domain.ConditionProductAdjustment.HasSpecialPrice">
+    <Value>Has Special Price</Value>
+  </LocaleResource>
+  <LocaleResource Name="Enums.FoxNetSoft.Plugin.Misc.PopupManager.Domain.ConditionProductAdjustment.ProductAgeDays">
+    <Value>Product Age Days</Value>
+  </LocaleResource>
+  <LocaleResource Name="Enums.FoxNetSoft.Plugin.Misc.PopupManager.Domain.ConditionProductAdjustment.HasOldPrice">
+    <Value>Has Old Price</Value>
+  </LocaleResource>
+  <LocaleResource Name="Enums.FoxNetSoft.Plugin.Misc.PopupManager.Domain.ConditionProductAdjustment.HasDiscount">
+    <Value>Has Discount (percent)</Value>
+  </LocaleResource>
+  <LocaleResource Name="Enums.FoxNetSoft.Plugin.Misc.PopupManager.Domain.ConditionOperatorAdjustment.EqualTo">
+    <Value>Equal To</Value>
+  </LocaleResource>
+  <LocaleResource Name="Enums.FoxNetSoft.Plugin.Misc.PopupManager.Domain.ConditionOperatorAdjustment.NotEqualTo">
+    <Value>Not Equal To</Value>
+  </LocaleResource>
+  <LocaleResource Name="Enums.FoxNetSoft.Plugin.Misc.PopupManager.Domain.ConditionOperatorAdjustment.LessThan">
+    <Value>Less Than</Value>
+  </LocaleResource>
+  <LocaleResource Name="Enums.FoxNetSoft.Plugin.Misc.PopupManager.Domain.ConditionOperatorAdjustment.GreaterThan">
+    <Value>Greater Than</Value>
+  </LocaleResource>
+  <LocaleResource Name="Enums.FoxNetSoft.Plugin.Misc.PopupManager.Domain.ConditionOperatorAdjustment.LessThanOrEqualTo">
+    <Value>Less Than Or Equal To</Value>
+  </LocaleResource>
+  <LocaleResource Name="Enums.FoxNetSoft.Plugin.Misc.PopupManager.Domain.ConditionOperatorAdjustment.GreaterThanOrEqualTo">
+    <Value>Greater Than Or Equal To</Value>
+  </LocaleResource>
+  <LocaleResource Name="Enums.FoxNetSoft.Plugin.Misc.PopupManager.Domain.PopupWindowMode.HomePage">
+    <Value>Home page</Value>
+  </LocaleResource>
+  <LocaleResource Name="Enums.FoxNetSoft.Plugin.Misc.PopupManager.Domain.PopupWindowMode.AllPages">
+    <Value>All pages</Value>
+  </LocaleResource>
+  <LocaleResource Name="Enums.FoxNetSoft.Plugin.Misc.PopupManager.Domain.PopupWindowMode.LoginPage">
+    <Value>Login page</Value>
+  </LocaleResource>
+  <LocaleResource Name="Enums.FoxNetSoft.Plugin.Misc.PopupManager.Domain.PopupWindowMode.RegisterPage">
+    <Value>Register page</Value>
+  </LocaleResource>
+  <LocaleResource Name="Enums.FoxNetSoft.Plugin.Misc.PopupManager.Domain.PopupWindowMode.ShoppingCart">
+    <Value>Shopping Cart page</Value>
+  </LocaleResource>
+  <LocaleResource Name="Enums.FoxNetSoft.Plugin.Misc.PopupManager.Domain.PopupWindowMode.CheckoutPage">
+    <Value>Checkout page</Value>
+  </LocaleResource>
+  <LocaleResource Name="Enums.FoxNetSoft.Plugin.Misc.PopupManager.Domain.PopupWindowMode.ProductDetalis">
+    <Value>Product detalis page</Value>
+  </LocaleResource>
+  <LocaleResource Name="Enums.FoxNetSoft.Plugin.Misc.PopupManager.Domain.PopupWindowMode.Category">
+    <Value>Category page</Value>
+  </LocaleResource>
+  <LocaleResource Name="Enums.FoxNetSoft.Plugin.Misc.PopupManager.Domain.PopupWindowMode.Manufacturer">
+    <Value>Manufacturer page</Value>
+  </LocaleResource>
+  <LocaleResource Name="Enums.FoxNetSoft.Plugin.Misc.PopupManager.Domain.PopupWindowMode.Custom">
+    <Value>Custom methods</Value>
+  </LocaleResource>
+  <LocaleResource Name="Enums.FoxNetSoft.Plugin.Misc.PopupManager.Domain.BrowserMode.Both">
+    <Value>Both</Value>
+  </LocaleResource>
+  <LocaleResource Name="Enums.FoxNetSoft.Plugin.Misc.PopupManager.Domain.BrowserMode.Desktop">
+    <Value>Desktop</Value>
+  </LocaleResource>
+  <LocaleResource Name="Enums.FoxNetSoft.Plugin.Misc.PopupManager.Domain.BrowserMode.Mobile">
+    <Value>Mobile</Value>
+  </LocaleResource>
+</Language>

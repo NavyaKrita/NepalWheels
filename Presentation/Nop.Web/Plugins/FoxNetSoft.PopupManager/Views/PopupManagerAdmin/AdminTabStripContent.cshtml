@@ -1,0 +1,77 @@
+﻿@model FoxNetSoft.Plugin.Misc.PopupManager.Models.Admin.TabContentSearchModel
+@using FoxNetSoft.Plugin.Misc.PopupManager.Models.Admin
+@using Microsoft.AspNetCore.Routing
+@{
+    Layout = "";
+}
+<div class="card-body">
+    @await Html.PartialAsync("Table", new DataTablesModel
+{
+    Name = "popupmanager-grid",
+    UrlRead = new DataUrl("AdminTabStripContentList", "PopupManagerAdmin", new RouteValueDictionary { [nameof(Model.EntityGroup)] = Model.EntityGroup, [nameof(Model.EntityId)] = Model.EntityId }),
+    Length = Model.PageSize,
+    LengthMenu = Model.AvailablePageSizes,
+    ColumnCollection = new List<ColumnProperty>
+        {
+            new ColumnProperty(nameof(PopupWindowModel.Published))
+            {
+                Title = T("Admin.FoxNetSoft.PopupManager.PopupWindow.Fields.Published").Text,
+                Width = "70",
+                ClassName = NopColumnClassDefaults.CenterAll,
+                Render = new RenderBoolean()
+            },
+            new ColumnProperty(nameof(PopupWindowModel.BrowserMode))
+            {
+                Title = T("Admin.FoxNetSoft.PopupManager.PopupWindow.List.BrowserMode").Text,
+                Width = "120"
+            },
+            new ColumnProperty(nameof(PopupWindowModel.PopupWindowMode))
+            {
+                Title = T("Admin.FoxNetSoft.PopupManager.PopupWindow.Fields.PopupWindowMode").Text,
+                Width = "180"
+            },
+            new ColumnProperty(nameof(PopupWindowModel.Name))
+            {
+                Title = T("Admin.FoxNetSoft.PopupManager.PopupWindow.Fields.Name").Text,
+                Width = "400",
+                ClassName = NopColumnClassDefaults.Button,
+                Render = new RenderCustom("renderColumnNamePopupWindowName")
+            },
+            new ColumnProperty(nameof(PopupWindowModel.AdminComment))
+            {
+                Title = T("Admin.FoxNetSoft.PopupManager.PopupWindow.Fields.AdminComment").Text
+            },
+            new ColumnProperty(nameof(PopupWindowModel.Id))
+            {
+                Title = T("Admin.Common.Edit").Text,
+                Width = "100",
+                ClassName =  NopColumnClassDefaults.Button,
+                Render = new RenderButtonEdit(new DataUrl("~/Admin/PopupManagerAdmin/Edit/"))
+            }
+        }
+})
+
+    <script>
+        function renderColumnNamePopupWindowName(data, type, row, meta) {
+            return '<span>' + row.Name + '</span><br /><i>' + row.Description + '</i>';
+        }
+    </script>
+</div>
+
+<div class="card-footer">
+    <input type="submit" id="btnAddNewPopupWindow" name="btnAddNewPopupWindow" value="@T("Admin.FoxNetSoft.PopupManager.AddNew")"
+            onclick="javascript:OpenWindow('@(Url.Action("PopupWindowAddPopup", "PopupManagerAdmin", new { entityGroup = Model.EntityGroup, entityId = Model.EntityId, btnId = "btnRefreshPopupWindowTab", formId = Model.FormId, area = "Admin" }))    ', 800, 800, true); return false;"
+            class="btn btn-primary" />
+
+    <input type="submit" id="btnRefreshPopupWindowTab" name="btnRefreshPopupWindowTab" style="display: none" />
+    <script>
+        $(document).ready(function () {
+            $('#btnRefreshPopupWindowTab').click(function () {
+                //refresh grid
+                updateTable('#popupmanager-grid');
+                //return false to don't reload a page
+                return false;
+            });
+        });
+    </script>
+</div>

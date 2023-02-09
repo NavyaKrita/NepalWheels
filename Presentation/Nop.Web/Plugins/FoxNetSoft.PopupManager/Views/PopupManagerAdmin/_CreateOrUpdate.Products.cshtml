@@ -1,0 +1,77 @@
+﻿@model FoxNetSoft.Plugin.Misc.PopupManager.Models.Admin.PopupWindowModel
+@using FoxNetSoft.Plugin.Misc.PopupManager.Models.Admin
+@using Microsoft.AspNetCore.Routing
+
+<div class="cards-group">
+    @if (Model.Id > 0)
+    {
+        <div class="card card-default">
+            <div class="card-body">
+                @await Html.PartialAsync("Table", new DataTablesModel
+ {
+ Name = "popupwindowproducts-grid",
+ UrlRead = new DataUrl("ProductList", "PopupManagerAdmin", new RouteValueDictionary { [nameof(Model.PopupWindowSearchModel.PopupWindowId)] = Model.PopupWindowSearchModel.PopupWindowId }),
+ UrlDelete = new DataUrl("ProductDelete", "PopupManagerAdmin", null),
+ Length = Model.PopupWindowSearchModel.PageSize,
+ LengthMenu = Model.PopupWindowSearchModel.AvailablePageSizes,
+ ColumnCollection = new List<ColumnProperty>
+     {
+         new ColumnProperty(nameof(PopupWindowProductModel.Published))
+         {
+             Title = T("Admin.FoxNetSoft.PopupManager.Products.Fields.Published").Text,
+                                             Width = "70",
+                                ClassName = NopColumnClassDefaults.CenterAll,
+                                Render = new RenderBoolean()
+         },
+         new ColumnProperty(nameof(PopupWindowProductModel.ProductName))
+         {
+             Title = T("Admin.Catalog.Categories.Products.Fields.Product").Text
+         },
+         new ColumnProperty(nameof(PopupWindowProductModel.ProductId))
+         {
+             Title = T("Admin.Common.View").Text,
+             Width = "150",
+             ClassName = NopColumnClassDefaults.Button,
+             Render = new RenderButtonView(new DataUrl("~/Admin/Product/Edit/", nameof(PopupWindowProductModel.ProductId)))
+         },
+         new ColumnProperty(nameof(PopupWindowProductModel.Id))
+         {
+             Title = T("Admin.Common.Delete").Text,
+             Width = "100",
+             Render = new RenderButtonRemove(T("Admin.Common.Delete").Text),
+             ClassName = NopColumnClassDefaults.Button
+         }
+     }
+ })
+            </div>
+
+            <div class="card-footer">
+                <button type="submit" id="btnAddNewProduct"
+                        onclick="javascript:OpenWindow('@(Url.Action("ProductAddPopup", "PopupManagerAdmin" , new {popupWindowId=Model.Id, btnId="btnRefreshProducts" , formId="popupwindow-form" }))', 800, 800, true); return false;"
+                        class="btn btn-primary">
+                    @T("Admin.FoxNetSoft.PopupManager.Products.AddNew")
+                </button>
+                <input type="submit" id="btnRefreshProducts" style="display: none" />
+                <script>
+                    $(document).ready(function () {
+                        $('#btnRefreshProducts').click(function () {
+                            //refresh grid
+                            updateTable('#popupwindowproducts-grid');
+
+                            //return false to don't reload a page
+                            return false;
+                        });
+                    });
+                </script>
+            </div>
+        </div>
+                    }
+                    else
+                    {
+                        <div class="card card-default">
+                            <div class="card-body">
+                                @T("Admin.FoxNetSoft.PopupManager.Products.SaveBeforeEdit")
+                            </div>
+                        </div>
+                    }
+</div>

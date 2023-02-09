@@ -1,0 +1,346 @@
+﻿@model FoxNetSoft.Plugin.Misc.PopupManager.Models.Admin.PopupWindowModel
+@using FoxNetSoft.Plugin.Misc.PopupManager.Domain
+@using FoxNetSoft.Plugin.Misc.PopupManager.Models.Admin
+<script>
+    $(document).ready(function () {
+        $("#@Html.IdFor(model => model.PopupWindowModeId)").change(togglePopupWindowMode);
+        $("#@Html.IdFor(model => model.OneTimePopupWindow)").change(toggleOneTimePopupWindow);
+
+        toggleOneTimePopupWindow();
+        togglePopupWindowMode();
+    });
+    function toggleOneTimePopupWindow() {
+        if ($("#@Html.IdFor(model => model.OneTimePopupWindow)").is(':checked')) {
+            $('#pnlTimeExpiredForCookiePopUpPage').showElement();
+        }
+        else {
+            $('#pnlTimeExpiredForCookiePopUpPage').hideElement();
+        }
+    }
+
+    function togglePopupWindowMode() {
+        var popupWindowModeId = $("#@Html.IdFor(model => model.PopupWindowModeId)").val();
+
+        var $tabproducts = $('[data-toggle="tab"][href="#tab-products"]');
+        var $tabcategories = $('[data-toggle="tab"][href="#tab-categories"]');
+        var $tabmanufacturers = $('[data-toggle="tab"][href="#tab-manufacturers"]');
+        var $tabconditions = $('[data-toggle="tab"][href="#tab-conditions"]');
+        $tabproducts.hideElement();
+        $tabcategories.hideElement();
+        $tabmanufacturers.hideElement();
+        $tabconditions.hideElement();
+        $('#pnlControllerName, #pnlActionName').hideElement();
+
+        switch (popupWindowModeId) {
+            case '@(((int)PopupWindowMode.Category).ToString())':
+                $tabcategories.showElement();
+                break;
+            case '@(((int)PopupWindowMode.Manufacturer).ToString())':
+                $tabmanufacturers.showElement();
+                break;
+            case '@(((int)PopupWindowMode.ProductDetalis).ToString())':
+                $tabproducts.showElement();
+                $tabcategories.showElement();
+                $tabmanufacturers.showElement();
+                $tabconditions.showElement();
+                break;
+            case '@(((int)PopupWindowMode.Custom).ToString())':
+                $('#pnlControllerName, #pnlActionName').showElement();
+                break;
+        }
+    }
+</script>
+<div class="cards-group">
+    <div class="card card-default">
+        <div class="card-body">
+            <div class="form-group row">
+                <div class="col-md-3">
+                    <nop-label asp-for="Published" />
+                </div>
+                <div class="col-md-9">
+                    <nop-editor asp-for="Published" />
+                    <span asp-validation-for="Published"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-3">
+                    <nop-label asp-for="Name" />
+                </div>
+                <div class="col-md-9">
+                    <nop-editor asp-for="Name" />
+                    <span asp-validation-for="Name"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-3">
+                    <nop-label asp-for="PopupWindowModeId" />
+                </div>
+                <div class="col-md-9">
+                    <nop-select asp-for="PopupWindowModeId" asp-items="Model.AvailablePopupWindowModes" />
+                    <span asp-validation-for="PopupWindowModeId"></span>
+                </div>
+            </div>
+            <div class="form-group row" id="pnlControllerName">
+                <div class="col-md-3">
+                    <nop-label asp-for="ControllerName" />
+                </div>
+                <div class="col-md-9">
+                    <nop-editor asp-for="ControllerName" />
+                    <span asp-validation-for="ControllerName"></span>
+                </div>
+            </div>
+            <div class="form-group row" id="pnlActionName">
+                <div class="col-md-3">
+                    <nop-label asp-for="ActionName" />
+                </div>
+                <div class="col-md-9">
+                    <nop-editor asp-for="ActionName" />
+                    <span asp-validation-for="ActionName"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card card-default">
+        <div class="card-body">
+            @(await Html.LocalizedEditorAsync<PopupWindowModel, PopupWindowLocalizedModel>("popupmanager-info-localized",
+                                    @<div>
+                                        <div class="form-group row">
+                                            <div class="col-md-3">
+                                                <nop-label asp-for="@Model.Locales[item].Title" />
+                                            </div>
+                                            <div class="col-md-9">
+                                                <nop-editor asp-for="@Model.Locales[item].Title" />
+                                                <span asp-validation-for="@Model.Locales[item].Title"></span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-md-3">
+                                                <nop-label asp-for="@Model.Locales[item].Body" />
+                                            </div>
+                                            <div class="col-md-9">
+                                                <nop-editor asp-for="@Model.Locales[item].Body" asp-template="RichEditor" />
+                                                <span asp-validation-for="@Model.Locales[item].Body"></span>
+                                            </div>
+                                        </div>
+                                        <input type="hidden" asp-for="@Model.Locales[item].LanguageId" />
+                                    </div>
+                                                                                                        ,
+                                                                                                @<div>
+                                                                                                    <div class="form-group row">
+                                                                                                        <div class="col-md-3">
+                                                                                                            <nop-label asp-for="Title" />
+                                                                                                        </div>
+                                                                                                        <div class="col-md-9">
+                                                                                                            <nop-editor asp-for="Title" />
+                                                                                                            <span asp-validation-for="Title"></span>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                    <div class="form-group row">
+                                                                                                        <div class="col-md-3">
+                                                                                                            <nop-label asp-for="Body" />
+                                                                                                        </div>
+                                                                                                        <div class="col-md-9">
+                                                                                                            <nop-editor asp-for="Body" asp-template="RichEditor" />
+                                                                                                            <span asp-validation-for="Body"></span>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                                                                                                                                                ))
+        </div>
+    </div>
+    <div class="card card-default">
+        <div class="card-body">
+            <div class="form-group row">
+                <div class="col-md-3">
+                    <nop-label asp-for="BrowserModeId" />
+                </div>
+                <div class="col-md-9">
+                    <nop-select asp-for="BrowserModeId" asp-items="Model.AvailableBrowserModes" />
+                    <span asp-validation-for="BrowserModeId"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-3">
+                    <nop-label asp-for="DatenStartUtc" />
+                </div>
+                <div class="col-md-9">
+                    <nop-editor asp-for="DatenStartUtc" />
+                    <span asp-validation-for="DatenStartUtc"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-3">
+                    <nop-label asp-for="DatenEndUtc" />
+                </div>
+                <div class="col-md-9">
+                    <nop-editor asp-for="DatenEndUtc" />
+                    <span asp-validation-for="DatenEndUtc"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-3">
+                    <nop-label asp-for="DisplayOrder" />
+                </div>
+                <div class="col-md-9">
+                    <nop-editor asp-for="DisplayOrder" />
+                    <span asp-validation-for="DisplayOrder"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-3">
+                    <nop-label asp-for="SelectedCustomerRoleIds" />
+                </div>
+                <div class="col-md-9">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <nop-select asp-for="SelectedCustomerRoleIds" asp-items="Model.AvailableCustomerRoles" asp-multiple="true" />
+                            <script>
+                        $(document).ready(function() {
+                            var rolesIdsInput = $('#@Html.IdFor(model => model.SelectedCustomerRoleIds)')
+                                .data("kendoMultiSelect");
+                            rolesIdsInput.setOptions({
+                                autoClose: false,
+                                filter: "contains"
+                            });
+
+                            @if (Model.AvailableCustomerRoles.Count == 0)
+                            {
+                                <text>
+                                    rolesIdsInput.setOptions({
+                                        enable: false,
+                                        placeholder: 'No customer roles available'
+                                    });
+                                    rolesIdsInput._placeholder();
+                                    rolesIdsInput._enable();
+                                </text>
+                            }
+                        });
+                            </script>
+                        </div>
+                        <div class="col-md-8">
+                            @await Component.InvokeAsync("AclDisabledWarning")
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-3">
+                    <nop-label asp-for="SelectedStoreIds" />
+                </div>
+                <div class="col-md-9">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <nop-select asp-for="SelectedStoreIds" asp-items="Model.AvailableStores" asp-multiple="true" />
+                            <script>
+                                $(document).ready(function() {
+                                    var storesIdsInput = $('#@Html.IdFor(model => model.SelectedStoreIds)')
+                                        .data("kendoMultiSelect");
+                                    storesIdsInput.setOptions({
+                                        autoClose: false,
+                                        filter: "contains"
+                                    });
+
+                                    @if (Model.AvailableStores.Count == 0)
+                                    {
+                                        <text>
+                                            storesIdsInput.setOptions({
+                                                enable: false,
+                                                placeholder: 'No stores available'
+                                            });
+                                            storesIdsInput._placeholder();
+                                            storesIdsInput._enable();
+                                        </text>
+                                    }
+                                });
+                            </script>
+                        </div>
+                        <div class="col-md-8">
+                            @await Component.InvokeAsync("MultistoreDisabledWarning")
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card card-default">
+        <div class="card-body">
+            <div class="form-group row">
+                <div class="col-md-3">
+                    <nop-label asp-for="AutoCloseWindow" />
+                </div>
+                <div class="col-md-9">
+                    <nop-editor asp-for="AutoCloseWindow" />
+                    <span asp-validation-for="AutoCloseWindow"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-3">
+                    <nop-label asp-for="OneTimePopupWindow" />
+                </div>
+                <div class="col-md-9">
+                    <nop-editor asp-for="OneTimePopupWindow" />
+                    <span asp-validation-for="OneTimePopupWindow"></span>
+                </div>
+            </div>
+            <div class="form-group row" id="pnlTimeExpiredForCookiePopUpPage">
+                <div class="col-md-3">
+                    <nop-label asp-for="TimeExpiredForCookiePopUpPage" />
+                </div>
+                <div class="col-md-9">
+                    <nop-editor asp-for="TimeExpiredForCookiePopUpPage" />
+                    <span asp-validation-for="TimeExpiredForCookiePopUpPage"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-3">
+                    <nop-label asp-for="DelaySeconds" />
+                </div>
+                <div class="col-md-9">
+                    <nop-editor asp-for="DelaySeconds" />
+                    <span asp-validation-for="DelaySeconds"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-3">
+                    <nop-label asp-for="StyleCSS" />
+                </div>
+                <div class="col-md-9">
+                    <nop-editor asp-for="StyleCSS" />
+                    <span asp-validation-for="StyleCSS"></span>
+                </div>
+            </div>
+            <div class="form-group row" id="pnlWidth">
+                <div class="col-md-3">
+                    <nop-label asp-for="Width" />
+                </div>
+                <div class="col-md-9">
+                    <nop-editor asp-for="Width" />
+                    <span asp-validation-for="Width"></span>
+                </div>
+            </div>
+            <div class="form-group row" id="pnlHeigth">
+                <div class="col-md-3">
+                    <nop-label asp-for="Heigth" />
+                </div>
+                <div class="col-md-9">
+                    <nop-editor asp-for="Heigth" />
+                    <span asp-validation-for="Heigth"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card card-default">
+        <div class="card-body">
+            <div class="form-group row">
+                <div class="col-md-3">
+                    <nop-label asp-for="AdminComment" />
+                </div>
+                <div class="col-md-9">
+                    <nop-textarea asp-for="AdminComment"></nop-textarea>
+                    <span asp-validation-for="AdminComment"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

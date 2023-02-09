@@ -1,0 +1,55 @@
+﻿@model FoxNetSoft.Plugin.Misc.PopupManager.Models.PopupWindowListModel
+@{
+    //Html.AddCssFileParts(ResourceLocation.Footer, "~/Plugins/FoxNetSoft.PopupManager/Styles/styles.css");
+}
+<div class="popupwindow-list">
+    @foreach (var popupWindow in Model.PopupWindows)
+    {
+        var cssstyle = "";
+        //var pause = popupWindow.Pause.HasValue ? $"pause:{popupWindow.Pause}," : "";
+        if (popupWindow.Width.HasValue)
+        {
+            cssstyle = cssstyle + $"width: {popupWindow.Width.Value}px;";
+        }
+        if (popupWindow.Heigth.HasValue)
+        {
+            cssstyle = cssstyle + $"height: {popupWindow.Heigth.Value}px;";
+        }
+        <div id="popupwindowdiv@(popupWindow.Id)" class="@(!string.IsNullOrWhiteSpace(popupWindow.StyleCSS)?"bxslider-div "+popupWindow.StyleCSS:"popupwindow-div")" title="@popupWindow.Title" style="display: none;@cssstyle">
+            @Html.Raw(popupWindow.Body)
+        </div>
+        <script asp-location="Footer">
+            $(document).ready(function () {
+                @if (popupWindow.DelaySeconds.HasValue && popupWindow.DelaySeconds.Value > 0)
+                {
+                    <text>
+                    setTimeout("createPopupWindowDialog@(popupWindow.Id)()", @(popupWindow.DelaySeconds.Value)* 1000);
+                    </text>
+                }
+                else
+                {
+                     <text>
+                     createPopupWindowDialog@(popupWindow.Id)();
+                     </text>
+                }
+            });
+            function createPopupWindowDialog@(popupWindow.Id)()
+            {
+                $('#popupwindowdiv@(popupWindow.Id)').dialog(
+                    {
+                        height: @Html.Raw(popupWindow.Heigth.HasValue?popupWindow.Heigth.Value.ToString(): "\"auto\""),
+                        width: @Html.Raw(popupWindow.Width.HasValue?popupWindow.Width.Value.ToString(): "\"auto\""),
+                        modal: true,
+                        open: function (event, ui) {
+                            @if (popupWindow.AutoCloseWindow.HasValue && popupWindow.AutoCloseWindow.Value>0)
+                                    {
+                                        <text>
+                                        setTimeout("$('#popupwindowdiv@(popupWindow.Id)').dialog('close')", @(popupWindow.AutoCloseWindow.Value)*1000);
+                                        </text>
+                                    }
+                        }
+                    });
+            }
+        </script>
+    }
+</div>

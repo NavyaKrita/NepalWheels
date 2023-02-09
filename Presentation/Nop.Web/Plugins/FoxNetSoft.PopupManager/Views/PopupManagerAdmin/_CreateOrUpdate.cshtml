@@ -1,0 +1,22 @@
+@model FoxNetSoft.Plugin.Misc.PopupManager.Models.Admin.PopupWindowModel
+
+<div asp-validation-summary="ModelOnly"></div>
+<input asp-for="Id" type="hidden" />
+
+<div class="content">
+    <div class="form-horizontal">
+        <div class="row">
+            <div class="col-md-12 clearfix">
+                <div class="float-left">
+                </div>
+            </div>
+        </div>
+        <nop-tabs id="popupwindow-edit">
+            <nop-tab asp-name="tab-main" asp-title="@T("Admin.FoxNetSoft.PopupManager.Tab.Main")" asp-default="true">@await Html.PartialAsync("~/Plugins/FoxNetSoft.PopupManager/Views/PopupManagerAdmin/_CreateOrUpdate.Main.cshtml", Model)</nop-tab>
+            <nop-tab asp-name="tab-products" asp-title="@T("Admin.FoxNetSoft.PopupManager.Tab.Products")">@await Html.PartialAsync("~/Plugins/FoxNetSoft.PopupManager/Views/PopupManagerAdmin/_CreateOrUpdate.Products.cshtml", Model)</nop-tab>
+            <nop-tab asp-name="tab-categories" asp-title="@T("Admin.FoxNetSoft.PopupManager.Tab.Categories")">@await Html.PartialAsync("~/Plugins/FoxNetSoft.PopupManager/Views/PopupManagerAdmin/_CreateOrUpdate.Categories.cshtml", Model)</nop-tab>
+            <nop-tab asp-name="tab-manufacturers" asp-title="@T("Admin.FoxNetSoft.PopupManager.Tab.Manufacturers")">@await Html.PartialAsync("~/Plugins/FoxNetSoft.PopupManager/Views/PopupManagerAdmin/_CreateOrUpdate.Manufacturers.cshtml", Model)</nop-tab>
+            <nop-tab asp-name="tab-conditions" asp-title="@T("Admin.FoxNetSoft.PopupManager.Tab.Conditions")">@await Html.PartialAsync("~/Plugins/FoxNetSoft.PopupManager/Views/PopupManagerAdmin/_CreateOrUpdate.Conditions.cshtml", Model)</nop-tab>
+        </nop-tabs>
+    </div>
+</div>

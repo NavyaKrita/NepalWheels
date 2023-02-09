@@ -1,0 +1,76 @@
+@model FoxNetSoft.Plugin.Misc.PopupManager.Models.Admin.AddPopupWindowModel
+@using FoxNetSoft.Plugin.Misc.PopupManager.Models.Admin
+@{
+    Layout = "_AdminPopupLayout";
+    //page title
+    ViewBag.PageTitle = T("Admin.FoxNetSoft.PopupManager.AddNew").Text;
+}
+
+@if (ViewBag.RefreshPage == true)
+{
+    <script>
+        try {window.opener.document.forms['@(Context.Request.Query["formId"])'].@(Context.Request.Query["btnId"]).click();}
+        catch (e){}
+        window.close();
+    </script>
+}
+<form asp-controller="PopupManagerAdmin" asp-action="PopupWindowAddPopup"
+      asp-route-entitygroup="@Context.Request.Query["entitygroup"]"
+      asp-route-entityid="@Context.Request.Query["entityid"]"
+      asp-route-btnId="@Context.Request.Query["btnId"]"
+      asp-route-formId="@Context.Request.Query["formId"]">
+
+    <div class="content-header clearfix">
+        <h1 class="float-left">
+            @T("Admin.FoxNetSoft.PopupManager.AddNew")
+        </h1>
+        <div class="float-right">
+            &nbsp;
+        </div>
+    </div>
+
+    <div class="content">
+        <div class="form-horizontal">
+            <div class="cards-group">
+                <div class="card card-default">
+                    <div class="card-body">
+                        @await Html.PartialAsync("Table", new DataTablesModel
+                        {
+                            Name = "popupmanager-grid",
+                            UrlRead = new DataUrl("List", "PopupManagerAdmin", null),
+                            Length = Model.PageSize,
+                            LengthMenu = Model.AvailablePageSizes,
+                            ColumnCollection = new List<ColumnProperty>
+                            {
+                                new ColumnProperty(nameof(PopupWindowModel.Id))
+                                {
+                                    IsMasterCheckBox = true,
+                                    Render = new RenderCheckBox(nameof(AddPopupWindowModel.SelectedPopupWindowIds)),
+                                    ClassName = NopColumnClassDefaults.CenterAll,
+                                    Width = "50"
+                                },
+                                new ColumnProperty(nameof(PopupWindowModel.Name))
+                                {
+                                    Title = T("Admin.FoxNetSoft.PopupManager.PopupWindow.Fields.Name").Text
+                                },
+                                new ColumnProperty(nameof(PopupWindowModel.Published))
+                                {
+                                    Title = T("Admin.FoxNetSoft.PopupManager.PopupWindow.Fields.Published").Text,
+                                    Width = "100",
+                                    ClassName = NopColumnClassDefaults.CenterAll,
+                                    Render = new RenderBoolean()
+                                }
+                            }
+                        })
+                    </div>
+                    <div class="card-footer">
+                        <button type="submit" name="save" class="btn bg-blue">
+                            <i class="fa fa-floppy-o"></i>
+                            @T("Admin.Common.Save")
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

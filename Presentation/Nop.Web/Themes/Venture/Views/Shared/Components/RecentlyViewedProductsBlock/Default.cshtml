@@ -19,23 +19,20 @@
                             <a class="product-picture" href="@Url.RouteUrl("Product", new { SeName = product.SeName })" title="@product.DefaultPictureModel.Title">
                                 @if (viewComponentSelector.SelectComponent("LazyLoadImage") != null)
                                 {
-                                    @await Component.InvokeAsync("LazyLoadImage", new(string Key, string Value)[]
-                    {
-                    ("src", product.DefaultPictureModel.ImageUrl),
-                    ("alt", product.DefaultPictureModel.AlternateText),
-                    ("title", product.DefaultPictureModel.Title)
-                    })
+                                    @await Component.InvokeAsync("LazyLoadImage", new(string Key, string Value)[] 
+                                    {
+                                        ("src", product.DefaultPictureModel.ImageUrl),
+                                        ("alt", product.DefaultPictureModel.AlternateText),
+                                        ("title", product.DefaultPictureModel.Title)
+                                    })
 
                                 }
                                 else
                                 {
-
                                     <img alt="@product.DefaultPictureModel.AlternateText" src="@product.DefaultPictureModel.ImageUrl" title="@product.DefaultPictureModel.Title" />
                                 }
                             </a>
                         }
-
-                        
                         <a class="product-name" href="@Url.RouteUrl("Product", new { SeName = product.SeName })">
                             <span class="name">@product.Name</span>
                             <span class="price">@product.ProductPrice.Price</span>

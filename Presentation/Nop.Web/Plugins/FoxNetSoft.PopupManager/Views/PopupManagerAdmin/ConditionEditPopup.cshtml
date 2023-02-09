@@ -1,0 +1,157 @@
+﻿@model FoxNetSoft.Plugin.Misc.PopupManager.Models.Admin.PopupWindowConditionPopUpModel
+@{
+    Layout = "_AdminPopupLayout";
+    //page title
+    ViewBag.PageTitle = T("Admin.FoxNetSoft.PopupManager.Condition.EditValueDetails").Text;
+}
+
+@if (ViewBag.RefreshPage == true)
+{
+    <script>
+        try {window.opener.document.forms['@(Context.Request.Query["formId"])'].@(Context.Request.Query["btnId"]).click();}
+        catch (e){}
+        window.close();
+    </script>
+}
+<form asp-controller="PopupManagerAdmin" asp-action="ConditionEditPopup"
+      asp-route-popupWindowId="@Context.Request.Query["popupWindowId"]"
+      asp-route-popupWindowConditionId="@Context.Request.Query["popupWindowConditionId"]"
+      asp-route-btnId="@Context.Request.Query["btnId"]"
+      asp-route-formId="@Context.Request.Query["formId"]">
+    <div class="content-header clearfix">
+        <h1 class="float-left">
+            @T("Admin.FoxNetSoft.PopupManager.Condition.EditValueDetails")
+        </h1>
+        <div class="float-right">
+            <button type="submit" name="save" class="btn bg-blue">
+                <i class="fa fa-floppy-o"></i>
+                @T("Admin.Common.Save")
+            </button>
+        </div>
+    </div>
+
+    <div asp-validation-summary="All"></div>
+    <input asp-for="Id" type="hidden" />
+    <input asp-for="PopupWindowId" type="hidden" />
+    <input asp-for="ConditionGroupId" type="hidden" />
+
+    <div class="content">
+        <div class="form-horizontal">
+            <div class="cards-group">
+                <div class="card card-default panel-popup">
+                    <div class="card-body">
+                        <div class="form-group row">
+                            <div class="col-sm-3">
+                                <nop-label asp-for="ConditionTypeId" />
+                            </div>
+                            <div class="col-sm-3">
+                                <nop-select asp-for="ConditionTypeId" asp-items="Model.AvailableConditionTypes" />
+                                <span asp-validation-for="ConditionTypeId"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-3">
+                                <nop-label asp-for="ConditionPropertyId" />
+                            </div>
+                            <div class="col-sm-9">
+                                <nop-select asp-for="ConditionPropertyId" asp-items="Model.AvailableConditionProperties" />
+                                <span id="conditionproperty-loading-progress" style="display: none;" class="please-wait">@T("Common.Wait")</span>
+                                <span asp-validation-for="ConditionPropertyId"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-3">
+                                <nop-label asp-for="ConditionOperatorId" />
+                            </div>
+                            <div class="col-sm-9">
+                                <nop-select asp-for="ConditionOperatorId" asp-items="Model.AvailableConditionOperators" />
+                                <span id="conditionoperator-loading-progress" style="display: none;" class="please-wait">@T("Common.Wait")</span>
+                                <span asp-validation-for="ConditionOperatorId"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-3">
+                                <nop-label asp-for="ConditionValueId" />
+                            </div>
+                            <div class="col-sm-9">
+                                @await Html.PartialAsync("~/Plugins/FoxNetSoft.PopupManager/Views/PopupManagerAdmin/_ConditionEditPopup.Values.cshtml", Model)
+                                <span id="conditionvalue-loading-progress" style="display: none;" class="please-wait">@T("Common.Wait")</span>
+                                <span asp-validation-for="ConditionValueId"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+                                    $(function () {
+                                        $("#@Html.IdFor(model => model.ConditionTypeId)").change(function () {
+                                            var selectedItem = $(this).val();
+                                            var ddlProperties = $("#@Html.IdFor(model => model.ConditionPropertyId)");
+                                            var propertyProgress = $("#conditionproperty-loading-progress");
+                                            propertyProgress.showElement();
+                                            var postData = {
+                                                conditionTypeId: selectedItem
+                                            };
+                                            addAntiForgeryToken(postData);
+
+                                            $.ajax({
+                                                cache: false,
+                                                type: "POST",
+                                                url: "@(Url.Action("GetConditionProperties", "PopupManagerAdmin"))",
+                                                data: postData,
+                                                async: false,
+                                                success: function (data) {
+                                                    ddlProperties.html('');
+                                                    $.each(data, function (id, option) {
+                                                        ddlProperties.append($('<option></option>').val(option.id).html(option.name));
+                                                    });
+                                                    propertyProgress.hideElement();
+                                                    ddlProperties.change();
+                                                },
+                                                error: function (xhr, ajaxOptions, thrownError) {
+                                                    alert('Failed to retrieve properties.');
+                                                    propertyProgress.hideElement();
+                                                }
+                                            });
+                                        });
+
+                                        $("#@Html.IdFor(model => model.ConditionPropertyId)").change(function () {
+                                            var selectedItem = $(this).val();
+                                            var selectedTypeItem = $("#@Html.IdFor(model => model.ConditionTypeId)").val();
+                                            var ddlOperators = $("#@Html.IdFor(model => model.ConditionOperatorId)");
+                                            var ddlValues = $("#@Html.IdFor(model => model.ConditionValueId)");
+                                            var propertyOperators = $("#conditionoperator-loading-progress");
+                                            propertyOperators.showElement();
+                                            var postData = {
+                                                conditionTypeId: selectedTypeItem,
+                                                conditionPropertyId: selectedItem
+                                            };
+                                            addAntiForgeryToken(postData);
+                                            $.ajax({
+                                                cache: false,
+                                                type: "POST",
+                                                url: "@(Url.Action("GetConditionOperators", "PopupManagerAdmin"))",
+                                                data: postData,
+                                                async: false,
+                                                success: function (data) {
+                                                    if (data.updateconditionvalueshtml)
+                                                    {
+                                                        $("#conditionvalueblock").replaceWith(data.updateconditionvalueshtml);
+                                                    }
+                                                    ddlOperators.html('');
+                                                    $.each(data.conditionoperators, function (id, option) {
+                                                        ddlOperators.append($('<option></option>').val(option.id).html(option.name));
+                                                    });
+                                                    propertyOperators.hideElement();
+                                                },
+                                                error: function (xhr, ajaxOptions, thrownError) {
+                                                    alert('Failed to retrieve operators.');
+                                                    propertyOperators.hideElement();
+                                                }
+                                            });
+                                        });
+                                    });
+    </script>
+</form>
