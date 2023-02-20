@@ -66,5 +66,11 @@ namespace Nop.Core.Domain.Vendors
         /// Gets or sets a value indicating whether vendors are allowed to import products
         /// </summary>
         public bool AllowVendorsToImportProducts { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether users can fill a form to become a new vendor
+        /// </summary>
+       
+        public bool AllowCustomersToApplyForSellerAccount { get; set; }
     }
 }
