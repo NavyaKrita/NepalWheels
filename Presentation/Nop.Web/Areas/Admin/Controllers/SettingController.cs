@@ -221,7 +221,7 @@ namespace Nop.Web.Areas.Admin.Controllers
                 _notificationService.SuccessNotification(
                     await _localizationService.GetResourceAsync("Admin.Configuration.Updated"));
 
-                var returnUrl = Url.Action("AppSettings", "Setting", new {area = AreaNames.Admin});
+                var returnUrl = Url.Action("AppSettings", "Setting", new { area = AreaNames.Admin });
                 return View("RestartApplication", returnUrl);
             }
 
@@ -251,8 +251,8 @@ namespace Nop.Web.Areas.Admin.Controllers
             if (!await _permissionService.AuthorizeAsync(StandardPermissionProvider.ManageSettings))
                 return AccessDeniedView();
 
-            if(ModelState.IsValid)
-            { 
+            if (ModelState.IsValid)
+            {
                 //load settings for a chosen store scope
                 var storeScope = await _storeContext.GetActiveStoreScopeConfigurationAsync();
                 var blogSettings = await _settingService.LoadSettingAsync<BlogSettings>(storeScope);
@@ -307,8 +307,8 @@ namespace Nop.Web.Areas.Admin.Controllers
             if (!await _permissionService.AuthorizeAsync(StandardPermissionProvider.ManageSettings))
                 return AccessDeniedView();
 
-            if(ModelState.IsValid)
-            { 
+            if (ModelState.IsValid)
+            {
                 //load settings for a chosen store scope
                 var storeScope = await _storeContext.GetActiveStoreScopeConfigurationAsync();
                 var vendorSettings = await _settingService.LoadSettingAsync<VendorSettings>(storeScope);
@@ -322,6 +322,7 @@ namespace Nop.Web.Areas.Admin.Controllers
                 await _settingService.SaveSettingOverridablePerStoreAsync(vendorSettings, x => x.ShowVendorOnOrderDetailsPage, model.ShowVendorOnOrderDetailsPage_OverrideForStore, storeScope, false);
                 await _settingService.SaveSettingOverridablePerStoreAsync(vendorSettings, x => x.AllowCustomersToContactVendors, model.AllowCustomersToContactVendors_OverrideForStore, storeScope, false);
                 await _settingService.SaveSettingOverridablePerStoreAsync(vendorSettings, x => x.AllowCustomersToApplyForVendorAccount, model.AllowCustomersToApplyForVendorAccount_OverrideForStore, storeScope, false);
+                await _settingService.SaveSettingOverridablePerStoreAsync(vendorSettings, x => x.AllowCustomersToApplyForSellerAccount, model.AllowCustomersToApplyForSellerAccount_OverrideForStore, storeScope, false);
                 await _settingService.SaveSettingOverridablePerStoreAsync(vendorSettings, x => x.TermsOfServiceEnabled, model.TermsOfServiceEnabled_OverrideForStore, storeScope, false);
                 await _settingService.SaveSettingOverridablePerStoreAsync(vendorSettings, x => x.AllowSearchByVendor, model.AllowSearchByVendor_OverrideForStore, storeScope, false);
                 await _settingService.SaveSettingOverridablePerStoreAsync(vendorSettings, x => x.AllowVendorsToEditInfo, model.AllowVendorsToEditInfo_OverrideForStore, storeScope, false);
@@ -366,8 +367,8 @@ namespace Nop.Web.Areas.Admin.Controllers
             if (!await _permissionService.AuthorizeAsync(StandardPermissionProvider.ManageSettings))
                 return AccessDeniedView();
 
-            if(ModelState.IsValid)
-            { 
+            if (ModelState.IsValid)
+            {
                 //load settings for a chosen store scope
                 var storeScope = await _storeContext.GetActiveStoreScopeConfigurationAsync();
                 var forumSettings = await _settingService.LoadSettingAsync<ForumSettings>(storeScope);
@@ -437,8 +438,8 @@ namespace Nop.Web.Areas.Admin.Controllers
             if (!await _permissionService.AuthorizeAsync(StandardPermissionProvider.ManageSettings))
                 return AccessDeniedView();
 
-            if(ModelState.IsValid)
-            { 
+            if (ModelState.IsValid)
+            {
                 //load settings for a chosen store scope
                 var storeScope = await _storeContext.GetActiveStoreScopeConfigurationAsync();
                 var newsSettings = await _settingService.LoadSettingAsync<NewsSettings>(storeScope);
@@ -495,7 +496,7 @@ namespace Nop.Web.Areas.Admin.Controllers
                 return AccessDeniedView();
 
             if (ModelState.IsValid)
-            { 
+            {
                 //load settings for a chosen store scope
                 var storeScope = await _storeContext.GetActiveStoreScopeConfigurationAsync();
                 var shippingSettings = await _settingService.LoadSettingAsync<ShippingSettings>(storeScope);
@@ -584,8 +585,8 @@ namespace Nop.Web.Areas.Admin.Controllers
             if (!await _permissionService.AuthorizeAsync(StandardPermissionProvider.ManageSettings))
                 return AccessDeniedView();
 
-            if(ModelState.IsValid)
-            { 
+            if (ModelState.IsValid)
+            {
                 //load settings for a chosen store scope
                 var storeScope = await _storeContext.GetActiveStoreScopeConfigurationAsync();
                 var taxSettings = await _settingService.LoadSettingAsync<TaxSettings>(storeScope);
@@ -1010,8 +1011,8 @@ namespace Nop.Web.Areas.Admin.Controllers
             if (!await _permissionService.AuthorizeAsync(StandardPermissionProvider.ManageSettings))
                 return AccessDeniedView();
 
-            if(ModelState.IsValid)
-            { 
+            if (ModelState.IsValid)
+            {
                 //load settings for a chosen store scope
                 var storeScope = await _storeContext.GetActiveStoreScopeConfigurationAsync();
                 var shoppingCartSettings = await _settingService.LoadSettingAsync<ShoppingCartSettings>(storeScope);
@@ -1079,7 +1080,7 @@ namespace Nop.Web.Areas.Admin.Controllers
                 return AccessDeniedView();
 
             if (ModelState.IsValid)
-            { 
+            {
                 //load settings for a chosen store scope
                 var storeScope = await _storeContext.GetActiveStoreScopeConfigurationAsync();
                 var mediaSettings = await _settingService.LoadSettingAsync<MediaSettings>(storeScope);
@@ -1171,7 +1172,7 @@ namespace Nop.Web.Areas.Admin.Controllers
                 return AccessDeniedView();
 
             if (ModelState.IsValid)
-            { 
+            {
                 var storeScope = await _storeContext.GetActiveStoreScopeConfigurationAsync();
                 var customerSettings = await _settingService.LoadSettingAsync<CustomerSettings>(storeScope);
 
@@ -1279,7 +1280,7 @@ namespace Nop.Web.Areas.Admin.Controllers
                 return AccessDeniedView();
 
             if (ModelState.IsValid)
-            { 
+            {
                 //load settings for a chosen store scope
                 var storeScope = await _storeContext.GetActiveStoreScopeConfigurationAsync();
                 var gdprSettings = await _settingService.LoadSettingAsync<GdprSettings>(storeScope);
@@ -1469,7 +1470,7 @@ namespace Nop.Web.Areas.Admin.Controllers
                 return AccessDeniedView();
 
             if (ModelState.IsValid)
-            { 
+            {
                 //load settings for a chosen store scope
                 var storeScope = await _storeContext.GetActiveStoreScopeConfigurationAsync();
 

@@ -3485,6 +3485,7 @@ namespace Nop.Services.Installation
                 ShowVendorOnProductDetailsPage = true,
                 AllowCustomersToContactVendors = true,
                 AllowCustomersToApplyForVendorAccount = true,
+                AllowCustomersToApplyForSellerAccount=true,
                 TermsOfServiceEnabled = false,
                 AllowVendorsToEditInfo = false,
                 NotifyStoreOwnerAboutVendorInformationChange = true,
