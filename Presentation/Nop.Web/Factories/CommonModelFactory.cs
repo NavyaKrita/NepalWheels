@@ -476,6 +476,7 @@ namespace Nop.Web.Factories
                 DisplayTaxShippingInfoFooter = _catalogSettings.DisplayTaxShippingInfoFooter,
                 HidePoweredByNopCommerce = _storeInformationSettings.HidePoweredByNopCommerce,
                 AllowCustomersToApplyForVendorAccount = _vendorSettings.AllowCustomersToApplyForVendorAccount,
+                AllowCustomersToApplyForSellerAccount = _vendorSettings.AllowCustomersToApplyForSellerAccount,
                 AllowCustomersToCheckGiftCardBalance = _customerSettings.AllowCustomersToCheckGiftCardBalance && _captchaSettings.Enabled,
                 Topics = topicModels,
                 DisplaySitemapFooterItem = _displayDefaultFooterItemSettings.DisplaySitemapFooterItem,
@@ -493,7 +494,8 @@ namespace Nop.Web.Factories
                 DisplayShoppingCartFooterItem = _displayDefaultFooterItemSettings.DisplayShoppingCartFooterItem,
                 DisplayWishlistFooterItem = _displayDefaultFooterItemSettings.DisplayWishlistFooterItem,
                 DisplayApplyVendorAccountFooterItem = _displayDefaultFooterItemSettings.DisplayApplyVendorAccountFooterItem,
-                DisplayApplySellerAccountFooterItem = _displayDefaultFooterItemSettings.DisplayApplySellerAccountFooterItem
+                DisplayApplySellerAccountFooterItem = _displayDefaultFooterItemSettings.DisplayApplySellerAccountFooterItem,
+                
             };
 
             return model;

@@ -43,8 +43,8 @@ namespace Nop.Web.Controllers
         private readonly IWorkContext _workContext;
         private readonly IWorkflowMessageService _workflowMessageService;
         private readonly LocalizationSettings _localizationSettings;
-        private readonly SellerSettings _sellerSettings;
-
+        private readonly VendorSettings _sellerSettings;
+         
         #endregion
 
         #region Ctor
@@ -63,7 +63,7 @@ namespace Nop.Web.Controllers
             IWorkContext workContext,
             IWorkflowMessageService workflowMessageService,
             LocalizationSettings localizationSettings,
-            SellerSettings sellerSettings)
+            VendorSettings sellerSettings)
         {
             _captchaSettings = captchaSettings;
             _customerService = customerService;
@@ -182,8 +182,8 @@ namespace Nop.Web.Controllers
         /// <returns>A task that represents the asynchronous operation</returns>
         public virtual async Task<IActionResult> ApplySeller()
         {
-            //if (!_sellerSettings.AllowCustomersToApplyForSellerAccount)
-            //    return RedirectToRoute("Homepage");
+            if (!_sellerSettings.AllowCustomersToApplyForSellerAccount)
+                return RedirectToRoute("Homepage");
 
             if (!await _customerService.IsRegisteredAsync(await _workContext.GetCurrentCustomerAsync()))
                 return Challenge();
@@ -199,8 +199,8 @@ namespace Nop.Web.Controllers
         /// <returns>A task that represents the asynchronous operation</returns>
         public virtual async Task<IActionResult> ApplySellerSubmit(ApplySellerModel model, bool captchaValid, IFormFile uploadedFile, IFormCollection form)
         {
-            //if (!_sellerSettings.AllowCustomersToApplyForSellerAccount)
-            //    return RedirectToRoute("Homepage");
+            if (!_sellerSettings.AllowCustomersToApplyForSellerAccount)
+                return RedirectToRoute("Homepage");
 
             if (!await _customerService.IsRegisteredAsync(await _workContext.GetCurrentCustomerAsync()))
                 return Challenge();
@@ -250,7 +250,7 @@ namespace Nop.Web.Controllers
                     //some default settings
                     PageSize = 6,
                     AllowCustomersToSelectPageSize = true,
-                    PageSizeOptions = _sellerSettings.DefaultSellerPageSizeOptions,
+                    PageSizeOptions = _sellerSettings.DefaultVendorPageSizeOptions,
                     PictureId = pictureId,
                     Description = description
                 };
@@ -291,7 +291,7 @@ namespace Nop.Web.Controllers
             if (!await _customerService.IsRegisteredAsync(await _workContext.GetCurrentCustomerAsync()))
                 return Challenge();
 
-            if (await _workContext.GetCurrentSellerAsync() == null || !_sellerSettings.AllowSellersToEditInfo)
+            if (await _workContext.GetCurrentSellerAsync() == null || !_sellerSettings.AllowVendorsToEditInfo)
                 return RedirectToRoute("CustomerInfo");
 
             var model = new SellerInfoModel();
@@ -308,7 +308,7 @@ namespace Nop.Web.Controllers
             if (!await _customerService.IsRegisteredAsync(await _workContext.GetCurrentCustomerAsync()))
                 return Challenge();
 
-            if (await _workContext.GetCurrentSellerAsync() == null || !_sellerSettings.AllowSellersToEditInfo)
+            if (await _workContext.GetCurrentSellerAsync() == null || !_sellerSettings.AllowVendorsToEditInfo)
                 return RedirectToRoute("CustomerInfo");
 
             Picture picture = null;
@@ -360,7 +360,7 @@ namespace Nop.Web.Controllers
                 await _genericAttributeService.SaveAttributeAsync(seller, NopSellerDefaults.SellerAttributes, sellerAttributesXml);
 
                 //notifications
-                if (_sellerSettings.NotifyStoreOwnerAboutSellerInformationChange)
+                if (_sellerSettings.NotifyStoreOwnerAboutVendorInformationChange)
                     await _workflowMessageService.SendSellerInformationChangeNotificationAsync(seller, _localizationSettings.DefaultAdminLanguageId);
 
                 return RedirectToAction("Info");
@@ -380,7 +380,7 @@ namespace Nop.Web.Controllers
             if (!await _customerService.IsRegisteredAsync(await _workContext.GetCurrentCustomerAsync()))
                 return Challenge();
 
-            if (await _workContext.GetCurrentSellerAsync() == null || !_sellerSettings.AllowSellersToEditInfo)
+            if (await _workContext.GetCurrentSellerAsync() == null || !_sellerSettings.AllowVendorsToEditInfo)
                 return RedirectToRoute("CustomerInfo");
 
             var seller = await _workContext.GetCurrentSellerAsync();
@@ -393,7 +393,7 @@ namespace Nop.Web.Controllers
             await _sellerService.UpdateSellerAsync(seller);
 
             //notifications
-            if (_sellerSettings.NotifyStoreOwnerAboutSellerInformationChange)
+            if (_sellerSettings.NotifyStoreOwnerAboutVendorInformationChange)
                 await _workflowMessageService.SendSellerInformationChangeNotificationAsync(seller, _localizationSettings.DefaultAdminLanguageId);
 
             return RedirectToAction("Info");

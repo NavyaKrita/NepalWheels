@@ -38,6 +38,10 @@ namespace Nop.Web.Areas.Admin.Models.Settings
         public bool AllowCustomersToApplyForVendorAccount { get; set; }
         public bool AllowCustomersToApplyForVendorAccount_OverrideForStore { get; set; }
 
+        [NopResourceDisplayName("Admin.Configuration.Settings.Vendor.AllowCustomersToApplyForSellerAccount")]
+        public bool AllowCustomersToApplyForSellerAccount { get; set; }
+        public bool AllowCustomersToApplyForSellerAccount_OverrideForStore { get; set; }
+
         [NopResourceDisplayName("Admin.Configuration.Settings.Vendor.TermsOfServiceEnabled")]
         public bool TermsOfServiceEnabled { get; set; }
         public bool TermsOfServiceEnabled_OverrideForStore { get; set; }
