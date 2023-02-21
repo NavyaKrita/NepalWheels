@@ -40,7 +40,19 @@ namespace Nop.Web.Factories
                     PublishedTo = notices.PublishedTo,
                     PublishedFrom = notices.PublishedFrom,
                     ThankYou = notices.ThankYou,
-                    Title = notices.Title
+                    Title = notices.Title,
+                    TermAndConditions=notices.TermsAndCondition,                    
+                    NoticeField = new()
+                    {
+                        Name = notices.Name,
+                        PhoneNumber = notices.PhoneNumber,
+                        EmailAddress = notices.EmailAddress,
+                        Age = notices.Age,
+                        Address = notices.Address,
+                        City = notices.City,
+                        BikeName = notices.BikeName,
+                        CC = notices.CC
+                    }
                 };
         }
 
@@ -63,7 +75,19 @@ namespace Nop.Web.Factories
                    PublishedTo = notices.PublishedTo,
                    PublishedFrom = notices.PublishedFrom,
                    ThankYou = notices.ThankYou,
-                   Title = notices.Title
+                   Title = notices.Title,
+                   TermAndConditions=notices.TermsAndCondition,
+                   NoticeField = new()
+                   {
+                       Name = notices.Name,
+                       PhoneNumber = notices.PhoneNumber,
+                       EmailAddress = notices.EmailAddress,
+                       Age = notices.Age,
+                       Address = notices.Address,
+                       City = notices.City,
+                       BikeName = notices.BikeName,
+                       CC = notices.CC
+                   }
                });
         }
     }

@@ -14,6 +14,12 @@ namespace Nop.Core.Domain.Notice
 
         public string EmailAddress { get; set; }
         public string City { get; set; }
+        public int Age { get; set; }
+      
+        public string Address { get; set; }
+   
+        public string BikeName { get; set; }
+        public string CC { get; set; }
 
         public int? NoticeBoardId { get; set; }
         public DateTime CreatedOnUtc { get; set; }

@@ -49,6 +49,15 @@
                         </div>
                         <div class="form-group row">
                             <div class="col-md-3">
+                                <nop-label asp-for="TermsAndCondition" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="TermsAndCondition" asp-template="RichEditor" asp-required="true" />
+                                <span asp-validation-for="TermsAndCondition"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-3">
                                 <nop-label asp-for="DisplayForm" />
                             </div>
                             <div class="col-md-9">
@@ -61,7 +70,7 @@
                                 <nop-label asp-for="PublishedFrom" />
                             </div>
                             <div class="col-md-9">
-                                <nop-editor asp-for="PublishedFrom" asp-required="true" asp-template="da" />
+                                <nop-editor asp-for="PublishedFrom" asp-required="true" />
 
                                 <span asp-validation-for="PublishedFrom"></span>
                             </div>
@@ -71,14 +80,103 @@
                                 <nop-label asp-for="PublishedTo" />
                             </div>
                             <div class="col-md-9">
-                                <nop-editor asp-for="PublishedTo" />
+                                <nop-editor asp-for="PublishedTo" asp-required="true" />
                                 <span asp-validation-for="PublishedTo"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card-body">
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-override-store-checkbox asp-for="Name" asp-input="Name" />
+                                <nop-label asp-for="Name" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="Name" />
+                                <span asp-validation-for="Name"></span>
+                            </div>
+                        </div>
+                       
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-override-store-checkbox asp-for="PhoneNumber" asp-input="PhoneNumber" />
+                                <nop-label asp-for="PhoneNumber" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="PhoneNumber" />
+                                <span asp-validation-for="PhoneNumber"></span>
+                            </div>
+                        </div>
+                         <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-override-store-checkbox asp-for="EmailAddress" asp-input="EmailAddress" />
+                                <nop-label asp-for="EmailAddress" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="EmailAddress" />
+                                <span asp-validation-for="EmailAddress"></span>
+                            </div>
+                        </div>
+                          <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-override-store-checkbox asp-for="Age" asp-input="Age" />
+                                <nop-label asp-for="Age" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="Age" />
+                                <span asp-validation-for="Age"></span>
+                     </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-override-store-checkbox asp-for="Address" asp-input="Address" />
+                                <nop-label asp-for="Address" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="Address" />
+                                <span asp-validation-for="Address"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-override-store-checkbox asp-for="City" asp-input="City" />
+                                <nop-label asp-for="City" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="City" />
+                                <span asp-validation-for="City"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-override-store-checkbox asp-for="BikeName" asp-input="BikeName" />
+                                <nop-label asp-for="BikeName" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="BikeName" />
+                                <span asp-validation-for="BikeName"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-override-store-checkbox asp-for="CC" asp-input="CC" />
+                                <nop-label asp-for="CC" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="CC" />
+                                <span asp-validation-for="CC"></span>
                             </div>
                         </div>
                     </div>
                 </div>
 
             </div>
+
+          
         </div>
+       
     </div>
+    
 </section>

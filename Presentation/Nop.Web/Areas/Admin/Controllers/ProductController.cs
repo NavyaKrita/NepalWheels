@@ -807,10 +807,16 @@ namespace Nop.Web.Areas.Admin.Controllers
                     _vendorSettings.MaximumProductNumber));
                 return RedirectToAction("List");
             }
-
+            
             //prepare model
             var model = await _productModelFactory.PrepareProductModelAsync(new ProductModel(), null);
 
+            if ((await _workContext.GetCurrentVendorAsync()) is not null)
+            {
+                model.IsSeller = (await _workContext.GetCurrentVendorAsync()).IsSeller;
+                if (!model.IsSeller)
+                    model.IsVendor = true;
+            }
             //show configuration tour
             if (showtour)
             {
@@ -844,13 +850,13 @@ namespace Nop.Web.Areas.Admin.Controllers
             if (ModelState.IsValid)
             {
                 //a vendor should have access only to his products
-                var vendor = await _workContext.GetCurrentVendorAsync();
-                if (vendor is not null)
+                
+                if ((await _workContext.GetCurrentVendorAsync()) is not null)
                 {
-                    model.VendorId = (await _workContext.GetCurrentVendorAsync()).Id;
                     model.IsSeller = (await _workContext.GetCurrentVendorAsync()).IsSeller;
+                    if (!model.IsSeller)
+                        model.IsVendor = true;
                 }
-
                 //vendors cannot edit "Show on home page" property
                 if (await _workContext.GetCurrentVendorAsync() != null && model.ShowOnHomepage)
                     model.ShowOnHomepage = false;

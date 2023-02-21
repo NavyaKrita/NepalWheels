@@ -102,6 +102,15 @@ namespace Nop.Web.Areas.Admin.Controllers
                 model.PublishedTo = noticeBoard.PublishedTo;
                 model.CreatedOnUtc = System.DateTime.Today;
                 model.ThankYou = noticeBoard.ThankYou;
+                model.TermsAndCondition = noticeBoard.TermsAndCondition;
+                model.Name = noticeBoard.Name;
+                model.PhoneNumber = noticeBoard.PhoneNumber;
+                model.EmailAddress = noticeBoard.EmailAddress;
+                model.Age = noticeBoard.Age;
+                model.Address = noticeBoard.Address;
+                model.City = noticeBoard.City;
+                model.BikeName = noticeBoard.BikeName;
+                model.CC = noticeBoard.CC;
                 await _noticeBoardService.InsertNoticeAsync(model);
 
                 //activity log
@@ -115,7 +124,7 @@ namespace Nop.Web.Areas.Admin.Controllers
 
                 await _noticeBoardService.UpdateNoticeAsync(model);
 
-                _notificationService.SuccessNotification(await _localizationService.GetResourceAsync("Admin.NkVendorLocation.Added"));
+                _notificationService.SuccessNotification(await _localizationService.GetResourceAsync("Admin.Notice.Added"));
 
                 if (!continueEditing)
                     return RedirectToAction("List");
@@ -168,6 +177,16 @@ namespace Nop.Web.Areas.Admin.Controllers
                 model.PublishedFrom = noticeBoard.PublishedFrom;
                 model.PublishedTo = noticeBoard.PublishedTo;
                 model.ThankYou = noticeBoard.ThankYou;
+                model.TermsAndCondition = noticeBoard.TermsAndCondition;
+                model.Name = noticeBoard.Name;
+                model.PhoneNumber = noticeBoard.PhoneNumber;
+                model.EmailAddress = noticeBoard.EmailAddress;
+                model.Age = noticeBoard.Age;
+                model.Address = noticeBoard.Address;
+                model.City = noticeBoard.City;
+                model.BikeName = noticeBoard.BikeName;
+                model.CC = noticeBoard.CC;
+                model.CreatedOnUtc = model.CreatedOnUtc;
                 await _noticeBoardService.UpdateNoticeAsync(model);
 
 
