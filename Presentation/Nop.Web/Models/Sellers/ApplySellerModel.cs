@@ -13,10 +13,12 @@ namespace Nop.Web.Models.Sellers
         }
 
         [NopResourceDisplayName("Sellers.ApplyAccount.Name")]
+        [Required]
         public string Name { get; set; }
 
         [DataType(DataType.EmailAddress)]
         [NopResourceDisplayName("Sellers.ApplyAccount.Email")]
+        [Required]
         public string Email { get; set; }
 
         [NopResourceDisplayName("Sellers.ApplyAccount.Description")]
