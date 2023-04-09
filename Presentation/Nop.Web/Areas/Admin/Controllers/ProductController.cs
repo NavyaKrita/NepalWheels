@@ -856,6 +856,7 @@ namespace Nop.Web.Areas.Admin.Controllers
                     model.IsSeller = (await _workContext.GetCurrentVendorAsync()).IsSeller;
                     if (!model.IsSeller)
                         model.IsVendor = true;
+                    model.VendorId = _workContext.GetCurrentVendorAsync().Id;
                 }
                 //vendors cannot edit "Show on home page" property
                 if (await _workContext.GetCurrentVendorAsync() != null && model.ShowOnHomepage)
@@ -867,6 +868,7 @@ namespace Nop.Web.Areas.Admin.Controllers
                 product.UpdatedOnUtc = DateTime.UtcNow;
                 if (model.IsSeller)
                     product.Published = true;
+
                 await _productService.InsertProductAsync(product);
 
                 //search engine name
