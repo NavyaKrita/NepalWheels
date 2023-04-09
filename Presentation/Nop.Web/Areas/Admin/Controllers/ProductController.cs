@@ -856,7 +856,7 @@ namespace Nop.Web.Areas.Admin.Controllers
                     model.IsSeller = (await _workContext.GetCurrentVendorAsync()).IsSeller;
                     if (!model.IsSeller)
                         model.IsVendor = true;
-                    model.VendorId = _workContext.GetCurrentVendorAsync().Id;
+                    model.VendorId = (await _workContext.GetCurrentVendorAsync()).Id;
                 }
                 //vendors cannot edit "Show on home page" property
                 if (await _workContext.GetCurrentVendorAsync() != null && model.ShowOnHomepage)
