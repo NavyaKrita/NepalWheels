@@ -113,6 +113,40 @@ namespace Nop.Web.Controllers
 
             return Json(new { success = false });
         }
+
+        [HttpPost]
+
+        /// <returns>A task that represents the asynchronous operation</returns>
+        public virtual async Task<IActionResult> RegisterParticipant(ParticipantModel model, IFormCollection form)
+        {
+
+            if (ModelState.IsValid)
+            {
+                NoticeBoardDetail detail = new()
+                {
+                    CreatedOnUtc = DateTime.UtcNow,
+                    EmailAddress = model.EmailAddress,
+                    Name = model.Name,
+                    PhoneNumber = model.PhoneNumber,
+                    City = model.City,
+                    BikeName = model.BikeName,
+                    Address = model.Address,
+                    Age = model.Age is null ? 0 : !model.Age.All(char.IsDigit) ? 0 : Convert.ToInt32(model.Age),
+                    CC = model.CC,
+                };
+
+
+               
+                await _noticeBoardService.InsertNoticeParticipatesAsync(detail);
+
+                return Json(new { success = true });
+            }
+
+            //If we got this far, something failed, redisplay form
+
+
+            return Json(new { success = false });
+        }
         public virtual async Task<IActionResult> ThankYou(int id = 0)
         {
             var model = await _noticeBoardModelFactory.PrepareNoticeModelAsync(id);

@@ -59,4 +59,5 @@ namespace Nop.Web.Areas.Admin.Models.Notice
         public bool CC { get; set; }
         #endregion
     }
+
 }

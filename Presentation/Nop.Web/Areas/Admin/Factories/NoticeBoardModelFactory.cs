@@ -42,7 +42,7 @@ namespace Nop.Web.Areas.Admin.Factories
                         PublishedFrom = notice.PublishedFrom,
                         ThankYou = notice.ThankYou,
                         Title = notice.Title,
-                        TermsAndCondition= notice.TermsAndCondition,
+                        TermsAndCondition = notice.TermsAndCondition,
                     };
                     return noticeModel;
                 });
@@ -87,7 +87,7 @@ namespace Nop.Web.Areas.Admin.Factories
                     model.City = noticeBoard.City;
                     model.BikeName = noticeBoard.BikeName;
                     model.CC = noticeBoard.CC;
-                    model.TermsAndCondition= noticeBoard.TermsAndCondition;
+                    model.TermsAndCondition = noticeBoard.TermsAndCondition;
                 }
             }
 
@@ -134,13 +134,19 @@ namespace Nop.Web.Areas.Admin.Factories
                         City = noticeBoard.City,
                         BikeName = noticeBoard.BikeName,
                         CC = noticeBoard.CC
-                       
+
                     };
                     return notice;
                 });
             });
 
             return model;
+        }
+
+
+        public async Task<ParticipantsCreateModel> PrepareNoticeModelAsync()
+        {
+            return new ParticipantsCreateModel();
         }
     }
 }

@@ -71,4 +71,82 @@ namespace Nop.Web.Models.Notice
         [NopResourceDisplayName("Admin.NoticeBoard.Fields.CC")]
         public bool CC { get; set; }
     }
+
+
+    public partial record ParticipantSetupModel : BaseNopModel
+    {
+
+        [NopResourceDisplayName("FullName")]
+        
+        public string Name { get; set; }
+        [NopResourceDisplayName("PhoneNumber")]
+        
+        [MaxLength(10)]
+        [DataType(DataType.PhoneNumber)]
+        public string PhoneNumber { get; set; }
+
+        [NopResourceDisplayName("EmailAddress")]
+        [DataType(DataType.EmailAddress)]       
+        public string EmailAddress { get; set; }
+        [NopResourceDisplayName("City")]
+        public string City { get; set; }
+
+        [NopResourceDisplayName("Age")]
+        [MaxLength(2)]
+        [DataType(DataType.CreditCard)]
+        [RegularExpression("([1-9][0-9]*)")]
+        public string Age { get; set; }
+
+        [NopResourceDisplayName("Address")]
+        public string Address { get; set; }
+
+        [NopResourceDisplayName("BikeName")]
+        public string BikeName { get; set; }
+
+        [NopResourceDisplayName("CC")]
+        public string CC { get; set; }
+
+        public bool Agree { get; set; }
+    }
+
+    public partial record ParticipantModel : BaseNopModel
+    {
+
+        [NopResourceDisplayName("FullName")]
+        [Required]
+        public string Name { get; set; }
+        [NopResourceDisplayName("PhoneNumber")]
+        [Required]
+        [MaxLength(10)]
+        [DataType(DataType.PhoneNumber)]
+        public string PhoneNumber { get; set; }
+
+        [NopResourceDisplayName("EmailAddress")]
+        [DataType(DataType.EmailAddress)]
+        [Required]
+        public string EmailAddress { get; set; }
+        [NopResourceDisplayName("City")]
+       
+        public string City { get; set; }
+
+        [NopResourceDisplayName("Age")]
+        [MaxLength(2)]
+        [DataType(DataType.CreditCard)]
+        [RegularExpression("([1-9][0-9]*)")]
+      
+        public string Age { get; set; }
+
+        [NopResourceDisplayName("Address")]
+        
+        public string Address { get; set; }
+
+        [NopResourceDisplayName("BikeName")]
+       
+        public string BikeName { get; set; }
+
+        [NopResourceDisplayName("CC")]
+       
+        public string CC { get; set; }
+      
+    }
 }

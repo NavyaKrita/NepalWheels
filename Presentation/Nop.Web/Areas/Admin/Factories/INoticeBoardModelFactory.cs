@@ -13,5 +13,7 @@ namespace Nop.Web.Areas.Admin.Factories
 
         Task<NoticeBoardDetailSearchModel> PrepareParticipantsSearchModelAsync(NoticeBoardDetailSearchModel searchModel);
         Task<NoticeBoardDetailListModel> PrepareParticipantsListModelAsync(NoticeBoardDetailSearchModel searchModel);
+        Task<ParticipantsCreateModel> PrepareNoticeModelAsync();
+
     }
 }
