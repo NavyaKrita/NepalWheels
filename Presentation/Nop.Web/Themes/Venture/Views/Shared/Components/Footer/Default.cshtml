@@ -154,3 +154,35 @@
 </div>
     @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.Footer })
 </div>
+<script asp-location="Footer">
+    $(".button-register-participants").on("click", function (e) {
+        var formGuid = $(this).attr('id');
+       
+       
+
+            e.preventDefault(); // avoid to execute the actual submit of the form.
+        var form = $("#register-participants-form-submit-" + formGuid);
+        console.log(form);
+            addAntiForgeryToken(form);
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("RegisterParticipant", "Participants")",
+                data: form.serialize(), // serializes the form's elements.
+                success: function (data) {
+                    console.log(data)
+                    if (data.success) {
+
+                        $("#thank-you-page-load-" + formGuid).removeAttr("style");
+                    }
+
+                },
+
+                error: function (error) {
+
+                }
+            });
+
+   
+    });
+
+</script>

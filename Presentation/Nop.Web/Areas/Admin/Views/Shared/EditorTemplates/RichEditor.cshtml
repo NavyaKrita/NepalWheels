@@ -95,7 +95,27 @@
                 "searchreplace visualblocks code fullscreen textcolor",
                 "insertdatetime media table paste@(enableFullPage ? " fullpage" : null)"
             ],
-            toolbar: "ltr rtl | insertfile undo redo | styleselect | fontselect | fontsizeselect | bold italic | forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image",
+            toolbar: "ltr rtl | insertfile undo redo | styleselect | fontselect | fontsizeselect | bold italic | forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image|insertform",
+           setup: function(editor) {
+       
+        editor.ui.registry.addButton('insertform', {
+            tooltip: 'Insert Form',
+            icon:'document-properties',
+            onAction: function() {
+                $.ajax({
+                    type: 'GET',
+                    url: '@Url.Action("RegisterParticipants", "NoticeBoard", new { area = "Admin" })',
+                    success: function(formHtml) {
+                        console.log(formHtml, "html");
+                        editor.execCommand('mceInsertContent', false, formHtml);
+                    },
+                    error: function() {
+                        alert('Error loading form HTML.');
+                    }
+                });
+            }
+        });
+    },
             relative_urls: false,
             @if (allowRoxyFileman)
             {
