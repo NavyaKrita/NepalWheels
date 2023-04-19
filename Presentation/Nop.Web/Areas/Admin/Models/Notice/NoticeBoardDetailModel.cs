@@ -34,7 +34,9 @@ namespace Nop.Web.Areas.Admin.Models.Notice
 
         [NopResourceDisplayName("Admin.NoticeBoard.Fields.CC")]
         public string CC { get; set; }
-       
+
+        public string Module { get; set; }
+
     }
 
 

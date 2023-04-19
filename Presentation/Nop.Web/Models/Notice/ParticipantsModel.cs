@@ -147,6 +147,7 @@ namespace Nop.Web.Models.Notice
         [NopResourceDisplayName("CC")]
        
         public string CC { get; set; }
-      
+        public string Module { get; set; }
+
     }
 }

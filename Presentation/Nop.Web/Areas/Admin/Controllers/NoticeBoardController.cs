@@ -11,6 +11,7 @@ using Nop.Web.Areas.Admin.Models.Notice;
 using Nop.Web.Framework.Controllers;
 using Nop.Web.Framework.Mvc.Filters;
 using Nop.Web.Models.Notice;
+using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace Nop.Web.Areas.Admin.Controllers
@@ -242,8 +243,14 @@ namespace Nop.Web.Areas.Admin.Controllers
 
         [HttpGet]
         public virtual async Task<IActionResult> RegisterParticipants()
-        {            
-            return View(await _noticeBoardModelFactory.PrepareNoticeModelAsync());
+        {
+           
+            string browserUrl = HttpContext.Request.Headers["Referer"].ToString();
+            var url = browserUrl.Split("/");
+
+            var model = await _noticeBoardModelFactory.PrepareNoticeModelAsync();
+            model.Module = url[4];
+            return View(model);
         }
     }
 }
