@@ -130,6 +130,9 @@ namespace Nop.Web.Controllers
                      && string.IsNullOrEmpty(model.BikeName) && string.IsNullOrEmpty(model.Address)
                     )
                     return Json(new { success = false });
+                if(string.IsNullOrEmpty(model.PhoneNumber) && !model.PhoneNumber.All(char.IsDigit))
+                    return Json(new { success = false });
+
                 NoticeBoardDetail detail = new()
                 {
                     CreatedOnUtc = DateTime.UtcNow,

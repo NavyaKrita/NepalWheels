@@ -113,17 +113,16 @@ namespace Nop.Web.Models.Notice
     {
 
         [NopResourceDisplayName("FullName")]
-        [Required]
+       
         public string Name { get; set; }
         [NopResourceDisplayName("PhoneNumber")]
-        [Required]
+       
         [MaxLength(10)]
         [DataType(DataType.PhoneNumber)]
         public string PhoneNumber { get; set; }
 
         [NopResourceDisplayName("EmailAddress")]
-        [DataType(DataType.EmailAddress)]
-        [Required]
+        [DataType(DataType.EmailAddress)]       
         public string EmailAddress { get; set; }
         [NopResourceDisplayName("City")]
        
