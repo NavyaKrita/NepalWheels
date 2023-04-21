@@ -38,15 +38,16 @@
         </div>
         <div class="col-md-9">
             <div class="input-group input-group-required">
-                <input asp-for="Title" class="form-control text-box single-line valid" data-val="true" data-val-length="'Title' can only be 35 characters." data-val-length-max="35" data-val-length-min="0" data-val-required="Title is required." id="Title" name="Title" type="text" aria-describedby="Title-error" aria-invalid="false">
+               @* <input asp-for="Title" class="form-control text-box single-line valid" data-val="true" data-val-length="'Title' can only be 35 characters." data-val-length-max="35" data-val-length-min="0" data-val-required="Title is required." id="Title" name="Title" type="text" aria-describedby="Title-error" aria-invalid="false">
                 <div class="input-group-btn">
                     <span class="required">
                         *
                     </span>
-                </div>
+                </div>*@
+                <nop-editor asp-for="Title" asp-required="true" />
+                <span asp-validation-for="Title"></span>
             </div>
-            @*<nop-editor asp-for="Title" asp-required="true" />
-                <span asp-validation-for="Title"></span>*@
+            
         </div>
     </div>
     <div class="form-group row">
