@@ -30,15 +30,20 @@ namespace Nop.Services.Notice
         }
 
 
-        public virtual async Task<IPagedList<NoticeBoardDetail>> GetAllParticipatesAsync(string notice, DateTime? startDate, DateTime? endDate, int pageIndex = 0, int pageSize = int.MaxValue)
+        public virtual async Task<IPagedList<NoticeBoardDetail>> GetAllParticipatesAsync(string lead, string leadGeneratedFrom, DateTime? startDate, DateTime? endDate, 
+            int pageIndex = 0, int pageSize = int.MaxValue)
         {
 
             var query = _noticeBoardDetailRepository.Table;
 
             query = query.OrderBy(v => v.CreatedOnUtc).ThenBy(v => v.Id);
-            if (!string.IsNullOrEmpty(notice))
+            if (!string.IsNullOrEmpty(lead))
             {
-                query = query.Where(c => c.Notice.Contains(notice));
+                query = query.Where(c => c.LeadGenerate.Contains(lead));
+            }
+            if (!string.IsNullOrEmpty(leadGeneratedFrom))
+            {
+                query = query.Where(c => c.Category.Contains(leadGeneratedFrom));
             }
             if ((startDate != null && endDate != null) && (startDate <= endDate))
             {

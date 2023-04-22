@@ -35,7 +35,11 @@ namespace Nop.Web.Areas.Admin.Models.Notice
         [NopResourceDisplayName("Admin.NoticeBoard.Fields.CC")]
         public string CC { get; set; }
 
+        [NopResourceDisplayName("Admin.NoticeBoard.Fields.LeadGeneratedFrom")]
         public string Module { get; set; }
+
+        [NopResourceDisplayName("Admin.NoticeBoard.Fields.Lead")]
+        public string Lead { get; set; }
 
     }
 
