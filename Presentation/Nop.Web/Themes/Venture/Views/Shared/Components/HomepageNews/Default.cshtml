@@ -23,7 +23,7 @@
                     <div class="news-head-home">
                         @*Custom Nepali Wheels *@
                         <span class="news-date">
-                            <a class="news-title" href="@Url.RouteUrl("NewsItem", new { SeName = item.SeName })">@item.Title</a>
+                            <a class="news-title" onMouseOver="this.style.color='#2C8BBD'" onMouseOut="this.style.color='#F3CC2E'" style="display:inline-block; white-space: nowrap;overflow: hidden; text-overflow: ellipsis;max-width: 28ch;" href="@Url.RouteUrl("NewsItem", new { SeName = item.SeName })">@item.Title</a>
                         </span>
                         @*Default css *@
                         @*<span class="news-date">
