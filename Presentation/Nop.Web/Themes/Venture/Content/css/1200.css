@@ -142,7 +142,7 @@
         box-shadow: 0 0 25px rgba(0,0,0,0.15);
         padding: 0 286px;
         position: relative;
-        min-height: 75px;
+        /*min-height: 75px;*/
         z-index: 2;
     }
 
