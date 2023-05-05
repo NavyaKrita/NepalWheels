@@ -113,6 +113,53 @@ namespace Nop.Web.Controllers
 
             return Json(new { success = false });
         }
+
+        [HttpPost]
+
+        /// <returns>A task that represents the asynchronous operation</returns>
+        public virtual async Task<IActionResult> RegisterParticipant(ParticipantModel model, IFormCollection form)
+        {
+            string browserUrl = HttpContext.Request.Headers["Referer"].ToString();
+            var url = browserUrl.Split("/");
+            int count = url.Count();
+
+            try
+            {
+                if (string.IsNullOrEmpty(model.EmailAddress) && string.IsNullOrEmpty(model.Name)
+                    && string.IsNullOrEmpty(model.PhoneNumber) && string.IsNullOrEmpty(model.City)
+                     && string.IsNullOrEmpty(model.BikeName) && string.IsNullOrEmpty(model.Address)
+                    )
+                    return Json(new { success = false });
+                if(string.IsNullOrEmpty(model.PhoneNumber) && !model.PhoneNumber.All(char.IsDigit))
+                    return Json(new { success = false });
+
+                NoticeBoardDetail detail = new()
+                {
+                    CreatedOnUtc = DateTime.UtcNow,
+                    EmailAddress = model.EmailAddress,
+                    Name = model.Name,
+                    PhoneNumber = model.PhoneNumber,
+                    City = model.City,
+                    BikeName = model.BikeName,
+                    Address = model.Address,
+                    Age = model.Age is null ? 0 : !model.Age.All(char.IsDigit) ? 0 : Convert.ToInt32(model.Age),
+                    CC = model.CC,
+                    Category = model.Module,
+                    LeadGenerate = url[count - 1]
+                };
+
+                await _noticeBoardService.InsertNoticeParticipatesAsync(detail);
+
+                return Json(new { success = true });
+
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+            //If we got this far, something failed, redisplay form
+        }
         public virtual async Task<IActionResult> ThankYou(int id = 0)
         {
             var model = await _noticeBoardModelFactory.PrepareNoticeModelAsync(id);

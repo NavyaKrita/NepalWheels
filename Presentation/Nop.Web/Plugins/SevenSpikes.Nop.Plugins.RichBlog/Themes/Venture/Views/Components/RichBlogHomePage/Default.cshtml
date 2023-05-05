@@ -36,7 +36,7 @@
                         </a>
                     }
                     <span class="post-date">
-                        <a class="post-title" href="@Url.RouteUrl("BlogPost", new { SeName = post.SeName })">@post.Title</a>
+                        <a class="post-title" onMouseOver="this.style.color='#2C8BBD'" onMouseOut="this.style.color='#F3CC2E'" style="display:inline-block; white-space: nowrap;overflow: hidden; text-overflow: ellipsis;max-width:25ch;" href="@Url.RouteUrl("BlogPost", new { SeName = post.SeName })">@post.Title</a>
                         @*<span class="day">@post.CreatedOn.Day.ToString("00")</span>
                             <span class="month">@post.CreatedOn.ToString("MMM")</span>
                             <span class="year">@post.CreatedOn.Year</span>*@
@@ -67,7 +67,7 @@
         word-break: break-word;
         overflow: hidden;
         text-overflow: ellipsis;
-        display: -webkit-box;
+        /*display: -webkit-box;*/
         line-height: 20px;
         max-height: 300px;
         -webkit-line-clamp: 5;

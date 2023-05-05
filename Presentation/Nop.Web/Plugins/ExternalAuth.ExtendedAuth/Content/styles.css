@@ -1,12 +1,25 @@
-﻿.facebook-btn {
+﻿/*.facebook-btn {
     background-image: url('images/facebook-account-logo.png');
+    background-repeat: no-repeat;
+    height: 46px !important;
+    width: 191px !important;
+}*/
+.facebook-btn {
+    background-image: url('images/facebook-login.png');
     background-repeat: no-repeat;
     height: 46px !important;
     width: 191px !important;
 }
 
-.google-btn {
+
+/*.google-btn {
     background-image: url('images/google-account-logo.png');
+    background-repeat: no-repeat;
+    height: 46px !important;
+    width: 191px !important;
+}*/
+.google-btn {
+    background-image: url('images/google-login.png');
     background-repeat: no-repeat;
     height: 46px !important;
     width: 191px !important;
