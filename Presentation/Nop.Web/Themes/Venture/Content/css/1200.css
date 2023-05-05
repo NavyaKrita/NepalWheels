@@ -56,7 +56,7 @@
     .side-2right {
         float: left;
         width: 20%;
-        margin-top: 6.5%;
+        /*margin-top: 6.5%;*/
         /*margin-left: 4.5%;*/
     }
 
@@ -150,10 +150,16 @@
         background: #2C2C2C;
         box-shadow: 0 0 25px rgba(0,0,0,0.15);
         padding: 0 100px;
-        position: relative;
+        position: absolute;
         min-height: 75px;
+        min-width: 100%;
         z-index: 1;
+        opacity: 80%;
     }
+
+        .header-lowermenu:hover {
+            opacity: 95%;
+        }
 
     .header-lower.slider-enabled {
         /* position: absolute;*/
@@ -921,7 +927,7 @@
     /* FOOTER */
 
     .footer-upper {
-        padding: 60px 0 0;
+        padding: 10px 0 0;
         margin: 0 auto;
         max-width: 1200px;
         text-align: left;

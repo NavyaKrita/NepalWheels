@@ -225,7 +225,8 @@ a img {
 	opacity: 0.99; /*firefox scale bug fix*/
 }
 strong {
-    font-weight: normal;
+    /*font-weight: normal;*/
+    font-weight: 600;
 }
 em {
     font-style: normal;
@@ -5928,8 +5929,8 @@ td.ui-datepicker-week-end {
     }
 
     .login-page .form-fields {
-        padding: 0 30px;
-        margin: 0 0 50px;
+       /* padding: 0 30px;
+        margin: 0 0 50px;*/
     }
 
     .login-page .topic-block {
@@ -5939,7 +5940,7 @@ td.ui-datepicker-week-end {
     .login-page .external-authentication {
         text-align: center;
         background: #fff;
-        box-shadow: 0 0 14px rgba(0,0,0,0.06);
+        /*box-shadow: 0 0 14px rgba(0,0,0,0.06);*/
         margin: 20px 0 0;
     }
 
@@ -8603,7 +8604,7 @@ td.ui-datepicker-week-end {
 .news-item .news-body,
 .blog-posts .post-body {
     /* For Nepali Wheels */
-    padding: 10px 15px 26px 15px;
+    padding: 15px 15px 15px 15px;
     /*Default CSS*/
     /* padding: 35px 40px;*/
     text-transform: none;
@@ -8682,7 +8683,8 @@ td.ui-datepicker-week-end {
 
     .post-body p,
     .news-body p {
-        margin: 0 0 10px;
+        /*margin: 0 0 10px;*/
+        margin: 0 0 0 0;
     }
 
         .post-body p:last-child,
