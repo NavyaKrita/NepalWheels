@@ -88,7 +88,7 @@
 
         $.ajax({
             type: "GET",
-            url: "@Url.Action("Display", "Participants")",,
+            url: "@Url.Action("Display", "Participants")",
             success: function (data) {
                 if (data.success) {
                     $.each(data.result, function (index, value) {

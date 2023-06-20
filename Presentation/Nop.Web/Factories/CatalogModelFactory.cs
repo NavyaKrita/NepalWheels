@@ -701,7 +701,7 @@ namespace Nop.Web.Factories
             //view mode
             await PrepareViewModesAsync(model, command);
             //page size
-            await PreparePageSizeOptionsAsync(model, command, category.AllowCustomersToSelectPageSize, 
+            await PreparePageSizeOptionsAsync(model, command, category.AllowCustomersToSelectPageSize,
                 category.PageSizeOptions, category.PageSize);
 
             var categoryIds = new List<int> { category.Id };
@@ -709,7 +709,8 @@ namespace Nop.Web.Factories
             //include subcategories
             if (_catalogSettings.ShowProductsFromSubcategories)
                 categoryIds.AddRange(await _categoryService.GetChildCategoryIdsAsync(category.Id, currentStore.Id));
-
+            if (command.All)
+                categoryIds = null;
             //price range
             PriceRangeModel selectedPriceRange = null;
             if (_catalogSettings.EnablePriceRangeFiltering && category.PriceRangeFiltering)
@@ -784,7 +785,7 @@ namespace Nop.Web.Factories
 
             return model;
         }
-        
+
         /// <summary>
         /// Prepare category (simple) models
         /// </summary>
@@ -899,7 +900,7 @@ namespace Nop.Web.Factories
                 return XDocument.Parse(xml);
             });
         }
-        
+
         #endregion
 
         #region Manufacturers
@@ -1841,7 +1842,7 @@ namespace Nop.Web.Factories
         #endregion
 
         #region Common
-        
+
         /// <summary>
         /// Prepare sorting options
         /// </summary>
@@ -1989,7 +1990,7 @@ namespace Nop.Web.Factories
 
             return Task.CompletedTask;
         }
-        
+
         #endregion
     }
 }

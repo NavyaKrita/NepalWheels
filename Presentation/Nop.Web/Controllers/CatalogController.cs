@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Nop.Core;
@@ -97,7 +98,7 @@ namespace Nop.Web.Controllers
         public virtual async Task<IActionResult> Category(int categoryId, CatalogProductsCommand command)
         {
             var category = await _categoryService.GetCategoryByIdAsync(categoryId);
-
+            command.All = category.Name.Contains("all", StringComparison.OrdinalIgnoreCase) ? true : false;
             if (!await CheckCategoryAvailabilityAsync(category))
                 return InvokeHttp404();
 
@@ -129,7 +130,7 @@ namespace Nop.Web.Controllers
         public virtual async Task<IActionResult> GetCategoryProducts(int categoryId, CatalogProductsCommand command)
         {
             var category = await _categoryService.GetCategoryByIdAsync(categoryId);
-
+            command.All = category.Name.Contains("all", StringComparison.OrdinalIgnoreCase) ? true : false;
             if (!await CheckCategoryAvailabilityAsync(category))
                 return NotFound();
 
