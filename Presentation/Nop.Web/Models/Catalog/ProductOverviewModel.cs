@@ -13,6 +13,7 @@ namespace Nop.Web.Models.Catalog
             DefaultPictureModel = new PictureModel();
             ProductSpecificationModel = new ProductSpecificationModel();
             ReviewOverviewModel = new ProductReviewOverviewModel();
+            VendorModel= new VendorBriefInfoModel();
         }
 
         public string Name { get; set; }
@@ -37,7 +38,8 @@ namespace Nop.Web.Models.Catalog
         public ProductReviewOverviewModel ReviewOverviewModel { get; set; }
 
         public bool IsVerified { get; set; }
-
+        public bool ShowVendor { get; set; }
+        public VendorBriefInfoModel VendorModel { get; set; }
         #region Nested Classes
 
         public partial record ProductPriceModel : BaseNopModel

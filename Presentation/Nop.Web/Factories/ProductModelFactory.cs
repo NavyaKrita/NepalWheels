@@ -1248,6 +1248,23 @@ namespace Nop.Web.Factories
 
                 //reviews
                 model.ReviewOverviewModel = await PrepareProductReviewOverviewModelAsync(product);
+                //vendor details
+                if (_vendorSettings.ShowVendorOnProductDetailsPage)
+                {
+                    var vendor = await _vendorService.GetVendorByIdAsync(product.VendorId);
+                    if (vendor != null && !vendor.Deleted && vendor.Active)
+                    {
+                        model.ShowVendor = true;
+
+                        model.VendorModel = new VendorBriefInfoModel
+                        {
+                            Id = vendor.Id,
+                            Name = await _localizationService.GetLocalizedAsync(vendor, x => x.Name),
+                            SeName = await _urlRecordService.GetSeNameAsync(vendor),
+                            IsSeller = vendor.IsSeller
+                        };
+                    }
+                }
 
                 models.Add(model);
             }

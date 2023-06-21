@@ -13,6 +13,7 @@ namespace Nop.Web.Models.Catalog
             SubCategories = new List<SubCategoryModel>();
             CategoryBreadcrumb = new List<CategoryModel>();
             CatalogProductsModel = new CatalogProductsModel();
+            
         }
 
         public string Name { get; set; }
@@ -32,7 +33,7 @@ namespace Nop.Web.Models.Catalog
         public IList<ProductOverviewModel> FeaturedProducts { get; set; }
 
         public CatalogProductsModel CatalogProductsModel { get; set; }
-
+       
         #region Nested Classes
 
         public partial record SubCategoryModel : BaseNopEntityModel
