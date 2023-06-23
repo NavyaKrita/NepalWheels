@@ -203,3 +203,6 @@ src/Presentation/Nop.Web/wwwroot/sitemaps/*
 !src/Presentation/Nop.Web/wwwroot/sitemaps/Index.htm
 src/packages/*
 src/Tests/Nop.Tests/Connections.resx
+/Presentation/Nop.Web/App_Data/DataProtectionKeys/key-49a46223-a0b9-4bfe-8ec2-8b136d39074c.xml
+/Presentation/Nop.Web/Themes/eshopper
+/Presentation/Nop.Web/wwwroot
