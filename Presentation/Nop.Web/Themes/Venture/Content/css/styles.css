@@ -12,6 +12,22 @@
 *:before, *:after {
 	box-sizing: border-box;
 }
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+ /* Track */
+::-webkit-scrollbar-track {
+    border-radius: 10px;
+}
+ /* Handle */
+::-webkit-scrollbar-thumb {
+    background: #F3CC2E;
+}
+ /* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #1B7EB5;
+}
 html {
     margin: 0 !important;
     overflow-x: hidden; /*safari horizontal scroll fix*/
@@ -209,7 +225,8 @@ a img {
 	opacity: 0.99; /*firefox scale bug fix*/
 }
 strong {
-    font-weight: normal;
+    /*font-weight: normal;*/
+    font-weight: 600;
 }
 em {
     font-style: normal;
@@ -931,7 +948,7 @@ body:after {
     -webkit-transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
-	width: 380px !important;
+	width: 600px !important;
 	max-width: 90%;
     box-shadow: 0 0 35px rgba(0,0,0,0.16);
 	background: #fff;
@@ -5912,8 +5929,8 @@ td.ui-datepicker-week-end {
     }
 
     .login-page .form-fields {
-        padding: 0 30px;
-        margin: 0 0 50px;
+       /* padding: 0 30px;
+        margin: 0 0 50px;*/
     }
 
     .login-page .topic-block {
@@ -5923,7 +5940,7 @@ td.ui-datepicker-week-end {
     .login-page .external-authentication {
         text-align: center;
         background: #fff;
-        box-shadow: 0 0 14px rgba(0,0,0,0.06);
+        /*box-shadow: 0 0 14px rgba(0,0,0,0.06);*/
         margin: 20px 0 0;
     }
 
@@ -8587,7 +8604,7 @@ td.ui-datepicker-week-end {
 .news-item .news-body,
 .blog-posts .post-body {
     /* For Nepali Wheels */
-    padding: 10px 15px 26px 15px;
+    padding: 15px 15px 15px 15px;
     /*Default CSS*/
     /* padding: 35px 40px;*/
     text-transform: none;
@@ -8666,7 +8683,8 @@ td.ui-datepicker-week-end {
 
     .post-body p,
     .news-body p {
-        margin: 0 0 10px;
+        /*margin: 0 0 10px;*/
+        margin: 0 0 0 0;
     }
 
         .post-body p:last-child,
@@ -10109,3 +10127,4 @@ td.ui-datepicker-week-end {
             margin-bottom: 10px !important;
         }
     }
+
