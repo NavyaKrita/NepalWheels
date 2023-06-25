@@ -17,7 +17,8 @@
                 isAuthenticated = "is-authenticated";
             }
         }
-        <div class="header-links-box-top @isAuthenticated @threeItemsClass">
+        <!--<div class="header-links-box-top @isAuthenticated @threeItemsClass">-->
+        <div class="header-links fa fa-user-circle">
             @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.HeaderLinksBefore })
             @if (Model.IsAuthenticated)
             {
@@ -35,10 +36,10 @@
             }
             else
             {
-                var returnUrl = Context.Request.Query.TryGetValue("returnUrl", out var url) && !StringValues.IsNullOrEmpty(url) 
-	                ? url.ToString()
-	                : webHelper.GetRawUrl(Context.Request);
-                
+                var returnUrl = Context.Request.Query.TryGetValue("returnUrl", out var url) && !StringValues.IsNullOrEmpty(url)
+                    ? url.ToString()
+                    : webHelper.GetRawUrl(Context.Request);
+
                 <div class="header-link-wrapper login"><a href="@Url.RouteUrl("Login", new { returnUrl })" title="@T("Account.Login")" class="ico-login">@T("Account.Login")</a></div>
                 @if (Model.RegistrationType != UserRegistrationType.Disabled)
                 {
