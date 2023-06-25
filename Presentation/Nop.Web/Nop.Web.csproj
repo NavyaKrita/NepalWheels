@@ -32,7 +32,6 @@
     <Content Remove="Plugins\ExternalAuth.Facebook\**" />
     <Content Remove="Plugins\Payments.CheckMoneyOrder\**" />
     <Content Remove="Plugins\Payments.Manual\**" />
-    <Content Remove="Plugins\SevenSpikes.Nop.Plugins.AnywhereSliders\**" />
     <Content Remove="Plugins\Shipping.FixedByWeightByTotal\**" />
     <Content Remove="Plugins\Widgets.AccessiBe\**" />
     <Content Remove="Plugins\Widgets.BsLiveChat\**" />
@@ -52,8 +51,6 @@
 
     <Compile Remove="Plugins\Payments.Manual\**" />
 
-    <Compile Remove="Plugins\SevenSpikes.Nop.Plugins.AnywhereSliders\**" />
-
     <Compile Remove="Plugins\Shipping.FixedByWeightByTotal\**" />
 
     <Compile Remove="Plugins\Widgets.AccessiBe\**" />
@@ -72,7 +69,6 @@
     <EmbeddedResource Remove="Plugins\ExternalAuth.Facebook\**" />
     <EmbeddedResource Remove="Plugins\Payments.CheckMoneyOrder\**" />
     <EmbeddedResource Remove="Plugins\Payments.Manual\**" />
-    <EmbeddedResource Remove="Plugins\SevenSpikes.Nop.Plugins.AnywhereSliders\**" />
     <EmbeddedResource Remove="Plugins\Shipping.FixedByWeightByTotal\**" />
     <EmbeddedResource Remove="Plugins\Widgets.AccessiBe\**" />
     <EmbeddedResource Remove="Plugins\Widgets.BsLiveChat\**" />
@@ -85,7 +81,6 @@
     <None Remove="Plugins\ExternalAuth.Facebook\**" />
     <None Remove="Plugins\Payments.CheckMoneyOrder\**" />
     <None Remove="Plugins\Payments.Manual\**" />
-    <None Remove="Plugins\SevenSpikes.Nop.Plugins.AnywhereSliders\**" />
     <None Remove="Plugins\Shipping.FixedByWeightByTotal\**" />
     <None Remove="Plugins\Widgets.AccessiBe\**" />
     <None Remove="Plugins\Widgets.BsLiveChat\**" />
@@ -1036,59 +1031,6 @@
     <None Remove="Plugins\Payments.Manual\Views\Configure.cshtml" />
     <None Remove="Plugins\Payments.Manual\Views\PaymentInfo.cshtml" />
     <None Remove="Plugins\Payments.Manual\Views\_ViewImports.cshtml" />
-    <None Remove="Plugins\SevenSpikes.Nop.Plugins.AnywhereSliders\Areas\Admin\Views\AnywhereSlidersAdmin\Create.cshtml" />
-    <None Remove="Plugins\SevenSpikes.Nop.Plugins.AnywhereSliders\Areas\Admin\Views\AnywhereSlidersAdmin\Edit.cshtml" />
-    <None Remove="Plugins\SevenSpikes.Nop.Plugins.AnywhereSliders\Areas\Admin\Views\AnywhereSlidersAdmin\List.cshtml" />
-    <None Remove="Plugins\SevenSpikes.Nop.Plugins.AnywhereSliders\Areas\Admin\Views\AnywhereSlidersAdmin\_CreateOrUpdate.cshtml" />
-    <None Remove="Plugins\SevenSpikes.Nop.Plugins.AnywhereSliders\Areas\Admin\Views\AnywhereSlidersAdmin\_CreateOrUpdate.Settings.cshtml" />
-    <None Remove="Plugins\SevenSpikes.Nop.Plugins.AnywhereSliders\Areas\Admin\Views\AnywhereSlidersAdmin\_CreateOrUpdate.Slides.cshtml" />
-    <None Remove="Plugins\SevenSpikes.Nop.Plugins.AnywhereSliders\Areas\Admin\Views\SlidesAdmin\CreateSlide.cshtml" />
-    <None Remove="Plugins\SevenSpikes.Nop.Plugins.AnywhereSliders\Areas\Admin\Views\SlidesAdmin\EditSlide.cshtml" />
-    <None Remove="Plugins\SevenSpikes.Nop.Plugins.AnywhereSliders\Areas\Admin\Views\SlidesAdmin\_CreateOrUpdateSlide.cshtml" />
-    <None Remove="Plugins\SevenSpikes.Nop.Plugins.AnywhereSliders\Areas\Admin\Views\_ViewImports.cshtml" />
-    <None Remove="Plugins\SevenSpikes.Nop.Plugins.AnywhereSliders\logo.jpg" />
-    <None Remove="Plugins\SevenSpikes.Nop.Plugins.AnywhereSliders\plugin.json" />
-    <None Remove="Plugins\SevenSpikes.Nop.Plugins.AnywhereSliders\Resources\Resources.en-us.xml" />
-    <None Remove="Plugins\SevenSpikes.Nop.Plugins.AnywhereSliders\Scripts\AnywhereSliders.min.js" />
-    <None Remove="Plugins\SevenSpikes.Nop.Plugins.AnywhereSliders\Settings.xml" />
-    <None Remove="Plugins\SevenSpikes.Nop.Plugins.AnywhereSliders\SevenSpikes.Nop.Plugins.AnywhereSliders.dll" />
-    <None Remove="Plugins\SevenSpikes.Nop.Plugins.AnywhereSliders\Styles\coinSlider\coin-slider-styles.css" />
-    <None Remove="Plugins\SevenSpikes.Nop.Plugins.AnywhereSliders\Styles\nivo\ie8-fix.css" />
-    <None Remove="Plugins\SevenSpikes.Nop.Plugins.AnywhereSliders\Styles\nivo\navigation-inside common template.css" />
-    <None Remove="Plugins\SevenSpikes.Nop.Plugins.AnywhereSliders\Styles\nivo\nivo-slider OPTIMIZED.css" />
-    <None Remove="Plugins\SevenSpikes.Nop.Plugins.AnywhereSliders\Styles\nivo\nivo-slider.css" />
-    <None Remove="Plugins\SevenSpikes.Nop.Plugins.AnywhereSliders\Styles\nivo\nivo.rtl.css" />
-    <None Remove="Plugins\SevenSpikes.Nop.Plugins.AnywhereSliders\Styles\nivo\themes\bar\arrows.png" />
-    <None Remove="Plugins\SevenSpikes.Nop.Plugins.AnywhereSliders\Styles\nivo\themes\bar\bar.css" />
-    <None Remove="Plugins\SevenSpikes.Nop.Plugins.AnywhereSliders\Styles\nivo\themes\bar\bullets.png" />
-    <None Remove="Plugins\SevenSpikes.Nop.Plugins.AnywhereSliders\Styles\nivo\themes\bar\loading.gif" />
-    <None Remove="Plugins\SevenSpikes.Nop.Plugins.AnywhereSliders\Styles\nivo\themes\dark\arrows.png" />
-    <None Remove="Plugins\SevenSpikes.Nop.Plugins.AnywhereSliders\Styles\nivo\themes\dark\bullets.png" />
-    <None Remove="Plugins\SevenSpikes.Nop.Plugins.AnywhereSliders\Styles\nivo\themes\dark\dark.css" />
-    <None Remove="Plugins\SevenSpikes.Nop.Plugins.AnywhereSliders\Styles\nivo\themes\dark\loading.gif" />
-    <None Remove="Plugins\SevenSpikes.Nop.Plugins.AnywhereSliders\Styles\nivo\themes\default\arrows.png" />
-    <None Remove="Plugins\SevenSpikes.Nop.Plugins.AnywhereSliders\Styles\nivo\themes\default\bullets.png" />
-    <None Remove="Plugins\SevenSpikes.Nop.Plugins.AnywhereSliders\Styles\nivo\themes\default\default.css" />
-    <None Remove="Plugins\SevenSpikes.Nop.Plugins.AnywhereSliders\Styles\nivo\themes\default\loading.gif" />
-    <None Remove="Plugins\SevenSpikes.Nop.Plugins.AnywhereSliders\Styles\nivo\themes\light\arrows.png" />
-    <None Remove="Plugins\SevenSpikes.Nop.Plugins.AnywhereSliders\Styles\nivo\themes\light\bullets.png" />
-    <None Remove="Plugins\SevenSpikes.Nop.Plugins.AnywhereSliders\Styles\nivo\themes\light\light.css" />
-    <None Remove="Plugins\SevenSpikes.Nop.Plugins.AnywhereSliders\Styles\nivo\themes\light\loading.gif" />
-    <None Remove="Plugins\SevenSpikes.Nop.Plugins.AnywhereSliders\Styles\slick\slick-slider.css" />
-    <None Remove="Plugins\SevenSpikes.Nop.Plugins.AnywhereSliders\SupportedWidgetZones.xml" />
-    <None Remove="Plugins\SevenSpikes.Nop.Plugins.AnywhereSliders\Themes\DefaultClean\Content\slick\anywhereSliders.css" />
-    <None Remove="Plugins\SevenSpikes.Nop.Plugins.AnywhereSliders\Themes\DefaultClean\Content\slick\anywhereSliders.rtl.css" />
-    <None Remove="Plugins\SevenSpikes.Nop.Plugins.AnywhereSliders\Themes\DefaultClean\Content\slick\images\loading.gif" />
-    <None Remove="Plugins\SevenSpikes.Nop.Plugins.AnywhereSliders\Themes\DefaultClean\Content\slick\images\slider-arrow-left.png" />
-    <None Remove="Plugins\SevenSpikes.Nop.Plugins.AnywhereSliders\Themes\DefaultClean\Content\slick\images\slider-arrow-right.png" />
-    <None Remove="Plugins\SevenSpikes.Nop.Plugins.AnywhereSliders\Themes\Venture\AdditionalSupportedWidgetZones.xml" />
-    <None Remove="Plugins\SevenSpikes.Nop.Plugins.AnywhereSliders\Themes\Venture\Content\slick\anywhereSliders.css" />
-    <None Remove="Plugins\SevenSpikes.Nop.Plugins.AnywhereSliders\Themes\Venture\Content\slick\anywhereSliders.rtl.css" />
-    <None Remove="Plugins\SevenSpikes.Nop.Plugins.AnywhereSliders\Views\Components\AnywhereSliders\AnywhereSliders.cshtml" />
-    <None Remove="Plugins\SevenSpikes.Nop.Plugins.AnywhereSliders\Views\Components\AnywhereSliders\_Slide.Content.cshtml" />
-    <None Remove="Plugins\SevenSpikes.Nop.Plugins.AnywhereSliders\Views\Components\AnywhereSliders\_Slide.cshtml" />
-    <None Remove="Plugins\SevenSpikes.Nop.Plugins.AnywhereSliders\Views\Components\AnywhereSliders\_Slide.Picture.cshtml" />
-    <None Remove="Plugins\SevenSpikes.Nop.Plugins.AnywhereSliders\Views\_ViewImports.cshtml" />
     <None Remove="Plugins\Shipping.FixedByWeightByTotal\logo.jpg" />
     <None Remove="Plugins\Shipping.FixedByWeightByTotal\Nop.Plugin.Shipping.FixedByWeightByTotal.deps.json" />
     <None Remove="Plugins\Shipping.FixedByWeightByTotal\Nop.Plugin.Shipping.FixedByWeightByTotal.dll" />

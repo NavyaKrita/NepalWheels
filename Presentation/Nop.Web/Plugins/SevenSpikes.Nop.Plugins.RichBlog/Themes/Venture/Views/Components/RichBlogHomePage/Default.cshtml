@@ -1,13 +1,6 @@
 ﻿@model IList<BlogPostModel7Spikes>
 @inject IViewComponentSelector viewComponentSelector
-@{
-    Layout = "_ColumnsOneNoRoot";
 
-}
-@*@section left {
-    @await Component.InvokeAsync("Widget", new { widgetZone = "mega_menu_categories_before_dropdown_end_7" })
-    @await Component.InvokeAsync("Widget", new { widgetZone = "mega_menu_categories_before_dropdown_end_8" })
-}*@
 <div class="rich-blog-homepage">
     <div class="title">
         <strong>@T("SevenSpikes.RichBlog.Public.LatestFromBlog")</strong>
@@ -32,27 +25,19 @@
                             else
                             {
                                 <img src="@post.HomePagePictureUrl" alt="@post.Title" title="@post.Title" />
-                            }
-                        </a>
+                            }                        </a>
                     }
                     <span class="post-date">
-                        <a class="post-title" href="@Url.RouteUrl("BlogPost", new { SeName = post.SeName })">@post.Title</a>
-                        @*<span class="day">@post.CreatedOn.Day.ToString("00")</span>
-                            <span class="month">@post.CreatedOn.ToString("MMM")</span>
-                            <span class="year">@post.CreatedOn.Year</span>*@
+                        <span class="day">@post.CreatedOn.Day.ToString("00")</span>
+                        <span class="month">@post.CreatedOn.ToString("MMM")</span>
+                        <span class="year">@post.CreatedOn.Year</span>
                     </span>
                     <a class="read-more" href="@Url.RouteUrl("BlogPost", new { SeName = post.SeName })">@T("SevenSpikes.RichBlog.Public.ReadMore")</a>
                 </div>
                 <div class="post-details">
-                    @*<a class="post-title" href="@Url.RouteUrl("BlogPost", new { SeName = post.SeName })">@post.Title</a>*@
-                    <div class="post-description  text-space">
+                    <a class="post-title" href="@Url.RouteUrl("BlogPost", new { SeName = post.SeName })">@post.Title</a>
+                    <div class="post-description">
                         @Html.Raw(!String.IsNullOrEmpty(post.BodyOverview) ? post.BodyOverview : post.Body)
-                    </div>
-                    <br />
-                    <div class="text-right">
-                        <span class="day">@post.CreatedOn.Day.ToString("00")</span>
-                        <span class="month">@post.CreatedOn.ToString("MMM")</span>
-                        <span class="year">@post.CreatedOn.Year</span>
                     </div>
                 </div>
             </div>
@@ -62,15 +47,3 @@
         <a href="@Url.RouteUrl("Blog")">@T("SevenSpikes.RichBlog.Public.ViewAllBlogPosts")</a>
     </div>
 </div>
-<style>
-    .blog-posts .text-space {
-        word-break: break-word;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        display: -webkit-box;
-        line-height: 20px;
-        max-height: 300px;
-        -webkit-line-clamp: 5;
-        -webkit-box-orient: vertical;
-    }
-</style>

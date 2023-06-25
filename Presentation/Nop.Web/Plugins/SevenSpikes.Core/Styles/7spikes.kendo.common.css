@@ -1506,9 +1506,9 @@ ul.k-menu-vertical > .k-item {
   margin-top: -1px;
   padding-left: 1px;
 }
-    .k-popup .k-animation-container .k-popup {
-        margin-left: -1px;
-    }
+.k-popup .k-animation-container .k-popup {
+  margin-left: -1px;
+}
 ul.k-menu .k-separator {
   padding: 0.25em 0;
   height: 100%;

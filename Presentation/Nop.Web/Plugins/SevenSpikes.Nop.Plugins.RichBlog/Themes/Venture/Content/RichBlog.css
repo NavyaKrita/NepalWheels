@@ -4,7 +4,7 @@
 
 .rich-blog-homepage {
 	max-width: 95%;
-    margin: 0 auto 20px;
+    margin: 0 auto 80px;
 }
 .rich-blog-homepage .title {
     padding: 8px 0;
@@ -44,7 +44,7 @@
     max-width: 100%;
 }
 .rich-blog-homepage .post-primary {
-    /*background: #2c2c2c; new changes*/
+    background: #2c2c2c;
     overflow: hidden;
     position: relative;
 }
@@ -106,7 +106,7 @@
     display: block;
     float: right;
     color: #909090;
-    /*background: #1f1f1f;new changes */
+    background: #1f1f1f;
     font-size: 13px;
     padding: 21px 38px 21px 22px;
     position: relative;
@@ -127,18 +127,17 @@
     bottom: 0;
     margin: auto;
 }
-    .rich-blog-homepage .read-more:hover {
-        /*background: #111;*/
-        color: #F3CC2E;
-    }
+.rich-blog-homepage .read-more:hover {
+    background: #111;
+}
 .rich-blog-homepage .post-details {
-    padding: 10px 15px 25px 15px;
+    padding: 35px 40px;
     text-transform: none;
     text-align: left;
 }
 .rich-blog-homepage .post-title {
     display: block;
-    font-size: 20px;
+    font-size: 24px;
     margin: 0 0 10px;
 }
 .rich-blog-homepage .post-description {
@@ -523,6 +522,7 @@
 }
 
 
+
 @media all and (min-width: 1201px) {
 
 .rich-blog-homepage {
@@ -532,17 +532,13 @@
 .rich-blog-homepage .blog-posts {
     overflow: hidden;
 }
-    .rich-blog-homepage .blog-post {
-        margin: 0 0 10px 5px;
-        float: left;
-        border-radius: 5px;
-        width: 33%;
-    }
-.rich-blog-homepage .blog-post:nth-child(3n+1) {
+.rich-blog-homepage .blog-post {
+    margin: 0 0 23px 20px;
+    float: left;
+}
+.rich-blog-homepage .blog-post:nth-child(2n+1) {
     margin-left: 0;
     clear: both;
-    border-radius:5px;
-    width:33%;
 }
 
 .rich-blog-homepage .view-all a {
