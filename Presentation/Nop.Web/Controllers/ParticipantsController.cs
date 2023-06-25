@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Nop.Web.Controllers
 {
-    [AutoValidateAntiforgeryToken]
+    // [AutoValidateAntiforgeryToken]
     public partial class ParticipantsController : BasePublicController
     {
         private readonly INoticeBoardService _noticeBoardService;
@@ -130,8 +130,12 @@ namespace Nop.Web.Controllers
                      && string.IsNullOrEmpty(model.BikeName) && string.IsNullOrEmpty(model.Address)
                     )
                     return Json(new { success = false });
-                if(string.IsNullOrEmpty(model.PhoneNumber) && !model.PhoneNumber.All(char.IsDigit))
-                    return Json(new { success = false });
+                if (!string.IsNullOrEmpty(model.PhoneNumber))
+                {
+                    if (!model.PhoneNumber.All(char.IsDigit))
+                        return Json(new { success = false });
+                }
+
 
                 NoticeBoardDetail detail = new()
                 {
