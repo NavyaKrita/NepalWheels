@@ -32,7 +32,7 @@
 }
 
 <form asp-controller="AjaxFiltersProSearch" asp-action="Search" id="AjaxFiltersProForm">
-    <div class="home-page-filters-wrapper ajax-filters-pro"
+    <div class="newsletter-area home-page-filters-wrapper ajax-filters-pro"
          data-showCategoryDropdown="@showCategoryDropdown.ToString().ToLowerInvariant()"
          data-showCategoryAndSubcategoryDropdown="@showCategoryAndSubcategoryDropdown.ToString().ToLowerInvariant()"
          data-showManufacturerDropdown="@showManufacturerDropdown.ToString().ToLowerInvariant()"
@@ -45,9 +45,9 @@
          data-getManufacturersUrl="@Url.Action("GetManufacturers", "AjaxFiltersProSearch")"
          data-getSpecificationsUrl="@Url.Action("GetSpecification", "AjaxFiltersProSearch")">
         
-        <div class="home-page-filters">
+        <div class="home-page-filters newsletter-wrapper-all">
             <div class="home-page-filter-title">
-                <strong>@T("SevenSpikes.Themes.Venture.Common.HomePageAjaxFiltersPro.Title")</strong>
+                @T("SevenSpikes.Themes.Venture.Common.HomePageAjaxFiltersPro.Title")
             </div>
 
             @if (Model.UIMode != NopAjaxFiltersProUIMode.ManufacturerOnly)
@@ -79,7 +79,7 @@
             }
             <div class="home-page-filter-button">
                 <span id="home-page-filter-total-products-count" class="results-number"></span>
-                <button type="submit" class="search-button" disabled="disabled">@T("SevenSpikes.NopAjaxFiltersPro.Client.Search")</button>
+                <button type="submit" class="search-button">@T("SevenSpikes.NopAjaxFiltersPro.Client.Search")</button>
             </div>
         </div>
     </div>

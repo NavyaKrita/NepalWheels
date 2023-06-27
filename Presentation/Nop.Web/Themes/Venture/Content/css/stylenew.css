@@ -514,11 +514,11 @@
     position: relative;
 }
 .slider-1 {
-    padding: 165px 0 0px;
+    /*padding: 120px 0 0px;*/
     background-size: cover;
-    background-image: url(../img/slider_bg.png);
+    /*background-image: url(../img/slider_bg.png);*/
     background-repeat: no-repeat;
-    min-height: 720px;"
+    min-height: 400px;
 }
 .slider-text-img {
     margin-bottom: -10px;
@@ -1289,7 +1289,7 @@
 /* newsletter */
 .newsletter-area{
     position: relative;
-    top: -40px;
+    top: 40px;
 }
 .newsletter-wrapper-all {
     margin-bottom: -84px;

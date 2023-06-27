@@ -4,22 +4,19 @@
 
 @if (Model.Count > 0)
 {
-    <div class="category-grid home-page-category-grid">
-        <div class="item-grid">
-            @foreach (var item in Model)
-            {
-                <div class="item-box">
-                    <div class="category-item">
-                        <h2 class="title">
-                            <a href="@Url.RouteUrl("Category", new { SeName = item.SeName })" title="@item.PictureModel.Title">
-                                @item.Name
-                            </a>
-                        </h2>
-                        <div class="picture">
+    <div class="products-type pt-135 pb-50">
+        <div class="container">
+            <div class="row">
+                @foreach (var item in Model)
+                {
+                    <div class="col-md-6 col-lg-3">
+                        <div class="product-type text-center mb-30">
+                            <h4 class="product-type-name">
+                            <a href="@Url.RouteUrl("Category", new { SeName = item.SeName })" title="@item.PictureModel.Title">@item.Name</a></h4>
                             <a href="@Url.RouteUrl("Category", new { SeName = item.SeName })" title="@item.PictureModel.Title">
                                 @if (viewComponentSelector.SelectComponent("LazyLoadImage") != null)
                                 {
-                                    @await Component.InvokeAsync("LazyLoadImage", new(string Key, string Value)[]
+                                    @await Component.InvokeAsync("LazyLoadImage", new (string Key, string Value)[]
                                     {
                                         ("src", item.PictureModel.ImageUrl),
                                         ("alt", item.PictureModel.AlternateText),
@@ -34,8 +31,36 @@
                             </a>
                         </div>
                     </div>
-                </div>
-            }
+                    @*<div class="item-box">
+                        <div class="category-item">
+                            <h2 class="title">
+                                <a href="@Url.RouteUrl("Category", new { SeName = item.SeName })" title="@item.PictureModel.Title">
+                                    @item.Name
+                                </a>
+                            </h2>
+                            <div class="picture">
+                                <a href="@Url.RouteUrl("Category", new { SeName = item.SeName })" title="@item.PictureModel.Title">
+                                    @if (viewComponentSelector.SelectComponent("LazyLoadImage") != null)
+                                    {
+                                        @await Component.InvokeAsync("LazyLoadImage", new (string Key, string Value)[]
+                                        {
+                                            ("src", item.PictureModel.ImageUrl),
+                                            ("alt", item.PictureModel.AlternateText),
+                                            ("title", item.PictureModel.Title)
+                                        })
+
+                                    }
+                                    else
+                                    {
+                                        <img alt="@item.PictureModel.AlternateText" src="@item.PictureModel.ImageUrl" title="@item.PictureModel.Title" />
+                                    }
+                                </a>
+                            </div>
+                        </div>
+                    </div>*@
+                }
+            </div>
         </div>
     </div>
+
 }
