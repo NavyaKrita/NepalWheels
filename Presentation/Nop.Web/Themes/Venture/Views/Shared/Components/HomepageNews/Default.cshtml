@@ -7,73 +7,75 @@
     @await Component.InvokeAsync("Widget", new { widgetZone = "Left_Side_Column_Before" })
     @await Component.InvokeAsync("Widget", new { widgetZone = "Left_Side_Column_After" })
 }
-
 @if (Model.NewsItems.Count > 0)
 {
-
-    <div class="news-list-homepage">
-        <div class="title">
-            <strong>LATEST @T("News")</strong>
-        </div>
-        <div class="news-items" style="width:100%">
-            @foreach (var item in Model.NewsItems)
-            {
-                //This section is customize to fit Header at top and date at bottom
-                <div class="news-item">
-                    <div class="news-head-home">
-                        @*Custom Nepali Wheels *@
-                        <span class="news-date">
-                            <a class="news-title" href="@Url.RouteUrl("NewsItem", new { SeName = item.SeName })">@item.Title</a>
-                        </span>
-                        @*Default css *@
-                        @*<span class="news-date">
-                                <a class="news-title" href="@Url.RouteUrl("NewsItem", new { SeName = item.SeName })">@item.Title</a>
-                            </span>*@
-                        <div class="buttons">
-                            <a href="@Url.RouteUrl("NewsItem", new { SeName = item.SeName })" class="read-more">@T("News.MoreInfo")</a>
-                        </div>
-                    </div>
-                    <div class="news-body">
-                        <div class="news-text text-space">
-                            @Html.Raw(item.Full)
-                        </div>
-                        <br />
-                        <div class="text-right">
-                            <span class="day">@item.CreatedOn.Day.ToString("00")</span>
-                            <span class="month">@item.CreatedOn.ToString("MMM")</span>
-                            <span class="year">@item.CreatedOn.Year</span>
-                        </div>
-                    </div>
+    <div class="news-area ptb-100">
+        <div class="container">
+            <div class="text-center mb-30">
+                <h2 class="home-news-head">Latest News</h2>
+                <div class="tag">
+                    <span>Stay in touch for the upcoming news</span>
                 </div>
-                //Below is the default view of nopcommerce news section
-                @*<div class="news-item">
-                        <div class="news-head">
-                            <span class="news-date">
-                                <span class="day">@item.CreatedOn.Day.ToString("00")</span>
-                                <span class="month">@item.CreatedOn.ToString("MMM")</span>
-                                <span class="year">@item.CreatedOn.Year</span>
-                            </span>
-                            <div class="buttons">
-                                <a href="@Url.RouteUrl("NewsItem", new { SeName = item.SeName })" class="read-more">@T("News.MoreInfo")</a>
+            </div>
+            <div class="news-active owl-carousel owl-loaded owl-drag">
+                <div class="owl-stage-outer">
+                    <div class="owl-stage">
+                        @foreach (var item in Model.NewsItems)
+                        {
+                            <div class="owl-item col-lg-6 pull-left" style="padding: 25px;">
+                                <div class="single-news">
+                                    <div class="row">
+                                        <div class="news-items" style="padding: 0;">
+                                            <div class="col-lg-7 news-content">
+                                                <p class="home-news-date">@item.CreatedOn.Day.ToString("00") @item.CreatedOn.ToString("MMM") @item.CreatedOn.Year </p>
+                                                <h3><a href="@Url.RouteUrl("NewsItem", new { SeName = item.SeName })">@item.Title</a></h3>
+                                                <div class="text-space">
+                                                    <p >@Html.Raw(item.Full)</p>
+                                                </div>
+                                                @*<p>@Html.Raw(item.Full)</p>*@
+                                                @*<p>The sole distributor of TVS's two-wheelers in Nepal, Jagadamba Motors PVT. LTD. (JMPL) ...</p>*@
+                                                <div class="pt-3 pb-3">
+                                                    <b><a href="@Url.RouteUrl("NewsItem", new { SeName = item.SeName })" class="news-read-more">Take a look ></a></b>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-5 news-image" style="padding: 0;">
+                                                <img alt="image" src="assets/img/news/testimonial-1.jpg" class="w-100">
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="news-body">
-                            <a class="news-title" href="@Url.RouteUrl("NewsItem", new { SeName = item.SeName })">@item.Title</a>
-                            <div class="news-text">
-                                @Html.Raw(item.Short)
-                            </div>
-                        </div>
+                        }
+                    </div>
 
-                    </div>*@
-            }
-        </div>
-        <div class="view-all">
-            <a href="@Url.RouteUrl("NewsArchive")">@T("News.ViewAll")</a>
+                </div>
+                <div class="owl-dots disabled"></div>
+            </div>
+            <div class="col-md-12 text-center pt-5">
+                <button class="banner-btn"><a href="@Url.RouteUrl("NewsArchive")">@T("News.ViewAll")</a></button>
+            </div>
         </div>
     </div>
 }
+
+
+
 <style>
-    .text-right {
-        float: right;
+    .text-space {
+        word-break: break-word;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        line-height: 20px;
+        height: 200px;
+        -webkit-line-clamp: 5;
+        -webkit-box-orient: vertical;
+        font-family: 'Manrope', sans-serif !important;
+    }
+    .news-space {
+        overflow: hidden;
+        height: 600px;
+        -webkit-line-clamp: 5;
+        -webkit-box-orient: vertical;
     }
 </style>
