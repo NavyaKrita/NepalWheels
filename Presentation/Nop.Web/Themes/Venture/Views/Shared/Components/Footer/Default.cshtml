@@ -34,6 +34,133 @@
         @await Component.InvokeAsync("Widget", new { widgetZone = "venture_theme_footer_banner_3" })
     </div>
 }
+<footer>
+    <div class="footer-top pt-100 pb-98">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-2 col-md-6 col-12">
+                    <div class="footer-widget mb-30">
+                        <div class="footer-widget-title mb-20">
+                            <h3>INFORMATION</h3>
+                        </div>
+                        <div class="quick-links">
+                            <ul>
+                                <li><a href="">About us</a></li>
+                                <li><a href="">Contact Us</a></li>
+                                <li><a href="">Services</a></li>
+                                <li><a href="">Privacy Notice</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-5 col-md-6 col-12">
+                    <div class="footer-widget mb-30">
+                        <div class="footer-widget-title mb-20">
+                            <h3>PRODUCTS</h3>
+                        </div>
+                        <div class="quick-links">
+                            <ul class="col-lg-6 col-md-6 col-12 pull-left">
+                                <li><a href="">Street/Nacked Bikes</a></li>
+                                <li><a href="">Scooter</a></li>
+                                <li><a href="">Bikes</a></li>
+                                <li><a href="">Sport Bikes</a></li>
+                            </ul>
+                            <ul class="col-lg-6 col-md- col-12 pull-left">
+                                <li><a href="">Maxi-Scotter</a></li>
+                                <li><a href="">Cruisers</a></li>
+                                <li><a href="">Off Road Bikes</a></li>
+                                <li><a href="">Advanture Tourers</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-5 col-md-6 col-12">
+                    <div class="footer-widget mb-30">
+                        <div class="footer-widget-title mb-20">
+                            <h3>REACG US</h3>
+                        </div>
+                        <div class="food-info-wrapper">
+                            <div class="col-md-6 pull-left">
+                                <div class="food-address">
+                                    <div class="food-info-title mb-2">
+                                        <span>Phone No.</span>
+                                    </div>
+                                    <div class="food-info-content">
+                                        <p><a href="">+977-9802266461</a></p>
+                                        <p><a href="">+977-9802266461</a></p>
+                                    </div>
+                                </div>
+                                <div class="food-address">
+                                    <div class="food-info-title mb-2">
+                                        <span>Location</span>
+                                    </div>
+                                    <div class="food-info-content">
+                                        <p>Milan Chowk, Baneshwor, Kathmandu</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 pull-left">
+                                <div class="food-address">
+                                    <div class="food-info-title mb-2">
+                                        <span>Email</span>
+                                    </div>
+                                    <div class="food-info-content">
+                                        <p><a href="#">enquiry@nepaliwheels.com</a></p>
+                                        <p><a href="#">info@nepaliwheels.com</a></p>
+                                        <p><a href="#">subash.shrestha@nepaliwheels.com</a></p>
+                                    </div>
+                                </div>
+                                <div class="food-address">
+                                    <div class="food-info-title mb-2">
+                                        <span>Follow Us</span>
+                                    </div>
+                                    <div class="food-info-content">
+                                        <span>
+                                            <a href="">
+                                                <i class="fa fa-facebook"></i>
+                                            </a>
+                                            <a href="">
+                                                <i class="fa fa-twitter"></i>
+                                            </a>
+                                            <a href="">
+                                                <i class="fa fa-youtube"></i>
+                                            </a>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a href="">
+        <div class="footer-logo">
+            <img src="assets/img/logo.png" class="w-100" alt="">
+        </div>
+    </a>
+    <div class="footer-bottom ptb-35 black-bg" style="border-top: #2789bd solid 6px;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-12">
+                    <div class="copyright">
+                        <p>© 2023 <b>Nepali Wheels</b>. All right reserved.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 col-12">
+                    <div class="copyright text-right text-white">
+                        <ul class="footer-copy-list">
+                            <li><a href="">Terms of Use</a></li>
+                            <li><a href="">Privacy Policy</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
 <div class="footer">
     @if (showFooterMap && !isIe9)//google maps API doesn't work in ie9
     {
@@ -119,38 +246,38 @@
         </div>
     </div>
     @*<div class="footer-middle">
-        @await Component.InvokeAsync("SocialButtons")
-    </div>*@
-<div class="footer-lower">
-    <div class="footer-powered-by">
-        Powered by <a href="https://navyakrita.com.np/" target="_blank">Navyakrita Solutions</a>
-    </div>
-    <div class="footer-disclaimer">
-        @T("Content.CopyrightNotice", DateTime.Now.Year, Model.StoreName)
-    </div>
-    @if (!removeCopyright)
-    {
+            @await Component.InvokeAsync("SocialButtons")
+        </div>*@
+    <div class="footer-lower">
         <div class="footer-powered-by">
-            @*Powered by <a href="@(OfficialSite.Main)">nopCommerce</a>*@
             Powered by <a href="https://navyakrita.com.np/" target="_blank">Navyakrita Solutions</a>
-            @*Would you like to remove the "Powered by nopCommerce" link in the bottom of the footer?
-                Please find more info at https://www.nopcommerce.com/nopcommerce-copyright-removal-key*@
         </div>
-    }
-    @if (!removeDesignedBy)
-    {
-        <div class="footer-designed-by">
-            Designed by <a href="https://www.nop-templates.com/" target="_blank">Nop-Templates.com</a>
+        <div class="footer-disclaimer">
+            @T("Content.CopyrightNotice", DateTime.Now.Year, Model.StoreName)
         </div>
-    }
-    @if (Model.DisplayTaxShippingInfoFooter)
-    {
-        var inclTax = await workContext.GetTaxDisplayTypeAsync() == TaxDisplayType.IncludingTax;
-        <div class="footer-tax-shipping">
-            @T(inclTax ? "Footer.TaxShipping.InclTax" : "Footer.TaxShipping.ExclTax", Url.RouteUrl("Topic", new { SeName = await Html.GetTopicSeNameAsync("shippinginfo") }))
-        </div>
-    }
-    @await Component.InvokeAsync("StoreThemeSelector")
-</div>
+        @if (!removeCopyright)
+        {
+            <div class="footer-powered-by">
+                @*Powered by <a href="@(OfficialSite.Main)">nopCommerce</a>*@
+                Powered by <a href="https://navyakrita.com.np/" target="_blank">Navyakrita Solutions</a>
+                @*Would you like to remove the "Powered by nopCommerce" link in the bottom of the footer?
+                    Please find more info at https://www.nopcommerce.com/nopcommerce-copyright-removal-key*@
+            </div>
+        }
+        @if (!removeDesignedBy)
+        {
+            <div class="footer-designed-by">
+                Designed by <a href="https://www.nop-templates.com/" target="_blank">Nop-Templates.com</a>
+            </div>
+        }
+        @if (Model.DisplayTaxShippingInfoFooter)
+        {
+            var inclTax = await workContext.GetTaxDisplayTypeAsync() == TaxDisplayType.IncludingTax;
+            <div class="footer-tax-shipping">
+                @T(inclTax ? "Footer.TaxShipping.InclTax" : "Footer.TaxShipping.ExclTax", Url.RouteUrl("Topic", new { SeName = await Html.GetTopicSeNameAsync("shippinginfo") }))
+            </div>
+        }
+        @await Component.InvokeAsync("StoreThemeSelector")
+    </div>
     @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.Footer })
 </div>

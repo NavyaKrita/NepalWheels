@@ -3790,18 +3790,19 @@ p.checkout-coupon input[type="submit"] {
     font-family: 'Manrope';
     text-align: center;
 }
-.search-text{
+.search-text {
     font-size: 16px;
     line-height: 34px;
     color: #ffffff;
     font-weight: 500;
     padding-top: 3px;
     margin: 0;
+    text-transform: uppercase;
 }
 .search-select{
     height: 40px;
     border-radius: 6px;
-    background-color: #f5f5f7;
+    /*background-color: #f5f5f7;*/
 }
 .product-type-name{
     font-size: 18px;
