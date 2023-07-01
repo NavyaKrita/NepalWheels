@@ -41,15 +41,17 @@
                 <div class="col-lg-2 col-md-6 col-12">
                     <div class="footer-widget mb-30">
                         <div class="footer-widget-title mb-20">
-                            <h3>INFORMATION</h3>
+                            <h3>@T("SevenSpikes.Themes.Venture.Common.Information")</h3>
                         </div>
-                        <div class="quick-links">
-                            <ul>
-                                <li><a href="">About us</a></li>
-                                <li><a href="">Contact Us</a></li>
-                                <li><a href="">Services</a></li>
-                                <li><a href="">Privacy Notice</a></li>
-                            </ul>
+                        <div class="food-info-content">
+                            @if (Model.DisplayContactUsFooterItem)
+                            {
+                                <p><a href="@Url.RouteUrl("ContactUs")">@T("ContactUs")</a></p>
+                            }
+                            @foreach (var topic in Model.Topics.Where(x => x.IncludeInFooterColumn1).ToList())
+                            {
+                                <p><a href="@Url.RouteUrl("Topic", new { SeName = topic.SeName })">@topic.Name</a></p>
+                            }
                         </div>
                     </div>
                 </div>
@@ -77,7 +79,7 @@
                 <div class="col-lg-5 col-md-6 col-12">
                     <div class="footer-widget mb-30">
                         <div class="footer-widget-title mb-20">
-                            <h3>REACG US</h3>
+                            <h3>REACH US</h3>
                         </div>
                         <div class="food-info-wrapper">
                             <div class="col-md-6 pull-left">
@@ -86,8 +88,8 @@
                                         <span>Phone No.</span>
                                     </div>
                                     <div class="food-info-content">
-                                        <p><a href="">+977-9802266461</a></p>
-                                        <p><a href="">+977-9802266461</a></p>
+                                        <p>@T("SevenSpikes.Themes.Venture.Common.MobilePhone")</p>
+                                        <p>@T("SevenSpikes.Themes.Venture.Common.Phone")</p>
                                     </div>
                                 </div>
                                 <div class="food-address">
@@ -95,7 +97,7 @@
                                         <span>Location</span>
                                     </div>
                                     <div class="food-info-content">
-                                        <p>Milan Chowk, Baneshwor, Kathmandu</p>
+                                        <p>@T("SevenSpikes.Themes.Venture.Common.Address")</p>
                                     </div>
                                 </div>
                             </div>
@@ -105,9 +107,7 @@
                                         <span>Email</span>
                                     </div>
                                     <div class="food-info-content">
-                                        <p><a href="#">enquiry@nepaliwheels.com</a></p>
-                                        <p><a href="#">info@nepaliwheels.com</a></p>
-                                        <p><a href="#">subash.shrestha@nepaliwheels.com</a></p>
+                                        <p>@T("SevenSpikes.Themes.Venture.Common.EMail")</p>
                                     </div>
                                 </div>
                                 <div class="food-address">
@@ -129,16 +129,27 @@
                                     </div>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>
             </div>
+            <div class="col-12">
+                <div class="footer-widget mb-30">
+                    <div class="footer-widget-title mb-20">
+                        <h3>@T("SevenSpikes.Themes.Venture.Common.Newsletter")</h3>
+                    </div>
+                <div class="copyright">
+                    <p>
+                        @T("SevenSpikes.Themes.Venture.Common.NewsletterSubscribeText")@await Component.InvokeAsync("NewsletterBox")
+                    </p>
+                </div>
+            </div>
+        </div>
         </div>
     </div>
     <a href="">
         <div class="footer-logo">
-            <img src="assets/img/logo.png" class="w-100" alt="">
+            <img src="~/images/thumbs/0003396_logo.png" class="w-100" alt="">
         </div>
     </a>
     <div class="footer-bottom ptb-35 black-bg" style="border-top: #2789bd solid 6px;">
@@ -235,7 +246,7 @@
                 }
             </ul>
         </div>
-        <div class="footer-block newsetter">
+        @*<div class="footer-block newsetter">
             <div class="title">
                 <strong>@T("SevenSpikes.Themes.Venture.Common.Newsletter")</strong>
             </div>
@@ -243,7 +254,7 @@
                 <p class="newsletter-subscribe-text">@T("SevenSpikes.Themes.Venture.Common.NewsletterSubscribeText")</p>
                 @await Component.InvokeAsync("NewsletterBox")
             </div>
-        </div>
+        </div>*@
     </div>
     @*<div class="footer-middle">
             @await Component.InvokeAsync("SocialButtons")
