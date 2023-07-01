@@ -1751,7 +1751,7 @@ body:after {
 } 
 .social-sharing li {
 	display: inline-block;
-	margin: 0 6px 12px;
+	/*margin: 0 6px 12px;*/
     position: relative;
     z-index: 2;
 }
@@ -1759,11 +1759,12 @@ body:after {
 	display: block;
 	width: 47px;
 	height: 47px;
-    border: 1px dashed #565656;
-	background: #2c2c2c;
+    /*border: 1px dashed #565656;
+	background: #2c2c2c;*/
     position: relative;
     -webkit-transition: all .2s ease-in-out;
     transition: all .2s ease-in-out;
+    color:#fff;
 }
 .light-theme .social-sharing a {
     background: #fff;
@@ -1777,7 +1778,7 @@ body:after {
     width: 47px;
     height: 47px;
     line-height: 47px;
-    font-size: 17px;
+    font-size: 20px;
     top: 0;
     left: 0;
     right: 0;
@@ -1785,7 +1786,7 @@ body:after {
     margin: auto;
 }
 .social-sharing a:hover {
-    background: #1f1f1f;
+    /*background: #1f1f1f;*/
     color: #f3cc2e;
 }
 .light-theme .social-sharing a:hover {

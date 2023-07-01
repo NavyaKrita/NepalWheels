@@ -1264,16 +1264,18 @@
     bottom: 100px;
     display: inline-block;
     top: 25%;
-    left: -42px;
+    left: -100px;
     position: absolute;
+    font-size:100px;
 }
-.news-active.owl-carousel .owl-nav button.owl-next{
-    bottom: 100px;
-    display: inline-block;
-    top: 25%;
-    right: -75px;
-    position: absolute;
-}
+    .news-active.owl-carousel .owl-nav button.owl-next {
+        bottom: 100px;
+        display: inline-block;
+        top: 25%;
+        right: -100px;
+        position: absolute;
+        font-size: 100px;
+    }
 /*
 .news-active.owl-carousel .owl-nav {
     bottom: 100px;

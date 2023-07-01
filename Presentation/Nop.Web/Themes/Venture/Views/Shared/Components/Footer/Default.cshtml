@@ -35,7 +35,7 @@
     </div>
 }
 <footer>
-    <div class="footer-top pt-100 pb-98">
+    <div class="footer-top pt-50 pb-30">
         <div class="container">
             <div class="row">
                 <div class="col-lg-2 col-md-6 col-12">
@@ -116,15 +116,7 @@
                                     </div>
                                     <div class="food-info-content">
                                         <span>
-                                            <a href="">
-                                                <i class="fa fa-facebook"></i>
-                                            </a>
-                                            <a href="">
-                                                <i class="fa fa-twitter"></i>
-                                            </a>
-                                            <a href="">
-                                                <i class="fa fa-youtube"></i>
-                                            </a>
+                                            @await Component.InvokeAsync("SocialButtons")
                                         </span>
                                     </div>
                                 </div>
@@ -138,15 +130,16 @@
                     <div class="footer-widget-title mb-20">
                         <h3>@T("SevenSpikes.Themes.Venture.Common.Newsletter")</h3>
                     </div>
-                <div class="food-info-content">
-                    <p>
-                        @T("SevenSpikes.Themes.Venture.Common.NewsletterSubscribeText")@await Component.InvokeAsync("NewsletterBox")
-                    </p>
+                    <div class="food-info-content">
+                        <p>
+                            @T("SevenSpikes.Themes.Venture.Common.NewsletterSubscribeText")@await Component.InvokeAsync("NewsletterBox")
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
-        </div>
     </div>
+    @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.Footer })
     <a href="">
         <div class="footer-logo">
             <img src="~/images/thumbs/0003396_logo.png" class="w-100" alt="">
@@ -172,123 +165,3 @@
         </div>
     </div>
 </footer>
-<div class="footer">
-    @if (showFooterMap && !isIe9)//google maps API doesn't work in ie9
-    {
-        <div class="footer-map-holder">
-            <div class="title">
-                <strong>@T("SevenSpikes.Themes.Venture.Common.FooterMap")</strong>
-            </div>
-            <div class="footer-map-wrapper">
-                @await Component.InvokeAsync("Widget", new { widgetZone = "venture_footer_map" })
-            </div>
-        </div>
-    }
-    <div class="footer-upper">
-        <div class="footer-block find-us">
-            <div class="title">
-                <strong>@T("SevenSpikes.Themes.Venture.Common.FindUs")</strong>
-            </div>
-            <ul class="list footer-collapse">
-                <li class="address">
-                    <span>@T("SevenSpikes.Themes.Venture.Common.Address")</span>
-                </li>
-                <li class="e-mail">
-                    <span>@T("SevenSpikes.Themes.Venture.Common.EMail")</span>
-                </li>
-                <li class="mobile-phone">
-                    <span>@T("SevenSpikes.Themes.Venture.Common.MobilePhone")</span>
-                </li>
-                <li class="phone">
-                    <span>@T("SevenSpikes.Themes.Venture.Common.Phone")</span>
-                </li>
-            </ul>
-        </div>
-        <div class="footer-block information">
-            <div class="title">
-                <strong>@T("SevenSpikes.Themes.Venture.Common.Information")</strong>
-            </div>
-            <ul class="list footer-collapse">
-                @if (Model.DisplayContactUsFooterItem)
-                {
-                    <li><a href="@Url.RouteUrl("ContactUs")">@T("ContactUs")</a></li>
-                }
-                @foreach (var topic in Model.Topics.Where(x => x.IncludeInFooterColumn1).ToList())
-                {
-                    <li><a href="@Url.RouteUrl("Topic", new {SeName = topic.SeName})">@topic.Name</a></li>
-                }
-            </ul>
-        </div>
-        <div class="footer-block my-account">
-            <div class="title">
-                <strong>@T("SevenSpikes.Themes.Venture.Common.MyAccount")</strong>
-            </div>
-            <ul class="list footer-collapse">
-                @if (Model.DisplayCustomerOrdersFooterItem)
-                {
-                    <li><a href="@Url.RouteUrl("CustomerOrders")">@T("Account.CustomerOrders")</a></li>
-                }
-                @if (Model.DisplayCustomerAddressesFooterItem)
-                {
-                    <li><a href="@Url.RouteUrl("CustomerAddresses")">@T("Account.CustomerAddresses")</a></li>
-                }
-                @if (Model.RecentlyViewedProductsEnabled && Model.DisplayRecentlyViewedProductsFooterItem)
-                {
-                    <li><a href="@Url.RouteUrl("RecentlyViewedProducts")">@T("Products.RecentlyViewedProducts")</a></li>
-                }
-                @if (Model.SitemapEnabled && Model.DisplaySitemapFooterItem)
-                {
-                    <li><a href="@Url.RouteUrl("Sitemap")">@T("Sitemap")</a></li>
-                }
-                @if (Model.AllowCustomersToApplyForVendorAccount && Model.DisplayApplyVendorAccountFooterItem)
-                {
-                    <li><a href="@Url.RouteUrl("ApplyVendorAccount")">@T("Vendors.ApplyAccount")</a></li>
-                }
-            </ul>
-        </div>
-        @*<div class="footer-block newsetter">
-            <div class="title">
-                <strong>@T("SevenSpikes.Themes.Venture.Common.Newsletter")</strong>
-            </div>
-            <div class="footer-collapse">
-                <p class="newsletter-subscribe-text">@T("SevenSpikes.Themes.Venture.Common.NewsletterSubscribeText")</p>
-                @await Component.InvokeAsync("NewsletterBox")
-            </div>
-        </div>*@
-    </div>
-    @*<div class="footer-middle">
-            @await Component.InvokeAsync("SocialButtons")
-        </div>*@
-    <div class="footer-lower">
-        <div class="footer-powered-by">
-            Powered by <a href="https://navyakrita.com.np/" target="_blank">Navyakrita Solutions</a>
-        </div>
-        <div class="footer-disclaimer">
-            @T("Content.CopyrightNotice", DateTime.Now.Year, Model.StoreName)
-        </div>
-        @if (!removeCopyright)
-        {
-            <div class="footer-powered-by">
-                @*Powered by <a href="@(OfficialSite.Main)">nopCommerce</a>*@
-                Powered by <a href="https://navyakrita.com.np/" target="_blank">Navyakrita Solutions</a>
-                @*Would you like to remove the "Powered by nopCommerce" link in the bottom of the footer?
-                    Please find more info at https://www.nopcommerce.com/nopcommerce-copyright-removal-key*@
-            </div>
-        }
-        @if (!removeDesignedBy)
-        {
-            <div class="footer-designed-by">
-                Designed by <a href="https://www.nop-templates.com/" target="_blank">Nop-Templates.com</a>
-            </div>
-        }
-        @if (Model.DisplayTaxShippingInfoFooter)
-        {
-            var inclTax = await workContext.GetTaxDisplayTypeAsync() == TaxDisplayType.IncludingTax;
-            <div class="footer-tax-shipping">
-                @T(inclTax ? "Footer.TaxShipping.InclTax" : "Footer.TaxShipping.ExclTax", Url.RouteUrl("Topic", new { SeName = await Html.GetTopicSeNameAsync("shippinginfo") }))
-            </div>
-        }
-        @await Component.InvokeAsync("StoreThemeSelector")
-    </div>
-    @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.Footer })
-</div>
