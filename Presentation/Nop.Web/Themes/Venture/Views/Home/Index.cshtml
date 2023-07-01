@@ -43,8 +43,11 @@
         videoIframe = string.Format("<iframe src='https://www.youtube.com/embed/{0}?rel=0' frameborder='0' allowfullscreen></iframe>", videoId);
     }
 }
+
 <div class="page home-page @homePageProductBoxLayoutClass">
+   
     <div class="page-body">
+        
         @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.HomepageTop })
         @await Component.InvokeAsync("Widget", new { widgetZone = "venture_home_page_info_boxes" })
         @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.HomepageBeforeCategories })
@@ -81,14 +84,35 @@
         </div>
     </div>
 </div>
+
 <div id="notice-pop-up-landing">
 </div>
 <script asp-location="Footer">
+    $('.owl-carousel').owlCarousel({
+        loop: true,
+        margin: 10,
+        responsiveClass: true,
+        responsive: {
+            0: {
+                items: 1,
+                nav: true
+            },
+            600: {
+                items: 3,
+                nav: false
+            },
+            1000: {
+                items: 2,
+                nav: true,
+                loop: false
+            }
+        }
+    })
     $(document).ready(function () {
 
         $.ajax({
             type: "GET",
-            url: "@Url.Action("Display", "Participants")",,
+            url: "@Url.Action("Display", "Participants")",
             success: function (data) {
                 if (data.success) {
                     $.each(data.result, function (index, value) {
