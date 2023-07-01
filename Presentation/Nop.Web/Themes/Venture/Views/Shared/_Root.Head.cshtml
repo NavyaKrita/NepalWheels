@@ -21,8 +21,11 @@
 @inject Nop.Services.Localization.ILanguageService languageService
 
 @{
+
+    
+    Html.AppendScriptParts(ResourceLocation.Footer, "~/themes/venture/content/scripts/owl.carousel.min.js");
+
 //Html.AppendScriptParts(ResourceLocation.Footer, "~/lib_npm/owl-carousel/owl.carousel.min.js");
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     Html.AppendScriptParts(ResourceLocation.Footer, "~/js/public.countryselect.js");
     var displayMiniProfiler = appSettings.CommonConfig.MiniProfilerEnabled && await permissionService.AuthorizeAsync(StandardPermissionProvider.AccessProfiling);
 
@@ -50,6 +53,8 @@
     Html.AppendScriptParts(ResourceLocation.Footer, "~/lib_npm/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js");
     Html.AppendScriptParts(ResourceLocation.Footer, "~/lib_npm/jquery-validation/jquery.validate.min.js");
     Html.AppendScriptParts(ResourceLocation.Footer, "~/lib_npm/jquery/jquery.min.js");
+
+
 
 
 
