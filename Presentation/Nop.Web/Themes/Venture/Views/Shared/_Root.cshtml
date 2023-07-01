@@ -11,7 +11,8 @@
 @await Html.PartialAsync("_JavaScriptDisabledWarning")
 @await Html.PartialAsync("_OldInternetExplorerWarning")
 
-<div class="wrapper">
+<div class="master-wrapper-page">
+
     @await Component.InvokeAsync("AdminHeaderLinks")
     @await Html.PartialAsync("_Header")
     <script asp-location="Footer">
@@ -40,12 +41,12 @@
             }
         </div>
     </div>
-    <div class="wrapper">
+    <div class=""master-wrapper-content">
         @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.ContentBefore })
         
         @await RenderSectionAsync("Breadcrumb", false)
 
-        <div class="wrapper">
+        <div class="master-column-wrapper">
             @RenderBody()
         </div>
         @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.ContentAfter })
