@@ -445,6 +445,11 @@
 /* Tablet desktop :768px. */
 
 @media (min-width: 768px) and (max-width: 991px) {
+    filters-wrapper {
+        padding: 0px !important;
+        /* background: #2c2c2c; */
+        text-align: center;
+    }
     .main-menu nav > ul > li {
         padding: 0 5px;
     }
@@ -464,8 +469,9 @@
         font-size: 13px;
     }
     .slider-1 {
-  padding: 150px 0 40px;
-}
+        padding: 50px 0 0px;
+        min-height: 0px !important;
+    }
     .mt-150 {
         margin-top: 110px;
     }
@@ -861,6 +867,11 @@
 /* small mobile :320px. */
 
 @media (max-width: 767px) {
+    .home-page-filters-wrapper {
+        padding: 0px !important;
+        /* background: #2c2c2c; */
+        text-align: center;
+    }
     .sidebar-search-icon {
         right: 75px;
     }
@@ -1345,7 +1356,9 @@
         padding: 45px 0;
     }
     .slider-1 {
-  padding: 130px 0 135px;
+        padding: 50px 0 0;
+        min-height: 0px !important;
+    }
 }
     #exampleModal .close,
     #exampleCompare .close {

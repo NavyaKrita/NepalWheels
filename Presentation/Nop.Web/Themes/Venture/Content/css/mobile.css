@@ -8,6 +8,7 @@
 	top: 0;
 	z-index: 1030;
 	width: 100%;
+    background: #fff;
 }
 .light-theme .admin-header-links {
     background: #f0f0f0;

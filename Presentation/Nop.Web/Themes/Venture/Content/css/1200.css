@@ -124,7 +124,7 @@
         }
 
         .header-selectors-wrapper select {
-            font: normal 13px 'Fjalla One', sans-serif;
+            font: normal 13px 'Manrope', sans-serif;
             color: #909090;
             height: 38px;
             background-image: url('../img/header-select-arrow.svg');
@@ -147,16 +147,15 @@
     }
 
     .header-lowermenu {
-        background: #2C2C2C;
-        box-shadow: 0 0 25px rgba(0,0,0,0.15);
-        padding: 0 100px;
-        position: absolute;
-        min-height: 75px;
-        min-width: 100%;
+        background: #fff;
+        /* box-shadow: 0 0 25px rgba(0,0,0,0.15); */
+        padding: 0 50px 0 230px;
+        /* position: absolute; */
+        min-height: 125px;
+        /* min-width: 100%; */
         z-index: 1;
-        opacity: 80%;
+        /* opacity: 80%; */
     }
-
         .header-lowermenu:hover {
             opacity: 95%;
         }
@@ -306,7 +305,7 @@
             left: 51px;
             right: 0;
             bottom: 0;
-            background: #2c2c2c;
+            /*background: #2c2c2c;*/
             opacity: .8;
             z-index: 3;
         }
@@ -821,7 +820,7 @@
                 .header-menu > ul > li > span {
                     display: block;
                     padding: 8px 25px;
-                    color: #fff;
+                    color: #000;
                     font-size: 17px; /*reset zeroing*/
                     position: relative;
                     -webkit-transition: all 0.3s ease-in-out;
@@ -831,6 +830,7 @@
                 .header-menu > ul > li:hover > a,
                 .header-menu > ul > li:hover > span {
                     color: #f3cc2e;
+                    font-weight:500;
                 }
 
     .light-theme .header-menu > ul > li > a,

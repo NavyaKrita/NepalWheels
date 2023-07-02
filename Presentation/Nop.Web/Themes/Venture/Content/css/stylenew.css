@@ -3781,8 +3781,8 @@ p.checkout-coupon input[type="submit"] {
     color: #9e000c;
 }
 .banner-btn{
-    width: 170px;
-    height: 40px;
+    width: 180px;
+    height: 50px;
     border-radius: 8px;
     background-color: #2789bd;
     border: none;
@@ -3829,7 +3829,7 @@ p.checkout-coupon input[type="submit"] {
 .home-news-head{
     font-size: 45px;
     color: #fbbc5b;
-    font-family: 'Ubuntu', sans-serif;
+    font-family: 'Manrope', sans-serif;
     text-align: center;
 }
 .clearfix{

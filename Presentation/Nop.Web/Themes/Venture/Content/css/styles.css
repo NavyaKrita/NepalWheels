@@ -1138,11 +1138,11 @@ body:after {
 
 
 .admin-header-links {
-    background: #2688BC;
+    /* background: #2688BC; */
     text-align: center;
-    color: #fff;
-    box-shadow: 10px 10px 10px #EEECEC;
-    font-weight:500;
+    /* color: #fff; */
+    /* box-shadow: 10px 10px 10px #EEECEC; */
+    font-weight: 500;
 }
 .admin-header-links * {
 	display: inline-block;
