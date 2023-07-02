@@ -10,10 +10,12 @@ using Nop.Core.Domain.Security;
 using Nop.Services.Common;
 using Nop.Services.Customers;
 using Nop.Services.Helpers;
+using Nop.Services.Localization;
 using Nop.Services.Media;
 using Nop.Services.News;
 using Nop.Services.Seo;
 using Nop.Web.Infrastructure.Cache;
+using Nop.Web.Models.Media;
 using Nop.Web.Models.News;
 
 namespace Nop.Web.Factories
@@ -38,7 +40,8 @@ namespace Nop.Web.Factories
         private readonly IWorkContext _workContext;
         private readonly MediaSettings _mediaSettings;
         private readonly NewsSettings _newsSettings;
-
+        private readonly IWebHelper _webHelper;
+        private readonly ILocalizationService _localizationService;
         #endregion
 
         #region Ctor
@@ -55,7 +58,9 @@ namespace Nop.Web.Factories
             IUrlRecordService urlRecordService,
             IWorkContext workContext,
             MediaSettings mediaSettings,
-            NewsSettings newsSettings)
+            NewsSettings newsSettings,
+            IWebHelper webHelper,
+             ILocalizationService localizationService)
         {
             _captchaSettings = captchaSettings;
             _customerSettings = customerSettings;
@@ -70,6 +75,8 @@ namespace Nop.Web.Factories
             _workContext = workContext;
             _mediaSettings = mediaSettings;
             _newsSettings = newsSettings;
+            _webHelper = webHelper;
+            _localizationService = localizationService;
         }
 
         #endregion
@@ -110,6 +117,31 @@ namespace Nop.Web.Factories
             var storeId = _newsSettings.ShowNewsCommentsPerStore ? (await _storeContext.GetCurrentStoreAsync()).Id : 0;
 
             model.NumberOfComments = await _newsService.GetNewsCommentsCountAsync(newsItem, storeId, true);
+            var currentStore = await _storeContext.GetCurrentStoreAsync();
+            //prepare picture model
+            var categoryPictureCacheKey = _staticCacheManager.PrepareKeyForDefaultCache(NopModelCacheDefaults.NewsDisplayPictureModelKey, newsItem,
+                   _webHelper.IsCurrentConnectionSecured(), currentStore);
+
+            model.PictureModel = await _staticCacheManager.GetAsync(categoryPictureCacheKey, async () =>
+            {
+                var picture = await _pictureService.GetPictureByIdAsync(newsItem.PictureId);
+                string fullSizeImageUrl, imageUrl;
+
+                (fullSizeImageUrl, picture) = await _pictureService.GetPictureUrlAsync(picture);
+                (imageUrl, _) = await _pictureService.GetPictureUrlAsync(picture);
+
+                var pictureModel = new PictureModel
+                {
+                    FullSizeImageUrl = fullSizeImageUrl,
+                    ImageUrl = imageUrl,
+                    Title = string.Format(await _localizationService
+                        .GetResourceAsync("Media.News.ImageLinkTitleFormat"), newsItem.Title),
+                    AlternateText = string.Format(await _localizationService
+                        .GetResourceAsync("Media.News.ImageAlternateTextFormat"), newsItem.Title)
+                };
+
+                return pictureModel;
+            });
 
             if (prepareComments)
             {

@@ -283,5 +283,16 @@ namespace Nop.Web.Infrastructure.Cache
         public static CacheKey WidgetModelKey => new CacheKey("Nop.pres.widget-{0}-{1}-{2}-{3}", WidgetPrefixCacheKey);
         public static string WidgetPrefixCacheKey => "Nop.pres.widget";
 
+
+        /// <summary>
+        /// Key for product attribute picture caching on the product details page
+        /// </summary>
+        /// <remarks>
+        /// {0} : picture id
+        /// {1} : is connection SSL secured?
+        /// {2} : current store ID
+        /// </remarks>
+        public static CacheKey NewsDisplayPictureModelKey => new CacheKey("Nop.pres.newsdisplay.picture-{0}-{1}-{2}", NewsDisplatyPicturePrefixCacheKey);
+        public static string NewsDisplatyPicturePrefixCacheKey => "Nop.newsdisplay.display.picture";
     }
 }
