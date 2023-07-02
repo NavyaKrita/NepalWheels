@@ -846,6 +846,8 @@
     <Content Remove="Areas\Admin\Views\NoticeBoard\Create.cshtml" />
     <Content Remove="Areas\Admin\Views\NoticeBoard\Edit.cshtml" />
     <Content Remove="Areas\Admin\Views\NoticeBoard\_CreateOrUpdate.cshtml" />
+    <Content Remove="Themes\Venture\Content\css\theme.custom-1.css" />
+    <Content Remove="Themes\Venture\Content\css\theme.custom-7.css" />
     <Content Remove="Themes\WristwearTheme\Content\css\bootstrap-theme.min.css" />
     <Content Remove="Themes\WristwearTheme\Content\css\bootstrap-theme.min.rtl.css" />
     <Content Remove="Themes\WristwearTheme\Content\css\bootstrap.min.css" />
@@ -1055,6 +1057,8 @@
     <None Remove="Plugins\Widgets.BsLiveChat\Views\WidgetsBsLiveChat\Configure.cshtml" />
     <None Remove="Plugins\Widgets.BsLiveChat\Views\WidgetsBsLiveChat\PublicInfo.cshtml" />
     <None Remove="Plugins\Widgets.BsLiveChat\Views\_ViewImports.cshtml" />
+    <None Remove="Themes\Venture\Content\css\theme.custom-1.css" />
+    <None Remove="Themes\Venture\Content\css\theme.custom-7.css" />
     <None Remove="Themes\WristwearTheme\Content\css\bootstrap-theme.min.css" />
     <None Remove="Themes\WristwearTheme\Content\css\bootstrap-theme.min.rtl.css" />
     <None Remove="Themes\WristwearTheme\Content\css\bootstrap.min.css" />

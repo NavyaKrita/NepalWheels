@@ -1138,8 +1138,11 @@ body:after {
 
 
 .admin-header-links {
-	background: #fff;
-	text-align: center;
+    background: #2688BC;
+    text-align: center;
+    color: #fff;
+    box-shadow: 10px 10px 10px #EEECEC;
+    font-weight:500;
 }
 .admin-header-links * {
 	display: inline-block;
@@ -5825,7 +5828,7 @@ td.ui-datepicker-week-end {
         background: #f3cc2e;
         letter-spacing: 2px;
         text-transform: uppercase;
-        color: #323232;
+        color: #fff;
         -webkit-transition: all 0.2s ease-in-out;
         transition: all 0.2s ease-in-out;
     }
@@ -8705,7 +8708,7 @@ td.ui-datepicker-week-end {
         .blogpost-page .back-button {
             display: inline-block;
             position: absolute;
-            top: -45px;
+            /*top: -45px;*/
             left: 50%;
             color: #909090;
             font-size: 15px;
@@ -8716,6 +8719,7 @@ td.ui-datepicker-week-end {
             white-space: nowrap;
             -webkit-transition: all 0.2s ease-in-out;
             transition: all 0.2s ease-in-out;
+            z-index:2;
         }
 
             .news-item-page .back-button:hover,
@@ -8857,7 +8861,7 @@ td.ui-datepicker-week-end {
                 border: none;
                 letter-spacing: 2px;
                 text-transform: uppercase;
-                color: #323232;
+                color: #fff;
                 max-width: 100%;
                 -webkit-transition: all 0.2s ease-in-out;
                 transition: all 0.2s ease-in-out;
