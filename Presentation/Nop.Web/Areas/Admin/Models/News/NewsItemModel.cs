@@ -87,8 +87,10 @@ namespace Nop.Web.Areas.Admin.Models.News
 
         public IList<SelectListItem> NewsCategory { get; set; }
         public string CategoryName { get; set; }
+        [UIHint("Picture")]
+        [NopResourceDisplayName("Admin.Catalog.Categories.Fields.Picture")]
+        public int PictureId { get; set; }
 
-        
         #endregion
     }
 
