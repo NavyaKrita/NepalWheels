@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Nop.Core.Domain.Catalog;
 using Nop.Core.Domain.News;
 using Nop.Core.Events;
 using Nop.Services.Localization;
 using Nop.Services.Logging;
+using Nop.Services.Media;
 using Nop.Services.Messages;
 using Nop.Services.News;
 using Nop.Services.Security;
@@ -34,7 +36,7 @@ namespace Nop.Web.Areas.Admin.Controllers
         private readonly IStoreMappingService _storeMappingService;
         private readonly IStoreService _storeService;
         private readonly IUrlRecordService _urlRecordService;
-
+        private readonly IPictureService _pictureService;
         #endregion
 
         #region Ctor
@@ -48,7 +50,8 @@ namespace Nop.Web.Areas.Admin.Controllers
             IPermissionService permissionService,
             IStoreMappingService storeMappingService,
             IStoreService storeService,
-            IUrlRecordService urlRecordService)
+            IUrlRecordService urlRecordService,
+             IPictureService pictureService)
         {
             _customerActivityService = customerActivityService;
             _eventPublisher = eventPublisher;
@@ -60,6 +63,7 @@ namespace Nop.Web.Areas.Admin.Controllers
             _storeMappingService = storeMappingService;
             _storeService = storeService;
             _urlRecordService = urlRecordService;
+            _pictureService = pictureService;
         }
 
         #endregion
@@ -161,6 +165,8 @@ namespace Nop.Web.Areas.Admin.Controllers
                 var seName = await _urlRecordService.ValidateSeNameAsync(newsItem, model.SeName, model.Title, true);
                 await _urlRecordService.SaveSlugAsync(newsItem, seName, newsItem.LanguageId);
 
+                //update picture seo file name
+                await UpdatePictureSeoNamesAsync(newsItem);
                 //Stores
                 await SaveStoreMappingsAsync(newsItem, model);
 
@@ -178,7 +184,12 @@ namespace Nop.Web.Areas.Admin.Controllers
             //if we got this far, something failed, redisplay form
             return View(model);
         }
-
+        protected virtual async Task UpdatePictureSeoNamesAsync(NewsItem newsItem )
+        {
+            var picture = await _pictureService.GetPictureByIdAsync(newsItem.PictureId);
+            if (picture != null)
+                await _pictureService.SetSeoFilenameAsync(picture.Id, await _pictureService.GetPictureSeNameAsync(newsItem.Title));
+        }
         /// <returns>A task that represents the asynchronous operation</returns>
         public virtual async Task<IActionResult> NewsItemEdit(int id)
         {
@@ -221,6 +232,8 @@ namespace Nop.Web.Areas.Admin.Controllers
                 var seName = await _urlRecordService.ValidateSeNameAsync(newsItem, model.SeName, model.Title, true);
                 await _urlRecordService.SaveSlugAsync(newsItem, seName, newsItem.LanguageId);
 
+                //update picture seo file name
+                await UpdatePictureSeoNamesAsync(newsItem);
                 //stores
                 await SaveStoreMappingsAsync(newsItem, model);
 

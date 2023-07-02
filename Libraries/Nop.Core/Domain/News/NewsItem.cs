@@ -76,5 +76,7 @@ namespace Nop.Core.Domain.News
 
         public int NewsCategoryId { get; set; }
 
+        public int PictureId { get; set; }
+
     }
 }

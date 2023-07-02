@@ -30,7 +30,7 @@
                                                 <p class="home-news-date">@item.CreatedOn.Day.ToString("00") @item.CreatedOn.ToString("MMM") @item.CreatedOn.Year </p>
                                                 <h3><a href="@Url.RouteUrl("NewsItem", new { SeName = item.SeName })">@item.Title</a></h3>
                                                 <div class="text-space">
-                                                    <p >@Html.Raw(item.Full)</p>
+                                                    <p>@Html.Raw(item.Short)</p>
                                                 </div>
                                                 @*<p>@Html.Raw(item.Full)</p>*@
                                                 @*<p>The sole distributor of TVS's two-wheelers in Nepal, Jagadamba Motors PVT. LTD. (JMPL) ...</p>*@
@@ -39,7 +39,22 @@
                                                 </div>
                                             </div>
                                             <div class="col-lg-5 news-image" style="padding: 0;">
-                                                <img alt="image" src="assets/img/news/testimonial-1.jpg" class="w-100">
+                                                @if (item.PictureModel == null)
+                                                {
+                                                   @* @await Component.InvokeAsync("LazyLoadImage", new (string Key, string Value)[]
+                                        {
+                                        ("src", item.PictureModel.ImageUrl),
+                                        ("alt", item.PictureModel.AlternateText),
+                                        ("title", item.PictureModel.Title)
+                                        })*@
+                                                    <img alt="image" src="assets/img/news/testimonial-1.jpg" class="w-100">
+
+
+                                                }
+                                                else
+                                                {
+                                                    <img alt="@item.PictureModel.AlternateText" src="@item.PictureModel.ImageUrl" title="@item.PictureModel.Title" />
+                                                }
                                             </div>
                                             <div class="clearfix"></div>
                                         </div>
@@ -72,6 +87,7 @@
         -webkit-box-orient: vertical;
         font-family: 'Manrope', sans-serif !important;
     }
+
     .news-space {
         overflow: hidden;
         height: 600px;

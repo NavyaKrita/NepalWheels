@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Nop.Web.Framework.Models;
+using Nop.Web.Models.Media;
 
 namespace Nop.Web.Models.News
 {
@@ -30,6 +31,7 @@ namespace Nop.Web.Models.News
         public IList<NewsLikeModel> Likes { get; set; }
         public NewsLikeModel AddLikes { get; set; }
         public IList<NewsCategoryModel> NewsCategories { get; set; }
+        public PictureModel PictureModel { get; set; }
     }
     public partial record NewsCategoryModel : BaseNopEntityModel
     {
