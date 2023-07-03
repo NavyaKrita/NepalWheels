@@ -317,7 +317,7 @@ button[disabled]  {
 	z-index: 3; /* giving priority to header and header-menu */
     max-width: 90%;
     margin: 0 auto;
-    padding: 80px 0 100px;
+    /*padding: 80px 0 100px;*/
 }
 .master-column-wrapper:after {
 	content: "";
@@ -2873,7 +2873,7 @@ body:after {
     overflow: hidden;
 }
 .item-box .prices .box-prices-wrapper {
-    max-height: 20px;
+    max-height: 35px;
     overflow: hidden;
     font-size: 0;
 }
