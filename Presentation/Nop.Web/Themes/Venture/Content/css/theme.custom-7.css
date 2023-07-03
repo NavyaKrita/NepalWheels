@@ -154,11 +154,12 @@ td .ui-state-active,
 .save-price-match-button {
     background-color: #2688BC;
 }
+
     .home-page-filters-wrapper .search-button:disabled,
     .home-page-filters-wrapper .search-button[disabled] {
         background-color: #2688BC !important;
     }
-/* hover one buttons */
+    /* hover one buttons */
 
     .footer-map-holder .title:hover,
     .newsletter-email .newsletter-subscribe-button:hover,
@@ -310,6 +311,7 @@ td .ui-state-active,
 .ticket-comments .comment-header .left a:hover {
     color: #2688BC;
 }
+
 .k-pager-numbers span.k-state-selected {
     color: #2688BC !important;
 }
@@ -319,6 +321,7 @@ td .ui-state-active,
 .estimate-shipping-radio:checked + label {
     border-color: #2688BC;
 }
+
 .page-loader .loader,
 .page-loader .loader:before,
 .page-loader .loader:after,
@@ -354,10 +357,12 @@ td .ui-state-active,
 .k-loading-image:after {
     border-top-color: #2688BC;
 }
+
 .video-player .play:before,
 .information-box .image-wrapper:before {
     border-color: transparent #2688BC transparent #2688BC;
 }
+
 @media all and (max-width: 1200px) {
     .responsive-nav-wrapper .cart-qty,
     .plus-button:before,
@@ -366,23 +371,28 @@ td .ui-state-active,
         color: #2688BC;
     }
 }
+
 @media all and (min-width: 481px) {
     .customer-pages-body .block .list a.active {
         background-color: #2688BC;
     }
+
     .customer-pages-body .center-2 {
         border-color: #2688BC;
     }
 }
+
 @media all and (min-width: 769px) {
     .sub-categories-wrapper {
         background-color: #2688BC;
     }
-  .compare-products-table .product-name a:hover,
-  .compare-products-table .product-price td {
-    color: #f3cc2e;
-  }
+
+    .compare-products-table .product-name a:hover,
+    .compare-products-table .product-price td {
+        color: #f3cc2e;
+    }
 }
+
 @media all and (min-width: 1201px) {
     #topcartlink,
     .mini-shopping-cart button.cart-button,
@@ -396,6 +406,7 @@ td .ui-state-active,
     .spc-categories .category-sublist:before {
         background-color: #2688BC;
     }
+
     .header-menu > ul > li:hover > a,
     .header-menu > ul > li:hover > span,
     .mini-shopping-cart .price,
@@ -412,9 +423,11 @@ td .ui-state-active,
 .theme-roller .options-block span::after {
     background-color: #2688BC;
 }
+
     .theme-roller .open-button:before {
         background-color: #156A97;
     }
+
 .theme-roller .options-block span {
     color: #2688BC;
 }

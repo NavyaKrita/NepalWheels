@@ -17,26 +17,27 @@
         /*text-align: center*/
     }
 
-        .vendor-row  .vendor-column {
+        .vendor-row .vendor-column {
             display: table-cell;
         }
 
-        .vendor-column .vendor-search {
-            background-color: #f3cc2e;
-            border: none;
-            padding: 15px 30px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
-            margin: 4px 2px;
-            cursor: pointer;
-            color: #000000;
-        }
+    .vendor-column .vendor-search {
+        background-color: #f3cc2e;
+        border: none;
+        padding: 15px 30px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        color: #000000;
+    }
+
         .vendor-column .vendor-search:before {
-            font-family: "venture-font";
+            font-family: "Manrope";
             text-transform: none;
-         content: "e";
+            content: "Search";
             width: 21px;
             /* font-size: 12px; */
             color: #2c2c2c;
@@ -44,182 +45,237 @@
             display: inline-block;
             opacity: .5;
         }
-        .vendor-column .area-label {
-            padding-left: 2px;
-            padding-right: 8px;
-            color: #90908A;
-        }
-        .vendor-column .area-dropdown {
+
+    .vendor-column .area-label {
+        padding-left: 2px;
+        padding-right: 8px;
+        color: #90908A;
+    }
+
+    .vendor-column .area-dropdown {
         padding-right: 15px;
-        }
+    }
+
         .vendor-column .area-dropdown:hover {
             color: #000000;
         }
+
     select {
         min-width: 150px;
         background-color: #F5F5F5;
         color: #90908A;
     }
+
+    .search-select {
+        height: 40px;
+        border-radius: 6px;
+        /*background-color: #f5f5f7;*/
+    }
+
+    .search-button {
+        width: 100%;
+        margin: 0;
+    }
+
+        .search-button:before {
+            font-family: "venture-font";
+            text-transform: none;
+            content: "e";
+            width: 21px;
+            font-size: 12px;
+            color: #2c2c2c;
+            text-align: left;
+            display: inline-block;
+            opacity: .5;
+        }
+
+    .home-page-filters > div {
+        display: table-cell;
+        padding: 0 3.5px;
+        vertical-align: middle;
+    }
+
+    .home-page-filter-button {
+        min-width: 215px;
+    }
+
+    .home-page-filter-button {
+        overflow: hidden;
+    }
+
+        .home-page-filter-button:last-child {
+            position: relative;
+        }
+    .genre {
+        font-weight:500;
+        color: #2688BC;
+        font-size:16px;
+    }
+    .banner-btn {
+        /*width: 180px;*/
+        height: 48px;
+        border-radius: 6px;
+        background-color: #2789bd;
+        border: none;
+        font-size: 16px;
+        color: #ffffff;
+        font-weight: 600;
+        font-family: 'Manrope';
+        text-align: center;
+    }
 </style>
 
-<div class="page-title">
-    <h1>
-        @T("NkVendorLocation.Fields.VendorLocation")
-    </h1>
-</div>
-<div class="vendor-row">
+<div class="container">
+    <div class="page-title">
+        <h1>
+            @T("NkVendorLocation.Fields.VendorLocation")
+        </h1>
+    </div>
+    <div class="row pt-20 pb-40">
         @*<div class="vendor-column">
-                <label>@T("NkVendorLocation.Fields.Genre")</label>
-            </div>*@
-        <div class="vendor-column">
-            <span class="area-label" >@T("NkVendorLocation.Fields.Genre")</span>
-            <span class="area-dropdown" >
+            <label>@T("NkVendorLocation.Fields.Genre")</label>
+        </div>*@
+        <div class="col-lg-2 col-md-4">
+            <span class="area-label">@T("NkVendorLocation.Fields.Genre")</span>
+            <span class="area-dropdown">
                 <nop-select asp-for="@Model.PagingFilteringContext.GenreId" asp-items="@Model.PagingFilteringContext.Genre" />
             </span>
-            <span class="area-label" >@T("NkVendorLocation.Fields.Manufacturer")</span>
-            <span class="area-dropdown" >
+        </div>
+        <div class="col-lg-2 col-md-4">
+            <span class="area-label">@T("NkVendorLocation.Fields.Manufacturer")</span>
+            <span class="area-dropdown">
                 <nop-select asp-for="@Model.PagingFilteringContext.ManufacturerId" asp-items="@Model.PagingFilteringContext.Manufacture" />
             </span>
-            <span class="area-label" >@T("NkVendorLocation.Fields.State")</span>
-            <span class="area-dropdown" >
+        </div>
+        <div class="col-lg-3 col-md-4">
+            <span class="area-label">@T("NkVendorLocation.Fields.State")</span>
+            <span class="area-dropdown">
                 <nop-select asp-for="@Model.PagingFilteringContext.StateId" asp-items="@Model.PagingFilteringContext.State" />
             </span>
-            <span class="area-label" >@T("NkVendorLocation.Fields.Districts")</span>
-            <span class="area-dropdown" >
+        </div>
+        <div class="col-lg-2 col-md-4">
+            <span class="area-label">@T("NkVendorLocation.Fields.Districts")</span>
+            <span class="area-dropdown">
                 <nop-select asp-for="@Model.PagingFilteringContext.DistrictId" asp-items="@Model.PagingFilteringContext.District" />
             </span>
         </div>
-        @*<div class="vendor-column">
-                <label>@T("NkVendorLocation.Fields.Manufacturer")</label>
-            </div>*@
-        <!--<div class="vendor-column">
-            <label>@T("NkVendorLocation.Fields.Manufacturer")</label>
-            <nop-select asp-for="@Model.PagingFilteringContext.ManufacturerId" asp-items="@Model.PagingFilteringContext.Manufacture" />
-        </div>-->
-        @*<div class="vendor-column">
-                <label>@T("NkVendorLocation.Fields.State")</label>
-            </div>*@
-        <!--<div class="vendor-column">
-            <label>@T("NkVendorLocation.Fields.State")</label>
-            <nop-select asp-for="@Model.PagingFilteringContext.StateId" asp-items="@Model.PagingFilteringContext.State" />
-        </div>-->
-        @*<div class="vendor-column">
-                <label>@T("NkVendorLocation.Fields.Districts")</label>
-            </div>*@
-        @*<div class="vendor-column">
-            <label>@T("NkVendorLocation.Fields.Districts")</label>
-            <nop-select asp-for="@Model.PagingFilteringContext.DistrictId" asp-items="@Model.PagingFilteringContext.District" />
+        @*<div class="col-lg-2 col-md-4 home-page-filter-button" style="padding-top:25px; color:#fff;">
+            <span>
+                <button type="button" id="search-location" class="search-button pt-10 pb-10">
+                    <a> SEARCH</a>
+                </button>
+            </span>
         </div>*@
-        <div class="vendor-column">
-            <button type="button" id="search-location" class="vendor-search">
-                <i class="fas fa-search"></i>
-            </button>
+        <div class="col-lg-3 col-12 col-md-3 home-page-filter-button" style="padding-top:25px;">
+            <span>
+                <button type="button" id="search-location" class="banner-btn mobile-mb-2 w-100 ">SEARCH</button>
+            </span>
         </div>
     </div>
 
-<div class="page blog-page">
-    <div class="page-body">
-        <div class="table-wrapper">
-            <table class="cart">
-                <thead>
-                    <tr>
-                        <th class="genre">
-                            @T("NkVendorLocation.Fields.Genre")
-                        </th>
-                        <th class="dealername">
-                            @T("NkVendorLocation.Fields.DealerName")
-                        </th>
-                        <th class="phoneno">
-                            @T("NkVendorLocation.Fields.PhoneNo")
-                        </th>
-                        <th class="contactperson">
-                            @T("NkVendorLocation.Fields.ContactPerson")
-                        </th>
-                        <th class="mobileno">
-                            @T("NkVendorLocation.Fields.MobileNo")
-                        </th>
-                        <th class="address">
-                            @T("NkVendorLocation.Fields.Address")
-                        </th>
-                        <th class="districtname">
-                            @T("NkVendorLocation.Fields.DistrictName")
-                        </th>
-                        <th class="email">
-                            @T("NkVendorLocation.Fields.Email")
-                        </th>
-                    </tr>
-                </thead>
-
-                <tbody>
-                    @foreach (var item in Model.VendorLocations)
-                    {
+    <div class="page blog-page">
+        <div class="page-body">
+            <div class="table-wrapper">
+                <table class="cart">
+                    <thead>
                         <tr>
-                            <td class="genre">
-                                <div class="genre">
-                                    @Html.Raw(item.Genre)
-                                </div>
-
-                            </td>
-                            <td class="dealername">
-                                <div class="dealername">
-                                    @Html.Raw(item.DealerName)
-                                </div>
-
-                            </td>
-                            <td class="phoneno">
-                                <div class="phoneno">
-                                    @Html.Raw(item.PhoneNo)
-                                </div>
-
-                            </td>
-                            <td class="contactperson">
-                                <div class="contactperson">
-                                    @Html.Raw(item.ContactPerson)
-                                </div>
-
-                            </td>
-                            <td class="mobileno">
-                                <div class="mobileno">
-                                    @Html.Raw(item.MobileNo)
-                                </div>
-
-                            </td>
-                            <td class="address">
-                                <div class="address">
-                                    @Html.Raw(item.Address)
-                                </div>
-
-                            </td>
-                            <td class="districtname">
-                                <div class="districtname">
-                                    @Html.Raw(item.DistrictName)
-                                </div>
-
-                            </td>
-                            <td class="email">
-                                <div class="email">
-                                    @Html.Raw(item.Email)
-                                </div>
-
-                            </td>
+                            <th class="genre">
+                                @T("NkVendorLocation.Fields.Genre")
+                            </th>
+                            <th class="dealername">
+                                @T("NkVendorLocation.Fields.DealerName")
+                            </th>
+                            <th class="phoneno">
+                                @T("NkVendorLocation.Fields.PhoneNo")
+                            </th>
+                            <th class="contactperson">
+                                @T("NkVendorLocation.Fields.ContactPerson")
+                            </th>
+                            <th class="mobileno">
+                                @T("NkVendorLocation.Fields.MobileNo")
+                            </th>
+                            <th class="address">
+                                @T("NkVendorLocation.Fields.Address")
+                            </th>
+                            <th class="districtname">
+                                @T("NkVendorLocation.Fields.DistrictName")
+                            </th>
+                            <th class="email">
+                                @T("NkVendorLocation.Fields.Email")
+                            </th>
                         </tr>
-                    }
-                </tbody>
-            </table>
-        </div>
+                    </thead>
 
+                    <tbody>
+                        @foreach (var item in Model.VendorLocations)
+                        {
+                            <tr>
+                                <td class="genre">
+                                    <div class="genre">
+                                        @Html.Raw(item.Genre)
+                                    </div>
 
-        @{
-            var pager = Html.Pager(Model.PagingFilteringContext).QueryParam("pagenumber");
-        }
-        @if (!(await pager.IsEmpty()))
-        {
-            <div class="pager">
-                @pager
+                                </td>
+                                <td class="dealername">
+                                    <div class="dealername">
+                                        @Html.Raw(item.DealerName)
+                                    </div>
+
+                                </td>
+                                <td class="phoneno">
+                                    <div class="phoneno">
+                                        @Html.Raw(item.PhoneNo)
+                                    </div>
+
+                                </td>
+                                <td class="contactperson">
+                                    <div class="contactperson">
+                                        @Html.Raw(item.ContactPerson)
+                                    </div>
+
+                                </td>
+                                <td class="mobileno">
+                                    <div class="mobileno">
+                                        @Html.Raw(item.MobileNo)
+                                    </div>
+
+                                </td>
+                                <td class="address">
+                                    <div class="address">
+                                        @Html.Raw(item.Address)
+                                    </div>
+
+                                </td>
+                                <td class="districtname">
+                                    <div class="districtname">
+                                        @Html.Raw(item.DistrictName)
+                                    </div>
+
+                                </td>
+                                <td class="email">
+                                    <div class="email">
+                                        @Html.Raw(item.Email)
+                                    </div>
+
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
             </div>
-        }
 
-    <script asp-location="Footer">
+
+            @{
+                var pager = Html.Pager(Model.PagingFilteringContext).QueryParam("pagenumber");
+            }
+            @if (!(await pager.IsEmpty()))
+            {
+                <div class="pager">
+                    @pager
+                </div>
+            }
+
+            <script asp-location="Footer">
             $(document).ready(function () {
                         //load district when changing a country dropdownlist
                     $("#@Html.IdFor(model =>model.PagingFilteringContext.StateId)").change(function () {
@@ -250,12 +306,13 @@
                     var ddlStateId = $("#@Html.IdFor(model => model.PagingFilteringContext.StateId)");
                     var ddlGenreId = $("#@Html.IdFor(model => model.PagingFilteringContext.GenreId)");
                     var url = "@Url.Content("~/VendorLocation/List")";
-              
+
                     window.location.href = url + "?districtId=" + ddlDistrict.val() + "&manufacturerId=" + ddlManufacturerId.val() + "&stateId=" + ddlStateId.val() + "&genreId=" + ddlGenreId.val();
                 })
                  $("#@Html.IdFor(model =>model.PagingFilteringContext.StateId)").trigger("change");
             });
 
-    </script>
+            </script>
+        </div>
     </div>
 </div>
