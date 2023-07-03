@@ -1597,7 +1597,6 @@
     <None Remove="Themes\eshopper\Views\Vendor\Info.cshtml" />
     <None Remove="Themes\eshopper\Views\_ViewImports.cshtml" />
     <None Remove="Themes\Venture\Content\css\theme.custom-1.css" />
-    <None Remove="Themes\Venture\Content\css\theme.custom-7.css" />
     <None Remove="Themes\WristwearTheme\Content\css\bootstrap-theme.min.css" />
     <None Remove="Themes\WristwearTheme\Content\css\bootstrap-theme.min.rtl.css" />
     <None Remove="Themes\WristwearTheme\Content\css\bootstrap.min.css" />
