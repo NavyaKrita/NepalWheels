@@ -1,49 +1,151 @@
 ﻿@model IList<BlogPostModel7Spikes>
 @inject IViewComponentSelector viewComponentSelector
 
-<div class="rich-blog-homepage">
-    <div class="title">
-        <strong>@T("SevenSpikes.RichBlog.Public.LatestFromBlog")</strong>
-    </div>
-    <div class="blog-posts">
+<div class="news-area ptb-100" style="background-color: #f8f7fc;">
+    <div class="container">
+        <div class="text-center mb-30">
+            <h2 class="home-news-head">@T("SevenSpikes.RichBlog.Public.LatestFromBlog")</h2>
+            <div class="tag">
+                <span> Equip yourself well and find the best</span>
+            </div>
+        </div>
+
         @foreach (var post in Model)
-        {
-            <div class="blog-post">
-                <div class="post-primary">
-                    @if (!string.IsNullOrWhiteSpace(post.HomePagePictureUrl))
-                    {
-                        <a class="post-picture" href="@Url.RouteUrl("BlogPost", new { SeName = post.SeName })">
+        {<div class="col-lg-4 pull-left">
+                <div class="blog-items m-2 blog-space">
+
+                    <div class="blog-image image-space zoom">
+                        @if (!string.IsNullOrWhiteSpace(post.HomePagePictureUrl))
+                        {
+
+                            <img href="@Url.RouteUrl("BlogPost", new { SeName = post.SeName })" class="w-100">
                             @if (viewComponentSelector.SelectComponent("LazyLoadImage") != null)
                             {
                                 @await Component.InvokeAsync("LazyLoadImage", new (string Key, string Value)[]
-                                {
+                                          {
                                     ("src", post.HomePagePictureUrl),
                                     ("alt", post.Title),
                                     ("title", post.Title)
-                                })
+                                          })
                             }
                             else
                             {
                                 <img src="@post.HomePagePictureUrl" alt="@post.Title" title="@post.Title" />
-                            }                        </a>
-                    }
-                    <span class="post-date">
-                        <span class="day">@post.CreatedOn.Day.ToString("00")</span>
-                        <span class="month">@post.CreatedOn.ToString("MMM")</span>
-                        <span class="year">@post.CreatedOn.Year</span>
-                    </span>
-                    <a class="read-more" href="@Url.RouteUrl("BlogPost", new { SeName = post.SeName })">@T("SevenSpikes.RichBlog.Public.ReadMore")</a>
-                </div>
-                <div class="post-details">
-                    <a class="post-title" href="@Url.RouteUrl("BlogPost", new { SeName = post.SeName })">@post.Title</a>
-                    <div class="post-description">
-                        @Html.Raw(!String.IsNullOrEmpty(post.BodyOverview) ? post.BodyOverview : post.Body)
+                            }
+
+                        }
+                    </div>
+                    <div class="blog-content p-4">
+                        <p class="home-blog-date pt-3">@post.CreatedOn.Day.ToString("00") @post.CreatedOn.ToString("MMM") @post.CreatedOn.Year</p>
+                        <h3><a href="@Url.RouteUrl("BlogPost", new { SeName = post.SeName })">@post.Title</a></h3>
+                        @*<a class="read-more" href="@Url.RouteUrl("BlogPost", new { SeName = post.SeName })">@T("SevenSpikes.RichBlog.Public.ReadMore")</a>*@
+                        <div class="text-space">
+                            <p style="font-family: 'Manrope', sans-serif !important;">@Html.Raw(!String.IsNullOrEmpty(post.BodyOverview) ? post.BodyOverview : post.Body)</p>
+                        </div>
+
                     </div>
                 </div>
             </div>
+
         }
-    </div>
-    <div class="view-all">
-        <a href="@Url.RouteUrl("Blog")">@T("SevenSpikes.RichBlog.Public.ViewAllBlogPosts")</a>
+        <div class="clearfix"></div>
+        <div class="col-md-12 text-center pt-5">
+            <button class="banner-btn"><a href="@Url.RouteUrl("Blog")">@T("SevenSpikes.RichBlog.Public.ViewAllBlogPosts")</a></button>
+        </div>
+
     </div>
 </div>
+@*<div class="rich-blog-homepage">
+        <div class="title">
+            <strong>@T("SevenSpikes.RichBlog.Public.LatestFromBlog")</strong>
+        </div>
+        <div class="blog-posts">
+            @foreach (var post in Model)
+            {
+                <div class="blog-post">
+                    <div class="post-primary">
+                        @if (!string.IsNullOrWhiteSpace(post.HomePagePictureUrl))
+                        {
+                            <a class="post-picture" href="@Url.RouteUrl("BlogPost", new { SeName = post.SeName })">
+                                @if (viewComponentSelector.SelectComponent("LazyLoadImage") != null)
+                                {
+                                    @await Component.InvokeAsync("LazyLoadImage", new (string Key, string Value)[]
+                                    {
+                                        ("src", post.HomePagePictureUrl),
+                                        ("alt", post.Title),
+                                        ("title", post.Title)
+                                    })
+                                }
+                                else
+                                {
+                                    <img src="@post.HomePagePictureUrl" alt="@post.Title" title="@post.Title" />
+                                }
+                            </a>
+                        }
+                        <span class="post-date">
+                            <span class="day">@post.CreatedOn.Day.ToString("00")</span>
+                            <span class="month">@post.CreatedOn.ToString("MMM")</span>
+                            <span class="year">@post.CreatedOn.Year</span>
+                        </span>
+                        <a class="read-more" href="@Url.RouteUrl("BlogPost", new { SeName = post.SeName })">@T("SevenSpikes.RichBlog.Public.ReadMore")</a>
+                    </div>
+                    <div class="post-details">
+                        <a class="post-title" href="@Url.RouteUrl("BlogPost", new { SeName = post.SeName })">@post.Title</a>
+                        <div class="post-description">
+                            @Html.Raw(!String.IsNullOrEmpty(post.BodyOverview) ? post.BodyOverview : post.Body)
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="view-all">
+            <a href="@Url.RouteUrl("Blog")">@T("SevenSpikes.RichBlog.Public.ViewAllBlogPosts")</a>
+        </div>
+    </div>*@
+<style>
+    .tag {
+        font-family: 'Grechen Fuemen', cursive;
+        font-size: 36px;
+        font-weight: 500;
+    }
+
+    .text-space {
+        word-break: break-word;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        line-height: 20px;
+        height: 200px;
+        -webkit-line-clamp: 5;
+        -webkit-box-orient: vertical;
+        font-family: 'Manrope', sans-serif !important;
+    }
+
+    .image-space {
+        overflow: hidden;
+        height: 250px;
+        -webkit-line-clamp: 5;
+        -webkit-box-orient: vertical;
+    }
+
+    .blog-space {
+        overflow: hidden;
+        height: 600px;
+        -webkit-line-clamp: 5;
+        -webkit-box-orient: vertical;
+    }
+
+    .post-details {
+        overflow: hidden;
+        padding: 10px 15px 25px 15px;
+        text-transform: none;
+        text-align: left;
+    }
+
+    .zoom {
+        transition: transform 1.3s; /* Animation */
+    }
+
+        .zoom:hover {
+            transform: scale(1.1); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+        }
+</style>

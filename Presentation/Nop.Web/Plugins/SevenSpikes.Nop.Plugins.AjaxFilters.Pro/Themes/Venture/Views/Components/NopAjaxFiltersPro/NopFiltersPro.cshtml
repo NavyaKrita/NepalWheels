@@ -1,5 +1,5 @@
 ﻿@model NopAjaxFiltersProPublicModel
-    
+
 @{
     var theme = await ThemeHelper.GetPluginThemeAsync(SevenSpikes.Nop.Plugins.AjaxFilters.Pro.Infrastructure.Constants.Plugin.FolderName);
 
@@ -32,7 +32,7 @@
 }
 
 <form asp-controller="AjaxFiltersProSearch" asp-action="Search" id="AjaxFiltersProForm">
-    <div class="home-page-filters-wrapper ajax-filters-pro"
+    <div class="newsletter-area home-page-filters-wrapper ajax-filters-pro"
          data-showCategoryDropdown="@showCategoryDropdown.ToString().ToLowerInvariant()"
          data-showCategoryAndSubcategoryDropdown="@showCategoryAndSubcategoryDropdown.ToString().ToLowerInvariant()"
          data-showManufacturerDropdown="@showManufacturerDropdown.ToString().ToLowerInvariant()"
@@ -44,42 +44,44 @@
          data-getCategoriesUrl="@Url.Action("GetCategories", "AjaxFiltersProSearch")"
          data-getManufacturersUrl="@Url.Action("GetManufacturers", "AjaxFiltersProSearch")"
          data-getSpecificationsUrl="@Url.Action("GetSpecification", "AjaxFiltersProSearch")">
-        
-        <div class="home-page-filters">
-            <div class="home-page-filter-title">
-                <strong>@T("SevenSpikes.Themes.Venture.Common.HomePageAjaxFiltersPro.Title")</strong>
-            </div>
 
-            @if (Model.UIMode != NopAjaxFiltersProUIMode.ManufacturerOnly)
-            {
-                <div class="home-page-filter-selector">
-                    <input type="hidden" id="categories" name="categoryId" value="0" autocomplete="off"/>
+        <div class="container">
+            <div class="home-page-filters newsletter-wrapper-all">
+                <div class="col-lg-3 col-12 col-md-3">
+                    <p class="search-text">@T("SevenSpikes.Themes.Venture.Common.HomePageAjaxFiltersPro.Title")</p>
                 </div>
-            }
 
-            @if (Model.UIMode == NopAjaxFiltersProUIMode.CategoryAndSubcategory || Model.UIMode == NopAjaxFiltersProUIMode.CategorySubcategoryAndManufacturer)
-            {
-                <div class="home-page-filter-selector">
-                    <input type="hidden" id="ajax-filters-pro-subcategories" name="subCategoryId" value="0" autocomplete="off"/>
-                </div>
-            }
+                @if (Model.UIMode != NopAjaxFiltersProUIMode.ManufacturerOnly)
+                {
+                    <div class="col-lg-3 col-12 col-md-3 search-select home-page-filter-selector">
+                        <input type="hidden" id="categories" name="categoryId" value="0" autocomplete="off" />
+                    </div>
+                }
 
-            @if (Model.UIMode == NopAjaxFiltersProUIMode.ManufacturerOnly || Model.UIMode == NopAjaxFiltersProUIMode.CategoryAndManufacturer || Model.UIMode == NopAjaxFiltersProUIMode.CategorySubcategoryAndManufacturer)
-            {
-                <div class="home-page-filter-selector">
-                    <input type="hidden" id="manufacturers" name="manufacturerId" value="0" autocomplete="off"/>
-                </div>
-            }
+                @if (Model.UIMode == NopAjaxFiltersProUIMode.CategoryAndSubcategory || Model.UIMode == NopAjaxFiltersProUIMode.CategorySubcategoryAndManufacturer)
+                {
+                    <div class="col-lg-3 col-12 col-md-3 search-select home-page-filter-selector search-select">
+                        <input type="hidden" id="ajax-filters-pro-subcategories" name="subCategoryId" value="0" autocomplete="off" />
+                    </div>
+                }
 
-            @foreach (var spec in Model.Specifications)
-            {
-                <div class="home-page-filter-selector">
-                    <input type="hidden" id="specification_@(spec.Id)" name="specificationOptions" value="0" class="ajaxFiltersProSpecificationItem" data-id="@spec.Id" data-name="@Html.Raw(spec.Name)" autocomplete="off"/>
+                @if (Model.UIMode == NopAjaxFiltersProUIMode.ManufacturerOnly || Model.UIMode == NopAjaxFiltersProUIMode.CategoryAndManufacturer || Model.UIMode == NopAjaxFiltersProUIMode.CategorySubcategoryAndManufacturer)
+                {
+                    <div class="col-lg-3 col-12 col-md-3  search-select home-page-filter-selector">
+                        <input type="hidden" id="manufacturers" name="manufacturerId" value="0" autocomplete="off" />
+                    </div>
+                }
+
+                @foreach (var spec in Model.Specifications)
+                {
+                    <div class="col-lg-3 col-12 col-md-3  search-select home-page-filter-selector">
+                        <input type="hidden" id="specification_@(spec.Id)" name="specificationOptions" value="0" class="ajaxFiltersProSpecificationItem" data-id="@spec.Id" data-name="@Html.Raw(spec.Name)" autocomplete="off" />
+                    </div>
+                }
+                <div class="col-lg-3 col-12 col-md-3 home-page-filter-button search-select">
+                    <span id="home-page-filter-total-products-count" class="results-number"></span>
+                    <button type="submit" class="search-button">@T("SevenSpikes.NopAjaxFiltersPro.Client.Search")</button>
                 </div>
-            }
-            <div class="home-page-filter-button">
-                <span id="home-page-filter-total-products-count" class="results-number"></span>
-                <button type="submit" class="search-button" disabled="disabled">@T("SevenSpikes.NopAjaxFiltersPro.Client.Search")</button>
             </div>
         </div>
     </div>

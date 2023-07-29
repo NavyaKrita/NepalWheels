@@ -411,7 +411,7 @@
 .miniProductDetailsView .product-overview-line {
 	padding: 30px 0 0;
     margin: 20px 0 0;
-    border-top: 1px dashed #ccc;
+    /*border-top: 1px dashed #ccc;*/
 }
 .miniProductDetailsView .product-overview-line:first-child {
 	margin: 0;

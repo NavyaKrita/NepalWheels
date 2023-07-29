@@ -8503,7 +8503,7 @@ td.ui-datepicker-week-end {
 
     .news-item .news-head,
     .blog-posts .post-head {
-        background: #2c2c2c;
+        /*background: #2c2c2c;*/
         overflow: hidden;
         padding: 0 0 0 40px;
         position: relative;
@@ -8541,7 +8541,7 @@ td.ui-datepicker-week-end {
             font-size: 50px;
             margin: 0 10px -19px 0;
             line-height: 60px;
-            color: #fff !important;
+            /*color: #fff !important;*/
         }
 
         .news-item .news-head .month,

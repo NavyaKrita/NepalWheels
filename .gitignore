@@ -25,3 +25,4 @@ bld/
 
 /Presentation/Nop.Web/Themes/eshopper
 /Presentation/Nop.Web/wwwroot
+/Presentation/Nop.Web/Plugins/SevenSpikes.Nop.Plugins.RichBlog/Lucene/lucene_indexRichBlogPostRow

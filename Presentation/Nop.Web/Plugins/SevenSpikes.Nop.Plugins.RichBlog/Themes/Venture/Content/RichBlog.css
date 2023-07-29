@@ -171,8 +171,8 @@
 .blog-search-box span.search-box-text {
 }
 .blog-search-box input.search-box-text {
-    background: #fff;
-    color: #909090;
+    /*background: #fff;
+    color: #909090;*/
 }
 .blog-search-box .instant-search-busy {
     background: #fff url('images/ajax-loader-small.gif') right center no-repeat !important;
