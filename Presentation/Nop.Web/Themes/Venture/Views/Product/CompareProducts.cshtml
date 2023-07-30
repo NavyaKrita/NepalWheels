@@ -348,27 +348,9 @@
         $("#small-searchterms-compare-1").val('@small_searchterms_compare_1')
         $("#small-searchterms-compare-2").val('@small_searchterms_compare_2')
 
-    })
-</script>
-<script id="instantSearchItemTemplate-compare" type="text/x-kendo-template" asp-location="Footer">
-    <div class="instant-search-item" data-url=" ${data.CustomProperties.Url}">
-        <a class="iOS-temp" onclick="AjaxSearchCart.addproducttocomparelistsearch(${data.Id});return false;">
-            <div class="img-block">
-                <img src="${ data.DefaultPictureModel.ImageUrl }" alt="${ data.Name }" title="${ data.Name }" style="border: none">
-            </div>
-            <div class="detail">
-                <div class="title">${ data.Name }</div>
-                <div class="price"># var price = ""; if (data.ProductPrice.Price) { price = data.ProductPrice.Price } # #= price #</div>
-            </div>
-        </a>
+    });
 
-    </div>
-
-</script>
-
-<script asp-location="Footer">
-
-    var compareUrl='@Url.Content("~/Product/AddProductToCompareList/")'
+     var compareUrl='@Url.Content("~/Product/AddProductToCompareList/")'
 
     var AjaxSearchCart = {
         loadWaiting: false,
@@ -466,6 +448,22 @@
 
     };
 </script>
+<script id="instantSearchItemTemplate-compare" type="text/x-kendo-template" asp-location="Footer">
+    <div class="instant-search-item" data-url=" ${data.CustomProperties.Url}">
+        <a class="iOS-temp" onclick="AjaxSearchCart.addproducttocomparelistsearch(${data.Id});return false;">
+            <div class="img-block">
+                <img src="${ data.DefaultPictureModel.ImageUrl }" alt="${ data.Name }" title="${ data.Name }" style="border: none">
+            </div>
+            <div class="detail">
+                <div class="title">${ data.Name }</div>
+                <div class="price"># var price = ""; if (data.ProductPrice.Price) { price = data.ProductPrice.Price } # #= price #</div>
+            </div>
+        </a>
+
+    </div>
+
+</script>
+
 <style>
     * {
         box-sizing: border-box;
