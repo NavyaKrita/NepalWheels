@@ -21,11 +21,12 @@
                     <span class="required">
                         *
                     </span>
-                </div>
+                </div>*@
+                <nop-editor asp-for="Title" asp-required="true"  />
+                <input asp-for="Title" maxlength="45" />
+                <span asp-validation-for="Title"></span>
             </div>
-            @*<nop-editor asp-for="Title" asp-required="true" data-val-length-max="44" />
-                <input asp-for="Title" maxlength="45"/>
-                <span asp-validation-for="Title"></span>*@
+            
         </div>
     </div>
     <div class="form-group row">

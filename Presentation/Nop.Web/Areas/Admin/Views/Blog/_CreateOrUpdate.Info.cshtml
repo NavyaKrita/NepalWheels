@@ -43,10 +43,11 @@
                     <span class="required">
                         *
                     </span>
-                </div>
+                </div>*@
+                <nop-editor asp-for="Title" asp-required="true" />
+                <span asp-validation-for="Title"></span>
             </div>
-            @*<nop-editor asp-for="Title" asp-required="true" />
-                <span asp-validation-for="Title"></span>*@
+            
         </div>
     </div>
     <div class="form-group row">

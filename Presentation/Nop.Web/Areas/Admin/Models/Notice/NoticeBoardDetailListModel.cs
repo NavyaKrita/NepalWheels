@@ -9,4 +9,7 @@ namespace Nop.Web.Areas.Admin.Models.Notice
     public partial record NoticeBoardDetailListModel : BasePagedListModel<NoticeBoardDetailModel>
     {
     }
+    public partial record ParticipantsCreateModel : NoticeBoardDetailModel
+    {
+    }
 }
