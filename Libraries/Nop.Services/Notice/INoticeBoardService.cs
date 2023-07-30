@@ -16,7 +16,8 @@ namespace Nop.Services.Notice
 
         Task UpdateNoticeAsync(NoticeBoard notice);
 
-        Task<IPagedList<NoticeBoardDetail>> GetAllParticipatesAsync(string notice, DateTime ?startDate, DateTime? endDate, int pageIndex = 0, int pageSize = int.MaxValue);
+        Task<IPagedList<NoticeBoardDetail>> GetAllParticipatesAsync(string lead,string leadGeneratedFrom, DateTime ?startDate,
+            DateTime? endDate, int pageIndex = 0, int pageSize = int.MaxValue);
         Task InsertNoticeParticipatesAsync(NoticeBoardDetail notice);
         Task<IEnumerable<NoticeBoard>> GetNoticeByPublishedDateAsync();
     }

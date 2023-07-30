@@ -42,7 +42,7 @@ namespace Nop.Web.Areas.Admin.Factories
                         PublishedFrom = notice.PublishedFrom,
                         ThankYou = notice.ThankYou,
                         Title = notice.Title,
-                        TermsAndCondition= notice.TermsAndCondition,
+                        TermsAndCondition = notice.TermsAndCondition,
                     };
                     return noticeModel;
                 });
@@ -87,7 +87,7 @@ namespace Nop.Web.Areas.Admin.Factories
                     model.City = noticeBoard.City;
                     model.BikeName = noticeBoard.BikeName;
                     model.CC = noticeBoard.CC;
-                    model.TermsAndCondition= noticeBoard.TermsAndCondition;
+                    model.TermsAndCondition = noticeBoard.TermsAndCondition;
                 }
             }
 
@@ -111,7 +111,8 @@ namespace Nop.Web.Areas.Admin.Factories
                 throw new ArgumentNullException(nameof(searchModel));
 
             //get notices
-            var notices = await _noticeBoardService.GetAllParticipatesAsync(searchModel.Notice,
+            var notices = await _noticeBoardService.GetAllParticipatesAsync(searchModel.Lead,
+                searchModel.LeadGeneratedFrom,
                 searchModel.StartDate,
                 searchModel.EndDate,
                 pageIndex: searchModel.Page - 1, pageSize: searchModel.PageSize);
@@ -133,14 +134,21 @@ namespace Nop.Web.Areas.Admin.Factories
                         Address = noticeBoard.Address,
                         City = noticeBoard.City,
                         BikeName = noticeBoard.BikeName,
-                        CC = noticeBoard.CC
-                       
+                        CC = noticeBoard.CC,
+                        Lead = noticeBoard.Category,
+                        Module = noticeBoard.LeadGenerate
                     };
                     return notice;
                 });
             });
 
             return model;
+        }
+
+
+        public async Task<ParticipantsCreateModel> PrepareNoticeModelAsync()
+        {
+            return new ParticipantsCreateModel();
         }
     }
 }

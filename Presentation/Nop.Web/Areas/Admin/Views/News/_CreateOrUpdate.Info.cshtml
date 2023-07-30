@@ -15,17 +15,12 @@
             <nop-label asp-for="Title" />
         </div>
         <div class="col-md-9">
-            <div class="input-group input-group-required">
-                <input asp-for="Title" class="form-control text-box single-line valid" data-val-required="Title is required." id="Title" name="Title" type="text" aria-describedby="Title-error" aria-invalid="false">
-                <div class="input-group-btn">
-                    <span class="required">
-                        *
-                    </span>
-                </div>
+            <div class="input-group input-group-required">             
+                <nop-editor asp-for="Title" asp-required="true" />
+                
+                <span asp-validation-for="Title"></span>
             </div>
-            @*<nop-editor asp-for="Title" asp-required="true" data-val-length-max="44" />
-                <input asp-for="Title" maxlength="45"/>
-                <span asp-validation-for="Title"></span>*@
+            
         </div>
     </div>
     <div class="form-group row">
