@@ -4272,11 +4272,13 @@ td.ui-datepicker-week-end {
     margin: 0;
     border: 1px solid #f1f1f1;
 }
-.product-specs-box .data-table td {
-    padding: 15.5px;
-    border: none;
-    font-size: 14px;
-}
+    .product-specs-box .data-table td {
+        padding: 15.5px;
+        border: none;
+        font-size: 14px;
+        color: #298ABD;
+        font-weight: 600;
+    }
 .product-specs-box .data-table tr:first-child td {
     padding-top: 25px;
 }
@@ -4286,12 +4288,12 @@ td.ui-datepicker-week-end {
 .product-specs-box .data-table .spec-name {
     background: #f1f1f1;
     text-align: right;
-    color: #909090;
+    color: #000;
 }
 .product-specs-box .data-table .spec-value {
     text-transform: none;
-    color: #909090;
-    font-family: 'Lato', sans-serif;
+    color: #000;
+    font-family: 'manrope', sans-serif;
     line-height: 25px;
 }
 .product-specs-box .data-table .spec-value a {
