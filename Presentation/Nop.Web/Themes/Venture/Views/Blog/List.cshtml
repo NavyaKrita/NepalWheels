@@ -72,7 +72,7 @@
                                     <li><a href="@Url.RouteUrl("BlogByTag", new {tag = tag})">@tag</a></li>
                                     if (i != item.Tags.Count - 1)
                                     {
-                                        <li class="separator">,</li>
+                                        <li @*class="separator"*@>, </li>
                                     }
                                 }
                             </ul>

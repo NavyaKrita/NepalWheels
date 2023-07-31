@@ -3,11 +3,12 @@
 /*********** CSS RESET **********/
 
 * {
-	margin: 0;
-	outline: none;
-	padding: 0;
-	text-decoration: none;
-	box-sizing: border-box;
+    margin: 0;
+    outline: none;
+    padding: 0;
+    text-decoration: none;
+    box-sizing: border-box;
+   /* border-radius: 0px 10px 0px 0px;*/
 }
 *:before, *:after {
 	box-sizing: border-box;
@@ -8617,7 +8618,7 @@ td.ui-datepicker-week-end {
     .news-item .news-title,
     .blog-posts .post-title {
         display: block;
-        font-size: 20px;
+        font-size: 25px;
         margin: 0 0 10px;
     }
 
