@@ -35,16 +35,26 @@
                             <div class="row">
 
 
-                                @*<div class="col-md-12">
-                                <div class="form-group row">
-                                <div class="col-md-4">
-                                <nop-label asp-for="Notice" />
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <div class="col-md-4">
+                                            <nop-label asp-for="LeadGeneratedFrom" />
+                                        </div>
+                                        <div class="col-md-8">
+                                            <nop-editor asp-for="LeadGeneratedFrom" />
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="col-md-8">
-                                <nop-editor asp-for="Notice" />
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <div class="col-md-4">
+                                            <nop-label asp-for="Lead" />
+                                        </div>
+                                        <div class="col-md-8">
+                                            <nop-editor asp-for="Lead" />
+                                        </div>
+                                    </div>
                                 </div>
-                                </div>
-                                </div>*@
                                 <div class="col-md-6">
                                     <div class="form-group row">
                                         <div class="col-md-4">
@@ -90,7 +100,8 @@
                         LengthMenu = Model.AvailablePageSizes,
                         Filters = new List<FilterParameter>
                         {
-                        new FilterParameter(nameof(Model.Notice)),
+                        new FilterParameter(nameof(Model.LeadGeneratedFrom)),
+                        new FilterParameter(nameof(Model.Lead)),
                         new FilterParameter(nameof(Model.StartDate)),
                         new FilterParameter(nameof(Model.EndDate)),
                         },
@@ -120,6 +131,20 @@
                         {
                         Title = T("Admin.NoticeBoard.Fields.City").Text,
                         Width = "50",
+                        ClassName = NopColumnClassDefaults.CenterAll
+
+                        },
+                        new ColumnProperty(nameof(NoticeBoardDetailModel.Lead))
+                        {
+                        Title = T("Admin.NoticeBoard.Fields.LeadGeneratedFrom").Text,
+                        Width = "50",
+                        ClassName = NopColumnClassDefaults.CenterAll
+
+                        },
+                        new ColumnProperty(nameof(NoticeBoardDetailModel.Module))
+                        {
+                        Title = T("Admin.NoticeBoard.Fields.Lead").Text,
+                        Width = "450",
                         ClassName = NopColumnClassDefaults.CenterAll
 
                         },
