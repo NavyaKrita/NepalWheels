@@ -9,9 +9,7 @@
 }
 
 <div class="page registration-page" id="modal-register-participants-@Model.NoticeBoardId">
-    @*<div class="page-title">
-    <h1>@Html.Raw(Model.Title)</h1>
-    </div>*@
+   
     <div class="page-body">
         <div id="notice-page-load-@Model.NoticeBoardId">
             @Html.Raw(Model.Notice)
@@ -57,6 +55,7 @@
                             <strong>@T("Account.YourPersonalDetails")</strong>
                         </div>
                         <div class="form-fields">
+                            <input asp-for="ManufacturerId" type="hidden" />
 
                             <input type="hidden" asp-for="NoticeBoardId" />
                             @if (Model.ParticipantField.Name)
@@ -147,6 +146,11 @@
                                 </div>
 
                             }
+                            <div class="inputs">
+                                <label asp-for="Products" asp-postfix=":"></label>
+                                <nop-select asp-for="ProductId" asp-items="Model.Products" asp-required="true" />
+                                <span asp-validation-for="ProductId"></span>
+                            </div>
                         </div>
                         <div class="buttons">
                             <button type="submit" name="register-button" id="register-button-@Model.NoticeBoardId" class="button-1 register-next-step-button">@T("Account.Register.Button")</button>

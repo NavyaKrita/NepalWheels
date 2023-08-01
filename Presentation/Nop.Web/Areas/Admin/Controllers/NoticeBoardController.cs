@@ -11,6 +11,7 @@ using Nop.Web.Areas.Admin.Models.Notice;
 using Nop.Web.Framework.Controllers;
 using Nop.Web.Framework.Mvc.Filters;
 using Nop.Web.Models.Notice;
+using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 
@@ -79,7 +80,7 @@ namespace Nop.Web.Areas.Admin.Controllers
                 return AccessDeniedView();
 
             //prepare model
-            var model = _noticeBoardModelFactory.PrepareNoticeBoardModelAsync(new CreateNoticeBoardModel(), null);
+            var model = await _noticeBoardModelFactory.PrepareNoticeBoardModelAsync(new CreateNoticeBoardModel(), null);
 
             return View(model);
         }
@@ -114,18 +115,17 @@ namespace Nop.Web.Areas.Admin.Controllers
                 model.City = noticeBoard.City;
                 model.BikeName = noticeBoard.BikeName;
                 model.CC = noticeBoard.CC;
+                model.ManufacturerId = noticeBoard.ManufacturerId;
+                model.BlogId = noticeBoard.BlogId;
+                model.Products = string.Join(",", noticeBoard.SelectedProductIds);
+                model.ButtonDisplayText = noticeBoard.ButtonDisplayText;
                 await _noticeBoardService.InsertNoticeAsync(model);
 
                 //activity log
                 await _customerActivityService.InsertActivityAsync("AddNewNoticeBoard",
                     string.Format(await _localizationService.GetResourceAsync("ActivityLog.AddNewNoticeBoard"), model.Id), model);
 
-                //search engine name
-
-
-                //some validation
-
-                await _noticeBoardService.UpdateNoticeAsync(model);
+                //search engine name          
 
                 _notificationService.SuccessNotification(await _localizationService.GetResourceAsync("Admin.Notice.Added"));
 
@@ -136,7 +136,7 @@ namespace Nop.Web.Areas.Admin.Controllers
 
             };
             //prepare model
-            noticeBoard = _noticeBoardModelFactory.PrepareNoticeBoardModelAsync(noticeBoard, null, true);
+            noticeBoard = await _noticeBoardModelFactory.PrepareNoticeBoardModelAsync(noticeBoard, null, true);
 
             //if we got this far, something failed, redisplay form
             return View(noticeBoard);
@@ -153,7 +153,7 @@ namespace Nop.Web.Areas.Admin.Controllers
                 return RedirectToAction("List");
 
             //prepare model
-            var model = _noticeBoardModelFactory.PrepareNoticeBoardModelAsync(null, noticeBoard);
+            var model = await _noticeBoardModelFactory.PrepareNoticeBoardModelAsync(null, noticeBoard);
 
             return View(model);
         }
@@ -187,9 +187,13 @@ namespace Nop.Web.Areas.Admin.Controllers
                 model.Age = noticeBoard.Age;
                 model.Address = noticeBoard.Address;
                 model.City = noticeBoard.City;
-                model.BikeName = noticeBoard.BikeName;
+                model.BikeName= noticeBoard.BikeName;
                 model.CC = noticeBoard.CC;
-                model.CreatedOnUtc = model.CreatedOnUtc;
+                model.ManufacturerId = noticeBoard.ManufacturerId;
+                model.BlogId = noticeBoard.BlogId;
+                model.Products = string.Join(",", noticeBoard.SelectedProductIds);
+                model.ButtonDisplayText = noticeBoard.ButtonDisplayText;
+                model.CreatedOnUtc = System.DateTime.Today;
                 await _noticeBoardService.UpdateNoticeAsync(model);
 
 
@@ -211,7 +215,7 @@ namespace Nop.Web.Areas.Admin.Controllers
             }
 
             //prepare model
-            noticeBoard = _noticeBoardModelFactory.PrepareNoticeBoardModelAsync(noticeBoard, model, true);
+            noticeBoard = await _noticeBoardModelFactory.PrepareNoticeBoardModelAsync(noticeBoard, model, true);
 
             //if we got this far, something failed, redisplay form
             return View(noticeBoard);
@@ -244,13 +248,30 @@ namespace Nop.Web.Areas.Admin.Controllers
         [HttpGet]
         public virtual async Task<IActionResult> RegisterParticipants()
         {
-           
+
             string browserUrl = HttpContext.Request.Headers["Referer"].ToString();
             var url = browserUrl.Split("/");
-
-            var model = await _noticeBoardModelFactory.PrepareNoticeModelAsync();
+            int blogId = 0;
+            if (url.Length >= 7 && url[4] == "Blog")
+            {
+                blogId = Convert.ToInt32(url[6]);
+            }
+            var model = await _noticeBoardModelFactory.PrepareNoticeModelAsync(blogId);
             model.Module = url[4];
             return View(model);
+        }
+
+        [HttpGet]
+        /// <returns>A task that represents the asynchronous operation</returns>
+        public virtual async Task<IActionResult> ManufacturerFeaturedProductsAsync(int manufacturerId)
+        {
+            if (!await _permissionService.AuthorizeAsync(StandardPermissionProvider.AccessAdminPanel))
+                return await AccessDeniedDataTablesJson();
+
+            //prepare model
+            var model = await _noticeBoardModelFactory.GetManufacturerFeaturedProductsAsync(manufacturerId);
+
+            return Json(model);
         }
     }
 }

@@ -80,10 +80,7 @@ namespace Nop.Web.Controllers
             {
                 return Json(new { success = false });
             }
-            else if (latestNotice.BikeName && string.IsNullOrEmpty(model.BikeName))
-            {
-                return Json(new { success = false });
-            }
+
 
             if (ModelState.IsValid)
             {
@@ -98,6 +95,8 @@ namespace Nop.Web.Controllers
                     Address = model.Address,
                     Age = model.Age is null ? 0 : !model.Age.All(char.IsDigit) ? 0 : Convert.ToInt32(model.Age),
                     CC = model.CC,
+                    ManufacturerId = model.ManufacturerId,
+                    Products = model.ProductId,
                 };
 
 
@@ -130,7 +129,7 @@ namespace Nop.Web.Controllers
                      && string.IsNullOrEmpty(model.BikeName) && string.IsNullOrEmpty(model.Address)
                     )
                     return Json(new { success = false });
-                if(string.IsNullOrEmpty(model.PhoneNumber) && !model.PhoneNumber.All(char.IsDigit))
+                if (string.IsNullOrEmpty(model.PhoneNumber) && !model.PhoneNumber.All(char.IsDigit))
                     return Json(new { success = false });
 
                 NoticeBoardDetail detail = new()
@@ -145,9 +144,12 @@ namespace Nop.Web.Controllers
                     Age = model.Age is null ? 0 : !model.Age.All(char.IsDigit) ? 0 : Convert.ToInt32(model.Age),
                     CC = model.CC,
                     Category = model.Module,
-                    LeadGenerate = url[count - 1]
-                };
+                    ManufacturerId = model.ManufacturerId,
+                    Products = model.ProductId,
 
+                };
+                if (count > 0)
+                detail.LeadGenerate = url[count - 1];
                 await _noticeBoardService.InsertNoticeParticipatesAsync(detail);
 
                 return Json(new { success = true });

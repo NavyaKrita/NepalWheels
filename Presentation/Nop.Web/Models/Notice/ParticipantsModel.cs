@@ -1,4 +1,5 @@
-﻿using Nop.Web.Framework.Models;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using Nop.Web.Framework.Models;
 using Nop.Web.Framework.Mvc.ModelBinding;
 using System;
 using System.Collections.Generic;
@@ -51,6 +52,12 @@ namespace Nop.Web.Models.Notice
         public string TermAndConditions { get; set; }
         public ParticipantFieldModel ParticipantField { get; set; }
         public bool Agree { get; set; }
+        [NopResourceDisplayName("Products")]
+        public string ProductId { get; set; }
+        [NopResourceDisplayName("Manufacturer")]
+        public int ManufacturerId { get; set; }
+        public IEnumerable<SelectListItem> Products { get; set; } = new List<SelectListItem>();
+
     }
     public partial record ParticipantFieldModel
     {
@@ -147,6 +154,11 @@ namespace Nop.Web.Models.Notice
        
         public string CC { get; set; }
         public string Module { get; set; }
+
+        [NopResourceDisplayName("Products")]
+        public string ProductId { get; set; }
+        [NopResourceDisplayName("Manufacturer")]
+        public int ManufacturerId { get; set; }
 
     }
 }

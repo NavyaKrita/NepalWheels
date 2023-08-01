@@ -20,5 +20,7 @@ namespace Nop.Services.Notice
             DateTime? endDate, int pageIndex = 0, int pageSize = int.MaxValue);
         Task InsertNoticeParticipatesAsync(NoticeBoardDetail notice);
         Task<IEnumerable<NoticeBoard>> GetNoticeByPublishedDateAsync();
+
+        Task<NoticeBoard> GetNoticeByBlogIdAsync(int blogId);
     }
 }

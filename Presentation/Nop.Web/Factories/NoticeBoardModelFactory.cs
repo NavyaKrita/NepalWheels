@@ -49,9 +49,7 @@ namespace Nop.Web.Factories
                         EmailAddress = notices.EmailAddress,
                         Age = notices.Age,
                         Address = notices.Address,
-                        City = notices.City,
-                        BikeName = notices.BikeName,
-                        CC = notices.CC
+                        City = notices.City,                      
                     }
                 };
         }
@@ -85,8 +83,7 @@ namespace Nop.Web.Factories
                        Age = notices.Age,
                        Address = notices.Address,
                        City = notices.City,
-                       BikeName = notices.BikeName,
-                       CC = notices.CC
+                      
                    }
                });
         }

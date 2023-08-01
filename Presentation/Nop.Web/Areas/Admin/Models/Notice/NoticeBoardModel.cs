@@ -57,6 +57,21 @@ namespace Nop.Web.Areas.Admin.Models.Notice
         public bool BikeName { get; set; }
         [NopResourceDisplayName("Admin.NoticeBoard.Fields.CC")]
         public bool CC { get; set; }
+
+
+        [NopResourceDisplayName("Admin.NoticeBoard.Fields.Manufacturer")]
+             
+        public int ManufacturerId { get; set; }
+        [NopResourceDisplayName("Admin.NoticeBoard.Fields.Product")]
+
+        public IList<int> SelectedProductIds { get; set; }
+
+        [NopResourceDisplayName("Admin.NoticeBoard.Fields.URL")]
+
+        public int BlogId  { get; set; }
+
+        [NopResourceDisplayName("Admin.NoticeBoard.Fields.ButtonText")]
+        public string ButtonDisplayText { get; set; }
         #endregion
     }
 

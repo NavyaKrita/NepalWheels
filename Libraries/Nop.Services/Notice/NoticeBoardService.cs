@@ -30,7 +30,7 @@ namespace Nop.Services.Notice
         }
 
 
-        public virtual async Task<IPagedList<NoticeBoardDetail>> GetAllParticipatesAsync(string lead, string leadGeneratedFrom, DateTime? startDate, DateTime? endDate, 
+        public virtual async Task<IPagedList<NoticeBoardDetail>> GetAllParticipatesAsync(string lead, string leadGeneratedFrom, DateTime? startDate, DateTime? endDate,
             int pageIndex = 0, int pageSize = int.MaxValue)
         {
 
@@ -51,6 +51,15 @@ namespace Nop.Services.Notice
             }
 
             return await query.ToPagedListAsync(pageIndex, pageSize);
+        }
+
+        public async Task<NoticeBoard> GetNoticeByBlogIdAsync(int blogId)
+        {
+            DateTime today = DateTime.Now.Date;
+            var query = _noticeBoardRepository.Table;
+
+            query = query.Where(c => c.PublishedFrom <= today && c.PublishedTo >= today && c.BlogId.Equals(blogId)).OrderByDescending(t => t.PublishedFrom);
+            return await query.FirstOrDefaultAsync();
         }
 
         public virtual async Task<NoticeBoard> GetNoticeByIdAsync(int noticeId)
