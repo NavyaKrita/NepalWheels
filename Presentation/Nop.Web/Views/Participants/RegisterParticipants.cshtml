@@ -9,7 +9,7 @@
 }
 
 <div class="page registration-page" id="modal-register-participants-@Model.NoticeBoardId">
-   
+
     <div class="page-body">
         <div id="notice-page-load-@Model.NoticeBoardId">
             @Html.Raw(Model.Notice)
@@ -22,9 +22,17 @@
                     </div>
                 </div>
             }
+            else
+            {
+                <div class="form-fields">
+                    <div class="buttons">
+                        <a   href="@Model.URL#participant-form" id="show-register-button-@Model.NoticeBoardId" class="button-1 register-next-step-button">@Model.ButtonDisplayText</a>
+                    </div>
+                </div>
+            }
 
         </div>
-        @if (!string.IsNullOrEmpty(Model.TermAndConditions))
+        @if (!string.IsNullOrEmpty(Model.TermAndConditions) && Model.IsDisplayForm)
         {
             <div id="term-and-conditions-page-load-@Model.NoticeBoardId" style="display:none" data-termAndConditions="true">
 

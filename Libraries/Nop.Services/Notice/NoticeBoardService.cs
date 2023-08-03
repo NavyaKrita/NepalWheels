@@ -72,7 +72,7 @@ namespace Nop.Services.Notice
             DateTime today = DateTime.Now.Date;
             var query = _noticeBoardRepository.Table;
 
-            query = query.Where(c => c.PublishedFrom <= today && c.PublishedTo >= today).OrderByDescending(t => t.PublishedFrom);
+            query = query.Where(c => c.PublishedFrom <= today && c.PublishedTo >= today).OrderBy(t => t.PublishedFrom);
             return await query.ToListAsync();
         }
 

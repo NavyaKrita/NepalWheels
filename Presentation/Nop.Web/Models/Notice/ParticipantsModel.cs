@@ -57,7 +57,8 @@ namespace Nop.Web.Models.Notice
         [NopResourceDisplayName("Manufacturer")]
         public int ManufacturerId { get; set; }
         public IEnumerable<SelectListItem> Products { get; set; } = new List<SelectListItem>();
-
+        public string ButtonDisplayText { get; set; }
+        public string URL { get; set; }
     }
     public partial record ParticipantFieldModel
     {

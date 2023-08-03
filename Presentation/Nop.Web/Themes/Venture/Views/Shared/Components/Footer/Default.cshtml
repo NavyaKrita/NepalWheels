@@ -168,18 +168,20 @@
 
 <script asp-location="Footer">
     $(".button-register-participants").on("click", function (e) {
-        var formGuid = $(this).attr('id');
+        var formGuid = $(this).attr('id');      
         e.preventDefault(); // avoid to execute the actual submit of the form.
         var form = $("#register-participants-form-submit-" + formGuid);
-
+        
         if (!$("#register-participants-form-submit-" + formGuid)[0].checkValidity()) {
             return;
         }
-        addAntiForgeryToken(form);
+       // addAntiForgeryToken(form);
+      
         $.ajax({
             type: "POST",
             url: "@Url.Action("RegisterParticipant", "Participants")",
             data: form.serialize(), // serializes the form's elements.
+           
             success: function (data) {
                 if (data.success) {
                     $("#register-participants-form-submit-" + formGuid).trigger('reset');
