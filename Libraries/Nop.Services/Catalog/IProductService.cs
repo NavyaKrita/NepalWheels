@@ -937,5 +937,7 @@ namespace Nop.Services.Catalog
         Task DeleteDiscountProductMappingAsync(DiscountProductMapping discountProductMapping);
 
         #endregion
+
+        Task<IList<Product>> GetManufacturerFeaturedProductsAsync(int manufacturerId);
     }
 }

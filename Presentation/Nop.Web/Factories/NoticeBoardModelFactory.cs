@@ -1,5 +1,6 @@
 ﻿using Google.Protobuf.WellKnownTypes;
 using Nop.Core.Domain.Notice;
+using Nop.Services.Blogs;
 using Nop.Services.Notice;
 using Nop.Web.Areas.Admin.Infrastructure.Mapper.Extensions;
 using Nop.Web.Areas.Admin.Models;
@@ -16,9 +17,11 @@ namespace Nop.Web.Factories
     public partial class NoticeBoardModelFactory : INoticeBoardModelFactory
     {
         private readonly INoticeBoardService _noticeBoardService;
-        public NoticeBoardModelFactory(INoticeBoardService noticeBoardService)
+        private readonly IBlogService _blogService;
+        public NoticeBoardModelFactory(INoticeBoardService noticeBoardService, IBlogService blogService)
         {
             _noticeBoardService = noticeBoardService;
+            _blogService = blogService;
         }
 
         public virtual async Task<NoticeBoardModel> PrepareNoticeModelAsync(int id)
@@ -41,7 +44,9 @@ namespace Nop.Web.Factories
                     PublishedFrom = notices.PublishedFrom,
                     ThankYou = notices.ThankYou,
                     Title = notices.Title,
-                    TermAndConditions=notices.TermsAndCondition,                    
+                    TermAndConditions = notices.TermsAndCondition,
+                    ButtonDisplayText = notices.ButtonDisplayText,
+                    BlogId = notices.BlogId,
                     NoticeField = new()
                     {
                         Name = notices.Name,
@@ -69,25 +74,7 @@ namespace Nop.Web.Factories
             return
                noticesResult.Select(notices => new NoticeBoardModel()
                {
-                   Id = notices.Id,
-                   Notice = notices.Notice,
-                   DisplayForm = notices.DisplayForm,
-                   PublishedTo = notices.PublishedTo,
-                   PublishedFrom = notices.PublishedFrom,
-                   ThankYou = notices.ThankYou,
-                   Title = notices.Title,
-                   TermAndConditions=notices.TermsAndCondition,
-                   NoticeField = new()
-                   {
-                       Name = notices.Name,
-                       PhoneNumber = notices.PhoneNumber,
-                       EmailAddress = notices.EmailAddress,
-                       Age = notices.Age,
-                       Address = notices.Address,
-                       City = notices.City,
-                       BikeName = notices.BikeName,
-                       CC = notices.CC
-                   }
+                   Id = notices.Id
                });
         }
     }

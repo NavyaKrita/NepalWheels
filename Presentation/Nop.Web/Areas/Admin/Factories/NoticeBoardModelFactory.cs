@@ -1,4 +1,7 @@
-﻿using Nop.Core.Domain.Notice;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using Nop.Core.Domain.Notice;
+using Nop.Services.Blogs;
+using Nop.Services.Catalog;
 using Nop.Services.Notice;
 using Nop.Web.Areas.Admin.Infrastructure.Mapper.Extensions;
 using Nop.Web.Areas.Admin.Models;
@@ -14,9 +17,18 @@ namespace Nop.Web.Areas.Admin.Factories
     public partial class NoticeBoardModelFactory : INoticeBoardModelFactory
     {
         private readonly INoticeBoardService _noticeBoardService;
-        public NoticeBoardModelFactory(INoticeBoardService noticeBoardService)
+        private readonly IBlogService _blogService;
+        private readonly IManufacturerService _manufacturerService;
+        private readonly IProductService _productService;
+        public NoticeBoardModelFactory(INoticeBoardService noticeBoardService,
+            IManufacturerService manufacturerService,
+            IProductService productService,
+            IBlogService blogService)
         {
             _noticeBoardService = noticeBoardService;
+            _manufacturerService = manufacturerService;
+            _productService = productService;
+            _blogService = blogService;
         }
         public virtual async Task<NoticeBoardListModel> PrepareNoticeBoardListModelAsync(NoticeBoardSearchModel searchModel)
         {
@@ -62,7 +74,7 @@ namespace Nop.Web.Areas.Admin.Factories
             return Task.FromResult(searchModel);
         }
 
-        public virtual CreateNoticeBoardModel PrepareNoticeBoardModelAsync(CreateNoticeBoardModel model, NoticeBoard noticeBoard, bool excludeProperties = false)
+        public virtual async Task<CreateNoticeBoardModel> PrepareNoticeBoardModelAsync(CreateNoticeBoardModel model, NoticeBoard noticeBoard, bool excludeProperties = false)
         {
 
             if (noticeBoard != null)
@@ -85,12 +97,43 @@ namespace Nop.Web.Areas.Admin.Factories
                     model.Age = noticeBoard.Age;
                     model.Address = noticeBoard.Address;
                     model.City = noticeBoard.City;
+                    model.TermsAndCondition = noticeBoard.TermsAndCondition;
+                    model.ManufacturerId = noticeBoard.ManufacturerId;
+                    model.BlogId = noticeBoard.BlogId;
                     model.BikeName = noticeBoard.BikeName;
                     model.CC = noticeBoard.CC;
-                    model.TermsAndCondition = noticeBoard.TermsAndCondition;
+                    model.SelectedProductIds = noticeBoard.Products.Split(',').Select(x => int.Parse(x.Trim())).ToList();
+                    model.Products = await GetManufacturerFeaturedProductsAsync(model.ManufacturerId);
+                    model.ButtonDisplayText = noticeBoard.ButtonDisplayText;
                 }
             }
+            var manufacturers = await _manufacturerService.GetAllManufacturersAsync();
+            var manufacturersList = new List<SelectListItem>();
+            //clone the list to ensure that "selected" property is not set
+            manufacturersList.Add(new SelectListItem { Text = "", Value = "0" });
+            foreach (var item in manufacturers)
+            {
+                manufacturersList.Add(new SelectListItem
+                {
+                    Text = item.Name,
+                    Value = item.Id.ToString()
+                });
+            }
+            var blogs = await _blogService.GetAllBlogPostsAsync();
 
+            var mblogsList = new List<SelectListItem>();
+            //clone the list to ensure that "selected" property is not set
+            mblogsList.Add(new SelectListItem { Text = "", Value = "0" });
+            foreach (var item in blogs)
+            {
+                mblogsList.Add(new SelectListItem
+                {
+                    Text = item.Title,
+                    Value = item.Id.ToString()
+                });
+            }
+            model.Blogs = mblogsList;
+            model.Manufacturers = manufacturersList;
             return model;
         }
 
@@ -146,9 +189,47 @@ namespace Nop.Web.Areas.Admin.Factories
         }
 
 
-        public async Task<ParticipantsCreateModel> PrepareNoticeModelAsync()
+        public async Task<ParticipantsCreateModel> PrepareNoticeModelAsync(int blogId)
         {
-            return new ParticipantsCreateModel();
+            var model = new ParticipantsCreateModel();
+            var notices = await _noticeBoardService.GetNoticeByBlogIdAsync(blogId);
+            if (notices is not null)
+            {
+                var productIds = notices.Products.Split(',').Select(x => int.Parse(x.Trim())).ToArray();
+
+                var products = await _productService.GetProductsByIdsAsync(productIds);
+                var productsList = new List<SelectListItem>();
+                //clone the list to ensure that "selected" property is not set
+                productsList.Add(new SelectListItem { Text = "", Value = "" });
+                foreach (var item in products)
+                {
+                    productsList.Add(new SelectListItem
+                    {
+                        Text = item.Name,
+                        Value = item.Name.ToString()
+                    });
+                }
+                model.Products = productsList;
+                model.ManufacturerId = notices.ManufacturerId;
+            }
+
+            return model;
+        }
+        public async Task<IEnumerable<SelectListItem>> GetManufacturerFeaturedProductsAsync(int manufacturerId)
+        {
+            var products = await _productService.GetManufacturerFeaturedProductsAsync(manufacturerId);
+            var productsList = new List<SelectListItem>();
+            //clone the list to ensure that "selected" property is not set
+            productsList.Add(new SelectListItem { Text = "", Value = "0" });
+            foreach (var item in products)
+            {
+                productsList.Add(new SelectListItem
+                {
+                    Text = item.Name,
+                    Value = item.Id.ToString()
+                });
+            }
+            return productsList;
         }
     }
 }

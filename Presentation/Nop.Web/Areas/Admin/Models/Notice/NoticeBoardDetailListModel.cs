@@ -1,8 +1,6 @@
-﻿using Nop.Web.Framework.Models;
-using System;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using Nop.Web.Framework.Models;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Nop.Web.Areas.Admin.Models.Notice
 {
@@ -11,5 +9,8 @@ namespace Nop.Web.Areas.Admin.Models.Notice
     }
     public partial record ParticipantsCreateModel : NoticeBoardDetailModel
     {
+        public IEnumerable<SelectListItem> Products { get; set; } = new List<SelectListItem>();
+        public int ManufacturerId { get; set; }
+        public string ProductId { get; set; }
     }
 }

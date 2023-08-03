@@ -20,6 +20,9 @@ namespace Nop.Core.Domain.Notice
         public DateTime PublishedTo { get; set; }
         public bool DisplayForm { get; set; }
 
+        public int BlogId { get; set; }
+        public string Products { get; set; }
+        public int ManufacturerId { get; set; }
         public string ThankYou { get; set; }
         public string TermsAndCondition { get; set; }
         public DateTime CreatedOnUtc { get; set; }
@@ -34,10 +37,10 @@ namespace Nop.Core.Domain.Notice
         public bool Address { get; set; }
        
         public bool City { get; set; }
-        
         public bool BikeName { get; set; }
-       
+
         public bool CC { get; set; }
+        public string ButtonDisplayText { get; set; }
 
     }
 }

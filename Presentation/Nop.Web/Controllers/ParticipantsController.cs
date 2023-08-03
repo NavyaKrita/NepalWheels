@@ -1,8 +1,11 @@
 ﻿using LinqToDB.Common;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Nop.Core;
 using Nop.Core.Domain.Notice;
+using Nop.Services.Blogs;
 using Nop.Services.Notice;
+using Nop.Services.Seo;
 using Nop.Web.Factories;
 using Nop.Web.Models.Notice;
 using System;
@@ -12,20 +15,34 @@ using System.Threading.Tasks;
 
 namespace Nop.Web.Controllers
 {
-    [AutoValidateAntiforgeryToken]
+    
     public partial class ParticipantsController : BasePublicController
     {
         private readonly INoticeBoardService _noticeBoardService;
         private readonly INoticeBoardModelFactory _noticeBoardModelFactory;
+        private readonly IWebHelper _webHelper;
+        private readonly IUrlRecordService _urlRecordService;
+        private readonly IBlogService _blogService;
         public ParticipantsController(INoticeBoardService noticeBoardService,
-           INoticeBoardModelFactory noticeBoardModelFactory)
+           INoticeBoardModelFactory noticeBoardModelFactory,
+           IWebHelper webHelper,
+        IUrlRecordService urlRecordService,
+        IBlogService blogService)
         {
             _noticeBoardService = noticeBoardService;
             _noticeBoardModelFactory = noticeBoardModelFactory;
+            _webHelper = webHelper;
+            _urlRecordService = urlRecordService;
+            _blogService = blogService;
         }
         public virtual async Task<IActionResult> RegisterParticipants(int id)
         {
+
             var notice = await _noticeBoardModelFactory.PrepareNoticeModelAsync(id);
+            var blog = await _blogService.GetBlogPostByIdAsync(notice.BlogId);
+
+            var blogPostUrl = Url.RouteUrl("BlogPost", new { SeName = await _urlRecordService.GetSeNameAsync(blog, blog.LanguageId, ensureTwoPublishedLanguages: false) }, _webHelper.GetCurrentRequestProtocol());
+
             ParticipantsModel model = new()
             {
                 NoticeBoardId = notice.Id,
@@ -34,6 +51,8 @@ namespace Nop.Web.Controllers
                 IsDisplayForm = notice.DisplayForm,
                 TermAndConditions = notice.TermAndConditions,
                 ThankYou = notice.ThankYou,
+                ButtonDisplayText = notice.ButtonDisplayText,
+                URL= blogPostUrl,
                 ParticipantField = new()
                 {
                     Name = notice.NoticeField.Name,
@@ -50,7 +69,7 @@ namespace Nop.Web.Controllers
         }
 
         [HttpPost]
-
+        [AutoValidateAntiforgeryToken]
         /// <returns>A task that represents the asynchronous operation</returns>
         public virtual async Task<IActionResult> RegisterParticipants(ParticipantsModel model, IFormCollection form)
         {
@@ -80,10 +99,7 @@ namespace Nop.Web.Controllers
             {
                 return Json(new { success = false });
             }
-            else if (latestNotice.BikeName && string.IsNullOrEmpty(model.BikeName))
-            {
-                return Json(new { success = false });
-            }
+
 
             if (ModelState.IsValid)
             {
@@ -98,6 +114,8 @@ namespace Nop.Web.Controllers
                     Address = model.Address,
                     Age = model.Age is null ? 0 : !model.Age.All(char.IsDigit) ? 0 : Convert.ToInt32(model.Age),
                     CC = model.CC,
+                    ManufacturerId = model.ManufacturerId,
+                    Products = model.ProductId,
                 };
 
 
@@ -115,7 +133,7 @@ namespace Nop.Web.Controllers
         }
 
         [HttpPost]
-
+      
         /// <returns>A task that represents the asynchronous operation</returns>
         public virtual async Task<IActionResult> RegisterParticipant(ParticipantModel model, IFormCollection form)
         {
@@ -130,7 +148,7 @@ namespace Nop.Web.Controllers
                      && string.IsNullOrEmpty(model.BikeName) && string.IsNullOrEmpty(model.Address)
                     )
                     return Json(new { success = false });
-                if(string.IsNullOrEmpty(model.PhoneNumber) && !model.PhoneNumber.All(char.IsDigit))
+                if (string.IsNullOrEmpty(model.PhoneNumber) && !model.PhoneNumber.All(char.IsDigit))
                     return Json(new { success = false });
 
                 NoticeBoardDetail detail = new()
@@ -145,9 +163,12 @@ namespace Nop.Web.Controllers
                     Age = model.Age is null ? 0 : !model.Age.All(char.IsDigit) ? 0 : Convert.ToInt32(model.Age),
                     CC = model.CC,
                     Category = model.Module,
-                    LeadGenerate = url[count - 1]
-                };
+                    ManufacturerId = model.ManufacturerId,
+                    Products = model.ProductId,
 
+                };
+                if (count > 0)
+                    detail.LeadGenerate = url[count - 1];
                 await _noticeBoardService.InsertNoticeParticipatesAsync(detail);
 
                 return Json(new { success = true });
@@ -171,7 +192,7 @@ namespace Nop.Web.Controllers
             var model = await _noticeBoardModelFactory.PrepareNoticeModelAsync();
             if (model.Count() > 0)
             {
-                return Json(new { success = true, result = model });
+                return Json(new { success = true, result = model.Select(x => new { Id = x.Id }) });
             }
             return Json(new { success = false });
         }

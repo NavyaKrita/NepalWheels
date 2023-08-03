@@ -1,5 +1,7 @@
-﻿using Nop.Core.Domain.Notice;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using Nop.Core.Domain.Notice;
 using Nop.Web.Areas.Admin.Models.Notice;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Nop.Web.Areas.Admin.Factories
@@ -7,13 +9,14 @@ namespace Nop.Web.Areas.Admin.Factories
     public partial interface INoticeBoardModelFactory
     {
         Task<NoticeBoardSearchModel> PrepareNoticeBoardSearchModelAsync(NoticeBoardSearchModel searchModel);
-       
+
         Task<NoticeBoardListModel> PrepareNoticeBoardListModelAsync(NoticeBoardSearchModel searchModel);
-        CreateNoticeBoardModel PrepareNoticeBoardModelAsync(CreateNoticeBoardModel model, NoticeBoard noticeBoard, bool excludeProperties = false);
+        Task<CreateNoticeBoardModel> PrepareNoticeBoardModelAsync(CreateNoticeBoardModel model, NoticeBoard noticeBoard, bool excludeProperties = false);
 
         Task<NoticeBoardDetailSearchModel> PrepareParticipantsSearchModelAsync(NoticeBoardDetailSearchModel searchModel);
         Task<NoticeBoardDetailListModel> PrepareParticipantsListModelAsync(NoticeBoardDetailSearchModel searchModel);
-        Task<ParticipantsCreateModel> PrepareNoticeModelAsync();
+        Task<ParticipantsCreateModel> PrepareNoticeModelAsync(int blogId);
+        Task<IEnumerable<SelectListItem>> GetManufacturerFeaturedProductsAsync(int manufacturerId);
 
     }
 }

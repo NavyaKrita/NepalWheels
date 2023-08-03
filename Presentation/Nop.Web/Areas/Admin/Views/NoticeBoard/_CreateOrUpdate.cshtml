@@ -38,22 +38,87 @@
                                 <span asp-validation-for="Notice"></span>
                             </div>
                         </div>
-                        <div class="form-group row">
+
+                        <div class="form-group row vendor-location-setting">
                             <div class="col-md-3">
-                                <nop-label asp-for="ThankYou" />
+                                <nop-label asp-for="ManufacturerId" />
                             </div>
                             <div class="col-md-9">
-                                <nop-editor asp-for="ThankYou" asp-template="RichEditor" asp-required="true" />
-                                <span asp-validation-for="ThankYou"></span>
+                                <nop-select asp-for="ManufacturerId" asp-items="Model.Manufacturers" asp-required="true" />
+                                <span asp-validation-for="ManufacturerId"></span>
                             </div>
                         </div>
                         <div class="form-group row">
                             <div class="col-md-3">
-                                <nop-label asp-for="TermsAndCondition" />
+                                <nop-label asp-for="SelectedProductIds" />
                             </div>
                             <div class="col-md-9">
-                                <nop-editor asp-for="TermsAndCondition" asp-template="RichEditor" asp-required="true" />
-                                <span asp-validation-for="TermsAndCondition"></span>
+                                <nop-select asp-for="SelectedProductIds" asp-items="Model.Products" asp-required="true" asp-multiple="true" />
+                                <script>
+                                    $(document).ready(function () {
+                                        var categoryIdsInput = $('#@Html.IdFor(model => model.SelectedProductIds)').data("kendoMultiSelect");
+
+
+                                        categoryIdsInput._enable();
+                                        categoryIdsInput.setOptions({
+                                            autoClose: false,
+                                            filter: "contains",
+                                            dataTextField: "Product",
+                                            dataValueField: "ProductId",
+                                        });
+
+			                    	@if (Model.Products.ToList().Count() == 0)
+                                      {
+                                       <text>
+                                        categoryIdsInput.setOptions({
+                                            enable: false,
+                                            placeholder: 'products'
+                                        });
+                                        categoryIdsInput._placeholder();
+                                        categoryIdsInput._enable();
+                                         </text>
+                                    }
+                                    });
+                                    $('#@Html.IdFor(model => model.ManufacturerId)').on("change", function (e) {
+                                          e.preventDefault(); // avoid to execute the actual submit of the form.
+
+                                        $.ajax({
+                                            type: "GET",
+                                            url: "@Url.Action("ManufacturerFeaturedProducts", "NoticeBoard", new { Area = "Admin" })",
+                                            data: { manufacturerId:$('#@Html.IdFor(model => model.ManufacturerId)').val()}, // serializes the form's elements.
+                                            success: function (data) {
+                                                var multiselect = $('#@Html.IdFor(model => model.SelectedProductIds)').data("kendoMultiSelect");
+                                               
+                                                var product = $('#@Html.IdFor(model => model.SelectedProductIds)').getKendoMultiSelect();
+                                                var dataSource = product.dataSource;
+                                                dataSource.data([]);
+                                                $.each(data, function (key, result) {
+
+                                                    dataSource.add({
+                                                        ProductId: result.Value,
+                                                        Product: result.Text
+                                                    });
+                                                    dataSource.sync();
+                                                    multiselect.enable(true);
+                                                });
+                                            },
+
+                                            error: function (error) {
+
+                                            }
+                                        });
+                                    });
+                                </script>
+                                <span asp-validation-for="SelectedProductIds"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-label asp-for="BlogId" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-select asp-for="BlogId" asp-items="Model.Blogs" asp-required="true" />
+                                <span asp-validation-for="BlogId"></span>
                             </div>
                         </div>
                         <div class="form-group row">
@@ -85,7 +150,15 @@
                             </div>
                         </div>
                     </div>
-
+                    <div class="form-group row">
+                        <div class="col-md-3">
+                            <nop-label asp-for="ButtonDisplayText" />
+                        </div>
+                        <div class="col-md-9">
+                            <nop-editor asp-for="ButtonDisplayText" asp-required="true" />
+                            <span asp-validation-for="ButtonDisplayText"></span>
+                        </div>
+                    </div>
                     <div class="card-body">
                         <div class="form-group row">
                             <div class="col-md-3">
@@ -97,7 +170,7 @@
                                 <span asp-validation-for="Name"></span>
                             </div>
                         </div>
-                       
+
                         <div class="form-group row">
                             <div class="col-md-3">
                                 <nop-override-store-checkbox asp-for="PhoneNumber" asp-input="PhoneNumber" />
@@ -108,7 +181,7 @@
                                 <span asp-validation-for="PhoneNumber"></span>
                             </div>
                         </div>
-                         <div class="form-group row">
+                        <div class="form-group row">
                             <div class="col-md-3">
                                 <nop-override-store-checkbox asp-for="EmailAddress" asp-input="EmailAddress" />
                                 <nop-label asp-for="EmailAddress" />
@@ -118,7 +191,7 @@
                                 <span asp-validation-for="EmailAddress"></span>
                             </div>
                         </div>
-                          <div class="form-group row">
+                        <div class="form-group row">
                             <div class="col-md-3">
                                 <nop-override-store-checkbox asp-for="Age" asp-input="Age" />
                                 <nop-label asp-for="Age" />
@@ -126,7 +199,7 @@
                             <div class="col-md-9">
                                 <nop-editor asp-for="Age" />
                                 <span asp-validation-for="Age"></span>
-                     </div>
+                            </div>
                         </div>
                         <div class="form-group row">
                             <div class="col-md-3">
@@ -159,6 +232,7 @@
                                 <span asp-validation-for="BikeName"></span>
                             </div>
                         </div>
+
                         <div class="form-group row">
                             <div class="col-md-3">
                                 <nop-override-store-checkbox asp-for="CC" asp-input="CC" />
@@ -174,9 +248,9 @@
 
             </div>
 
-          
+
         </div>
-       
+
     </div>
-    
+
 </section>

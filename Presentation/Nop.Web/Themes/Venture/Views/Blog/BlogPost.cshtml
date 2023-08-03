@@ -48,21 +48,21 @@
         </div>
         @if (Model.AllowLikes)
         {
-                <div class="title">
-                    <form asp-route="BlogPost" asp-route-sename="@Model.SeName" method="post">
-                        <div class="buttons">
-                            @if (Model.LikeByCustomer)
-                            {
-                                <p>@Model.LikesNumber Likes</p>
-                                <button type="submit" name="add-like" style="background-color: white !important; padding: 5px 5px 5px 5px"><span class="ico-wishlist" style=" color: crimson;"></span></button>
-                            }
-                            else
-                            {
-                                <p>@Model.LikesNumber Likes</p>
-                                <button type="submit" name="add-like" style="background-color: white !important; padding: 5px 5px 5px 5px"><span class="ico-wishlist" style="color: grey !important"></span></button>
-                            }
-                        </div>
-                    </form>
+            <div class="title">
+                <form asp-route="BlogPost" asp-route-sename="@Model.SeName" method="post">
+                    <div class="buttons">
+                        @if (Model.LikeByCustomer)
+                        {
+                            <p>@Model.LikesNumber Likes</p>
+                            <button type="submit" name="add-like" style="background-color: white !important; padding: 5px 5px 5px 5px"><span class="ico-wishlist" style=" color: crimson;"></span></button>
+                        }
+                        else
+                        {
+                            <p>@Model.LikesNumber Likes</p>
+                            <button type="submit" name="add-like" style="background-color: white !important; padding: 5px 5px 5px 5px"><span class="ico-wishlist" style="color: grey !important"></span></button>
+                        }
+                    </div>
+                </form>
             </div>
         }
         @if (Model.Tags.Count > 0)
@@ -186,3 +186,23 @@
         width: 90%;
     }
 </style>
+<script asp-location="Footer">
+    function focusOnDiv() {
+        var anchor = window.location.hash; // Get the anchor part of the URL (e.g., "#myDiv")
+        if (anchor) {
+            var divId = anchor.substring(1); // Remove the '#' from the anchor to get the div ID
+            var targetDiv = document.getElementById(divId);
+            if (targetDiv) {
+                targetDiv.scrollIntoView({
+                    behavior: "smooth",
+                    block: "center",
+                    inline: "nearest"
+                });
+                
+            }
+        }
+    }
+
+    // Call the function on page load to focus on the div if the anchor is present in the URL
+    window.onload = focusOnDiv;
+</script>

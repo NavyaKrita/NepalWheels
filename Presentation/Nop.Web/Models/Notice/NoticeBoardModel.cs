@@ -42,7 +42,8 @@ namespace Nop.Web.Models.Notice
         public string TermAndConditions { get; set; }
         public int Id { get; set; }
         public NoticeFieldModel NoticeField { get; set; }
-
+        public string ButtonDisplayText { get; set; }
+        public int BlogId { get; set; }
         #endregion
     }
     public partial record NoticeFieldModel

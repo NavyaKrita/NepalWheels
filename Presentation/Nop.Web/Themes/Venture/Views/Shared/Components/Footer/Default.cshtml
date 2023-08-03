@@ -167,23 +167,24 @@
 </footer>
 
 <script asp-location="Footer">
-    $(".button-register-participants").on("click", function (e) {
-        var formGuid = $(this).attr('id');
+    $(".button-register-participants").on("click", function (e) {           
         e.preventDefault(); // avoid to execute the actual submit of the form.
-        var form = $("#register-participants-form-submit-" + formGuid);
-
-        if (!$("#register-participants-form-submit-" + formGuid)[0].checkValidity()) {
+        var form = $("#register-participants-form-submit");
+        
+        if (!form[0].checkValidity()) {
             return;
         }
-        addAntiForgeryToken(form);
+       // addAntiForgeryToken(form);
+      
         $.ajax({
             type: "POST",
             url: "@Url.Action("RegisterParticipant", "Participants")",
             data: form.serialize(), // serializes the form's elements.
+           
             success: function (data) {
                 if (data.success) {
-                    $("#register-participants-form-submit-" + formGuid).trigger('reset');
-                    $("#thank-you-page-load-" + formGuid).removeAttr("style");
+                    form.trigger('reset');
+                    $("#thank-you-page-load").removeAttr("style");
                 }
 
             },
