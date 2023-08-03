@@ -226,6 +226,8 @@
         z-index: 1;
         -webkit-transition: all 0.3s ease-in-out;
         transition: all 0.3s ease-in-out;
+        border: 1px solid #2688BC;
+        box-sizing: border-box;
     }
 
         .store-search-box form {
@@ -242,7 +244,7 @@
 
         .store-search-box input.search-box-text {
             width: 446px !important;
-            height: 75px;
+            /*height: 75px;*/
             float: right;
         }
 
