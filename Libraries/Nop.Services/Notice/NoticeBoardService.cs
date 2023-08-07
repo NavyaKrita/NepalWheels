@@ -40,11 +40,7 @@ namespace Nop.Services.Notice
             if (!string.IsNullOrEmpty(lead))
             {
                 query = query.Where(c => c.LeadGenerate.Contains(lead));
-            }
-            if (!string.IsNullOrEmpty(leadGeneratedFrom))
-            {
-                query = query.Where(c => c.Category.Contains(leadGeneratedFrom));
-            }
+            }            
             if ((startDate != null && endDate != null) && (startDate <= endDate))
             {
                 query = query.Where(a => a.CreatedOnUtc.Date >= startDate && a.CreatedOnUtc.Date <= endDate);
@@ -53,12 +49,12 @@ namespace Nop.Services.Notice
             return await query.ToPagedListAsync(pageIndex, pageSize);
         }
 
-        public async Task<NoticeBoard> GetNoticeByBlogIdAsync(int blogId)
+        public async Task<NoticeBoard> GetNoticeByBlogIdAsync(string inUrl)
         {
             DateTime today = DateTime.Now.Date;
             var query = _noticeBoardRepository.Table;
 
-            query = query.Where(c => c.PublishedFrom <= today && c.PublishedTo >= today && c.BlogId.Equals(blogId)).OrderByDescending(t => t.PublishedFrom);
+            query = query.Where(c => c.PublishedFrom <= today && c.PublishedTo >= today && c.InURL.Equals(inUrl)).OrderByDescending(t => t.PublishedFrom);
             return await query.FirstOrDefaultAsync();
         }
 

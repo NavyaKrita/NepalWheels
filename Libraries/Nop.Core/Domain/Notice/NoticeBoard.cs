@@ -20,7 +20,7 @@ namespace Nop.Core.Domain.Notice
         public DateTime PublishedTo { get; set; }
         public bool DisplayForm { get; set; }
 
-        public int BlogId { get; set; }
+        public string URL { get; set; }
         public string Products { get; set; }
         public int ManufacturerId { get; set; }
         public string ThankYou { get; set; }
@@ -41,6 +41,7 @@ namespace Nop.Core.Domain.Notice
 
         public bool CC { get; set; }
         public string ButtonDisplayText { get; set; }
+        public string InURL { get; set; }
 
     }
 }

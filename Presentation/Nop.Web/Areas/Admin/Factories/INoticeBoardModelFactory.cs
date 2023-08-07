@@ -15,7 +15,7 @@ namespace Nop.Web.Areas.Admin.Factories
 
         Task<NoticeBoardDetailSearchModel> PrepareParticipantsSearchModelAsync(NoticeBoardDetailSearchModel searchModel);
         Task<NoticeBoardDetailListModel> PrepareParticipantsListModelAsync(NoticeBoardDetailSearchModel searchModel);
-        Task<ParticipantsCreateModel> PrepareNoticeModelAsync(int blogId);
+        Task<ParticipantsCreateModel> PrepareNoticeModelAsync(string inUrl);
         Task<IEnumerable<SelectListItem>> GetManufacturerFeaturedProductsAsync(int manufacturerId);
 
     }

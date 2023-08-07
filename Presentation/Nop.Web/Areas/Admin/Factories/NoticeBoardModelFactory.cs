@@ -99,41 +99,24 @@ namespace Nop.Web.Areas.Admin.Factories
                     model.City = noticeBoard.City;
                     model.TermsAndCondition = noticeBoard.TermsAndCondition;
                     model.ManufacturerId = noticeBoard.ManufacturerId;
-                    model.BlogId = noticeBoard.BlogId;
+                    model.URL = noticeBoard.URL;
                     model.BikeName = noticeBoard.BikeName;
                     model.CC = noticeBoard.CC;
                     model.SelectedProductIds = noticeBoard.Products.Split(',').Select(x => int.Parse(x.Trim())).ToList();
                     model.Products = await GetManufacturerFeaturedProductsAsync(model.ManufacturerId);
                     model.ButtonDisplayText = noticeBoard.ButtonDisplayText;
+                    model.InURL = noticeBoard.InURL;
                 }
             }
             var manufacturers = await _manufacturerService.GetAllManufacturersAsync();
-            var manufacturersList = new List<SelectListItem>();
-            //clone the list to ensure that "selected" property is not set
-            manufacturersList.Add(new SelectListItem { Text = "", Value = "0" });
-            foreach (var item in manufacturers)
-            {
-                manufacturersList.Add(new SelectListItem
-                {
-                    Text = item.Name,
-                    Value = item.Id.ToString()
-                });
-            }
-            var blogs = await _blogService.GetAllBlogPostsAsync();
 
-            var mblogsList = new List<SelectListItem>();
-            //clone the list to ensure that "selected" property is not set
-            mblogsList.Add(new SelectListItem { Text = "", Value = "0" });
-            foreach (var item in blogs)
+
+            model.Manufacturers = manufacturers.Select(item => new SelectListItem
             {
-                mblogsList.Add(new SelectListItem
-                {
-                    Text = item.Title,
-                    Value = item.Id.ToString()
-                });
-            }
-            model.Blogs = mblogsList;
-            model.Manufacturers = manufacturersList;
+                Text = item.Name,
+                Value = item.Id.ToString(),
+                Selected = model.SelectedProductIds.Contains(item.Id)
+            }).ToList();
             return model;
         }
 
@@ -178,8 +161,7 @@ namespace Nop.Web.Areas.Admin.Factories
                         City = noticeBoard.City,
                         BikeName = noticeBoard.BikeName,
                         CC = noticeBoard.CC,
-                        Lead = noticeBoard.Category,
-                        Module = noticeBoard.LeadGenerate
+                        Lead = noticeBoard.LeadGenerate
                     };
                     return notice;
                 });
@@ -189,10 +171,10 @@ namespace Nop.Web.Areas.Admin.Factories
         }
 
 
-        public async Task<ParticipantsCreateModel> PrepareNoticeModelAsync(int blogId)
+        public async Task<ParticipantsCreateModel> PrepareNoticeModelAsync(string inUrl)
         {
             var model = new ParticipantsCreateModel();
-            var notices = await _noticeBoardService.GetNoticeByBlogIdAsync(blogId);
+            var notices = await _noticeBoardService.GetNoticeByBlogIdAsync(inUrl);
             if (notices is not null)
             {
                 var productIds = notices.Products.Split(',').Select(x => int.Parse(x.Trim())).ToArray();

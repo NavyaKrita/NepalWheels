@@ -54,7 +54,7 @@
                             </div>
                             <div class="col-md-9">
                                 <nop-select asp-for="SelectedProductIds" asp-items="Model.Products" asp-required="true" asp-multiple="true" />
-                                <script>
+                                <script asp-location="Footer">
                                     $(document).ready(function () {
                                         var categoryIdsInput = $('#@Html.IdFor(model => model.SelectedProductIds)').data("kendoMultiSelect");
 
@@ -63,8 +63,8 @@
                                         categoryIdsInput.setOptions({
                                             autoClose: false,
                                             filter: "contains",
-                                            dataTextField: "Product",
-                                            dataValueField: "ProductId",
+                                            //dataTextField: "Product",
+                                            //dataValueField: "ProductId",
                                         });
 
 			                    	@if (Model.Products.ToList().Count() == 0)
@@ -72,14 +72,15 @@
                                        <text>
                                         categoryIdsInput.setOptions({
                                             enable: false,
-                                            placeholder: 'products'
+                                            placeholder: 'products',
+                                            filter: "contains",
+                                            
                                         });
                                         categoryIdsInput._placeholder();
                                         categoryIdsInput._enable();
                                          </text>
                                     }
-                                    });
-                                    $('#@Html.IdFor(model => model.ManufacturerId)').on("change", function (e) {
+                                      $('#@Html.IdFor(model => model.ManufacturerId)').on("change", function (e) {
                                           e.preventDefault(); // avoid to execute the actual submit of the form.
 
                                         $.ajax({
@@ -87,11 +88,18 @@
                                             url: "@Url.Action("ManufacturerFeaturedProducts", "NoticeBoard", new { Area = "Admin" })",
                                             data: { manufacturerId:$('#@Html.IdFor(model => model.ManufacturerId)').val()}, // serializes the form's elements.
                                             success: function (data) {
+
                                                 var multiselect = $('#@Html.IdFor(model => model.SelectedProductIds)').data("kendoMultiSelect");
-                                               
+                                                multiselect.setOptions({
+                                                    autoClose: false,
+                                                    filter: "contains",
+                                                    dataTextField: "Product",
+                                                    dataValueField: "ProductId",
+                                                });
                                                 var product = $('#@Html.IdFor(model => model.SelectedProductIds)').getKendoMultiSelect();
                                                 var dataSource = product.dataSource;
                                                 dataSource.data([]);
+
                                                 $.each(data, function (key, result) {
 
                                                     dataSource.add({
@@ -108,17 +116,29 @@
                                             }
                                         });
                                     });
+                                    });
+
+
                                 </script>
                                 <span asp-validation-for="SelectedProductIds"></span>
                             </div>
                         </div>
                         <div class="form-group row">
                             <div class="col-md-3">
-                                <nop-label asp-for="BlogId" />
+                                <nop-label asp-for="InURL" />
                             </div>
                             <div class="col-md-9">
-                                <nop-select asp-for="BlogId" asp-items="Model.Blogs" asp-required="true" />
-                                <span asp-validation-for="BlogId"></span>
+                                <nop-editor asp-for="InURL" asp-required="true" />
+                                <span asp-validation-for="InURL"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-label asp-for="URL" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="URL" asp-required="true" />
+                                <span asp-validation-for="URL"></span>
                             </div>
                         </div>
                         <div class="form-group row">

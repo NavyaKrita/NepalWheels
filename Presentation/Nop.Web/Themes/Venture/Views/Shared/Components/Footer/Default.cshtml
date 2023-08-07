@@ -167,24 +167,26 @@
 </footer>
 
 <script asp-location="Footer">
-    $(".button-register-participants").on("click", function (e) {           
+    $(".button-register-participants").on("click", function (e) {
         e.preventDefault(); // avoid to execute the actual submit of the form.
         var form = $("#register-participants-form-submit");
-        
+
         if (!form[0].checkValidity()) {
             return;
         }
        // addAntiForgeryToken(form);
-      
+
         $.ajax({
             type: "POST",
             url: "@Url.Action("RegisterParticipant", "Participants")",
             data: form.serialize(), // serializes the form's elements.
-           
+
             success: function (data) {
                 if (data.success) {
                     form.trigger('reset');
                     $("#thank-you-page-load").removeAttr("style");
+                } else {
+                    alert(data.message)
                 }
 
             },
