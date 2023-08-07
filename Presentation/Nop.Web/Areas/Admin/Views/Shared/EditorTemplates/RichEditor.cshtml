@@ -105,8 +105,16 @@
                 $.ajax({
                     type: 'GET',
                     url: '@Url.Action("RegisterParticipants", "NoticeBoard", new { area = "Admin" })',
-                    success: function(formHtml) {
-                        console.log(formHtml, "html");
+                    success: function (formHtml) {
+                      
+                        const rootNode = editor.getBody();
+
+                        // Find the "participant-form" element
+                        const participantFormElement = rootNode.querySelector('#participant-form');
+                        if (participantFormElement) {
+                            // Remove the "participant-form" element from its parent
+                            participantFormElement.remove();
+                        }
                         editor.execCommand('mceInsertContent', false, formHtml);
                     },
                     error: function() {

@@ -66,12 +66,15 @@ namespace Nop.Web.Areas.Admin.Models.Notice
 
         public IList<int> SelectedProductIds { get; set; }
 
-        [NopResourceDisplayName("Admin.NoticeBoard.Fields.URL")]
+        [NopResourceDisplayName("Admin.NoticeBoard.Fields.DisplayURL")]
 
-        public int BlogId  { get; set; }
+        public string URL { get; set; }
 
         [NopResourceDisplayName("Admin.NoticeBoard.Fields.ButtonText")]
         public string ButtonDisplayText { get; set; }
+        [NopResourceDisplayName("Admin.NoticeBoard.Fields.AdminInsertPageURL")]
+
+        public string InURL { get; set; }
         #endregion
     }
 

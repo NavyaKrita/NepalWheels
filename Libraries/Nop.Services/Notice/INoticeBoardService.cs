@@ -21,6 +21,6 @@ namespace Nop.Services.Notice
         Task InsertNoticeParticipatesAsync(NoticeBoardDetail notice);
         Task<IEnumerable<NoticeBoard>> GetNoticeByPublishedDateAsync();
 
-        Task<NoticeBoard> GetNoticeByBlogIdAsync(int blogId);
+        Task<NoticeBoard> GetNoticeByBlogIdAsync(string inUrl);
     }
 }

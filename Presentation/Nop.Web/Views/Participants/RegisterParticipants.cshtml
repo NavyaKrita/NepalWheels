@@ -26,7 +26,7 @@
             {
                 <div class="form-fields">
                     <div class="buttons">
-                        <a   href="@Model.URL#participant-form" id="show-register-button-@Model.NoticeBoardId" class="button-1 register-next-step-button">@Model.ButtonDisplayText</a>
+                        <a href="@Model.URL#participant-form" id="show-register-button-@Model.NoticeBoardId" class="button-1 register-next-step-button">@Model.ButtonDisplayText</a>
                     </div>
                 </div>
             }
@@ -171,3 +171,9 @@
 </div>
 
 
+<script asp-location="Footer">
+    $("#show-register-button-@Model.NoticeBoardId").on("click", function () {
+        console.log('aaaaa')
+        $("#notice-pop-up-landing-" + @Model.NoticeBoardId).dialog('close')
+    });
+</script>

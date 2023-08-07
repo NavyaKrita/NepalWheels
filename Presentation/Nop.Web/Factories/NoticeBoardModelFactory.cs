@@ -46,7 +46,7 @@ namespace Nop.Web.Factories
                     Title = notices.Title,
                     TermAndConditions = notices.TermsAndCondition,
                     ButtonDisplayText = notices.ButtonDisplayText,
-                    BlogId = notices.BlogId,
+                    URL = notices.URL,
                     NoticeField = new()
                     {
                         Name = notices.Name,

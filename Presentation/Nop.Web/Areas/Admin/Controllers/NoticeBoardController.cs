@@ -116,9 +116,10 @@ namespace Nop.Web.Areas.Admin.Controllers
                 model.BikeName = noticeBoard.BikeName;
                 model.CC = noticeBoard.CC;
                 model.ManufacturerId = noticeBoard.ManufacturerId;
-                model.BlogId = noticeBoard.BlogId;
+                model.URL = noticeBoard.URL;
                 model.Products = string.Join(",", noticeBoard.SelectedProductIds);
                 model.ButtonDisplayText = noticeBoard.ButtonDisplayText;
+                model.InURL = noticeBoard.InURL;
                 await _noticeBoardService.InsertNoticeAsync(model);
 
                 //activity log
@@ -187,13 +188,14 @@ namespace Nop.Web.Areas.Admin.Controllers
                 model.Age = noticeBoard.Age;
                 model.Address = noticeBoard.Address;
                 model.City = noticeBoard.City;
-                model.BikeName= noticeBoard.BikeName;
+                model.BikeName = noticeBoard.BikeName;
                 model.CC = noticeBoard.CC;
                 model.ManufacturerId = noticeBoard.ManufacturerId;
-                model.BlogId = noticeBoard.BlogId;
+                model.URL = noticeBoard.URL;
                 model.Products = string.Join(",", noticeBoard.SelectedProductIds);
                 model.ButtonDisplayText = noticeBoard.ButtonDisplayText;
                 model.CreatedOnUtc = System.DateTime.Today;
+                model.InURL = noticeBoard.InURL;
                 await _noticeBoardService.UpdateNoticeAsync(model);
 
 
@@ -251,12 +253,8 @@ namespace Nop.Web.Areas.Admin.Controllers
 
             string browserUrl = HttpContext.Request.Headers["Referer"].ToString();
             var url = browserUrl.Split("/");
-            int blogId = 0;
-            if (url.Length >= 7 && url[4] == "Blog")
-            {
-                blogId = Convert.ToInt32(url[6]);
-            }
-            var model = await _noticeBoardModelFactory.PrepareNoticeModelAsync(blogId);
+
+            var model = await _noticeBoardModelFactory.PrepareNoticeModelAsync(browserUrl);
             model.Module = url[4];
             return View(model);
         }

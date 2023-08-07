@@ -15,7 +15,7 @@ using System.Threading.Tasks;
 
 namespace Nop.Web.Controllers
 {
-    
+
     public partial class ParticipantsController : BasePublicController
     {
         private readonly INoticeBoardService _noticeBoardService;
@@ -39,9 +39,8 @@ namespace Nop.Web.Controllers
         {
 
             var notice = await _noticeBoardModelFactory.PrepareNoticeModelAsync(id);
-            var blog = await _blogService.GetBlogPostByIdAsync(notice.BlogId);
 
-            var blogPostUrl = Url.RouteUrl("BlogPost", new { SeName = await _urlRecordService.GetSeNameAsync(blog, blog.LanguageId, ensureTwoPublishedLanguages: false) }, _webHelper.GetCurrentRequestProtocol());
+
 
             ParticipantsModel model = new()
             {
@@ -52,7 +51,7 @@ namespace Nop.Web.Controllers
                 TermAndConditions = notice.TermAndConditions,
                 ThankYou = notice.ThankYou,
                 ButtonDisplayText = notice.ButtonDisplayText,
-                URL= blogPostUrl,
+                URL = notice.URL,
                 ParticipantField = new()
                 {
                     Name = notice.NoticeField.Name,
@@ -133,7 +132,7 @@ namespace Nop.Web.Controllers
         }
 
         [HttpPost]
-      
+
         /// <returns>A task that represents the asynchronous operation</returns>
         public virtual async Task<IActionResult> RegisterParticipant(ParticipantModel model, IFormCollection form)
         {
@@ -143,13 +142,28 @@ namespace Nop.Web.Controllers
 
             try
             {
-                if (string.IsNullOrEmpty(model.EmailAddress) && string.IsNullOrEmpty(model.Name)
-                    && string.IsNullOrEmpty(model.PhoneNumber) && string.IsNullOrEmpty(model.City)
-                     && string.IsNullOrEmpty(model.BikeName) && string.IsNullOrEmpty(model.Address)
-                    )
-                    return Json(new { success = false });
-                if (string.IsNullOrEmpty(model.PhoneNumber) && !model.PhoneNumber.All(char.IsDigit))
-                    return Json(new { success = false });
+                if (form.ContainsKey("Name") && string.IsNullOrEmpty(model.Name))
+                {
+
+                    return Json(new { success = false, message = "Name is required." });
+
+                }
+                if (form.ContainsKey("EmailAddress") && string.IsNullOrEmpty(model.EmailAddress))
+                {
+                    return Json(new { success = false, message = "EmailAddress is required." });
+                }
+                if (form.ContainsKey("PhoneNumber") && string.IsNullOrEmpty(model.PhoneNumber))
+                {
+
+                    return Json(new { success = false, message = "PhoneNumber is required." });
+                }
+                if (form.ContainsKey("ProductId") && string.IsNullOrEmpty(model.ProductId))
+                {
+                    return Json(new { success = false, message = "product is required." });
+                }
+
+                if (!string.IsNullOrEmpty(model.PhoneNumber) && model.PhoneNumber.All(char.IsDigit))
+                    return Json(new { success = false, message = "Invalid phone." });
 
                 NoticeBoardDetail detail = new()
                 {
@@ -162,7 +176,6 @@ namespace Nop.Web.Controllers
                     Address = model.Address,
                     Age = model.Age is null ? 0 : !model.Age.All(char.IsDigit) ? 0 : Convert.ToInt32(model.Age),
                     CC = model.CC,
-                    Category = model.Module,
                     ManufacturerId = model.ManufacturerId,
                     Products = model.ProductId,
 

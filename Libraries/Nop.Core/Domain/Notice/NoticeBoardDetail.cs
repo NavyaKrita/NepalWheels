@@ -22,7 +22,6 @@ namespace Nop.Core.Domain.Notice
         public DateTime CreatedOnUtc { get; set; }
 
         public string Notice { get; set; }
-        public string Category { get; set; }
         public string LeadGenerate { get; set; }
 
         public string Products { get; set; }
