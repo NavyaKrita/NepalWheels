@@ -9,73 +9,73 @@
     Html.AppendPageCssClassParts("html-registration-page");
 }
 
-<div class="page-body" id="participant-form">
+@*<div class="page-body" id="participant-form">
+    <form asp-controller="Participants" asp-action="RegisterParticipant" asp-area="" method="post" autocomplete="off" id="register-participants-form-submit">
 
-    <form asp-controller="Participants" asp-action="RegisterParticipant" asp-area="" method="post" autocomplete="off" id="register-participants-form-submit">     
-        <div asp-validation-summary="ModelOnly" class="message-error"></div>
-        <div class="fieldset">
-            <div class="title">
-                <strong>@T("Account.YourPersonalDetails")</strong>
-            </div>
-            <div class="form-fields">
-
-                <input asp-for="Module" type="hidden" />
-                <input asp-for="ManufacturerId" type="hidden" />
-
-                <div class="inputs">
-                    <label asp-for="Name" asp-postfix=":"></label>
-                    <nop-editor asp-for="Name" asp-required="true" />
-                   
-                    <span asp-validation-for="Name"></span>
+            <div asp-validation-summary="ModelOnly" class="message-error"></div>
+            <div class="fieldset">
+                <div class="title">
+                    <strong>@T("Account.YourPersonalDetails")</strong>
                 </div>
+                <div class="form-fields">
 
-                <div class="inputs">
-                    <label asp-for="Age" asp-postfix=":"></label>
-                    <input asp-for="Age" type="text" required="true" />
-                    <nop-required />
-                    <span asp-validation-for="Age"></span>
+                    <input asp-for="Module" type="hidden" />
+                    <input asp-for="ManufacturerId" type="hidden" />
+
+                    <div class="inputs">
+                        <label asp-for="Name" asp-postfix=":"></label>
+                        <nop-editor asp-for="Name" asp-required="true" />
+
+                        <span asp-validation-for="Name"></span>
+                    </div>
+
+                    <div class="inputs">
+                        <label asp-for="Age" asp-postfix=":"></label>
+                        <input asp-for="Age" type="text" required="true" />
+                        <nop-required />
+                        <span asp-validation-for="Age"></span>
+                    </div>
+
+
+                    <div class="inputs">
+                        <label asp-for="EmailAddress" asp-postfix=":"></label>
+                        <nop-editor asp-for="EmailAddress" asp-required="true" />
+                        <span asp-validation-for="EmailAddress"></span>
+                    </div>
+
+
+
+                    <div class="inputs">
+                        <label asp-for="PhoneNumber" asp-postfix=":"></label>
+                        <nop-editor asp-for="PhoneNumber" asp-required="true" />
+                        <span asp-validation-for="PhoneNumber"></span>
+                    </div>
+
+
+                    <div class="inputs">
+                        <label asp-for="Address" asp-postfix=":"></label>
+                        <nop-editor asp-for="Address" asp-required="true" />
+                        <span asp-validation-for="Address"></span>
+                    </div>
+
+
+
+                    <div class="inputs">
+                        <label asp-for="City" asp-postfix=":"></label>
+                        <nop-editor asp-for="City" asp-required="true" />
+
+
+                        <span asp-validation-for="City"></span>
+                    </div>
+                    <div class="inputs">
+                        <label asp-for="Products" asp-postfix=":"></label>
+                        <nop-select asp-for="ProductId" asp-items="Model.Products" asp-required="true" />
+                        <span asp-validation-for="ProductId"></span>
+                    </div>
+
                 </div>
-
-
-                <div class="inputs">
-                    <label asp-for="EmailAddress" asp-postfix=":"></label>
-                    <nop-editor asp-for="EmailAddress" asp-required="true" />
-                    <span asp-validation-for="EmailAddress"></span>
-                </div>
-
-
-
-                <div class="inputs">
-                    <label asp-for="PhoneNumber" asp-postfix=":"></label>
-                    <nop-editor asp-for="PhoneNumber" asp-required="true" />
-                    <span asp-validation-for="PhoneNumber"></span>
-                </div>
-
-
-                <div class="inputs">
-                    <label asp-for="Address" asp-postfix=":"></label>
-                    <nop-editor asp-for="Address" asp-required="true" />
-                    <span asp-validation-for="Address"></span>
-                </div>
-
-
-
-                <div class="inputs">
-                    <label asp-for="City" asp-postfix=":"></label>
-                    <nop-editor asp-for="City" asp-required="true" />
-
-
-                    <span asp-validation-for="City"></span>
-                </div>
-                <div class="inputs">
-                    <label asp-for="Products" asp-postfix=":"></label>
-                    <nop-select asp-for="ProductId" asp-items="Model.Products" asp-required="true" />
-                    <span asp-validation-for="ProductId"></span>
-                </div>
-
-            </div>
-            <div class="buttons">
-                <button type="button" name="register-button" id="@formGuid" class="button-register-participants" style=" padding: 15px 35px;
+                <div class="buttons">
+                    <button type="button" name="register-button" id="@formGuid" class="button-register-participants" style=" padding: 15px 35px;
         border: none;
         background: #f3cc2e;
         letter-spacing: 2px;
@@ -83,16 +83,81 @@
         color: #323232;
         -webkit-transition: all 0.2s ease-in-out;
         transition: all 0.2s ease-in-out;">
-                    @T("Account.Register.Button")
-                </button>
+                        @T("Account.Register.Button")
+                    </button>
+                </div>
             </div>
+        </form>
+
+        <div id="thank-you-page-load" style="display:none">
+            Thank you for registering with us!
         </div>
-    </form>
+</div>*@
 
-    <div id="thank-you-page-load" style="display:none">
-        Thank you for registering with us!
-    </div>
+<div class="page-body" id="participant-form">
+        <form asp-controller="Participants" asp-action="RegisterParticipant" asp-area="" method="post" autocomplete="off" id="register-participants-form-submit">
+            <div asp-validation-summary="ModelOnly" class="message-error"></div>
+            <div>
+                <div style="text-align: center; padding-top:5px; padding-bottom:1%;box-sizing: border-box; border: 1px solid #808080">
+                    <strong>Enter your title here</strong>
+                </div>
+                <div style="display: flex; box-sizing: border-box; border: 1px solid #808080">
+                    <div style="flex: 50%; padding: 10px;">
+                        Insert pic/video here !!
+                    </div>
+                    <div style="flex: 50%;padding: 10px;">
+                        <input asp-for="Module" type="hidden" />
+                        <input asp-for="ManufacturerId" type="hidden" />
+                        <div style="padding-bottom: 2px">
+                            @*<label asp-for="Name" style="font-weight:400">Name</label>*@
+                            <input asp-for="Name" required="true" placeholder="Enter your full name" style="width: 100%;height: 40px;padding: 12px 20px;box-sizing: border-box; border: 1px solid #808080;background: white;" /><span asp-validation-for="Name"></span>
+                        </div>
+                        <!--<div style="padding-bottom: 2px">-->
+                            @*<label asp-for="Age" style="font-weight:400">Age</label>*@
+                            <!--<input asp-for="Age" required="true" placeholder="Enter your age" style="width: 100%;height: 40px;padding: 12px 20px;box-sizing: border-box; border: 1px solid #808080;background: white;" /><span asp-validation-for="Age"></span>
+                        </div>-->
+                        <div style="padding-bottom: 2px">
+                            @*<label asp-for="EmailAddress" style="font-weight:400">Email</label>*@
+                            <input asp-for="EmailAddress" required="true" placeholder="Enter your valid email address" style="width: 100%;height: 40px;padding: 12px 20px; box-sizing: border-box; border: 1px solid #808080;background: white;" /><span asp-validation-for="EmailAddress"></span>
+                        </div>
+                        <div style="padding-bottom: 2px">
+                            @*<label asp-for="PhoneNumber" style="font-weight:400">Mobile</label>*@
+                            <input asp-for="PhoneNumber" required="true" placeholder="Enter your contact number" style="width: 100%;height: 40px;padding: 12px 20px; box-sizing: border-box; border: 1px solid #808080;background: white;" /><span asp-validation-for="PhoneNumber"></span>
+                        </div>
+                        <div style="padding-bottom: 2px">
+                            @*<label asp-for="Address" style="font-weight:400">Address</label>*@
+                            <input asp-for="Address" required="true" placeholder="Enter your current address" style="width: 100%;height:40px;padding: 12px 20px; box-sizing: border-box; border: 1px solid #808080;background: white;" /><span asp-validation-for="Address"></span>
+                        </div>
+                        <!--<div style="padding-bottom: 2px">-->
+                            @*<label asp-for="City" style="font-weight:400">City</label>*@
+                            <!--<input asp-for="City" required="true" placeholder="Enter your city you are currently living in" style="width: 100%;height:40px;padding: 12px 20px; box-sizing: border-box; border: 1px solid #808080;background: white;" /><span asp-validation-for="City"></span>
+                        </div>-->
+                        <!--<div style="padding-bottom: 2px">-->
+                            @*<label asp-for="BikeName" style="font-weight:400">Current Bike</label>*@
+                            <!--<input asp-for="BikeName" required="true" placeholder="Your current Bike" style="width: 100%;height:40px;padding: 12px 20px; box-sizing: border-box; border: 1px solid #808080;background: white;" /><span asp-validation-for="BikeName"></span>
+                        </div>
+                        <div style="padding-bottom: 2px">-->
+                            @*<label asp-for="CC" style="font-weight:400">Bike CC</label>*@
+                            <!--<input asp-for="CC" placeholder="Your bike CC" style="width: 100%;height:40px;padding: 12px 20px; box-sizing: border-box; border: 1px solid #808080;background: white;" />
+                        </div>-->
+                    <div style="padding-bottom: 2px">
+                        @*<label asp-for="Products" asp-postfix=":"></label>*@
+                        <nop-select asp-for="ProductId" asp-items="Model.Products" required="true" style="width: 100%;height:40px;padding: 12px 20px; box-sizing: border-box; border: 1px solid #808080;background: white;" />
+                        @*<span asp-validation-for="ProductId"></span>*@
+                    </div>
+                        <div style="padding-top:10px;text-align: center;flex:none !important">
+                            <button type="button" name="register-button" id="@formGuid" class="button-register-participants" style=" padding: 15px 35px;border: none;
+                            background: #f3cc2e;letter-spacing: 2px; text-transform: uppercase; color: #323232; -webkit-transition: all 0.2s ease-in-out; transition: all 0.2s ease-in-out;">
+                                @T("Account.Register.Button")
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <div id="thank-you-page-load-@formGuid" style="display:none;text-align: center">
+            Thank you for registering with us!
+        </div>
 </div>
-
 
 

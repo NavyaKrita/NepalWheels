@@ -182,7 +182,7 @@ namespace Nop.Web.Areas.Admin.Factories
                 var products = await _productService.GetProductsByIdsAsync(productIds);
                 var productsList = new List<SelectListItem>();
                 //clone the list to ensure that "selected" property is not set
-                productsList.Add(new SelectListItem { Text = "", Value = "" });
+                productsList.Add(new SelectListItem { Text = "Choose your Option", Value = "0" });
                 foreach (var item in products)
                 {
                     productsList.Add(new SelectListItem
