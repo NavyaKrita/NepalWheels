@@ -521,16 +521,17 @@ body:after {
 	text-align: left;
     font-size: 15px; /*reset zeroing*/
 }
-.inputs input[type="text"],
-.inputs input[type="password"],
-.inputs input[type="email"],
-.inputs input[type="tel"],
-.inputs select, .inputs textarea {
-	width: 100%;
-	max-width: 100%;
-    vertical-align: middle;
-    text-transform: none;
-}
+    .inputs input[type="text"],
+    .inputs input[type="password"],
+    .inputs input[type="email"],
+    .inputs input[type="tel"],
+    .inputs select, .inputs textarea {
+        width: 100%;
+        max-width: 100%;
+        vertical-align: middle;
+        text-transform: none;
+        background: #F0F0F0;
+    }
 
 .inputs .option-list {
     overflow: hidden;
@@ -1771,7 +1772,7 @@ body:after {
     color:#fff;
 }
 .light-theme .social-sharing a {
-    background: #fff;
+    /*background: #fff;*/
     border-color: #b2b2b2;
 }
 .social-sharing a:before {
