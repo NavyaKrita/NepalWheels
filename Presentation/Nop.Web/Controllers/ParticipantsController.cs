@@ -162,8 +162,8 @@ namespace Nop.Web.Controllers
                     return Json(new { success = false, message = "product is required." });
                 }
 
-                if (!string.IsNullOrEmpty(model.PhoneNumber) && model.PhoneNumber.All(char.IsDigit))
-                    return Json(new { success = false, message = "Invalid phone." });
+                //if (!string.IsNullOrEmpty(model.PhoneNumber) && model.PhoneNumber.All(char.IsDigit))
+                //    return Json(new { success = false, message = "Invalid phone." });
 
                 NoticeBoardDetail detail = new()
                 {
