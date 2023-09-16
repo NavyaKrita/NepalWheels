@@ -18,30 +18,34 @@ namespace Nop.Core.Domain.Notice
         public DateTime PublishedFrom { get; set; }
 
         public DateTime PublishedTo { get; set; }
-        public bool DisplayForm { get; set; }
 
-        public string URL { get; set; }
         public string Products { get; set; }
         public int ManufacturerId { get; set; }
         public string ThankYou { get; set; }
         public string TermsAndCondition { get; set; }
         public DateTime CreatedOnUtc { get; set; }
         public bool Name { get; set; }
-       
+
         public bool PhoneNumber { get; set; }
-        
+
         public bool EmailAddress { get; set; }
-      
+
         public bool Age { get; set; }
-      
+
         public bool Address { get; set; }
-       
+
         public bool City { get; set; }
         public bool BikeName { get; set; }
 
         public bool CC { get; set; }
+
+        public FormPopUpType? FormPopUpType { get; set; }
+        public bool DisplayPopUpInSamePage { get; set; }
+        public bool OpenFormInPopUp { get; set; }
+        public string RedirectionURL { get; set; }
         public string ButtonDisplayText { get; set; }
         public string InURL { get; set; }
-
+        public string RelatedPageURL { get; set; }
+        public string Timer { get; set; }
     }
 }

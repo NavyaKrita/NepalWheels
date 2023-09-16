@@ -95,31 +95,38 @@ namespace Nop.Web.Areas.Admin.Controllers
 
             //parse  attributes
 
-            NoticeBoard model = new();
+
             if (ModelState.IsValid)
             {
-                model.Id = noticeBoard.Id;
-                model.Title = noticeBoard.Title;
-                model.Notice = noticeBoard.Notice;
-                model.DisplayForm = noticeBoard.DisplayForm;
-                model.PublishedFrom = noticeBoard.PublishedFrom;
-                model.PublishedTo = noticeBoard.PublishedTo;
-                model.CreatedOnUtc = System.DateTime.Today;
-                model.ThankYou = noticeBoard.ThankYou;
-                model.TermsAndCondition = noticeBoard.TermsAndCondition;
-                model.Name = noticeBoard.Name;
-                model.PhoneNumber = noticeBoard.PhoneNumber;
-                model.EmailAddress = noticeBoard.EmailAddress;
-                model.Age = noticeBoard.Age;
-                model.Address = noticeBoard.Address;
-                model.City = noticeBoard.City;
-                model.BikeName = noticeBoard.BikeName;
-                model.CC = noticeBoard.CC;
-                model.ManufacturerId = noticeBoard.ManufacturerId;
-                model.URL = noticeBoard.URL;
-                model.Products = string.Join(",", noticeBoard.SelectedProductIds);
-                model.ButtonDisplayText = noticeBoard.ButtonDisplayText;
-                model.InURL = noticeBoard.InURL;
+                NoticeBoard model = new()
+                {
+                    Id = noticeBoard.Id,
+                    Title = noticeBoard.Title,
+                    Notice = noticeBoard.Notice,
+                    OpenFormInPopUp = noticeBoard.OpenFormInPopUp,
+                    PublishedFrom = noticeBoard.PublishedFrom,
+                    PublishedTo = noticeBoard.PublishedTo,
+                    CreatedOnUtc = System.DateTime.Today,
+                    ThankYou = noticeBoard.ThankYou,
+                    TermsAndCondition = noticeBoard.TermsAndCondition,
+                    Name = noticeBoard.Name,
+                    PhoneNumber = noticeBoard.PhoneNumber,
+                    EmailAddress = noticeBoard.EmailAddress,
+                    Age = noticeBoard.Age,
+                    Address = noticeBoard.Address,
+                    City = noticeBoard.City,
+                    BikeName = noticeBoard.BikeName,
+                    CC = noticeBoard.CC,
+                    ManufacturerId = noticeBoard.ManufacturerId,
+                    RelatedPageURL = noticeBoard.RelatedPageURL,
+                    Products = string.Join(",", noticeBoard.SelectedProductIds),
+                    ButtonDisplayText = noticeBoard.ButtonDisplayText,
+                    InURL = noticeBoard.InURL,
+                    DisplayPopUpInSamePage = noticeBoard.DisplayPopUpInSamePage,
+                    FormPopUpType = (FormPopUpType)noticeBoard.FormPopUpType,
+                    RedirectionURL = noticeBoard.RedirectionURL,
+                    Timer = noticeBoard.Timer
+                };
                 await _noticeBoardService.InsertNoticeAsync(model);
 
                 //activity log
@@ -170,14 +177,14 @@ namespace Nop.Web.Areas.Admin.Controllers
             NoticeBoard model = await _noticeBoardService.GetNoticeByIdAsync(noticeBoard.Id);
             if (model == null)
                 return RedirectToAction("List");
-            model = new();
+
             if (ModelState.IsValid)
             {
 
                 model.Id = noticeBoard.Id;
                 model.Title = noticeBoard.Title;
                 model.Notice = noticeBoard.Notice;
-                model.DisplayForm = noticeBoard.DisplayForm;
+                model.OpenFormInPopUp = noticeBoard.OpenFormInPopUp;
                 model.PublishedFrom = noticeBoard.PublishedFrom;
                 model.PublishedTo = noticeBoard.PublishedTo;
                 model.ThankYou = noticeBoard.ThankYou;
@@ -191,11 +198,15 @@ namespace Nop.Web.Areas.Admin.Controllers
                 model.BikeName = noticeBoard.BikeName;
                 model.CC = noticeBoard.CC;
                 model.ManufacturerId = noticeBoard.ManufacturerId;
-                model.URL = noticeBoard.URL;
+                model.RedirectionURL = noticeBoard.RedirectionURL;
                 model.Products = string.Join(",", noticeBoard.SelectedProductIds);
                 model.ButtonDisplayText = noticeBoard.ButtonDisplayText;
                 model.CreatedOnUtc = System.DateTime.Today;
                 model.InURL = noticeBoard.InURL;
+                model.DisplayPopUpInSamePage = noticeBoard.DisplayPopUpInSamePage;
+                model.FormPopUpType = (FormPopUpType)noticeBoard.FormPopUpType;
+                model.RedirectionURL = noticeBoard.RedirectionURL;
+                model.Timer = noticeBoard.Timer;
                 await _noticeBoardService.UpdateNoticeAsync(model);
 
 

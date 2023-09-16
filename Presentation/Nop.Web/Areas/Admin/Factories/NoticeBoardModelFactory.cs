@@ -6,6 +6,7 @@ using Nop.Services.Notice;
 using Nop.Web.Areas.Admin.Infrastructure.Mapper.Extensions;
 using Nop.Web.Areas.Admin.Models;
 using Nop.Web.Areas.Admin.Models.Notice;
+using Nop.Web.Extensions;
 using Nop.Web.Framework.Models.Extensions;
 using System;
 using System.Collections.Generic;
@@ -49,12 +50,13 @@ namespace Nop.Web.Areas.Admin.Factories
                     {
                         Id = notice.Id,
                         Notice = notice.Notice,
-                        DisplayForm = notice.DisplayForm,
+                        OpenFormInPopUp = notice.DisplayPopUpInSamePage,
                         PublishedTo = notice.PublishedTo,
                         PublishedFrom = notice.PublishedFrom,
                         ThankYou = notice.ThankYou,
                         Title = notice.Title,
                         TermsAndCondition = notice.TermsAndCondition,
+
                     };
                     return noticeModel;
                 });
@@ -84,10 +86,11 @@ namespace Nop.Web.Areas.Admin.Factories
                 {
                     model = new CreateNoticeBoardModel();
 
+
                     model.Id = noticeBoard.Id;
                     model.Title = noticeBoard.Title;
                     model.Notice = noticeBoard.Notice;
-                    model.DisplayForm = noticeBoard.DisplayForm;
+                    model.OpenFormInPopUp = noticeBoard.DisplayPopUpInSamePage;
                     model.PublishedFrom = noticeBoard.PublishedFrom;
                     model.PublishedTo = noticeBoard.PublishedTo;
                     model.ThankYou = noticeBoard.ThankYou;
@@ -99,25 +102,37 @@ namespace Nop.Web.Areas.Admin.Factories
                     model.City = noticeBoard.City;
                     model.TermsAndCondition = noticeBoard.TermsAndCondition;
                     model.ManufacturerId = noticeBoard.ManufacturerId;
-                    model.URL = noticeBoard.URL;
+                    model.RedirectionURL = noticeBoard.RedirectionURL;
                     model.BikeName = noticeBoard.BikeName;
                     model.CC = noticeBoard.CC;
                     model.SelectedProductIds = noticeBoard.Products.Split(',').Select(x => int.Parse(x.Trim())).ToList();
                     model.Products = await GetManufacturerFeaturedProductsAsync(model.ManufacturerId);
                     model.ButtonDisplayText = noticeBoard.ButtonDisplayText;
                     model.InURL = noticeBoard.InURL;
+                    model.FormPopUpType = noticeBoard.FormPopUpType != null ? (int)noticeBoard.FormPopUpType : 1;
+                    model.DisplayPopUpInSamePage = noticeBoard.DisplayPopUpInSamePage;
+                    model.RelatedPageURL = noticeBoard.RelatedPageURL;
+                    model.Timer = noticeBoard.Timer;
+
                 }
+
             }
             var manufacturers = await _manufacturerService.GetAllManufacturersAsync();
-
 
             model.Manufacturers = manufacturers.Select(item => new SelectListItem
             {
                 Text = item.Name,
                 Value = item.Id.ToString(),
-                Selected = model.SelectedProductIds.Contains(item.Id)
+                Selected = model.SelectedProductIds != null ? model.SelectedProductIds.Contains(item.Id) : false
+            }).ToList();
+
+            model.FormPopUpTypes = Enum.GetValues(typeof(FormPopUpType)).Cast<FormPopUpType>().Select(v => new SelectListItem
+            {
+                Text = v.GetDescription(),
+                Value = ((int)v).ToString()
             }).ToList();
             return model;
+
         }
 
         public Task<NoticeBoardDetailSearchModel> PrepareParticipantsSearchModelAsync(NoticeBoardDetailSearchModel searchModel)

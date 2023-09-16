@@ -74,7 +74,7 @@
                                             enable: false,
                                             placeholder: 'products',
                                             filter: "contains",
-                                            
+
                                         });
                                         categoryIdsInput._placeholder();
                                         categoryIdsInput._enable();
@@ -123,6 +123,7 @@
                                 <span asp-validation-for="SelectedProductIds"></span>
                             </div>
                         </div>
+
                         <div class="form-group row">
                             <div class="col-md-3">
                                 <nop-label asp-for="InURL" />
@@ -132,22 +133,124 @@
                                 <span asp-validation-for="InURL"></span>
                             </div>
                         </div>
-                        <div class="form-group row">
+
+                        <div class="form-group row form-type-popup">
                             <div class="col-md-3">
-                                <nop-label asp-for="URL" />
+                                <nop-label asp-for="FormPopUpType" />
                             </div>
                             <div class="col-md-9">
-                                <nop-editor asp-for="URL" asp-required="true" />
-                                <span asp-validation-for="URL"></span>
+                                <nop-select asp-for="FormPopUpType" asp-items="Model.FormPopUpTypes" asp-required="true" />
+                                <span asp-validation-for="FormPopUpType"></span>
                             </div>
+                            <script asp-location="Footer">
+                                $(document).ready(function () {
+                                    $("#related-page-url").hide();
+
+                                    // Attach a change event handler to the dropdown
+                                    $("#FormPopUpType").change(function () {
+                                        var selectedValue = $(this).val();
+                                        console.log(selectedValue);
+                                        if (selectedValue === "1") {
+                                            // Value 1 is selected, hide the second div
+                                            $("#related-page-url").hide();
+                                        } else {
+                                            // Value other than 1 is selected, show the second div
+                                            $("#related-page-url").show();
+                                        }
+                                });
+                                });
+
+                            </script>
+                        </div>
+                        <div class="form-group row" id="related-page-url">
+                            <div class="col-md-3">
+                                <nop-label asp-for="RelatedPageURL" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="RelatedPageURL" />
+                                <span asp-validation-for="RelatedPageURL"></span>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-label asp-for="DisplayPopUpInSamePage" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="DisplayPopUpInSamePage" />
+                                <span asp-validation-for="DisplayPopUpInSamePage"></span>
+                            </div>
+                            <script asp-location="Footer">
+                            
+                                    $("#timer-field").hide();
+                                   
+                                    // Attach a click event handler to the checkbox
+                                    $("#DisplayPopUpInSamePage").click(function () {
+                                        if ($(this).is(":checked")) {
+                                            // Checkbox is checked, show the second div
+                                            $("#timer-field").show();
+                                          
+                                        } else {
+                                            // Checkbox is unchecked, hide the second div
+                                            $("#timer-field").hide();
+                                            $("#Timer").val("");
+
+                                        }
+                                    });
+                             
+
+
+                            </script>
                         </div>
                         <div class="form-group row">
                             <div class="col-md-3">
-                                <nop-label asp-for="DisplayForm" />
+                                <nop-label asp-for="OpenFormInPopUp" />
                             </div>
                             <div class="col-md-9">
-                                <nop-editor asp-for="DisplayForm" />
-                                <span asp-validation-for="DisplayForm"></span>
+                                <nop-editor asp-for="OpenFormInPopUp" />
+                                <span asp-validation-for="OpenFormInPopUp"></span>
+                            </div>
+                            <script asp-location="Footer">
+                                $(document).ready(function () {
+                                    $("#field-redirect-url").show();
+                                    $("#field-ButtonDisplayText").show();
+                                    // Attach a click event handler to the checkbox
+                                    $("#OpenFormInPopUp").click(function () {
+                                        if ($(this).is(":checked")) {
+                                            // Checkbox is checked, show the second div
+                                            $("#field-redirect-url").hide();
+                                            $("#RedirectionURL").val("");
+                                            $("#field-ButtonDisplayText").hide();
+                                        } else {
+                                            // Checkbox is unchecked, hide the second div
+                                            $("#field-redirect-url").show();
+                                            $("#field-ButtonDisplayText").show();
+
+                                        }
+                                    });
+                                });
+
+
+                            </script>
+                        </div>
+
+                        <div class="form-group row" id="field-redirect-url">
+                            <div class="col-md-3">
+                                <nop-label asp-for="RedirectionURL" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="RedirectionURL" asp-required="true" />
+                                <span asp-validation-for="RedirectionURL"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row" id="field-ButtonDisplayText">
+                            <div class="col-md-3">
+                                <nop-label asp-for="ButtonDisplayText" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="ButtonDisplayText" asp-required="true" />
+                                <span asp-validation-for="ButtonDisplayText"></span>
                             </div>
                         </div>
                         <div class="form-group row">
@@ -169,16 +272,19 @@
                                 <span asp-validation-for="PublishedTo"></span>
                             </div>
                         </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="col-md-3">
-                            <nop-label asp-for="ButtonDisplayText" />
+
+
+                        <div class="form-group row" id="timer-field">
+                            <div class="col-md-3">
+                                <nop-label asp-for="Timer" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="Timer" asp-required="true" />
+                                <span asp-validation-for="Timer"></span>
+                            </div>
                         </div>
-                        <div class="col-md-9">
-                            <nop-editor asp-for="ButtonDisplayText" asp-required="true" />
-                            <span asp-validation-for="ButtonDisplayText"></span>
-                        </div>
                     </div>
+                    
                     <div class="card-body">
                         <div class="form-group row">
                             <div class="col-md-3">

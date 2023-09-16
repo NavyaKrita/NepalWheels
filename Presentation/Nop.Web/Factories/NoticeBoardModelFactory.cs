@@ -39,14 +39,14 @@ namespace Nop.Web.Factories
                 {
                     Id = notices.Id,
                     Notice = notices.Notice,
-                    DisplayForm = notices.DisplayForm,
+                    DisplayForm = notices.OpenFormInPopUp,
                     PublishedTo = notices.PublishedTo,
                     PublishedFrom = notices.PublishedFrom,
                     ThankYou = notices.ThankYou,
                     Title = notices.Title,
                     TermAndConditions = notices.TermsAndCondition,
                     ButtonDisplayText = notices.ButtonDisplayText,
-                    URL = notices.URL,
+                    URL = notices.RedirectionURL,
                     NoticeField = new()
                     {
                         Name = notices.Name,

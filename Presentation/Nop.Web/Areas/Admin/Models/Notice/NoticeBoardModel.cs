@@ -1,4 +1,5 @@
 ﻿
+using Nop.Core.Domain.Notice;
 using Nop.Web.Framework.Models;
 using Nop.Web.Framework.Mvc.ModelBinding;
 using System;
@@ -34,8 +35,8 @@ namespace Nop.Web.Areas.Admin.Models.Notice
         [NopResourceDisplayName("Admin.NoticeBoard.Fields.PublishedTo")]
         public DateTime PublishedTo { get; set; }
 
-        [NopResourceDisplayName("Admin.NoticeBoard.Fields.DisplayForm")]
-        public bool DisplayForm { get; set; }
+        [NopResourceDisplayName("Admin.NoticeBoard.Fields.OpenFormInPopUp")]
+        public bool OpenFormInPopUp { get; set; }
 
         [NopResourceDisplayName("Admin.NoticeBoard.Fields.ThankYou")]
         public string ThankYou { get; set; }
@@ -58,7 +59,6 @@ namespace Nop.Web.Areas.Admin.Models.Notice
         [NopResourceDisplayName("Admin.NoticeBoard.Fields.CC")]
         public bool CC { get; set; }
 
-
         [NopResourceDisplayName("Admin.NoticeBoard.Fields.Manufacturer")]
              
         public int ManufacturerId { get; set; }
@@ -68,13 +68,20 @@ namespace Nop.Web.Areas.Admin.Models.Notice
 
         [NopResourceDisplayName("Admin.NoticeBoard.Fields.DisplayURL")]
 
-        public string URL { get; set; }
+        public string RedirectionURL { get; set; }
 
         [NopResourceDisplayName("Admin.NoticeBoard.Fields.ButtonText")]
         public string ButtonDisplayText { get; set; }
         [NopResourceDisplayName("Admin.NoticeBoard.Fields.AdminInsertPageURL")]
-
         public string InURL { get; set; }
+        [NopResourceDisplayName("Admin.NoticeBoard.Fields.PopUpType")]
+        public int FormPopUpType { get; set; }
+        [NopResourceDisplayName("Admin.NoticeBoard.Fields.DisplayPopUpInSamePage")]
+        public bool DisplayPopUpInSamePage { get; set; }   
+        [NopResourceDisplayName("Admin.NoticeBoard.Fields.RelatedPageURL")]
+        public string RelatedPageURL { get; set; }
+        [NopResourceDisplayName("Admin.NoticeBoard.Fields.Timer")]
+        public string Timer { get; set; }
         #endregion
     }
 

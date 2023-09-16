@@ -11,6 +11,7 @@ namespace Nop.Web.Areas.Admin.Models.Notice
    
         public IList<SelectListItem> Manufacturers { get; set; }
         public IEnumerable<SelectListItem> Products { get; set; } = new List<SelectListItem>();
-      
+        public IList<SelectListItem> FormPopUpTypes { get; set; }
+
     }
 }
