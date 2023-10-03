@@ -19,8 +19,11 @@ namespace Nop.Services.Notice
         Task<IPagedList<NoticeBoardDetail>> GetAllParticipatesAsync(string lead,string leadGeneratedFrom, DateTime ?startDate,
             DateTime? endDate, int pageIndex = 0, int pageSize = int.MaxValue);
         Task InsertNoticeParticipatesAsync(NoticeBoardDetail notice);
-        Task<IEnumerable<NoticeBoard>> GetNoticeByPublishedDateAsync();
+        Task<IEnumerable<NoticeBoard>> GetNoticeByPublishedDateAsync(string url);
 
         Task<NoticeBoard> GetNoticeByBlogIdAsync(string inUrl);
+        Task<IEnumerable<NoticeBoard>> GetHomePageNoticeByPublishedDateAsync();
+
+        Task<NoticeBoard> GetNoticeByIntervalAsync(string url);
     }
 }

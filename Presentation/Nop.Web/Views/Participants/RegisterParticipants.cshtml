@@ -12,9 +12,10 @@
 
     <div class="page-body">
         <div id="notice-page-load-@Model.NoticeBoardId">
-            @Html.Raw(Model.Notice)
+            @if (!Model.DisplayPopUpInSamePage)
+            {@Html.Raw(Model.Notice)}
 
-            @if (Model.IsDisplayForm)
+            @if (Model.DisplayPopUpInSamePage)
             {
                 <div class="form-fields">
                     <div class="buttons">
@@ -22,30 +23,17 @@
                     </div>
                 </div>
             }
-            else
+            else if (!string.IsNullOrEmpty(Model.RedirectionURL))
             {
                 <div class="form-fields">
                     <div class="buttons">
-                        <a href="@Model.URL#participant-form" id="show-register-button-@Model.NoticeBoardId" class="button-1 register-next-step-button">@Model.ButtonDisplayText</a>
+                        <a href="@Model.RedirectionURL#participant-form" id="show-register-button-@Model.NoticeBoardId" class="button-1 register-next-step-button">@Model.ButtonDisplayText</a>
                     </div>
                 </div>
             }
 
         </div>
-        @if (!string.IsNullOrEmpty(Model.TermAndConditions) && Model.IsDisplayForm)
-        {
-            <div id="term-and-conditions-page-load-@Model.NoticeBoardId" style="display:none" data-termAndConditions="true">
 
-                @Html.Raw(Model.TermAndConditions)
-                <div class="form-fields">
-                    <div class="buttons">
-                        I Agree   <input asp-for="Agree" type="checkbox" required="true" class="term-and-conditions-id-@Model.NoticeBoardId" />
-                        <nop-required />
-                        <span asp-validation-for="Agree"></span>
-                    </div>
-                </div>
-            </div>
-        }
         @if (!string.IsNullOrEmpty(Model.ThankYou))
         {
             <div id="thank-you-page-load-@Model.NoticeBoardId" style="display:none" data-thankYou="true">
@@ -53,7 +41,7 @@
             </div>
         }
 
-        @if (Model.IsDisplayForm)
+        @if (Model.DisplayPopUpInSamePage)
         {
             <div id="resgister-participants-form-@Model.NoticeBoardId">
                 <form asp-route="RegisterParticipants" method="post" autocomplete="off" id="register-participants-form-submit-@Model.NoticeBoardId">
@@ -173,7 +161,6 @@
 
 <script asp-location="Footer">
     $("#show-register-button-@Model.NoticeBoardId").on("click", function () {
-        console.log('aaaaa')
         $("#notice-pop-up-landing-" + @Model.NoticeBoardId).dialog('close')
     });
 </script>

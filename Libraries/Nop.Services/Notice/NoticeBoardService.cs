@@ -40,7 +40,7 @@ namespace Nop.Services.Notice
             if (!string.IsNullOrEmpty(lead))
             {
                 query = query.Where(c => c.LeadGenerate.Contains(lead));
-            }            
+            }
             if ((startDate != null && endDate != null) && (startDate <= endDate))
             {
                 query = query.Where(a => a.CreatedOnUtc.Date >= startDate && a.CreatedOnUtc.Date <= endDate);
@@ -63,12 +63,14 @@ namespace Nop.Services.Notice
             return await _noticeBoardRepository.GetByIdAsync(noticeId);
         }
 
-        public virtual async Task<IEnumerable<NoticeBoard>> GetNoticeByPublishedDateAsync()
+        public virtual async Task<IEnumerable<NoticeBoard>> GetNoticeByPublishedDateAsync(string url)
         {
             DateTime today = DateTime.Now.Date;
             var query = _noticeBoardRepository.Table;
-
-            query = query.Where(c => c.PublishedFrom <= today && c.PublishedTo >= today).OrderBy(t => t.PublishedFrom);
+            List<int> ids = new List<int> { 2, 3 };
+            query = query.Where(x => ids.Contains(x.FormPopUpType.Value));
+            query = query.Where(c => c.PublishedFrom <= today && c.PublishedTo >= today
+                     ).OrderBy(t => t.PublishedFrom);
             return await query.ToListAsync();
         }
 
@@ -85,6 +87,24 @@ namespace Nop.Services.Notice
         public virtual async Task UpdateNoticeAsync(NoticeBoard notice)
         {
             await _noticeBoardRepository.UpdateAsync(notice);
+        }
+
+        public virtual async Task<IEnumerable<NoticeBoard>> GetHomePageNoticeByPublishedDateAsync()
+        {
+            DateTime today = DateTime.Now.Date;
+            var query = _noticeBoardRepository.Table;
+
+            query = query.Where(c => c.PublishedFrom <= today && c.PublishedTo >= today && c.FormPopUpType == 1).OrderBy(t => t.PublishedFrom);
+            return await query.ToListAsync();
+        }
+
+        public async Task<NoticeBoard> GetNoticeByIntervalAsync(string url)
+        {
+            DateTime today = DateTime.Now.Date;
+            var query = _noticeBoardRepository.Table;
+
+            query = query.Where(c => c.PublishedFrom <= today && c.PublishedTo >= today && c.DisplayPopUpInSamePage == true && c.RedirectionURL.Contains(url));
+            return await query.FirstOrDefaultAsync();
         }
     }
 }

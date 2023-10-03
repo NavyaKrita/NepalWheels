@@ -46,7 +46,7 @@ namespace Nop.Web.Models.Notice
         public string Notice { get; set; }
         public int NoticeBoardId { get; set; }
         public DateTime CreatedOnUtc { get; set; }
-        public bool IsDisplayForm { get; set; }
+        
         public string Title { get; set; }
         public string ThankYou { get; set; }
         public string TermAndConditions { get; set; }
@@ -59,6 +59,19 @@ namespace Nop.Web.Models.Notice
         public IEnumerable<SelectListItem> Products { get; set; } = new List<SelectListItem>();
         public string ButtonDisplayText { get; set; }
         public string URL { get; set; }
+
+        public string RedirectionURL { get; set; }
+
+
+        public string InURL { get; set; }
+
+        public int? FormPopUpType { get; set; }
+
+        public bool DisplayPopUpInSamePage { get; set; }
+
+        public string RelatedPageURL { get; set; }
+
+        public string Timer { get; set; }
     }
     public partial record ParticipantFieldModel
     {
@@ -85,16 +98,16 @@ namespace Nop.Web.Models.Notice
     {
 
         [NopResourceDisplayName("FullName")]
-        
+
         public string Name { get; set; }
         [NopResourceDisplayName("PhoneNumber")]
-        
+
         [MaxLength(10)]
         [DataType(DataType.PhoneNumber)]
         public string PhoneNumber { get; set; }
 
         [NopResourceDisplayName("EmailAddress")]
-        [DataType(DataType.EmailAddress)]       
+        [DataType(DataType.EmailAddress)]
         public string EmailAddress { get; set; }
         [NopResourceDisplayName("City")]
         public string City { get; set; }
@@ -121,38 +134,38 @@ namespace Nop.Web.Models.Notice
     {
 
         [NopResourceDisplayName("FullName")]
-       
+
         public string Name { get; set; }
         [NopResourceDisplayName("PhoneNumber")]
-       
+
         [MaxLength(10)]
         [DataType(DataType.PhoneNumber)]
         public string PhoneNumber { get; set; }
 
         [NopResourceDisplayName("EmailAddress")]
-        [DataType(DataType.EmailAddress)]       
+        [DataType(DataType.EmailAddress)]
         public string EmailAddress { get; set; }
         [NopResourceDisplayName("City")]
-       
+
         public string City { get; set; }
 
         [NopResourceDisplayName("Age")]
         [MaxLength(2)]
         [DataType(DataType.CreditCard)]
         [RegularExpression("([1-9][0-9]*)")]
-      
+
         public string Age { get; set; }
 
         [NopResourceDisplayName("Address")]
-        
+
         public string Address { get; set; }
 
         [NopResourceDisplayName("BikeName")]
-       
+
         public string BikeName { get; set; }
 
         [NopResourceDisplayName("CC")]
-       
+
         public string CC { get; set; }
         public string Module { get; set; }
 

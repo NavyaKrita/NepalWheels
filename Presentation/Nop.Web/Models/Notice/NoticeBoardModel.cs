@@ -1,4 +1,5 @@
 ﻿
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Nop.Web.Framework.Models;
 using Nop.Web.Framework.Mvc.ModelBinding;
 using System;
@@ -21,6 +22,7 @@ namespace Nop.Web.Models.Notice
         #endregion
 
         #region Properties
+        public IEnumerable<SelectListItem> Products { get; set; } = new List<SelectListItem>();
 
         [NopResourceDisplayName("Admin.NoticeBoard.Fields.Name")]
         public string Title { get; set; }
@@ -44,6 +46,27 @@ namespace Nop.Web.Models.Notice
         public NoticeFieldModel NoticeField { get; set; }
         public string ButtonDisplayText { get; set; }
         public string URL { get; set; }
+
+        public int ManufacturerId { get; set; }
+        [NopResourceDisplayName("Admin.NoticeBoard.Fields.Product")]
+
+        public IList<int> SelectedProductIds { get; set; }
+
+        [NopResourceDisplayName("Admin.NoticeBoard.Fields.DisplayURL")]
+
+        public string RedirectionURL { get; set; }
+
+        [NopResourceDisplayName("Admin.NoticeBoard.Fields.ButtonText")]
+      
+        public string InURL { get; set; }
+        [NopResourceDisplayName("Admin.NoticeBoard.Fields.PopUpType")]
+        public int? FormPopUpType { get; set; }
+        [NopResourceDisplayName("Admin.NoticeBoard.Fields.DisplayPopUpInSamePage")]
+        public bool DisplayPopUpInSamePage { get; set; }
+        [NopResourceDisplayName("Admin.NoticeBoard.Fields.RelatedPageURL")]
+        public string RelatedPageURL { get; set; }
+        [NopResourceDisplayName("Admin.NoticeBoard.Fields.Timer")]
+        public string Timer { get; set; }
         #endregion
     }
     public partial record NoticeFieldModel

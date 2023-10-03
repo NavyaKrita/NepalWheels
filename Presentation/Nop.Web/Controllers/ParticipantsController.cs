@@ -1,5 +1,6 @@
 ﻿using LinqToDB.Common;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.AspNetCore.Mvc;
 using Nop.Core;
 using Nop.Core.Domain.Notice;
@@ -37,21 +38,24 @@ namespace Nop.Web.Controllers
         }
         public virtual async Task<IActionResult> RegisterParticipants(int id)
         {
-
             var notice = await _noticeBoardModelFactory.PrepareNoticeModelAsync(id);
-
-
 
             ParticipantsModel model = new()
             {
                 NoticeBoardId = notice.Id,
                 Notice = notice.Notice,
                 Title = notice.Title,
-                IsDisplayForm = notice.DisplayForm,
+
                 TermAndConditions = notice.TermAndConditions,
                 ThankYou = notice.ThankYou,
                 ButtonDisplayText = notice.ButtonDisplayText,
-                URL = notice.URL,
+                URL = notice.RedirectionURL,
+                InURL = notice.InURL,
+                DisplayPopUpInSamePage = notice.DisplayPopUpInSamePage,
+                FormPopUpType = notice.FormPopUpType,
+                RedirectionURL = notice.RedirectionURL,
+                Timer = notice.Timer,
+                Products = notice.Products,
                 ParticipantField = new()
                 {
                     Name = notice.NoticeField.Name,
@@ -209,6 +213,43 @@ namespace Nop.Web.Controllers
             }
             return Json(new { success = false });
         }
+
+        public virtual async Task<IActionResult> ShowInPage()
+        {
+            string currentUrl = string.Empty;
+            var model = await _noticeBoardModelFactory.PrepareShowInOtherPagePopUpModelAsync(currentUrl);
+            var relatedPageModel = model.Where(x => x.FormPopUpType == 2);
+            var allPage = model.Where(x => x.FormPopUpType == 3);
+            string browserUrl = HttpContext.Request.Headers["Referer"].ToString();
+            var url = browserUrl.Split("/");
+            List<NoticeBoardModel> filteredModel = new List<NoticeBoardModel>();
+            if (url.Length > 0)
+            {
+                currentUrl = url[url.Length - 1];
+                filteredModel = relatedPageModel.Where(x => x.RelatedPageURL is not null && x.RelatedPageURL.Split(',').Contains(currentUrl)).ToList();
+            }
+            filteredModel.AddRange(allPage.ToList());
+            if (filteredModel.Count() > 0)
+            {
+                return Json(new { success = true, result = filteredModel.Select(x => new { Id = x.Id }) });
+            }
+            return Json(new { success = false });
+        }
+
+        public virtual async Task<IActionResult> GetIntervalActionAsync()
+        {
+            string browserUrl = HttpContext.Request.Headers["Referer"].ToString();
+            var url = browserUrl.Split("/");
+            var currentUrl = url[url.Length - 1];
+            var model = await _noticeBoardModelFactory.PrepareShowIntervalModelAsync(currentUrl);
+
+            if (model is not null)
+            {
+                return Json(new { success = true, result = model.Id, Timer = model.Timer });
+            }
+            return Json(new { success = false });
+        }
+
     }
 }
 

@@ -9,5 +9,7 @@ namespace Nop.Web.Factories
     {
         Task<IEnumerable<NoticeBoardModel>> PrepareNoticeModelAsync();
         Task<NoticeBoardModel> PrepareNoticeModelAsync(int id);
+        Task<IEnumerable<NoticeBoardModel>> PrepareShowInOtherPagePopUpModelAsync(string url);
+        Task<NoticeBoardModel> PrepareShowIntervalModelAsync(string url);
     }
 }
