@@ -39,7 +39,7 @@ namespace Nop.Core.Domain.Notice
 
         public bool CC { get; set; }
 
-        public FormPopUpType? FormPopUpType { get; set; }
+        public int? FormPopUpType { get; set; }
         public bool DisplayPopUpInSamePage { get; set; }
         public bool OpenFormInPopUp { get; set; }
         public string RedirectionURL { get; set; }

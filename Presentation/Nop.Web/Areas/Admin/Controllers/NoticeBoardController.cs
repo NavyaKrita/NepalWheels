@@ -123,7 +123,7 @@ namespace Nop.Web.Areas.Admin.Controllers
                     ButtonDisplayText = noticeBoard.ButtonDisplayText,
                     InURL = noticeBoard.InURL,
                     DisplayPopUpInSamePage = noticeBoard.DisplayPopUpInSamePage,
-                    FormPopUpType = (FormPopUpType)noticeBoard.FormPopUpType,
+                    FormPopUpType = noticeBoard.FormPopUpType,
                     RedirectionURL = noticeBoard.RedirectionURL,
                     Timer = noticeBoard.Timer
                 };
@@ -204,8 +204,9 @@ namespace Nop.Web.Areas.Admin.Controllers
                 model.CreatedOnUtc = System.DateTime.Today;
                 model.InURL = noticeBoard.InURL;
                 model.DisplayPopUpInSamePage = noticeBoard.DisplayPopUpInSamePage;
-                model.FormPopUpType = (FormPopUpType)noticeBoard.FormPopUpType;
+                model.FormPopUpType = noticeBoard.FormPopUpType;
                 model.RedirectionURL = noticeBoard.RedirectionURL;
+                model.RelatedPageURL = noticeBoard.RelatedPageURL;
                 model.Timer = noticeBoard.Timer;
                 await _noticeBoardService.UpdateNoticeAsync(model);
 

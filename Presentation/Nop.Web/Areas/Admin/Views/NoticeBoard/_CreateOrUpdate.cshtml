@@ -143,9 +143,13 @@
                                 <span asp-validation-for="FormPopUpType"></span>
                             </div>
                             <script asp-location="Footer">
+
                                 $(document).ready(function () {
                                     $("#related-page-url").hide();
-
+                                    if ($("#FormPopUpType").val() == "2") {
+                                        $("#related-page-url").show();
+                                    }
+                                    
                                     // Attach a change event handler to the dropdown
                                     $("#FormPopUpType").change(function () {
                                         var selectedValue = $(this).val();
