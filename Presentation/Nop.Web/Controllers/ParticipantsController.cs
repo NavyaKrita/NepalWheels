@@ -56,6 +56,7 @@ namespace Nop.Web.Controllers
                 RedirectionURL = notice.RedirectionURL,
                 Timer = notice.Timer,
                 Products = notice.Products,
+                OpenFormInPopUp= notice.OpenFormInPopUp,
                 ParticipantField = new()
                 {
                     Name = notice.NoticeField.Name,

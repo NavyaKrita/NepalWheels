@@ -64,6 +64,8 @@ namespace Nop.Web.Models.Notice
         [NopResourceDisplayName("Admin.NoticeBoard.Fields.DisplayPopUpInSamePage")]
         public bool DisplayPopUpInSamePage { get; set; }
         [NopResourceDisplayName("Admin.NoticeBoard.Fields.RelatedPageURL")]
+
+        public bool OpenFormInPopUp { get; set; }
         public string RelatedPageURL { get; set; }
         [NopResourceDisplayName("Admin.NoticeBoard.Fields.Timer")]
         public string Timer { get; set; }

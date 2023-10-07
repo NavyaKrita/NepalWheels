@@ -12,10 +12,12 @@
 
     <div class="page-body">
         <div id="notice-page-load-@Model.NoticeBoardId">
-            @if (!Model.DisplayPopUpInSamePage)
-            {@Html.Raw(Model.Notice)}
+            @if (!Model.OpenFormInPopUp)
+            {
+                @Html.Raw(Model.Notice)
+            }
 
-            @if (Model.DisplayPopUpInSamePage)
+            @if (Model.OpenFormInPopUp && !string.IsNullOrEmpty(Model.Notice) && !Model.DisplayPopUpInSamePage)
             {
                 <div class="form-fields">
                     <div class="buttons">
@@ -41,7 +43,121 @@
             </div>
         }
 
-        @if (Model.DisplayPopUpInSamePage)
+        @if (Model.OpenFormInPopUp && !Model.DisplayPopUpInSamePage && !string.IsNullOrEmpty(Model.Notice))
+        {
+            <div id="resgister-participants-form-@Model.NoticeBoardId">
+                <form asp-route="RegisterParticipants" method="post" autocomplete="off" id="register-participants-form-submit-@Model.NoticeBoardId">
+                    <div asp-validation-summary="ModelOnly" class="message-error"></div>
+                    <div class="fieldset">
+                        <div class="title">
+                            <strong>@T("Account.YourPersonalDetails")</strong>
+                        </div>
+                        <div class="form-fields">
+                            <input asp-for="ManufacturerId" type="hidden" />
+
+                            <input type="hidden" asp-for="NoticeBoardId" />
+                            @if (Model.ParticipantField.Name)
+                            {
+                                <div class="inputs">
+                                    <label asp-for="Name" asp-postfix=":"></label>
+                                    <input asp-for="Name" required="true" />
+
+                                    <nop-required />
+
+                                    <span asp-validation-for="Name"></span>
+                                </div>
+                            }
+                            @if (Model.ParticipantField.Age)
+                            {
+                                <div class="inputs">
+                                    <label asp-for="Age" asp-postfix=":"></label>
+                                    <input asp-for="Age" required="true" />
+
+                                    <nop-required />
+
+                                    <span asp-validation-for="Age"></span>
+                                </div>
+                            }
+                            @if (Model.ParticipantField.EmailAddress)
+                            {
+                                <div class="inputs">
+                                    <label asp-for="EmailAddress" asp-postfix=":"></label>
+                                    <input asp-for="EmailAddress" required="true" />
+                                    <nop-required />
+                                    <span asp-validation-for="EmailAddress"></span>
+                                </div>
+                            }
+
+                            @if (Model.ParticipantField.PhoneNumber)
+                            {
+                                <div class="inputs">
+                                    <label asp-for="PhoneNumber" asp-postfix=":"></label>
+                                    <input asp-for="PhoneNumber" required="true" />
+
+                                    <nop-required />
+
+                                    <span asp-validation-for="PhoneNumber"></span>
+                                </div>
+                            }
+                            @if (Model.ParticipantField.Address)
+                            {
+                                <div class="inputs">
+                                    <label asp-for="Address" asp-postfix=":"></label>
+                                    <input asp-for="Address" required="true" />
+
+                                    <nop-required />
+
+                                    <span asp-validation-for="Address"></span>
+                                </div>
+
+                            }
+                            @if (Model.ParticipantField.City)
+                            {
+                                <div class="inputs">
+                                    <label asp-for="City" asp-postfix=":"></label>
+                                    <input asp-for="City" required="true" />
+
+                                    <nop-required />
+
+                                    <span asp-validation-for="City"></span>
+                                </div>
+
+                            }
+                            @if (Model.ParticipantField.BikeName)
+                            {
+                                <div class="inputs">
+                                    <label asp-for="BikeName" asp-postfix=":"></label>
+                                    <input asp-for="BikeName" required="true" />
+
+                                    <nop-required />
+
+                                    <span asp-validation-for="BikeName"></span>
+                                </div>
+
+                            }
+                            @if (Model.ParticipantField.CC)
+                            {
+                                <div class="inputs">
+                                    <label asp-for="CC" asp-postfix=":"></label>
+                                    <input asp-for="CC" />
+
+                                </div>
+
+                            }
+                            <div class="inputs">
+                                <label asp-for="Products" asp-postfix=":"></label>
+                                <nop-select asp-for="ProductId" asp-items="Model.Products" asp-required="true" />
+                                <span asp-validation-for="ProductId"></span>
+                            </div>
+                        </div>
+                        <div class="buttons">
+                            <button type="submit" name="register-button" id="register-button-@Model.NoticeBoardId" class="button-1 register-next-step-button">@T("Account.Register.Button")</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        }
+        else if (Model.OpenFormInPopUp && Model.DisplayPopUpInSamePage)
         {
             <div id="resgister-participants-form-@Model.NoticeBoardId">
                 <form asp-route="RegisterParticipants" method="post" autocomplete="off" id="register-participants-form-submit-@Model.NoticeBoardId">
@@ -160,7 +276,7 @@
 
 
 <script asp-location="Footer">
-    $("#show-register-button-@Model.NoticeBoardId").on("click", function () {
+    $("#show-register-button-"@Model.NoticeBoardId).on("click", function () {
         $("#notice-pop-up-landing-" + @Model.NoticeBoardId).dialog('close')
     });
 </script>

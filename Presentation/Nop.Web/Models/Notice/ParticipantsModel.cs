@@ -66,6 +66,7 @@ namespace Nop.Web.Models.Notice
         public string InURL { get; set; }
 
         public int? FormPopUpType { get; set; }
+        public bool OpenFormInPopUp { get; set; }
 
         public bool DisplayPopUpInSamePage { get; set; }
 

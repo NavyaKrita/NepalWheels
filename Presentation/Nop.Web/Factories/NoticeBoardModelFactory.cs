@@ -60,6 +60,7 @@ namespace Nop.Web.Factories
                     FormPopUpType = notices.FormPopUpType,
                     RedirectionURL = notices.RedirectionURL,
                     Timer = notices.Timer,
+                    OpenFormInPopUp=notices.OpenFormInPopUp,
                     NoticeField = new()
                     {
                         Name = notices.Name,

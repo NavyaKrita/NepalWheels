@@ -186,9 +186,10 @@
                                 <span asp-validation-for="DisplayPopUpInSamePage"></span>
                             </div>
                             <script asp-location="Footer">
-                            
+                                if ($("#DisplayPopUpInSamePage").is(":checked"))
+                                    $("#timer-field").show();
+                                    else
                                     $("#timer-field").hide();
-                                   
                                     // Attach a click event handler to the checkbox
                                     $("#DisplayPopUpInSamePage").click(function () {
                                         if ($(this).is(":checked")) {
