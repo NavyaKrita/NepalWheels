@@ -1,4 +1,5 @@
 ﻿using Nop.Web.Framework.Models;
+using Nop.Web.Framework.Mvc.ModelBinding;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,5 +13,8 @@ namespace Nop.Web.Areas.Admin.Models.Notice
         public DateTime? EndDate { get; set; } = DateTime.Now.Date;
 
         public string Notice { get; set; }
+        [NopResourceDisplayName("Admin.NoticeBoard.Fields.LeadGeneratedFrom")]
+        public string LeadGeneratedFrom { get; set; }
+        public string Lead { get; set; }
     }
 }

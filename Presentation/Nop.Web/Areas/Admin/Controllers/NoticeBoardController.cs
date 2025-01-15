@@ -10,6 +10,8 @@ using Nop.Web.Areas.Admin.Factories;
 using Nop.Web.Areas.Admin.Models.Notice;
 using Nop.Web.Framework.Controllers;
 using Nop.Web.Framework.Mvc.Filters;
+using Nop.Web.Models.Notice;
+using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace Nop.Web.Areas.Admin.Controllers
@@ -23,6 +25,7 @@ namespace Nop.Web.Areas.Admin.Controllers
         private readonly ILocalizationService _localizationService;
         private readonly ILocalizedEntityService _localizedEntityService;
         private readonly INotificationService _notificationService;
+
         public NoticeBoardController(IPermissionService permissionService,
            INoticeBoardModelFactory noticeBoardModelFactory,
           INoticeBoardService noticeBoardService,
@@ -236,6 +239,18 @@ namespace Nop.Web.Areas.Admin.Controllers
             var model = await _noticeBoardModelFactory.PrepareParticipantsListModelAsync(searchModel);
 
             return Json(model);
+        }
+
+        [HttpGet]
+        public virtual async Task<IActionResult> RegisterParticipants()
+        {
+           
+            string browserUrl = HttpContext.Request.Headers["Referer"].ToString();
+            var url = browserUrl.Split("/");
+
+            var model = await _noticeBoardModelFactory.PrepareNoticeModelAsync();
+            model.Module = url[4];
+            return View(model);
         }
     }
 }
